@@ -26,4 +26,3 @@ Deliver a traceable engineering prototype package: original parametric CAD, prin
 - [ ] Actuated prototype integration (depends on locomotion/product selection)
 - [ ] Physical build, fit and endurance verification (requires hardware)
 - [ ] Production readiness (requires supplier DFM, test results and market-specific review)
-

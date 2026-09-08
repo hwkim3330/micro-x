@@ -30,7 +30,7 @@ for p in parts:
  c.drawText(text);c.showPage()
 c.save()
 with (R/'artifacts/bom.csv').open('w',newline='') as f:
- writer=csv.writer(f);writer.writerow(['part','quantity','material_basis','mass_g','status','file'])
+ writer=csv.writer(f,lineterminator="\n");writer.writerow(['part','quantity','material_basis','mass_g','status','file'])
  for p in parts:writer.writerow([p['name'],1,'PLA volume estimate; material not frozen',p['mass_g'],'P0 prototype',p['step']])
  writer.writerow(['M3 screws and nuts','TBD','Purchased; length/retention audit pending','','Not procurement-ready','docs/ASSEMBLY.md'])
  writer.writerow(['Actuators/electronics','TBD','Not integrated','','Architecture decision required','docs/COST.md'])
