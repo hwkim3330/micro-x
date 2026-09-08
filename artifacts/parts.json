@@ -100,28 +100,28 @@
   {
     "name": "eye_left",
     "group": "head",
-    "note": "Adhesive-fit eye insert, 0.2 mm nominal radial allowance; captive retention pending.",
+    "note": "Rear M3 plastic thread-forming screw through skull \u00d83.4, eye pilot \u00d82.6 \u00d7 7 deep. Plate 2 mm; shaft \u00d88. Pull-out/torque test pending. Pupil graphics are paint intent.",
     "dimensions_mm": [
       19.59,
-      19.59,
+      19.8,
       19.6
     ],
-    "volume_mm3": 3942.46,
-    "mass_g": 4.89,
+    "volume_mm3": 3375.51,
+    "mass_g": 4.19,
     "step": "models/step/eye_left.step",
     "stl": "models/print/eye_left.stl"
   },
   {
     "name": "eye_right",
     "group": "head",
-    "note": "Adhesive-fit eye insert, 0.2 mm nominal radial allowance; captive retention pending.",
+    "note": "Rear M3 plastic thread-forming screw through skull \u00d83.4, eye pilot \u00d82.6 \u00d7 7 deep. Plate 2 mm; shaft \u00d88. Pull-out/torque test pending. Pupil graphics are paint intent.",
     "dimensions_mm": [
       19.59,
-      19.59,
+      19.8,
       19.6
     ],
-    "volume_mm3": 3942.46,
-    "mass_g": 4.89,
+    "volume_mm3": 3375.51,
+    "mass_g": 4.19,
     "step": "models/step/eye_right.step",
     "stl": "models/print/eye_right.stl"
   },
@@ -134,8 +134,8 @@
       70.0,
       61.0
     ],
-    "volume_mm3": 39840.07,
-    "mass_g": 49.4,
+    "volume_mm3": 43870.13,
+    "mass_g": 54.4,
     "step": "models/step/skull.step",
     "stl": "models/print/skull.stl"
   },
@@ -186,11 +186,11 @@
     "group": "arms",
     "note": "Manual M3 pivot mating torso bearing posts at X36 Z181. Actuator and motion stops not integrated.",
     "dimensions_mm": [
-      37.0,
+      36.57,
       6.0,
-      24.0
+      23.81
     ],
-    "volume_mm3": 2018.52,
+    "volume_mm3": 2016.93,
     "mass_g": 2.5,
     "step": "models/step/forearm_left.step",
     "stl": "models/print/forearm_left.stl"
@@ -200,11 +200,11 @@
     "group": "arms",
     "note": "Manual M3 pivot mating torso bearing posts at X36 Z181. Actuator and motion stops not integrated.",
     "dimensions_mm": [
-      37.0,
+      36.57,
       6.0,
-      24.0
+      23.81
     ],
-    "volume_mm3": 2018.52,
+    "volume_mm3": 2016.93,
     "mass_g": 2.5,
     "step": "models/step/forearm_right.step",
     "stl": "models/print/forearm_right.stl"

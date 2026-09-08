@@ -77,8 +77,8 @@
       "watertight": true,
       "print_envelope_mm": [
         19.59,
-        19.59,
-        19.6
+        19.6,
+        19.8
       ],
       "step_exists": true
     },
@@ -87,8 +87,8 @@
       "watertight": true,
       "print_envelope_mm": [
         19.59,
-        19.59,
-        19.6
+        19.6,
+        19.8
       ],
       "step_exists": true
     },
@@ -136,8 +136,8 @@
       "part": "forearm_left",
       "watertight": true,
       "print_envelope_mm": [
-        37.0,
-        24.0,
+        36.57,
+        23.81,
         6.0
       ],
       "step_exists": true
@@ -146,8 +146,8 @@
       "part": "forearm_right",
       "watertight": true,
       "print_envelope_mm": [
-        37.0,
-        24.0,
+        36.57,
+        23.81,
         6.0
       ],
       "step_exists": true

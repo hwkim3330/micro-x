@@ -33,6 +33,7 @@ for p in qparts:
         base=next(b for b in parts if b['name']==p['source_part'])
         assert qr['source_step_sha256'][base['name']]==hashlib.sha256((R/base['step']).read_bytes()).hexdigest(), 'stale shared source geometry'
         assert abs(p['mass_g']-base['mass_g'])<.03, 'shared part mass changed'
+        assert (R/p['stl']).read_bytes()==(R/base['stl']).read_bytes(), 'shared print geometry/orientation changed'
 assert len(qparts)==19 and qr['unique_common_designs']==13 and qr['new_designs']==2
 print('Q4: 19 printable instances, 13 shared designs, 2 new rail designs verified')
 files=[f for folder in ['models','cad'] for f in (R/folder).rglob('*') if f.is_file() and '__pycache__' not in str(f)]

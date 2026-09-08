@@ -63,12 +63,12 @@
     "name": "eye_left",
     "group": "head",
     "dimensions_mm": [
-      19.59,
-      19.59,
+      19.6,
+      19.8,
       19.6
     ],
-    "mass_g": 4.89,
-    "volume_mm3": 3942.46,
+    "mass_g": 4.19,
+    "volume_mm3": 3375.51,
     "source_part": "eye_left",
     "assembly_offset_mm": [
       0,
@@ -83,12 +83,12 @@
     "name": "eye_right",
     "group": "head",
     "dimensions_mm": [
-      19.59,
-      19.59,
+      19.6,
+      19.8,
       19.6
     ],
-    "mass_g": 4.89,
-    "volume_mm3": 3942.46,
+    "mass_g": 4.19,
+    "volume_mm3": 3375.51,
     "source_part": "eye_right",
     "assembly_offset_mm": [
       0,
@@ -107,8 +107,8 @@
       70.0,
       61.0
     ],
-    "mass_g": 49.4,
-    "volume_mm3": 39840.09,
+    "mass_g": 54.4,
+    "volume_mm3": 43870.15,
     "source_part": "skull",
     "assembly_offset_mm": [
       0,

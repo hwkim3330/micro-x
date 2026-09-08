@@ -33,3 +33,7 @@ Deliver a traceable engineering prototype package: original parametric CAD, prin
 - [ ] B2 13-axis and Q4 15-axis candidate drive configuration validation
 - [ ] Motor torque/thermal evidence, bearings, shafts and mechanical drive cartridges
 - [ ] Walking controller, calibrated dynamics and physical locomotion validation
+
+## Appearance and durability
+
+User requested a cute and robust product competitive with Microduck. Current eye finish and rear fastening are design improvements; comparative performance remains unproven. Proposed measurable targets are in `engineering/acceptance.json`, with no physical results claimed.

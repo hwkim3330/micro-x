@@ -33,6 +33,8 @@ c.save()
 with (R/('artifacts/bom_q4.csv' if quad else 'artifacts/bom.csv')).open('w',newline='') as f:
  writer=csv.writer(f,lineterminator="\n");writer.writerow(['part','quantity','material_basis','mass_g','status','file'])
  for p in parts:writer.writerow([p['name'],1,'PLA volume estimate; material not frozen',p['mass_g'],'P0 prototype',p['step']])
+ writer.writerow(['Eye M3 plastic thread-forming screw',2,'Candidate length 8 mm; verify chosen supplier and installed torque','','Prototype fit/pull test required','docs/DESIGN_QUALITY.md'])
+ writer.writerow(['Eye M3 washer',2,'Candidate 1 mm thickness; verify bearing area and actual screw head','','Prototype fit required','docs/DESIGN_QUALITY.md'])
  writer.writerow(['M3 screws and nuts','TBD','Purchased; length/retention audit pending','','Not procurement-ready','docs/ASSEMBLY.md'])
  writer.writerow(['Actuators/electronics','TBD','Not integrated','','Architecture decision required','docs/COST.md'])
 print('Wrote',len(parts),'drawing pages and provisional BOM')

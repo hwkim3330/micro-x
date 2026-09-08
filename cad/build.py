@@ -7,6 +7,7 @@ import json, math
 import cadquery as cq
 import numpy as np
 import trimesh
+from appearance import paint
 R=Path(__file__).resolve().parents[1]
 for folder in ['models/step','models/print','artifacts']: (R/folder).mkdir(parents=True,exist_ok=True)
 parts=[]
@@ -30,7 +31,7 @@ def add(name,shape,color,group,print_axis='Z',note=''):
     mesh.export(stl)
     if not mesh.is_watertight or mesh.volume<=0:raise ValueError(name+' mesh invalid')
     printable=mesh.copy()
-    if print_axis=='Y':printable.apply_transform(trimesh.transformations.rotation_matrix(math.pi/2,[1,0,0]))
+    if print_axis in ['Y','-Y']:printable.apply_transform(trimesh.transformations.rotation_matrix(math.pi/2 if print_axis=='Y' else -math.pi/2,[1,0,0]))
     if print_axis=='X':printable.apply_transform(trimesh.transformations.rotation_matrix(math.pi/2,[0,1,0]))
     printable.vertices-=np.r_[printable.bounds.mean(axis=0)[:2],printable.bounds[0,2]]
     printable.export(R/'models/print'/f'{name}.stl')
@@ -109,13 +110,19 @@ for x,z,w,h in [head_sections[0],head_sections[-1]]:
 for sign in [-1,1]:
     ear=bore(59,sign*25+4,212,6,8,'Y')
     head=head.union(ear).cut(bore(59,sign*25+6,212,1.7,12,'Y'))
-# Independent stylized recessed eye plugs; sockets are subtraction of same generated tool.
+# Replace adhesive eye balls with rear-fastened caps and integrated internal support plates.
 for sign,side in [(1,'left'),(-1,'right')]:
     eye=cq.Workplane('XY').sphere(10).translate((72,sign*31,243))
     head=head.cut(eye)
-    # Smaller sphere leaves 0.2 radial adhesive allowance in the shell socket.
+    plate=box(30,2,42,(72,sign*20,243)).intersect(head_outer)
+    plate=plate.cut(bore(72,sign*20+3,243,1.7,6,'Y'))
+    head=head.union(plate)
     inset=cq.Workplane('XY').sphere(9.8).translate((72,sign*31,243))
-    add('eye_'+side,inset,GOLD,'head',note='Adhesive-fit eye insert, 0.2 mm nominal radial allowance; captive retention pending.')
+    inset=inset.intersect(box(40,40,40,(72,sign*47,243))) # rear cap plane Y=±27
+    shaft=bore(72,29 if sign==1 else -21,243,4,8,'Y') # shaft rear face Y=±21
+    inset=inset.union(shaft)
+    inset=inset.cut(bore(72,21 if sign==1 else -21,243,1.3,-7 if sign==1 else 7,'Y'))
+    add('eye_'+side,inset,GOLD,'head','Y' if sign==1 else '-Y',note='Rear M3 plastic thread-forming screw through skull Ø3.4, eye pilot Ø2.6 × 7 deep. Plate 2 mm; shaft Ø8. Pull-out/torque test pending. Pupil graphics are paint intent.')
 # Two nostrils on nose, camera functionality deliberately not implied.
 for sign in [-1,1]:head=head.cut(bore(148,sign*20,228,2.3,12,'Y'))
 head=head.cut(neck_keep)
@@ -145,7 +152,7 @@ for sign,side in [(1,'left'),(-1,'right')]:
 # Small two-finger forearms, visually separate from the load-bearing hind limbs.
 for sign,side in [(1,'left'),(-1,'right')]:
     profile=[(31,184),(40,187),(58,173),(63,173),(68,168),(64,165),(56,169),(54,163),(49,164),(42,176),(32,176)]
-    arm=cq.Workplane('XZ',origin=(0,sign*37+3,0)).polyline(profile).close().extrude(6)
+    arm=cq.Workplane('XZ',origin=(0,sign*37+3,0)).polyline(profile).close().extrude(6).edges('|Y').fillet(.7)
     arm=arm.cut(bore(36,sign*37+4,181,1.7,8,'Y'))
     add('forearm_'+side,arm,JADE,'arms','Y','Manual M3 pivot mating torso bearing posts at X36 Z181. Actuator and motion stops not integrated.')
 assembly=cq.Assembly(name='Micro_X_P0')
@@ -153,7 +160,7 @@ scene=trimesh.Scene()
 report=[]
 for p in parts:
     assembly.add(p['shape'],name=p['name'],color=cq.Color(*p['color']))
-    mesh=p['mesh'].copy();mesh.vertices*=.001;mesh.visual.vertex_colors=(np.array(p['color'])*255).astype(np.uint8)
+    mesh=paint(p['mesh'].copy(),p['name'],p['color']);mesh.vertices*=.001
     scene.add_geometry(mesh,node_name=p['name'])
     report.append({k:v for k,v in p.items() if k not in ['shape','mesh','color']})
 assembly.export(str(R/'models/micro_x.step'));scene.export(R/'models/micro_x.glb')

@@ -8,7 +8,7 @@
 - Rear leg axes: X = -14 mm, Z = 143 mm, parallel to Y, Ø3.4 clearance. Fixed pose concept; one axis does not provide anti-rotation locking. Final fastener/locking feature is pending.
 - Ankle axes: X = 8 mm, Z = 27 mm, parallel to Y, Ø3.4 clearance. Feet have fork lugs. Add washers only after measuring actual print clearance.
 - Jaw axes: X = 59 mm, Z = 212 mm, parallel to Y, Ø3.4 clearance. Two side bolts are intended; sufficient bearing engagement, stops and finger access are unverified.
-- Eyes: independent sphere/socket pair with 0.2 mm radial adhesive allowance. Adhesive is a prototype method, not validated captive retention for a consumer product.
+- Eyes: rear-fastened caps with Ø8 mm bosses, Ø2.6 × 7 mm blind pilots and skull support plates 2 mm thick with Ø3.4 clearance. Candidate M3×8 plastic thread-forming screws and 1 mm washers must be fitted and pull-tested; no adhesive is needed for the intended retention.
 
 - Tail seam: transverse M3 axes at (X,Z) = (-100,145) and (-155,133), Ø3.4. Axial tail-to-torso bolts: Y = ±8, Z = 153, parallel to X, Ø3.4 in tail / Ø2.6 torso pilots. Mating face X = -58. Verify print fit and select bolt lengths from the STEP stack.
 - Forearm posts: X = 36, Z = 181, parallel to Y, Ø3.4; inner arm faces Y = ±34. Posts are split by the torso service seam, so access and stiffness need a build test.
@@ -26,7 +26,7 @@
 
 - Neck/head retention assembly and physical verification of the new tail bolt interfaces.
 - Forearm motion stops and fastener stack; anti-rotation rear-leg fixing.
-- Jaw motion stops, bearing stack and retention; eye insert retention.
+- Jaw motion stops, bearing stack and retention; physical pull-out/installation-torque testing of the new eye fasteners.
 - Actuator cradles with verified purchased-part dimensions, horn and load path.
 - Continuous assembly clearance sweep including screws/tolerances, slicer settings and support removal access. Reference-pose STEP intersections have been cleared; see artifacts/interference.json.
 - Electronics, power distribution, firmware and motion/thermal testing.

@@ -1,0 +1,16 @@
+{
+  "status": "proposed measurable targets; no physical test has passed yet",
+  "appearance": ["recognizable dinosaur silhouette for B2 and Q4", "large expressive eyes with finish graphics rather than extra loose highlight parts", "rounded forearm corners"],
+  "mechanical": [
+    {"id":"eye_retention","design":"rear M3 screw, integrated skull support, no adhesive-only retention","test":"record installation torque, pull-out force and failure mode on actual printed and final-process parts","result":null},
+    {"id":"service","target_minutes":10,"test":"replace one drive cartridge with standard tools after power isolation; measure with a new operator","result":null},
+    {"id":"joint_endurance","target_cycles":100000,"test":"loaded single-leg fixture at frozen duty cycle; record backlash, fastener loosening, temperature and failures","result":null},
+    {"id":"drop","target_height_m":0.5,"test":"powered-off engineering samples in six documented orientations, controlled fixture; assess detached parts, sharp fracture and electrical damage","result":null}
+  ],
+  "locomotion": [
+    {"platform":"b2","initial_target":"20 consecutive unsupported straight-line steps on a documented level surface","result":null},
+    {"platform":"q4","initial_target":"2 m crawl with repeatable start/stop on a documented level surface","result":null}
+  ],
+  "comparison": "No superiority claim against Microduck without comparable physical units, identical surfaces/payloads, repeated trials, recorded failures, repair times and complete cost assumptions.",
+  "production_gate": "Targets require review against final intended use and applicable market requirements; they do not replace certification or production validation."
+}

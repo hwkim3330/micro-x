@@ -5,6 +5,7 @@ from pathlib import Path
 import json,hashlib,itertools
 import cadquery as cq
 import trimesh,numpy as np
+from appearance import paint
 R=Path(__file__).resolve().parents[1];out=R/'models/q4';out.mkdir(exist_ok=True)
 for p in ['step','print']:(out/p).mkdir(exist_ok=True)
 base=json.loads((R/'artifacts/parts.json').read_text());assembly=cq.Assembly(name='Micro_X_Q4');scene=trimesh.Scene();parts=[];shapes={}
@@ -16,10 +17,13 @@ def add(name,shape,group,source=None,offset=(0,0,0),axis='Z',note=''):
  m.export(out/f'{name}.stl')
  color=colors[group];
  if name.startswith('eye_') or 'foot_' in name:color=[.96,.62,.21,1]
- visual=m.copy();visual.vertices*=.001;visual.visual.vertex_colors=(np.array(color)*255).astype(np.uint8);scene.add_geometry(visual,node_name=name)
+ visual=paint(m.copy(),name,color);visual.vertices*=.001;scene.add_geometry(visual,node_name=name)
  printed=m.copy()
  if axis=='Y':printed.apply_transform(trimesh.transformations.rotation_matrix(np.pi/2,[1,0,0]))
  printed.vertices-=np.r_[printed.bounds.mean(0)[:2],printed.bounds[0,2]];printed.export(out/'print'/f'{name}.stl')
+ if source:
+  shared=next(p for p in base if p['name']==source)
+  (out/'print'/f'{name}.stl').write_bytes((R/shared['stl']).read_bytes())
  assembly.add(shape,name=name,color=cq.Color(*color));shapes[name]=shape
  parts.append(dict(name=name,group=group,dimensions_mm=np.round(m.extents,2).tolist(),mass_g=round(shape.val().Volume()*.00124,2),volume_mm3=round(shape.val().Volume(),2),source_part=source,assembly_offset_mm=list(offset),step=f'models/q4/step/{name}.step',stl=f'models/q4/print/{name}.stl',note=note))
 # Nine common upper-body parts; small cosmetic forearms are replaced by front load-bearing legs.

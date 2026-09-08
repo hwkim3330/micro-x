@@ -2,7 +2,7 @@
 
 Accessed 2026-09-08: Waveshare ST3215 family listing shows $16.99–21.99 (variant dependent). https://www.waveshare.com/product/modules/st3215-servo.htm
 
-The website uses the low end as an **editable comparison input**, not a selected motor or BOM guarantee. An example with 4 motors, $60 other components, $35 fabrication/assembly, and 95% yield gives `(4*16.99+60+35)/0.95 = $171.54`. These unquoted allowances are not market evidence. Changing motor count does not automatically create a mechanically feasible architecture.
+The website uses the low end as an **editable comparison input**, not a selected motor or BOM guarantee. The B2 website default uses the proposed 13 axes, $60 other components, $35 fabrication/assembly and 95% yield: `(13*16.99+60+35)/0.95 = $332.49`. Selecting Q4 changes the proposed axis count to 15. These unquoted allowances are not market evidence. Changing motor count does not automatically create a mechanically feasible architecture.
 
 Price excludes tax, freight, duties, tooling, development, certification, scrap rework beyond the simplified yield model, packaging, distribution, warranty and margin. Prices are USD; no exchange-rate conversion is asserted. For quantity pricing obtain written supplier quotes on a frozen revision.
 
