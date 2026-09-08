@@ -22,7 +22,7 @@ Deliver a traceable engineering prototype package: original parametric CAD, prin
 - [x] Editable cost assumptions and supplier price evidence (not procurement BOM)
 - [x] Repository license scope and provenance inventory; commercial IP clearance remains open
 - [x] P0 closed meshes, reference-pose intersection checks and web/download verification; production verification remains open
-- [ ] Public GitHub and Pages
+- [x] Public GitHub and Pages; both HTTP 200, initial CI and Pages deployment passed
 - [ ] Actuated prototype integration (depends on locomotion/product selection)
 - [ ] Physical build, fit and endurance verification (requires hardware)
 - [ ] Production readiness (requires supplier DFM, test results and market-specific review)
