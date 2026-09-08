@@ -1,0 +1,29 @@
+{
+  "platforms": {
+    "b2": {
+      "actuator_count": 13,
+      "assumed_load_torque_nm": 1.103,
+      "assumed_available_nm": 0.883,
+      "screen_margin": 0.8,
+      "passes_assumed_screen": false,
+      "motor_selection": "UNVALIDATED: no continuous torque evidence",
+      "retail_axis_budget_usd": [
+        220.87,
+        285.87
+      ]
+    },
+    "q4": {
+      "actuator_count": 15,
+      "assumed_load_torque_nm": 0.794,
+      "assumed_available_nm": 0.883,
+      "screen_margin": 1.111,
+      "passes_assumed_screen": true,
+      "motor_selection": "UNVALIDATED: no continuous torque evidence",
+      "retail_axis_budget_usd": [
+        254.85,
+        329.85
+      ]
+    }
+  },
+  "limits": "Static body-load screen only. Target mass, lever arm, load multiplier and derating are assumptions. Excludes link self-weight, acceleration, impacts, gait, transmission losses, thermal limits and supply sizing. Price is an illustrative family-range axis budget, not final BOM."
+}

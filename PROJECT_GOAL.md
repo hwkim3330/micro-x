@@ -12,7 +12,7 @@ Deliver a traceable engineering prototype package: original parametric CAD, prin
 - Every printable part must be a valid closed CAD solid and a watertight positive-volume mesh.
 - Provide actual assembly interfaces and identify which interfaces have not been physically checked.
 - Show honest status of motor selection, electronics, movement control, fit, durability, safety and production tooling. Static CAD is not production approval.
-- Final locomotion configuration is awaiting product decision; develop common appearance/assembly first. Do not silently label a fixed mock-up a walking robot.
+- User confirmed biped walking is required and requested an additional quadruped. B2 is the primary walking product; Q4 is a second platform. Both require real locomotion engineering; fixed packaging models are not walking robots.
 - Public website must load its actual geometry and downloads on desktop/mobile.
 
 ## Completion ledger
@@ -23,6 +23,13 @@ Deliver a traceable engineering prototype package: original parametric CAD, prin
 - [x] Repository license scope and provenance inventory; commercial IP clearance remains open
 - [x] P0 closed meshes, reference-pose intersection checks and web/download verification; production verification remains open
 - [x] Public GitHub and Pages; both HTTP 200, initial CI and Pages deployment passed
-- [ ] Actuated prototype integration (depends on locomotion/product selection)
+- [ ] Actuated prototype integration (B2 walking and Q4 quadruped requirements confirmed; drive engineering remains open)
 - [ ] Physical build, fit and endurance verification (requires hardware)
 - [ ] Production readiness (requires supplier DFM, test results and market-specific review)
+
+## B2 / Q4 expansion
+
+- [x] Q4 common-part packaging CAD and model viewer selection
+- [ ] B2 13-axis and Q4 15-axis candidate drive configuration validation
+- [ ] Motor torque/thermal evidence, bearings, shafts and mechanical drive cartridges
+- [ ] Walking controller, calibrated dynamics and physical locomotion validation

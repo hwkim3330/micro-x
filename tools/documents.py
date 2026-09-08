@@ -1,15 +1,16 @@
 from pathlib import Path
-import json,csv
+import json,csv,argparse
 import numpy as np
 import trimesh
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A3,landscape
-R=Path(__file__).resolve().parents[1];parts=json.loads((R/'artifacts/parts.json').read_text())
-c=canvas.Canvas(str(R/'artifacts/drawings.pdf'),pagesize=landscape(A3));W,H=landscape(A3)
+parser=argparse.ArgumentParser();parser.add_argument('--variant',choices=['b2','q4'],default='b2');variant=parser.parse_args().variant
+R=Path(__file__).resolve().parents[1];quad=variant=='q4';parts=json.loads((R/('artifacts/q4_parts.json' if quad else 'artifacts/parts.json')).read_text())
+c=canvas.Canvas(str(R/('artifacts/drawings_q4.pdf' if quad else 'artifacts/drawings.pdf')),pagesize=landscape(A3));W,H=landscape(A3)
 for p in parts:
- c.setFont('Helvetica-Bold',22);c.drawString(40,H-48,'MICRO X / '+p['name'])
+ c.setFont('Helvetica-Bold',22);c.drawString(40,H-48,('MICRO X Q4 / ' if quad else 'MICRO X B2 / ')+p['name'])
  c.setFont('Helvetica',10);c.drawString(40,H-70,'P0 independent appearance / assembly prototype | millimetres | not production released')
- m=trimesh.load_mesh(R/'models'/f"{p['name']}.stl")
+ m=trimesh.load_mesh(R/('models/q4' if quad else 'models')/f"{p['name']}.stl")
  for k,(axes,label) in enumerate([([0,2],'SIDE X-Z'),([0,1],'TOP X-Y'),([1,2],'FRONT Y-Z')]):
   v=m.vertices[:,axes];lo=v.min(0);hi=v.max(0);extent=hi-lo;scale=min(300/max(extent[0],1),340/max(extent[1],1));origin=np.array([55+k*380,240]);uv=(v-lo)*scale+origin
   c.setStrokeColorRGB(.19,.35,.26);c.setLineWidth(.25)
@@ -29,7 +30,7 @@ for p in parts:
  text.textLine('Clearance, fastening, interference and physical fit require prototype verification. Rights: root LICENSE.')
  c.drawText(text);c.showPage()
 c.save()
-with (R/'artifacts/bom.csv').open('w',newline='') as f:
+with (R/('artifacts/bom_q4.csv' if quad else 'artifacts/bom.csv')).open('w',newline='') as f:
  writer=csv.writer(f,lineterminator="\n");writer.writerow(['part','quantity','material_basis','mass_g','status','file'])
  for p in parts:writer.writerow([p['name'],1,'PLA volume estimate; material not frozen',p['mass_g'],'P0 prototype',p['step']])
  writer.writerow(['M3 screws and nuts','TBD','Purchased; length/retention audit pending','','Not procurement-ready','docs/ASSEMBLY.md'])

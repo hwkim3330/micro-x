@@ -11,7 +11,9 @@ Price excludes tax, freight, duties, tooling, development, certification, scrap 
 - Start with FDM prototypes, avoiding injection tooling before geometry and demand are validated.
 - Use common M3 interfaces and serviceable shell halves, aiming to reduce fastener assortment and repair labor.
 - Compare purchased serial-bus actuators rather than choosing from stall torque or unit price alone. Mass, continuous load, current, backlash, noise and thermal limits matter.
-- Keep arms as passive mechanisms unless product behavior justifies added motors. Walking architecture remains undecided; do not drop required degrees of freedom merely to hit a price.
+- Keep arms as passive mechanisms unless product behavior justifies added motors. B2 walking and Q4 quadruped platforms are now required; do not drop required degrees of freedom merely to hit a price.
 - Record actual slicer mass, print time, assembly minutes, first-pass yield and failures after a physical build.
 
 No percentage cost saving is claimed because neither a comparable baseline production BOM nor supplier quote is available.
+
+The B2/Q4 candidate axis budgets and load assumptions are in `engineering/platforms.json`. The cheaper candidate does not pass the stated B2 torque screen. No procurement decision follows from the website calculator.

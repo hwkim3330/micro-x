@@ -35,3 +35,14 @@ python3 -m http.server 5191
 ## 권리와 판매 방향
 
 원본 기구·CAD 생성 소스·모델·도면은 소유자 권리를 유보합니다. 공개 저장소 열람이 추가적인 제조·판매 허락을 뜻하지 않습니다. 웹과 일반 도구 코드는 MIT, Three.js는 원래 MIT 조건을 유지합니다. 상세 범위는 [LICENSE](LICENSE), [THIRD_PARTY.md](THIRD_PARTY.md)를 따릅니다. 제품 이름과 독자 설계의 권리 검토는 상용 출시 전에 별도로 필요합니다.
+
+## B2 두 발형 + Q4 네 발형
+
+두 발 보행을 주 제품 요구사항으로 확정했고, 공용 부품을 이용한 Q4 네 발형을 추가했습니다. 웹에서 두 모델을 전환할 수 있습니다. Q4는 19개 부품 인스턴스의 STEP·GLB·출력 STL을 제공합니다. 현재는 고정 다리의 배치 시제품이며, 실제 보행 구동계는 미완성입니다.
+
+[플랫폼 요구사항과 하중 검토](docs/PLATFORMS.md) · [Q4 CAD](models/q4/micro_x_q4.step) · [검사 기록](artifacts/q4_validation.json)
+
+```sh
+python3 cad/quadruped.py
+python3 tools/platform_screen.py
+```

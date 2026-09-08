@@ -1,0 +1,382 @@
+[
+  {
+    "name": "torso_lower",
+    "group": "torso",
+    "dimensions_mm": [
+      111.0,
+      88.0,
+      56.99
+    ],
+    "mass_g": 61.65,
+    "volume_mm3": 49715.43,
+    "source_part": "torso_lower",
+    "assembly_offset_mm": [
+      0,
+      0,
+      0
+    ],
+    "step": "models/q4/step/torso_lower.step",
+    "stl": "models/q4/print/torso_lower.stl",
+    "note": "Shared Micro X P0 geometry; drive integration not complete."
+  },
+  {
+    "name": "torso_upper",
+    "group": "torso",
+    "dimensions_mm": [
+      103.69,
+      79.05,
+      33.0
+    ],
+    "mass_g": 33.02,
+    "volume_mm3": 26630.22,
+    "source_part": "torso_upper",
+    "assembly_offset_mm": [
+      0,
+      0,
+      0
+    ],
+    "step": "models/q4/step/torso_upper.step",
+    "stl": "models/q4/print/torso_upper.stl",
+    "note": "Shared Micro X P0 geometry; drive integration not complete."
+  },
+  {
+    "name": "neck_cradle",
+    "group": "neck",
+    "dimensions_mm": [
+      20.0,
+      24.0,
+      51.0
+    ],
+    "mass_g": 10.53,
+    "volume_mm3": 8493.82,
+    "source_part": "neck_cradle",
+    "assembly_offset_mm": [
+      0,
+      0,
+      0
+    ],
+    "step": "models/q4/step/neck_cradle.step",
+    "stl": "models/q4/print/neck_cradle.stl",
+    "note": "Shared Micro X P0 geometry; drive integration not complete."
+  },
+  {
+    "name": "eye_left",
+    "group": "head",
+    "dimensions_mm": [
+      19.59,
+      19.59,
+      19.6
+    ],
+    "mass_g": 4.89,
+    "volume_mm3": 3942.46,
+    "source_part": "eye_left",
+    "assembly_offset_mm": [
+      0,
+      0,
+      0
+    ],
+    "step": "models/q4/step/eye_left.step",
+    "stl": "models/q4/print/eye_left.stl",
+    "note": "Shared Micro X P0 geometry; drive integration not complete."
+  },
+  {
+    "name": "eye_right",
+    "group": "head",
+    "dimensions_mm": [
+      19.59,
+      19.59,
+      19.6
+    ],
+    "mass_g": 4.89,
+    "volume_mm3": 3942.46,
+    "source_part": "eye_right",
+    "assembly_offset_mm": [
+      0,
+      0,
+      0
+    ],
+    "step": "models/q4/step/eye_right.step",
+    "stl": "models/q4/print/eye_right.stl",
+    "note": "Shared Micro X P0 geometry; drive integration not complete."
+  },
+  {
+    "name": "skull",
+    "group": "head",
+    "dimensions_mm": [
+      112.0,
+      70.0,
+      61.0
+    ],
+    "mass_g": 49.4,
+    "volume_mm3": 39840.09,
+    "source_part": "skull",
+    "assembly_offset_mm": [
+      0,
+      0,
+      0
+    ],
+    "step": "models/q4/step/skull.step",
+    "stl": "models/q4/print/skull.stl",
+    "note": "Shared Micro X P0 geometry; drive integration not complete."
+  },
+  {
+    "name": "jaw",
+    "group": "jaw",
+    "dimensions_mm": [
+      104.0,
+      70.0,
+      20.98
+    ],
+    "mass_g": 39.47,
+    "volume_mm3": 31832.39,
+    "source_part": "jaw",
+    "assembly_offset_mm": [
+      0,
+      0,
+      0
+    ],
+    "step": "models/q4/step/jaw.step",
+    "stl": "models/q4/print/jaw.stl",
+    "note": "Shared Micro X P0 geometry; drive integration not complete."
+  },
+  {
+    "name": "tail_left",
+    "group": "tail",
+    "dimensions_mm": [
+      147.0,
+      17.0,
+      47.0
+    ],
+    "mass_g": 13.31,
+    "volume_mm3": 10732.75,
+    "source_part": "tail_left",
+    "assembly_offset_mm": [
+      0,
+      0,
+      0
+    ],
+    "step": "models/q4/step/tail_left.step",
+    "stl": "models/q4/print/tail_left.stl",
+    "note": "Shared Micro X P0 geometry; drive integration not complete."
+  },
+  {
+    "name": "tail_right",
+    "group": "tail",
+    "dimensions_mm": [
+      147.0,
+      17.0,
+      47.0
+    ],
+    "mass_g": 13.31,
+    "volume_mm3": 10732.75,
+    "source_part": "tail_right",
+    "assembly_offset_mm": [
+      0,
+      0,
+      0
+    ],
+    "step": "models/q4/step/tail_right.step",
+    "stl": "models/q4/print/tail_right.stl",
+    "note": "Shared Micro X P0 geometry; drive integration not complete."
+  },
+  {
+    "name": "front_hindleg_left",
+    "group": "legs",
+    "dimensions_mm": [
+      72.17,
+      18.0,
+      139.86
+    ],
+    "mass_g": 49.57,
+    "volume_mm3": 39972.86,
+    "source_part": "hindleg_left",
+    "assembly_offset_mm": [
+      64,
+      6,
+      0
+    ],
+    "step": "models/q4/step/front_hindleg_left.step",
+    "stl": "models/q4/print/front_hindleg_left.stl",
+    "note": "Repeated fixed leg/foot for packaging; powered leg cartridge not yet integrated."
+  },
+  {
+    "name": "front_foot_left",
+    "group": "legs",
+    "dimensions_mm": [
+      80.5,
+      42.0,
+      26.0
+    ],
+    "mass_g": 32.62,
+    "volume_mm3": 26306.25,
+    "source_part": "foot_left",
+    "assembly_offset_mm": [
+      64,
+      6,
+      0
+    ],
+    "step": "models/q4/step/front_foot_left.step",
+    "stl": "models/q4/print/front_foot_left.stl",
+    "note": "Repeated fixed leg/foot for packaging; powered leg cartridge not yet integrated."
+  },
+  {
+    "name": "front_hindleg_right",
+    "group": "legs",
+    "dimensions_mm": [
+      72.17,
+      18.0,
+      139.86
+    ],
+    "mass_g": 49.57,
+    "volume_mm3": 39972.86,
+    "source_part": "hindleg_right",
+    "assembly_offset_mm": [
+      64,
+      -6,
+      0
+    ],
+    "step": "models/q4/step/front_hindleg_right.step",
+    "stl": "models/q4/print/front_hindleg_right.stl",
+    "note": "Repeated fixed leg/foot for packaging; powered leg cartridge not yet integrated."
+  },
+  {
+    "name": "front_foot_right",
+    "group": "legs",
+    "dimensions_mm": [
+      80.5,
+      42.0,
+      26.0
+    ],
+    "mass_g": 32.62,
+    "volume_mm3": 26306.25,
+    "source_part": "foot_right",
+    "assembly_offset_mm": [
+      64,
+      -6,
+      0
+    ],
+    "step": "models/q4/step/front_foot_right.step",
+    "stl": "models/q4/print/front_foot_right.stl",
+    "note": "Repeated fixed leg/foot for packaging; powered leg cartridge not yet integrated."
+  },
+  {
+    "name": "rear_hindleg_left",
+    "group": "legs",
+    "dimensions_mm": [
+      72.17,
+      18.0,
+      139.86
+    ],
+    "mass_g": 49.57,
+    "volume_mm3": 39972.86,
+    "source_part": "hindleg_left",
+    "assembly_offset_mm": [
+      -46,
+      6,
+      0
+    ],
+    "step": "models/q4/step/rear_hindleg_left.step",
+    "stl": "models/q4/print/rear_hindleg_left.stl",
+    "note": "Repeated fixed leg/foot for packaging; powered leg cartridge not yet integrated."
+  },
+  {
+    "name": "rear_foot_left",
+    "group": "legs",
+    "dimensions_mm": [
+      80.5,
+      42.0,
+      26.0
+    ],
+    "mass_g": 32.62,
+    "volume_mm3": 26306.25,
+    "source_part": "foot_left",
+    "assembly_offset_mm": [
+      -46,
+      6,
+      0
+    ],
+    "step": "models/q4/step/rear_foot_left.step",
+    "stl": "models/q4/print/rear_foot_left.stl",
+    "note": "Repeated fixed leg/foot for packaging; powered leg cartridge not yet integrated."
+  },
+  {
+    "name": "rear_hindleg_right",
+    "group": "legs",
+    "dimensions_mm": [
+      72.17,
+      18.0,
+      139.86
+    ],
+    "mass_g": 49.57,
+    "volume_mm3": 39972.86,
+    "source_part": "hindleg_right",
+    "assembly_offset_mm": [
+      -46,
+      -6,
+      0
+    ],
+    "step": "models/q4/step/rear_hindleg_right.step",
+    "stl": "models/q4/print/rear_hindleg_right.stl",
+    "note": "Repeated fixed leg/foot for packaging; powered leg cartridge not yet integrated."
+  },
+  {
+    "name": "rear_foot_right",
+    "group": "legs",
+    "dimensions_mm": [
+      80.5,
+      42.0,
+      26.0
+    ],
+    "mass_g": 32.62,
+    "volume_mm3": 26306.25,
+    "source_part": "foot_right",
+    "assembly_offset_mm": [
+      -46,
+      -6,
+      0
+    ],
+    "step": "models/q4/step/rear_foot_right.step",
+    "stl": "models/q4/print/rear_foot_right.stl",
+    "note": "Repeated fixed leg/foot for packaging; powered leg cartridge not yet integrated."
+  },
+  {
+    "name": "side_rail_left",
+    "group": "frame",
+    "dimensions_mm": [
+      128.0,
+      5.4,
+      16.0
+    ],
+    "mass_g": 10.29,
+    "volume_mm3": 8300.17,
+    "source_part": null,
+    "assembly_offset_mm": [
+      0,
+      0,
+      0
+    ],
+    "step": "models/q4/step/side_rail_left.step",
+    "stl": "models/q4/print/side_rail_left.stl",
+    "note": "M3 axes X=-60/-14/50 Z143. Pilot packaging rail; anti-rotation and joint bearing stack unresolved."
+  },
+  {
+    "name": "side_rail_right",
+    "group": "frame",
+    "dimensions_mm": [
+      128.0,
+      5.4,
+      16.0
+    ],
+    "mass_g": 10.29,
+    "volume_mm3": 8300.17,
+    "source_part": null,
+    "assembly_offset_mm": [
+      0,
+      0,
+      0
+    ],
+    "step": "models/q4/step/side_rail_right.step",
+    "stl": "models/q4/print/side_rail_right.stl",
+    "note": "M3 axes X=-60/-14/50 Z143. Pilot packaging rail; anti-rotation and joint bearing stack unresolved."
+  }
+]
