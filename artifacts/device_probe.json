@@ -1,0 +1,33 @@
+{
+  "service": "micro-x-device",
+  "schema": 1,
+  "machine": "x86_64",
+  "camera": {
+    "enabled": false,
+    "driver": "rpicam-still",
+    "driver_installed": false,
+    "detected_sensors": [],
+    "capture_verified": false,
+    "state": "driver_missing"
+  },
+  "audio": {
+    "capture": {
+      "tool_installed": true,
+      "enumerated_endpoints": 2,
+      "functional_test_passed": false
+    },
+    "playback": {
+      "tool_installed": true,
+      "enumerated_endpoints": 6,
+      "functional_test_passed": false
+    },
+    "voice_pipeline": "not implemented"
+  },
+  "sensors": {
+    "imu": "not implemented",
+    "range": "not implemented",
+    "foot_contact": "not implemented"
+  },
+  "motion_control": "not implemented",
+  "integrated_robot_validated": false
+}

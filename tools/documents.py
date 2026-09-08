@@ -35,6 +35,8 @@ with (R/('artifacts/bom_q4.csv' if quad else 'artifacts/bom.csv')).open('w',newl
  for p in parts:writer.writerow([p['name'],1,'PLA volume estimate; material not frozen',p['mass_g'],'P0 prototype',p['step']])
  writer.writerow(['Eye M3 plastic thread-forming screw',2,'Candidate length 8 mm; verify chosen supplier and installed torque','','Prototype fit/pull test required','docs/DESIGN_QUALITY.md'])
  writer.writerow(['Eye M3 washer',2,'Candidate 1 mm thickness; verify bearing area and actual screw head','','Prototype fit required','docs/DESIGN_QUALITY.md'])
+ writer.writerow(['Camera carrier M2 screws/nuts/washers',4,'Candidate M2 x 10; PCB and nut clearance fit pending','','Not procurement-ready','docs/FUNCTIONS.md'])
+ writer.writerow(['Camera carrier M3 plastic thread-forming screws',2,'Candidate M3 x 10; engagement and torque test pending','','Not procurement-ready','docs/FUNCTIONS.md'])
  writer.writerow(['M3 screws and nuts','TBD','Purchased; length/retention audit pending','','Not procurement-ready','docs/ASSEMBLY.md'])
  writer.writerow(['Actuators/electronics','TBD','Not integrated','','Architecture decision required','docs/COST.md'])
 print('Wrote',len(parts),'drawing pages and provisional BOM')

@@ -100,6 +100,26 @@
     "note": "Shared Micro X P0 geometry; drive integration not complete."
   },
   {
+    "name": "camera_carrier",
+    "group": "head",
+    "dimensions_mm": [
+      10.5,
+      29.0,
+      26.75
+    ],
+    "mass_g": 1.58,
+    "volume_mm3": 1272.97,
+    "source_part": "camera_carrier",
+    "assembly_offset_mm": [
+      0,
+      0,
+      0
+    ],
+    "step": "models/q4/step/camera_carrier.step",
+    "stl": "models/q4/print/camera_carrier.stl",
+    "note": "Shared Micro X P0 geometry; drive integration not complete."
+  },
+  {
     "name": "skull",
     "group": "head",
     "dimensions_mm": [
@@ -107,8 +127,8 @@
       70.0,
       61.0
     ],
-    "mass_g": 54.4,
-    "volume_mm3": 43870.15,
+    "mass_g": 52.97,
+    "volume_mm3": 42721.38,
     "source_part": "skull",
     "assembly_offset_mm": [
       0,

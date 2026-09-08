@@ -8,7 +8,8 @@ foot_right,1,PLA volume estimate; material not frozen,32.62,P0 prototype,models/
 neck_cradle,1,PLA volume estimate; material not frozen,10.53,P0 prototype,models/step/neck_cradle.step
 eye_left,1,PLA volume estimate; material not frozen,4.19,P0 prototype,models/step/eye_left.step
 eye_right,1,PLA volume estimate; material not frozen,4.19,P0 prototype,models/step/eye_right.step
-skull,1,PLA volume estimate; material not frozen,54.4,P0 prototype,models/step/skull.step
+camera_carrier,1,PLA volume estimate; material not frozen,1.58,P0 prototype,models/step/camera_carrier.step
+skull,1,PLA volume estimate; material not frozen,52.97,P0 prototype,models/step/skull.step
 jaw,1,PLA volume estimate; material not frozen,39.47,P0 prototype,models/step/jaw.step
 tail_left,1,PLA volume estimate; material not frozen,13.31,P0 prototype,models/step/tail_left.step
 tail_right,1,PLA volume estimate; material not frozen,13.31,P0 prototype,models/step/tail_right.step
@@ -16,5 +17,7 @@ forearm_left,1,PLA volume estimate; material not frozen,2.5,P0 prototype,models/
 forearm_right,1,PLA volume estimate; material not frozen,2.5,P0 prototype,models/step/forearm_right.step
 Eye M3 plastic thread-forming screw,2,Candidate length 8 mm; verify chosen supplier and installed torque,,Prototype fit/pull test required,docs/DESIGN_QUALITY.md
 Eye M3 washer,2,Candidate 1 mm thickness; verify bearing area and actual screw head,,Prototype fit required,docs/DESIGN_QUALITY.md
+Camera carrier M2 screws/nuts/washers,4,Candidate M2 x 10; PCB and nut clearance fit pending,,Not procurement-ready,docs/FUNCTIONS.md
+Camera carrier M3 plastic thread-forming screws,2,Candidate M3 x 10; engagement and torque test pending,,Not procurement-ready,docs/FUNCTIONS.md
 M3 screws and nuts,TBD,Purchased; length/retention audit pending,,Not procurement-ready,docs/ASSEMBLY.md
 Actuators/electronics,TBD,Not integrated,,Architecture decision required,docs/COST.md

@@ -16,7 +16,7 @@ def add(name,shape,group,source=None,offset=(0,0,0),axis='Z',note=''):
  m=trimesh.load_mesh(out/f'{name}.stl');m.merge_vertices(digits_vertex=7);m.update_faces(m.nondegenerate_faces());m.remove_unreferenced_vertices();assert m.is_watertight and m.volume>0,name
  m.export(out/f'{name}.stl')
  color=colors[group];
- if name.startswith('eye_') or 'foot_' in name:color=[.96,.62,.21,1]
+ if name.startswith('eye_') or 'foot_' in name or name=='camera_carrier':color=[.96,.62,.21,1]
  visual=paint(m.copy(),name,color);visual.vertices*=.001;scene.add_geometry(visual,node_name=name)
  printed=m.copy()
  if axis=='Y':printed.apply_transform(trimesh.transformations.rotation_matrix(np.pi/2,[1,0,0]))

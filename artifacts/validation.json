@@ -1,6 +1,6 @@
 {
   "revision": "P0",
-  "parts": 15,
+  "parts": 16,
   "mesh_checks": [
     {
       "part": "torso_lower",
@@ -89,6 +89,16 @@
         19.59,
         19.6,
         19.8
+      ],
+      "step_exists": true
+    },
+    {
+      "part": "camera_carrier",
+      "watertight": true,
+      "print_envelope_mm": [
+        26.75,
+        29.0,
+        10.5
       ],
       "step_exists": true
     },

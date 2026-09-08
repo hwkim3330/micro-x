@@ -126,16 +126,30 @@
     "stl": "models/print/eye_right.stl"
   },
   {
+    "name": "camera_carrier",
+    "group": "head",
+    "note": "CM3 Standard: 4 x M2 clear \u00d82.2 at Y\u00b110.5/Z211.6,224.1. PCB rear X144. Side M3 carrier holes X137.5/Z221. Manufacturer layout used; fit and optical tests pending.",
+    "dimensions_mm": [
+      10.5,
+      29.0,
+      26.75
+    ],
+    "volume_mm3": 1272.97,
+    "mass_g": 1.58,
+    "step": "models/step/camera_carrier.step",
+    "stl": "models/print/camera_carrier.stl"
+  },
+  {
     "name": "skull",
     "group": "head",
-    "note": "Open underside hollow skull, \u00d83.4 jaw hinge holes. Electronics mount pending.",
+    "note": "Open underside hollow skull, \u00d83.4 jaw hinge holes. CM3 carrier side posts and lower-lip service relief; hardware fit pending.",
     "dimensions_mm": [
       112.0,
       70.0,
       61.0
     ],
-    "volume_mm3": 43870.13,
-    "mass_g": 54.4,
+    "volume_mm3": 42721.38,
+    "mass_g": 52.97,
     "step": "models/step/skull.step",
     "stl": "models/print/skull.stl"
   },

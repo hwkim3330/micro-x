@@ -15,7 +15,7 @@ B2 initially omits hip yaw; turning capability must be demonstrated, not inferre
 
 ## Shared design and assembly files
 
-`models/q4/micro_x_q4.step` and `.glb` are the new four-legged assembly. It contains 19 part instances using 13 existing original designs plus two new side rails. The front/rear leg-and-foot designs are repeated, rather than independently remodeled. Across B2 and Q4 there are 17 unique printable designs at this stage; this does not imply a measured cost saving.
+`models/q4/micro_x_q4.step` and `.glb` are the new four-legged assembly. It contains 20 part instances using 14 existing original designs plus two new side rails. The front/rear leg-and-foot designs are repeated, rather than independently remodeled. Across B2 and Q4 there are 18 unique printable designs at this stage; this does not imply a measured cost saving.
 
 Q4 leg instances use X offsets +64 mm (front) and -46 mm (rear) from the common leg geometry, and Y offsets +6 mm left / -6 mm right. Hip axes therefore have X = +50 / -60 mm and Z = 143 mm. Rail centers are Y = ±47.2 mm; thickness 5.4 mm. Rails have M3 clearance axes at X = -60 / -14 / +50, Z143. A 0.5 mm nominal gap separates rail and existing torso boss, and a 0.1 mm gap separates rail and leg. These are nominal CAD dimensions, not confirmed printer fits.
 

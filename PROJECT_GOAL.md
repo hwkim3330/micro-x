@@ -37,3 +37,11 @@ Deliver a traceable engineering prototype package: original parametric CAD, prin
 ## Appearance and durability
 
 User requested a cute and robust product competitive with Microduck. Current eye finish and rear fastening are design improvements; comparative performance remains unproven. Proposed measurable targets are in `engineering/acceptance.json`, with no physical results claimed.
+
+## Camera and audio
+
+- [x] Original camera carrier and nose aperture, manufacturer mounting dimensions attributed
+- [x] Opt-in local JPEG capture and ALSA sample/playback paths with software unit tests
+- [x] Original synthesized chirp preview and honest public feature comparison
+- [ ] Physical camera, audio, sensor, compute and power integration
+- [ ] Measured performance comparison against Microduck; superiority not established

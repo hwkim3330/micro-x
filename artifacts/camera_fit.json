@@ -1,0 +1,19 @@
+{
+  "scope": "Rectangular field corner within circular nose opening; assumed pupil and lens envelope, not measured vignetting",
+  "manifest_sha256": "f560873c3eb7512703d667425d1ea9db6e7d896cf0f0f6aaf315d1b3f6c8f0ff",
+  "pupil_to_nose_mm": 4.9,
+  "required_port_radius_mm": 8.373,
+  "designed_port_radius_mm": 9,
+  "radial_margin_mm": 0.627,
+  "assumed_port_screen_passed": true,
+  "physical_fit_verified": false,
+  "optical_validation": false,
+  "exclusions": [
+    "cable bend and routing",
+    "full camera component geometry",
+    "assembly tolerances",
+    "autofocus travel",
+    "real entrance pupil location",
+    "image quality and vignetting"
+  ]
+}

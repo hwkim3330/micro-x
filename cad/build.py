@@ -125,8 +125,29 @@ for sign,side in [(1,'left'),(-1,'right')]:
     add('eye_'+side,inset,GOLD,'head','Y' if sign==1 else '-Y',note='Rear M3 plastic thread-forming screw through skull Ø3.4, eye pilot Ø2.6 × 7 deep. Plate 2 mm; shaft Ø8. Pull-out/torque test pending. Pupil graphics are paint intent.')
 # Two nostrils on nose, camera functionality deliberately not implied.
 for sign in [-1,1]:head=head.cut(bore(148,sign*20,228,2.3,12,'Y'))
+# Original camera carrier uses verified Camera Module 3 board hole coordinates.
+# Front opening retains the eye expression; sensor is in the nose, not a fake eye.
+head=head.cut(bore(152,0,224,9,9,'X'))
+for sign in [-1,1]:
+    post=bore(137.5,30 if sign==1 else -14.8,221,3.5,15.2,'Y').intersect(head_outer)
+    head=head.union(post)
+    head=head.cut(bore(137.5,14.8 if sign==1 else -14.8,221,1.3,-6 if sign==1 else 6,'Y'))
+carrier=cq.Workplane('YZ',origin=(138.5,0,223)).rect(29,26).extrude(2).edges('|X').fillet(2)
+carrier=carrier.cut(box(5,17,15,(139.5,0,222)))
+carrier=carrier.cut(box(5,21,9,(139.5,0,233.5))) # rear connector/ribbon exit
+for y in [-10.5,10.5]:
+    for z in [211.6,224.1]:
+        carrier=carrier.union(bore(140.5,y,z,2.35,3.5,'X'))
+        carrier=carrier.cut(bore(137,y,z,1.1,9,'X'))
+for sign in [-1,1]:
+    ear=box(8,4,10,(137.5,sign*12.5,221))
+    carrier=carrier.union(ear).cut(bore(137.5,sign*12.5+3,221,1.7,6,'Y'))
+add('camera_carrier',carrier,GOLD,'head','X',note='CM3 Standard: 4 x M2 clear Ø2.2 at Y±10.5/Z211.6,224.1. PCB rear X144. Side M3 carrier holes X137.5/Z221. Manufacturer layout used; fit and optical tests pending.')
+# Local lower-lip relief for the removable carrier and PCB envelope.
+# Keeps the outer shell and side post roots; cable/fastener fit still needs a build.
+head=head.cut(box(12,30,28,(139.5,0,223)))
 head=head.cut(neck_keep)
-add('skull',head,JADE,'head',note='Open underside hollow skull, Ø3.4 jaw hinge holes. Electronics mount pending.')
+add('skull',head,JADE,'head',note='Open underside hollow skull, Ø3.4 jaw hinge holes. CM3 carrier side posts and lower-lip service relief; hardware fit pending.')
 # Lower jaw has integral cheek ears and broad rounded chin; teeth are integral blunt bumps.
 jaw=loft([(57,203,35,3),(105,201,28,4),(157,207,18,3)])
 for sign in [-1,1]:
