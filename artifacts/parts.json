@@ -1,0 +1,212 @@
+[
+  {
+    "name": "torso_lower",
+    "group": "torso",
+    "note": "4 \u00d7 M3 pilot \u00d82.6 at (-25/15, \u00b122), z167\u2013180. Verify self-tapping screw fit in coupon.",
+    "dimensions_mm": [
+      111.0,
+      88.0,
+      56.99
+    ],
+    "volume_mm3": 49715.43,
+    "mass_g": 61.65,
+    "step": "models/step/torso_lower.step",
+    "stl": "models/print/torso_lower.stl"
+  },
+  {
+    "name": "torso_upper",
+    "group": "torso",
+    "note": "4 \u00d7 \u00d83.4 clearance. Roof access; remove four M3 screws for servicing.",
+    "dimensions_mm": [
+      103.69,
+      79.05,
+      33.0
+    ],
+    "volume_mm3": 26630.21,
+    "mass_g": 33.02,
+    "step": "models/step/torso_upper.step",
+    "stl": "models/print/torso_upper.stl"
+  },
+  {
+    "name": "hindleg_left",
+    "group": "legs",
+    "note": "Fixed display leg; lateral M3 through bolts. No motor/locomotion claim.",
+    "dimensions_mm": [
+      72.17,
+      18.0,
+      139.86
+    ],
+    "volume_mm3": 39972.86,
+    "mass_g": 49.57,
+    "step": "models/step/hindleg_left.step",
+    "stl": "models/print/hindleg_left.stl"
+  },
+  {
+    "name": "foot_left",
+    "group": "legs",
+    "note": "M3 ankle bolt, three integral rounded toes. Support under lug overhangs.",
+    "dimensions_mm": [
+      80.5,
+      42.0,
+      26.0
+    ],
+    "volume_mm3": 26306.25,
+    "mass_g": 32.62,
+    "step": "models/step/foot_left.step",
+    "stl": "models/print/foot_left.stl"
+  },
+  {
+    "name": "hindleg_right",
+    "group": "legs",
+    "note": "Fixed display leg; lateral M3 through bolts. No motor/locomotion claim.",
+    "dimensions_mm": [
+      72.17,
+      18.0,
+      139.86
+    ],
+    "volume_mm3": 39972.86,
+    "mass_g": 49.57,
+    "step": "models/step/hindleg_right.step",
+    "stl": "models/print/hindleg_right.stl"
+  },
+  {
+    "name": "foot_right",
+    "group": "legs",
+    "note": "M3 ankle bolt, three integral rounded toes. Support under lug overhangs.",
+    "dimensions_mm": [
+      80.5,
+      42.0,
+      26.0
+    ],
+    "volume_mm3": 26306.25,
+    "mass_g": 32.62,
+    "step": "models/step/foot_right.step",
+    "stl": "models/print/foot_right.stl"
+  },
+  {
+    "name": "neck_cradle",
+    "group": "neck",
+    "note": "Appearance bridge; head actuation cartridge not yet integrated.",
+    "dimensions_mm": [
+      20.0,
+      24.0,
+      51.0
+    ],
+    "volume_mm3": 8493.82,
+    "mass_g": 10.53,
+    "step": "models/step/neck_cradle.step",
+    "stl": "models/print/neck_cradle.stl"
+  },
+  {
+    "name": "eye_left",
+    "group": "head",
+    "note": "Adhesive-fit eye insert, 0.2 mm nominal radial allowance; captive retention pending.",
+    "dimensions_mm": [
+      19.59,
+      19.59,
+      19.6
+    ],
+    "volume_mm3": 3942.46,
+    "mass_g": 4.89,
+    "step": "models/step/eye_left.step",
+    "stl": "models/print/eye_left.stl"
+  },
+  {
+    "name": "eye_right",
+    "group": "head",
+    "note": "Adhesive-fit eye insert, 0.2 mm nominal radial allowance; captive retention pending.",
+    "dimensions_mm": [
+      19.59,
+      19.59,
+      19.6
+    ],
+    "volume_mm3": 3942.46,
+    "mass_g": 4.89,
+    "step": "models/step/eye_right.step",
+    "stl": "models/print/eye_right.stl"
+  },
+  {
+    "name": "skull",
+    "group": "head",
+    "note": "Open underside hollow skull, \u00d83.4 jaw hinge holes. Electronics mount pending.",
+    "dimensions_mm": [
+      112.0,
+      70.0,
+      61.0
+    ],
+    "volume_mm3": 39840.07,
+    "mass_g": 49.4,
+    "step": "models/step/skull.step",
+    "stl": "models/print/skull.stl"
+  },
+  {
+    "name": "jaw",
+    "group": "jaw",
+    "note": "Two M3 hinge bolts. Manual pose prototype; powered linkage and pinch protection pending.",
+    "dimensions_mm": [
+      104.0,
+      70.0,
+      20.98
+    ],
+    "volume_mm3": 31832.39,
+    "mass_g": 39.47,
+    "step": "models/step/jaw.step",
+    "stl": "models/print/jaw.stl"
+  },
+  {
+    "name": "tail_left",
+    "group": "tail",
+    "note": "M3 seam bolts at X -100/-155, Z145/133; two axial M3 mount holes at Y \u00b18, Z153. Physical fit unverified.",
+    "dimensions_mm": [
+      147.0,
+      17.0,
+      47.0
+    ],
+    "volume_mm3": 10732.75,
+    "mass_g": 13.31,
+    "step": "models/step/tail_left.step",
+    "stl": "models/print/tail_left.stl"
+  },
+  {
+    "name": "tail_right",
+    "group": "tail",
+    "note": "M3 seam bolts at X -100/-155, Z145/133; two axial M3 mount holes at Y \u00b18, Z153. Physical fit unverified.",
+    "dimensions_mm": [
+      147.0,
+      17.0,
+      47.0
+    ],
+    "volume_mm3": 10732.75,
+    "mass_g": 13.31,
+    "step": "models/step/tail_right.step",
+    "stl": "models/print/tail_right.stl"
+  },
+  {
+    "name": "forearm_left",
+    "group": "arms",
+    "note": "Manual M3 pivot mating torso bearing posts at X36 Z181. Actuator and motion stops not integrated.",
+    "dimensions_mm": [
+      37.0,
+      6.0,
+      24.0
+    ],
+    "volume_mm3": 2018.52,
+    "mass_g": 2.5,
+    "step": "models/step/forearm_left.step",
+    "stl": "models/print/forearm_left.stl"
+  },
+  {
+    "name": "forearm_right",
+    "group": "arms",
+    "note": "Manual M3 pivot mating torso bearing posts at X36 Z181. Actuator and motion stops not integrated.",
+    "dimensions_mm": [
+      37.0,
+      6.0,
+      24.0
+    ],
+    "volume_mm3": 2018.52,
+    "mass_g": 2.5,
+    "step": "models/step/forearm_right.step",
+    "stl": "models/print/forearm_right.stl"
+  }
+]

@@ -1,0 +1,7 @@
+# Third-party software
+
+- Three.js 0.180.0, MIT, bundled under web/vendor/three/. Upstream license retained as LICENSE. Source: https://github.com/mrdoob/three/tree/r180
+- CadQuery 2.8.0 (Apache-2.0), Open CASCADE via cadquery-ocp, trimesh 4.11.1 (MIT), NumPy (BSD), ReportLab (BSD): build-time dependencies, not bundled in the website. Their licenses are not automatically assigned to original generated designs.
+- Puppeteer 25.10.0 (Apache-2.0): test-time dependency.
+
+No upstream Microduck mesh, CAD, body hierarchy, policy or runtime is included.

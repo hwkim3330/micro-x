@@ -1,0 +1,37 @@
+# MICRO X
+
+독자적인 티렉스 로봇 제품을 개발하는 공개 설계 기록입니다. **현재 P0 외형·조립 설계이며, 완성된 구동 로봇이나 양산 승인품은 아닙니다.**
+
+[제품 개발 페이지](https://hwkim3330.github.io/micro-x/) · [목표와 진행 기준](PROJECT_GOAL.md) · [출처와 권리](docs/PROVENANCE.md)
+
+기존 [Micro Rex 비상업 시제품](https://github.com/hwkim3330/micro-rex)은 별도 보존합니다. 이 저장소의 CAD는 독립적인 치수와 기본 형상으로 새로 생성하며, Microduck 메시·CAD·관절 데이터·학습 정책을 포함하지 않습니다.
+
+## 제공 파일
+
+- `cad/build.py`: 독자적인 매개변수 CAD 생성기 (mm).
+- `models/micro_x.step`, `models/micro_x.glb`: 전체 외형 조립체.
+- `models/step/`, `models/print/`: 부품별 STEP 및 출력 방향을 정리한 STL.
+- `artifacts/drawings.pdf`, `artifacts/bom.csv`: 부품 도면 및 잠정 BOM.
+- `artifacts/validation.json`: 닫힌 메시·출력 범위 검사. 물리적 제작 검증과 구분합니다.
+- 웹페이지: 실제 모델 회전·분해·부품 선택·턱 자세 시연·파일 다운로드·가정 기반 원가 비교.
+
+## 재생성
+
+```sh
+python3 -m pip install -r requirements.txt
+python3 cad/build.py
+python3 cad/coupons.py
+python3 tools/interference.py
+python3 tools/jaw_clearance.py
+python3 tools/documents.py
+python3 tools/validate.py
+npm ci
+npm test
+python3 -m http.server 5191
+```
+
+[조립 문서](docs/ASSEMBLY.md)에 체결 좌표와 미해결 연결부를 기록했습니다. 현재 목·머리의 최종 체결 및 꼬리·앞팔의 실물 끼워맞춤, 구동부, 간섭 검증, 실물 시험이 남아 있습니다. 이 상태로 양산 발주하거나 완성 로봇으로 판매할 수 있다는 뜻이 아닙니다.
+
+## 권리와 판매 방향
+
+원본 기구·CAD 생성 소스·모델·도면은 소유자 권리를 유보합니다. 공개 저장소 열람이 추가적인 제조·판매 허락을 뜻하지 않습니다. 웹과 일반 도구 코드는 MIT, Three.js는 원래 MIT 조건을 유지합니다. 상세 범위는 [LICENSE](LICENSE), [THIRD_PARTY.md](THIRD_PARTY.md)를 따릅니다. 제품 이름과 독자 설계의 권리 검토는 상용 출시 전에 별도로 필요합니다.

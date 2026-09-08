@@ -1,0 +1,6 @@
+*.stl binary
+*.glb binary
+*.png binary
+*.pdf binary
+*.step -whitespace
+web/vendor/** -whitespace

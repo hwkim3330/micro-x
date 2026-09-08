@@ -1,0 +1,162 @@
+{
+  "revision": "P0",
+  "parts": 15,
+  "mesh_checks": [
+    {
+      "part": "torso_lower",
+      "watertight": true,
+      "print_envelope_mm": [
+        111.0,
+        88.0,
+        56.99
+      ],
+      "step_exists": true
+    },
+    {
+      "part": "torso_upper",
+      "watertight": true,
+      "print_envelope_mm": [
+        103.69,
+        79.05,
+        33.0
+      ],
+      "step_exists": true
+    },
+    {
+      "part": "hindleg_left",
+      "watertight": true,
+      "print_envelope_mm": [
+        72.17,
+        139.86,
+        18.0
+      ],
+      "step_exists": true
+    },
+    {
+      "part": "foot_left",
+      "watertight": true,
+      "print_envelope_mm": [
+        80.5,
+        42.0,
+        26.0
+      ],
+      "step_exists": true
+    },
+    {
+      "part": "hindleg_right",
+      "watertight": true,
+      "print_envelope_mm": [
+        72.17,
+        139.86,
+        18.0
+      ],
+      "step_exists": true
+    },
+    {
+      "part": "foot_right",
+      "watertight": true,
+      "print_envelope_mm": [
+        80.5,
+        42.0,
+        26.0
+      ],
+      "step_exists": true
+    },
+    {
+      "part": "neck_cradle",
+      "watertight": true,
+      "print_envelope_mm": [
+        20.0,
+        24.0,
+        51.0
+      ],
+      "step_exists": true
+    },
+    {
+      "part": "eye_left",
+      "watertight": true,
+      "print_envelope_mm": [
+        19.59,
+        19.59,
+        19.6
+      ],
+      "step_exists": true
+    },
+    {
+      "part": "eye_right",
+      "watertight": true,
+      "print_envelope_mm": [
+        19.59,
+        19.59,
+        19.6
+      ],
+      "step_exists": true
+    },
+    {
+      "part": "skull",
+      "watertight": true,
+      "print_envelope_mm": [
+        112.0,
+        70.0,
+        61.0
+      ],
+      "step_exists": true
+    },
+    {
+      "part": "jaw",
+      "watertight": true,
+      "print_envelope_mm": [
+        104.0,
+        70.0,
+        20.98
+      ],
+      "step_exists": true
+    },
+    {
+      "part": "tail_left",
+      "watertight": true,
+      "print_envelope_mm": [
+        147.0,
+        47.0,
+        17.0
+      ],
+      "step_exists": true
+    },
+    {
+      "part": "tail_right",
+      "watertight": true,
+      "print_envelope_mm": [
+        147.0,
+        47.0,
+        17.0
+      ],
+      "step_exists": true
+    },
+    {
+      "part": "forearm_left",
+      "watertight": true,
+      "print_envelope_mm": [
+        37.0,
+        24.0,
+        6.0
+      ],
+      "step_exists": true
+    },
+    {
+      "part": "forearm_right",
+      "watertight": true,
+      "print_envelope_mm": [
+        37.0,
+        24.0,
+        6.0
+      ],
+      "step_exists": true
+    }
+  ],
+  "geometry": "valid generated CAD checked during build; closed positive-volume meshes checked here",
+  "physical_fit": "NOT VERIFIED",
+  "actuation": "NOT INTEGRATED",
+  "interference": "No exact STEP volume overlap at reference pose; jaw 0\u201320 degrees sampled every 2 degrees clear. Continuous sweep/tolerance/fasteners NOT VERIFIED",
+  "production_release": false,
+  "license": "original design rights reserved; software MIT; see LICENSE"
+}

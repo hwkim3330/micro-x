@@ -1,0 +1,12 @@
+name: Validate design artifacts
+on: [push, pull_request]
+jobs:
+  geometry:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install numpy==2.2.6 trimesh==4.11.1
+      - run: python tools/validate.py

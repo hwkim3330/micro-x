@@ -1,0 +1,11 @@
+Micro X — license scope
+
+Original mechanical designs, CAD source under cad/, CAD, generated geometry, drawings, product graphics and documentation:
+Copyright (c) 2026 hwkim3330, to the extent applicable rights subsist. All rights reserved.
+Public availability does not grant an additional license to manufacture, sell or redistribute these original designs. Platform rights under GitHub's terms remain unaffected. Contact the repository owner for a manufacturing or redistribution license.
+This notice does not assert rights over general ideas, dimensions of third-party products, functional principles, or independently created designs. No trademark or patent clearance is represented.
+
+Original software source under tools/ and web/ (excluding generated design data and third-party dependencies): MIT, see licenses/MIT.txt.
+Third-party software retains its own license; see THIRD_PARTY.md.
+
+No rights in Pollen Robotics hardware are licensed by this repository. No Microduck hardware files are distributed here. The separate micro-rex repository retains its original noncommercial hardware terms.
