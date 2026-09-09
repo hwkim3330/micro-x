@@ -1,5 +1,7 @@
 # Micro X product design goal
 
+Latest direction: the user requested a return to original Microduck geometry and compatibility with its pretrained weights. That derived model, revised T-rex shell and paired ONNX evaluation are developed in https://github.com/hwkim3330/micro-rex under its upstream noncommercial hardware terms. This independent Micro X repository is preserved, and its page links prominently to the active compatibility work. Selling a Microduck-derived model is not authorized by the software weight license.
+
 Owner: hwkim3330. User requested independent, lower-cost T-rex product design, fabrication models, public GitHub and Pages, with proper licensing.
 
 Deliver a traceable engineering prototype package: original parametric CAD, printable parts, neutral assembly, drawings and BOM, assembly interfaces, cost assumptions and evidence, interactive product/assembly page and automated geometry checks. Preserve the separate Micro Rex noncommercial experiment.
