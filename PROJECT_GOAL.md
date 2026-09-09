@@ -31,6 +31,8 @@ Deliver a traceable engineering prototype package: original parametric CAD, prin
 
 ## B2 / Q4 expansion
 
+Q4 is retired from the public viewer at the user's request. Files remain as archived design evidence. Active priorities are the Microduck-joint Micro Rex first, and a separate cost-reduced Nano Rex later.
+
 - [x] Q4 common-part packaging CAD and model viewer selection
 - [ ] B2 13-axis and Q4 15-axis candidate drive configuration validation
 - [ ] Motor torque/thermal evidence, bearings, shafts and mechanical drive cartridges

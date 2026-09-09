@@ -13,11 +13,9 @@ await page.click('#parts button');assert.ok(await page.$eval('#selection',e=>e.t
 await page.click('#reset');assert.equal(await page.$eval('#jaw-value',e=>e.textContent),'0°');checks++;
 assert.equal(await page.$eval('#cost-result',e=>e.textContent),'$332.49');checks++;
 await page.$eval('#yield',e=>{e.value=0;e.dispatchEvent(new Event('input'))});assert.equal(await page.$eval('#cost-result',e=>e.textContent),'입력 확인');checks++;
-await page.select('#variant','q4');await page.waitForFunction(()=>window.microX?.variant==='q4');assert.equal(await page.$eval('#part-count',e=>e.textContent),'20');checks++;
-assert.equal(await page.evaluate(()=>window.microX.items.filter(m=>m.name.includes('hindleg')).length),4);checks++;
-assert.ok(await page.$eval('#assembly-step',e=>e.href.includes('/q4/')));checks++;
-await page.evaluate(()=>scrollTo(0,0));await page.screenshot({path:path.join(root,'artifacts',`q4_${name}.png`)});
+assert.equal(await page.$$eval('#variant option',e=>e.length),1);checks++;
+assert.equal(await page.evaluate(()=>window.microX.items.filter(m=>m.name.includes('hindleg')).length),2);checks++;
 const qlinks=await page.$$eval('a[href^="../"]',links=>[...new Set(links.map(a=>a.href))]);for(const url of qlinks){assert.equal((await fetch(url)).status,200,url);checks++}
-await page.select('#variant','b2');await page.waitForFunction(()=>window.microX?.variant==='b2');assert.equal(await page.$eval('#part-count',e=>e.textContent),'16');checks++;
+await page.goto(base+'/web/?model=q4');await page.waitForFunction(()=>window.microX?.variant==='b2');assert.equal(await page.$eval('#part-count',e=>e.textContent),'16');assert.ok(page.url().includes('model=b2'));checks++;
 assert.deepEqual(errors,[]);checks++;await page.close()}
 const page=await browser.newPage();await page.goto(base+'/web/');await page.waitForFunction(()=>window.microX);const links=await page.$$eval('a[href^="../"]',links=>[...new Set(links.map(a=>a.href))]);for(const url of links){const response=await fetch(url);assert.equal(response.status,200,url);checks++}await page.close();console.log(`${checks} browser and download checks passed`)}finally{await browser.close();server.close()}
