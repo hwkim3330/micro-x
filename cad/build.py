@@ -11,18 +11,21 @@ from appearance import paint
 R=Path(__file__).resolve().parents[1]
 for folder in ['models/step','models/print','artifacts']: (R/folder).mkdir(parents=True,exist_ok=True)
 parts=[]
-JADE=[.18,.40,.29,1];GOLD=[.96,.62,.21,1];CREAM=[.87,.86,.68,1];BLACK=[.04,.065,.055,1]
+JADE=[.38,.69,.55,1];GOLD=[.96,.62,.21,1];CREAM=[.98,.94,.79,1];BLACK=[.04,.065,.055,1]
 def box(x,y,z,p):return cq.Workplane('XY').box(x,y,z).translate(p)
-def loft(sections):
+def loft(sections,smooth=False):
     wires=[cq.Workplane('YZ',origin=(x,0,z)).ellipse(w,h).val() for x,z,w,h in sections]
-    return cq.Workplane(obj=cq.Solid.makeLoft(wires,ruled=True))
+    return cq.Workplane(obj=cq.Solid.makeLoft(wires,ruled=not smooth))
 def bore(x,y,z,r,length,axis='Z'):
     plane={'Z':'XY','Y':'XZ','X':'YZ'}[axis]
     return cq.Workplane(plane,origin=(x,y,z)).circle(r).extrude(length)
 def add(name,shape,color,group,print_axis='Z',note=''):
+    if group != 'legs': shape=shape.translate((0,0,-24))
     shape=shape.clean();solids=shape.solids().vals()
     if len(solids)!=1 or not shape.val().isValid():raise ValueError(f'{name}: {len(solids)} solids or invalid')
     path=R/'models/step'/f'{name}.step';cq.exporters.export(shape,str(path))
+    restored=cq.importers.importStep(str(path))
+    if len(restored.solids().vals())!=1 or not restored.val().isValid():raise ValueError(name+' STEP round trip lost valid solid')
     stl=R/'models'/f'{name}.stl';cq.exporters.export(shape,str(stl),tolerance=.04,angularTolerance=.08)
     mesh=trimesh.load_mesh(stl,process=True)
     mesh.merge_vertices(digits_vertex=7)
@@ -72,16 +75,17 @@ for x,y in mounts:
 for sign in [-1,1]:
     pad=bore(-14,sign*39+5,143,7,10,'Y')
     lower=lower.union(pad).cut(bore(-14,sign*39+8,143,1.7,16,'Y'))
-add('torso_lower',lower,JADE,'torso',note='4 × M3 pilot Ø2.6 at (-25/15, ±22), z167–180. Verify self-tapping screw fit in coupon.')
+add('torso_lower',lower,CREAM,'torso',note='4 × M3 pilot Ø2.6 at (-25/15, ±22), z143–156. Verify self-tapping screw fit in coupon.')
 add('torso_upper',upper,JADE,'torso',note='4 × Ø3.4 clearance. Roof access; remove four M3 screws for servicing.')
 # Thick dinosaur hind limbs, original angular profile with rounded vertices from 2D offset.
 leg_profile=[(-24,149),(0,152),(25,126),(31,108),(12,73),(14,37),(37,22),(32,12),(-3,13),(-17,34),(-9,80),(-36,112)]
 for sign,side in [(1,'left'),(-1,'right')]:
     y=sign*53+9
-    leg=cq.Workplane('XZ',origin=(0,y,0)).polyline(leg_profile).close().extrude(18).edges('|Y').fillet(2)
-    for x,z in [(-14,143),(8,27)]:leg=leg.cut(bore(x,y+1,z,1.7,20,'Y'))
-    pocket=cq.Workplane('XZ',origin=(0,y+.1,0)).polyline(leg_profile).close().offset2D(-3).extrude(14.1)
-    for x,z in [(-14,143),(8,27)]:pocket=pocket.cut(bore(x,y+1,z,6,20,'Y'))
+    profile=[(x,27+(z-27)*92/116) for x,z in leg_profile]
+    leg=cq.Workplane('XZ',origin=(0,y,0)).polyline(profile).close().extrude(18).edges('|Y').fillet(5)
+    for x,z in [(-14,119),(8,27)]:leg=leg.cut(bore(x,y+1,z,1.7,20,'Y'))
+    pocket=cq.Workplane('XZ',origin=(0,y+.1,0)).polyline(profile).close().offset2D(-3).extrude(14.1)
+    for x,z in [(-14,119),(8,27)]:pocket=pocket.cut(bore(x,y+1,z,6,20,'Y'))
     leg=leg.cut(pocket)
     add('hindleg_'+side,leg,JADE,'legs','Y','Fixed display leg; lateral M3 through bolts. No motor/locomotion claim.')
     foot=box(73,42,12,(18,sign*53,10)).edges('|Z').fillet(6)
@@ -94,14 +98,14 @@ for sign,side in [(1,'left'),(-1,'right')]:
     for yy in [-10,0,10]:
         toe=loft([(46,10,4,5),(62,8,2,2)]).translate((0,sign*53+yy,0));foot=foot.union(toe)
     foot=foot.cut(box(55,18.6,20,(8,sign*53,22)))
-    add('foot_'+side,foot,GOLD,'legs',note='M3 ankle bolt, three integral rounded toes. Support under lug overhangs.')
+    add('foot_'+side,foot,CREAM,'legs',note='M3 ankle bolt, three integral rounded toes. Support under lug overhangs.')
 # Neck fixed mounting cradle and ball-like visual transition, bolted to front service aperture.
 neck=neck.cut(bore(39,0,185,1.7,18,'X'))
 add('neck_cradle',neck,CREAM,'neck',note='Appearance bridge; head actuation cartridge not yet integrated.')
 # Hollow snout: pronounced broad rear skull, tapered nose, open lower face for service.
-head_sections=[(45,227,22,21),(65,237,35,30),(115,233,29,23),(157,223,19,13)]
-head_outer=loft(head_sections)
-head_inner=loft([(x,z,w-2.2,h-2.2) for x,z,w,h in head_sections])
+head_sections=[(45,227,22,21),(65,242,39,35),(94,242,38,31),(119,230,30,23),(135,225,23,18)]
+head_outer=loft(head_sections,True)
+head_inner=loft([(x,z,w-2.2,h-2.2) for x,z,w,h in head_sections],True)
 head=head_outer.cut(head_inner).intersect(box(500,500,200,(0,0,309.5))) # open at z210
 for x,z,w,h in [head_sections[0],head_sections[-1]]:
     cap=cq.Workplane('YZ',origin=(x,0,z)).ellipse(w,h).extrude(2.2 if x<100 else -2.2)
@@ -112,26 +116,26 @@ for sign in [-1,1]:
     head=head.union(ear).cut(bore(59,sign*25+6,212,1.7,12,'Y'))
 # Replace adhesive eye balls with rear-fastened caps and integrated internal support plates.
 for sign,side in [(1,'left'),(-1,'right')]:
-    eye=cq.Workplane('XY').sphere(10).translate((72,sign*31,243))
+    eye=cq.Workplane('XY').sphere(14.2).translate((78,sign*36,246))
     head=head.cut(eye)
-    plate=box(30,2,42,(72,sign*20,243)).intersect(head_outer)
-    plate=plate.cut(bore(72,sign*20+3,243,1.7,6,'Y'))
+    plate=box(36,2,44,(78,sign*24,246)).intersect(head_outer)
+    plate=plate.cut(bore(78,sign*24+3,246,1.7,6,'Y'))
     head=head.union(plate)
-    inset=cq.Workplane('XY').sphere(9.8).translate((72,sign*31,243))
-    inset=inset.intersect(box(40,40,40,(72,sign*47,243))) # rear cap plane Y=±27
-    shaft=bore(72,29 if sign==1 else -21,243,4,8,'Y') # shaft rear face Y=±21
+    inset=cq.Workplane('XY').sphere(14).translate((78,sign*36,246))
+    inset=inset.intersect(box(40,40,40,(78,sign*52,246))) # rear cap plane Y=±32
+    shaft=bore(78,35 if sign==1 else -25,246,5,10,'Y') # shaft rear face Y=±25
     inset=inset.union(shaft)
-    inset=inset.cut(bore(72,21 if sign==1 else -21,243,1.3,-7 if sign==1 else 7,'Y'))
-    add('eye_'+side,inset,GOLD,'head','Y' if sign==1 else '-Y',note='Rear M3 plastic thread-forming screw through skull Ø3.4, eye pilot Ø2.6 × 7 deep. Plate 2 mm; shaft Ø8. Pull-out/torque test pending. Pupil graphics are paint intent.')
+    inset=inset.cut(bore(78,25 if sign==1 else -25,246,1.3,-7 if sign==1 else 7,'Y'))
+    add('eye_'+side,inset,CREAM,'head','Y' if sign==1 else '-Y',note='Rear M3 plastic thread-forming screw through skull Ø3.4, eye pilot Ø2.6 × 7 deep. Plate 2 mm; shaft Ø10. Pull-out/torque test pending. Pupil graphics are paint intent.')
 # Two nostrils on nose, camera functionality deliberately not implied.
-for sign in [-1,1]:head=head.cut(bore(148,sign*20,228,2.3,12,'Y'))
+for sign in [-1,1]:head=head.cut(bore(126,sign*24,232,2.3,12,'Y'))
 # Original camera carrier uses verified Camera Module 3 board hole coordinates.
 # Front opening retains the eye expression; sensor is in the nose, not a fake eye.
-head=head.cut(bore(152,0,224,9,9,'X'))
+head=head.cut(bore(130,0,224,9,9,'X'))
 for sign in [-1,1]:
-    post=bore(137.5,30 if sign==1 else -14.8,221,3.5,15.2,'Y').intersect(head_outer)
+    post=bore(115.5,30 if sign==1 else -14.8,221,3.5,15.2,'Y').intersect(head_outer)
     head=head.union(post)
-    head=head.cut(bore(137.5,14.8 if sign==1 else -14.8,221,1.3,-6 if sign==1 else 6,'Y'))
+    head=head.cut(bore(115.5,14.8 if sign==1 else -14.8,221,1.3,-6 if sign==1 else 6,'Y'))
 carrier=cq.Workplane('YZ',origin=(138.5,0,223)).rect(29,26).extrude(2).edges('|X').fillet(2)
 carrier=carrier.cut(box(5,17,15,(139.5,0,222)))
 carrier=carrier.cut(box(5,21,9,(139.5,0,233.5))) # rear connector/ribbon exit
@@ -142,48 +146,50 @@ for y in [-10.5,10.5]:
 for sign in [-1,1]:
     ear=box(8,4,10,(137.5,sign*12.5,221))
     carrier=carrier.union(ear).cut(bore(137.5,sign*12.5+3,221,1.7,6,'Y'))
-add('camera_carrier',carrier,GOLD,'head','X',note='CM3 Standard: 4 x M2 clear Ø2.2 at Y±10.5/Z211.6,224.1. PCB rear X144. Side M3 carrier holes X137.5/Z221. Manufacturer layout used; fit and optical tests pending.')
+add('camera_carrier',carrier.translate((-22,0,0)),GOLD,'head','X',note='CM3 Standard: 4 x M2 clear Ø2.2 at Y±10.5/Z187.6,200.1. PCB rear X122. Side M3 carrier holes X115.5/Z197. Manufacturer layout used; fit and optical tests pending.')
 # Local lower-lip relief for the removable carrier and PCB envelope.
 # Keeps the outer shell and side post roots; cable/fastener fit still needs a build.
-head=head.cut(box(12,30,28,(139.5,0,223)))
+head=head.cut(box(12,30,28,(117.5,0,223)))
 head=head.cut(neck_keep)
 add('skull',head,JADE,'head',note='Open underside hollow skull, Ø3.4 jaw hinge holes. CM3 carrier side posts and lower-lip service relief; hardware fit pending.')
 # Lower jaw has integral cheek ears and broad rounded chin; teeth are integral blunt bumps.
-jaw=loft([(57,203,35,3),(105,201,28,4),(157,207,18,3)])
+jaw=loft([(57,203,35,3),(94,201,32,4),(135,206,22,3)])
 for sign in [-1,1]:
     ear=bore(59,sign*31+2,212,6,4,'Y')
     connector=box(14,4,10,(60,sign*31,206))
     jaw=jaw.union(ear).union(connector).cut(bore(59,sign*31+4,212,1.7,8,'Y'))
-    for x,y,z in [(92,24,205),(112,24,206),(132,21,208)]:
+    for x,y,z in [(88,26,205),(104,24,206),(120,22,208)]:
         tooth=cq.Workplane('XY').sphere(3).translate((x,sign*y,z));jaw=jaw.union(tooth)
 add('jaw',jaw,CREAM,'jaw',note='Two M3 hinge bolts. Manual pose prototype; powered linkage and pinch protection pending.')
 # Lightweight tapered tail, split longitudinally into two printable shells with locating pins.
-tail_sections=[(-205,130,2.8,3),(-160,132,7,8),(-108,143,13,15),(-58,153,17,18)]
-to=loft(tail_sections)
-ti=loft([(x,z,max(1,w-2),max(1,h-2)) for x,z,w,h in tail_sections])
-ti=ti.intersect(box(142,100,100,(-132,0,145))) # cavity stops at -203 and -60; integral end walls
+tail_sections=[(-180,134,3.5,4),(-144,138,8,9),(-101,148,14,16),(-58,153,17,18)]
+to=loft(tail_sections,True)
+ti=loft([(x,z,max(1,w-2),max(1,h-2)) for x,z,w,h in tail_sections],True)
+ti=ti.intersect(box(117,100,100,(-119.5,0,145))) # cavity stops at -203 and -60; integral end walls
 tail=to.cut(ti)
-for x,z,w in [(-100,145,14),(-155,133,8)]:
+for x,z,w in [(-102,146,14),(-146,137,8)]:
     cross=bore(x,w,z,4,w*2,'Y').intersect(to)
     tail=tail.union(cross).cut(bore(x,w+1,z,1.7,w*2+2,'Y'))
 for y in [-8,8]:tail=tail.cut(bore(-63,y,153,1.7,7,'X'))
 for sign,side in [(1,'left'),(-1,'right')]:
     half=tail.intersect(box(400,100,400,(-100,sign*50,150)))
-    add('tail_'+side,half,JADE,'tail','Y','M3 seam bolts at X -100/-155, Z145/133; two axial M3 mount holes at Y ±8, Z153. Physical fit unverified.')
+    add('tail_'+side,half,JADE,'tail','Y','M3 seam bolts at X -102/-146, Z122/113; two axial M3 mount holes at Y ±8, Z129. Physical fit unverified.')
 # Small two-finger forearms, visually separate from the load-bearing hind limbs.
 for sign,side in [(1,'left'),(-1,'right')]:
     profile=[(31,184),(40,187),(58,173),(63,173),(68,168),(64,165),(56,169),(54,163),(49,164),(42,176),(32,176)]
     arm=cq.Workplane('XZ',origin=(0,sign*37+3,0)).polyline(profile).close().extrude(6).edges('|Y').fillet(.7)
     arm=arm.cut(bore(36,sign*37+4,181,1.7,8,'Y'))
-    add('forearm_'+side,arm,JADE,'arms','Y','Manual M3 pivot mating torso bearing posts at X36 Z181. Actuator and motion stops not integrated.')
+    add('forearm_'+side,arm,JADE,'arms','Y','Manual M3 pivot mating torso bearing posts at X36 Z157. Actuator and motion stops not integrated.')
 assembly=cq.Assembly(name='Micro_X_P0')
 scene=trimesh.Scene()
 report=[]
 for p in parts:
     assembly.add(p['shape'],name=p['name'],color=cq.Color(*p['color']))
-    mesh=paint(p['mesh'].copy(),p['name'],p['color']);mesh.vertices*=.001
+    mesh=trimesh.graph.smooth_shade(p['mesh'],angle=math.radians(35))
+    mesh.vertex_normals=trimesh.geometry.weighted_vertex_normals(len(mesh.vertices),mesh.faces,mesh.face_normals,mesh.face_angles)
+    mesh=paint(mesh,p['name'],p['color']);mesh.vertices*=.001
     scene.add_geometry(mesh,node_name=p['name'])
     report.append({k:v for k,v in p.items() if k not in ['shape','mesh','color']})
-assembly.export(str(R/'models/micro_x.step'));scene.export(R/'models/micro_x.glb')
+assembly.export(str(R/'models/micro_x.step'));scene.export(R/'models/micro_x.glb',include_normals=True)
 (R/'artifacts/parts.json').write_text(json.dumps(report,indent=2)+'\n')
 print('Built',len(parts),'independent parts; solid PLA-equivalent mass',round(sum(p['mass_g'] for p in parts),1),'g')

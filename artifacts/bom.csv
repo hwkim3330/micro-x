@@ -1,18 +1,18 @@
 part,quantity,material_basis,mass_g,status,file
 torso_lower,1,PLA volume estimate; material not frozen,61.65,P0 prototype,models/step/torso_lower.step
 torso_upper,1,PLA volume estimate; material not frozen,33.02,P0 prototype,models/step/torso_upper.step
-hindleg_left,1,PLA volume estimate; material not frozen,49.57,P0 prototype,models/step/hindleg_left.step
+hindleg_left,1,PLA volume estimate; material not frozen,40.93,P0 prototype,models/step/hindleg_left.step
 foot_left,1,PLA volume estimate; material not frozen,32.62,P0 prototype,models/step/foot_left.step
-hindleg_right,1,PLA volume estimate; material not frozen,49.57,P0 prototype,models/step/hindleg_right.step
+hindleg_right,1,PLA volume estimate; material not frozen,40.93,P0 prototype,models/step/hindleg_right.step
 foot_right,1,PLA volume estimate; material not frozen,32.62,P0 prototype,models/step/foot_right.step
 neck_cradle,1,PLA volume estimate; material not frozen,10.53,P0 prototype,models/step/neck_cradle.step
-eye_left,1,PLA volume estimate; material not frozen,4.19,P0 prototype,models/step/eye_left.step
-eye_right,1,PLA volume estimate; material not frozen,4.19,P0 prototype,models/step/eye_right.step
+eye_left,1,PLA volume estimate; material not frozen,10.73,P0 prototype,models/step/eye_left.step
+eye_right,1,PLA volume estimate; material not frozen,10.73,P0 prototype,models/step/eye_right.step
 camera_carrier,1,PLA volume estimate; material not frozen,1.58,P0 prototype,models/step/camera_carrier.step
-skull,1,PLA volume estimate; material not frozen,52.97,P0 prototype,models/step/skull.step
-jaw,1,PLA volume estimate; material not frozen,39.47,P0 prototype,models/step/jaw.step
-tail_left,1,PLA volume estimate; material not frozen,13.31,P0 prototype,models/step/tail_left.step
-tail_right,1,PLA volume estimate; material not frozen,13.31,P0 prototype,models/step/tail_right.step
+skull,1,PLA volume estimate; material not frozen,55.7,P0 prototype,models/step/skull.step
+jaw,1,PLA volume estimate; material not frozen,34.53,P0 prototype,models/step/jaw.step
+tail_left,1,PLA volume estimate; material not frozen,12.52,P0 prototype,models/step/tail_left.step
+tail_right,1,PLA volume estimate; material not frozen,12.52,P0 prototype,models/step/tail_right.step
 forearm_left,1,PLA volume estimate; material not frozen,2.5,P0 prototype,models/step/forearm_left.step
 forearm_right,1,PLA volume estimate; material not frozen,2.5,P0 prototype,models/step/forearm_right.step
 Eye M3 plastic thread-forming screw,2,Candidate length 8 mm; verify chosen supplier and installed torque,,Prototype fit/pull test required,docs/DESIGN_QUALITY.md

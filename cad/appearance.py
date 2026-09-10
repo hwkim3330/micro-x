@@ -7,11 +7,11 @@ def paint(mesh,name,color):
  if name.startswith('eye_'):
   sign=1 if name.endswith('left') else -1
   x,y,z=mesh.vertices.T
-  front=sign*y>31
-  pupil=front&(((x-72)/8.1)**2+((z-243)/8.6)**2<1)
+  front=sign*y>36
+  pupil=front&(((x-78)/9.8)**2+((z-222)/10.5)**2<1)
   colors[pupil]=[13,24,21,255]
-  highlight=pupil&(((x-69)/2.1)**2+((z-247)/2.4)**2<1)
-  glint=pupil&(((x-75.5)/.9)**2+((z-240.5)/.9)**2<1)
+  highlight=pupil&(((x-74)/2.8)**2+((z-227)/3.1)**2<1)
+  glint=pupil&(((x-82)/1.2)**2+((z-218)/1.2)**2<1)
   colors[highlight|glint]=[251,252,240,255]
  mesh.visual.vertex_colors=colors
  return mesh

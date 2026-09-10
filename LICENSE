@@ -3,6 +3,7 @@ Micro X — license scope
 Original mechanical designs, CAD source under cad/, CAD, generated geometry, drawings, product graphics and documentation:
 Copyright (c) 2026 hwkim3330, to the extent applicable rights subsist. All rights reserved.
 Public availability does not grant an additional license to manufacture, sell or redistribute these original designs. Platform rights under GitHub's terms remain unaffected. Contact the repository owner for a manufacturing or redistribution license.
+The owner may commercially use their original designs, including manufacturing and selling products. The restrictions above apply to third-party recipients; this is not a noncommercial license restriction on the owner. No general third-party manufacturing license is granted.
 This notice does not assert rights over general ideas, dimensions of third-party products, functional principles, or independently created designs. No trademark or patent clearance is represented.
 
 Original software source under tools/, runtime/, tests/ and web/ (excluding generated design data and third-party dependencies): MIT, see licenses/MIT.txt.

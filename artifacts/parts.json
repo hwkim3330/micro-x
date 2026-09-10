@@ -2,7 +2,7 @@
   {
     "name": "torso_lower",
     "group": "torso",
-    "note": "4 \u00d7 M3 pilot \u00d82.6 at (-25/15, \u00b122), z167\u2013180. Verify self-tapping screw fit in coupon.",
+    "note": "4 \u00d7 M3 pilot \u00d82.6 at (-25/15, \u00b122), z143\u2013156. Verify self-tapping screw fit in coupon.",
     "dimensions_mm": [
       111.0,
       88.0,
@@ -32,12 +32,12 @@
     "group": "legs",
     "note": "Fixed display leg; lateral M3 through bolts. No motor/locomotion claim.",
     "dimensions_mm": [
-      72.17,
+      69.94,
       18.0,
-      139.86
+      110.79
     ],
-    "volume_mm3": 39972.86,
-    "mass_g": 49.57,
+    "volume_mm3": 33011.96,
+    "mass_g": 40.93,
     "step": "models/step/hindleg_left.step",
     "stl": "models/print/hindleg_left.stl"
   },
@@ -60,12 +60,12 @@
     "group": "legs",
     "note": "Fixed display leg; lateral M3 through bolts. No motor/locomotion claim.",
     "dimensions_mm": [
-      72.17,
+      69.94,
       18.0,
-      139.86
+      110.79
     ],
-    "volume_mm3": 39972.86,
-    "mass_g": 49.57,
+    "volume_mm3": 33011.96,
+    "mass_g": 40.93,
     "step": "models/step/hindleg_right.step",
     "stl": "models/print/hindleg_right.stl"
   },
@@ -100,35 +100,35 @@
   {
     "name": "eye_left",
     "group": "head",
-    "note": "Rear M3 plastic thread-forming screw through skull \u00d83.4, eye pilot \u00d82.6 \u00d7 7 deep. Plate 2 mm; shaft \u00d88. Pull-out/torque test pending. Pupil graphics are paint intent.",
+    "note": "Rear M3 plastic thread-forming screw through skull \u00d83.4, eye pilot \u00d82.6 \u00d7 7 deep. Plate 2 mm; shaft \u00d810. Pull-out/torque test pending. Pupil graphics are paint intent.",
     "dimensions_mm": [
-      19.59,
-      19.8,
-      19.6
+      27.99,
+      24.99,
+      28.0
     ],
-    "volume_mm3": 3375.51,
-    "mass_g": 4.19,
+    "volume_mm3": 8655.62,
+    "mass_g": 10.73,
     "step": "models/step/eye_left.step",
     "stl": "models/print/eye_left.stl"
   },
   {
     "name": "eye_right",
     "group": "head",
-    "note": "Rear M3 plastic thread-forming screw through skull \u00d83.4, eye pilot \u00d82.6 \u00d7 7 deep. Plate 2 mm; shaft \u00d88. Pull-out/torque test pending. Pupil graphics are paint intent.",
+    "note": "Rear M3 plastic thread-forming screw through skull \u00d83.4, eye pilot \u00d82.6 \u00d7 7 deep. Plate 2 mm; shaft \u00d810. Pull-out/torque test pending. Pupil graphics are paint intent.",
     "dimensions_mm": [
-      19.59,
-      19.8,
-      19.6
+      27.99,
+      24.99,
+      28.0
     ],
-    "volume_mm3": 3375.51,
-    "mass_g": 4.19,
+    "volume_mm3": 8655.62,
+    "mass_g": 10.73,
     "step": "models/step/eye_right.step",
     "stl": "models/print/eye_right.stl"
   },
   {
     "name": "camera_carrier",
     "group": "head",
-    "note": "CM3 Standard: 4 x M2 clear \u00d82.2 at Y\u00b110.5/Z211.6,224.1. PCB rear X144. Side M3 carrier holes X137.5/Z221. Manufacturer layout used; fit and optical tests pending.",
+    "note": "CM3 Standard: 4 x M2 clear \u00d82.2 at Y\u00b110.5/Z187.6,200.1. PCB rear X122. Side M3 carrier holes X115.5/Z197. Manufacturer layout used; fit and optical tests pending.",
     "dimensions_mm": [
       10.5,
       29.0,
@@ -144,12 +144,12 @@
     "group": "head",
     "note": "Open underside hollow skull, \u00d83.4 jaw hinge holes. CM3 carrier side posts and lower-lip service relief; hardware fit pending.",
     "dimensions_mm": [
-      112.0,
-      70.0,
-      61.0
+      90.0,
+      78.01,
+      72.45
     ],
-    "volume_mm3": 42721.38,
-    "mass_g": 52.97,
+    "volume_mm3": 44923.15,
+    "mass_g": 55.7,
     "step": "models/step/skull.step",
     "stl": "models/print/skull.stl"
   },
@@ -158,47 +158,47 @@
     "group": "jaw",
     "note": "Two M3 hinge bolts. Manual pose prototype; powered linkage and pinch protection pending.",
     "dimensions_mm": [
-      104.0,
+      82.0,
       70.0,
-      20.98
+      20.99
     ],
-    "volume_mm3": 31832.39,
-    "mass_g": 39.47,
+    "volume_mm3": 27847.29,
+    "mass_g": 34.53,
     "step": "models/step/jaw.step",
     "stl": "models/print/jaw.stl"
   },
   {
     "name": "tail_left",
     "group": "tail",
-    "note": "M3 seam bolts at X -100/-155, Z145/133; two axial M3 mount holes at Y \u00b18, Z153. Physical fit unverified.",
+    "note": "M3 seam bolts at X -102/-146, Z122/113; two axial M3 mount holes at Y \u00b18, Z129. Physical fit unverified.",
     "dimensions_mm": [
-      147.0,
+      122.0,
       17.0,
-      47.0
+      42.35
     ],
-    "volume_mm3": 10732.75,
-    "mass_g": 13.31,
+    "volume_mm3": 10094.14,
+    "mass_g": 12.52,
     "step": "models/step/tail_left.step",
     "stl": "models/print/tail_left.stl"
   },
   {
     "name": "tail_right",
     "group": "tail",
-    "note": "M3 seam bolts at X -100/-155, Z145/133; two axial M3 mount holes at Y \u00b18, Z153. Physical fit unverified.",
+    "note": "M3 seam bolts at X -102/-146, Z122/113; two axial M3 mount holes at Y \u00b18, Z129. Physical fit unverified.",
     "dimensions_mm": [
-      147.0,
+      122.0,
       17.0,
-      47.0
+      42.35
     ],
-    "volume_mm3": 10732.75,
-    "mass_g": 13.31,
+    "volume_mm3": 10094.16,
+    "mass_g": 12.52,
     "step": "models/step/tail_right.step",
     "stl": "models/print/tail_right.stl"
   },
   {
     "name": "forearm_left",
     "group": "arms",
-    "note": "Manual M3 pivot mating torso bearing posts at X36 Z181. Actuator and motion stops not integrated.",
+    "note": "Manual M3 pivot mating torso bearing posts at X36 Z157. Actuator and motion stops not integrated.",
     "dimensions_mm": [
       36.57,
       6.0,
@@ -212,7 +212,7 @@
   {
     "name": "forearm_right",
     "group": "arms",
-    "note": "Manual M3 pivot mating torso bearing posts at X36 Z181. Actuator and motion stops not integrated.",
+    "note": "Manual M3 pivot mating torso bearing posts at X36 Z157. Actuator and motion stops not integrated.",
     "dimensions_mm": [
       36.57,
       6.0,

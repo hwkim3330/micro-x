@@ -4,14 +4,14 @@
 
 ## Defined interfaces
 
-- Torso split at Z = 180 mm. Four screw axes: X = -25 and +15 mm, Y = ±22 mm, parallel to Z. Upper Ø3.4 clearance, lower Ø2.6 pilot over Z167–180. M3 plastic thread-forming screw fit and head access must be tested; do not substitute a heat-set insert into the pilot without redesign. Screw lengths depend on the local roof height and available product; measure STEP before procurement.
-- Rear leg axes: X = -14 mm, Z = 143 mm, parallel to Y, Ø3.4 clearance. Fixed pose concept; one axis does not provide anti-rotation locking. Final fastener/locking feature is pending.
+- Torso split at Z = 156 mm. Four screw axes: X = -25 and +15 mm, Y = ±22 mm, parallel to Z. Upper Ø3.4 clearance, lower Ø2.6 pilot over Z143–156. M3 plastic thread-forming screw fit and head access must be tested; do not substitute a heat-set insert into the pilot without redesign. Screw lengths depend on the local roof height and available product; measure STEP before procurement.
+- Rear leg axes: X = -14 mm, Z = 119 mm, parallel to Y, Ø3.4 clearance. Fixed pose concept; one axis does not provide anti-rotation locking. Final fastener/locking feature is pending.
 - Ankle axes: X = 8 mm, Z = 27 mm, parallel to Y, Ø3.4 clearance. Feet have fork lugs. Add washers only after measuring actual print clearance.
-- Jaw axes: X = 59 mm, Z = 212 mm, parallel to Y, Ø3.4 clearance. Two side bolts are intended; sufficient bearing engagement, stops and finger access are unverified.
-- Eyes: rear-fastened caps with Ø8 mm bosses, Ø2.6 × 7 mm blind pilots and skull support plates 2 mm thick with Ø3.4 clearance. Candidate M3×8 plastic thread-forming screws and 1 mm washers must be fitted and pull-tested; no adhesive is needed for the intended retention.
+- Jaw axes: X = 59 mm, Z = 188 mm, parallel to Y, Ø3.4 clearance. Two side bolts are intended; sufficient bearing engagement, stops and finger access are unverified.
+- Eyes: rear-fastened caps with Ø10 mm bosses, Ø2.6 × 7 mm blind pilots and skull support plates 2 mm thick with Ø3.4 clearance. Candidate M3×8 plastic thread-forming screws and 1 mm washers must be fitted and pull-tested; no adhesive is needed for the intended retention.
 
-- Tail seam: transverse M3 axes at (X,Z) = (-100,145) and (-155,133), Ø3.4. Axial tail-to-torso bolts: Y = ±8, Z = 153, parallel to X, Ø3.4 in tail / Ø2.6 torso pilots. Mating face X = -58. Verify print fit and select bolt lengths from the STEP stack.
-- Forearm posts: X = 36, Z = 181, parallel to Y, Ø3.4; inner arm faces Y = ±34. Posts are split by the torso service seam, so access and stiffness need a build test.
+- Tail seam: transverse M3 axes at (X,Z) = (-102,122) and (-146,113), Ø3.4. Axial tail-to-torso bolts: Y = ±8, Z = 129, parallel to X, Ø3.4 in tail / Ø2.6 torso pilots. Mating face X = -58. Verify print fit and select bolt lengths from the STEP stack.
+- Forearm posts: X = 36, Z = 157, parallel to Y, Ø3.4; inner arm faces Y = ±34. Posts are split by the torso service seam, so access and stiffness need a build test.
 
 ## Prototype evaluation sequence
 

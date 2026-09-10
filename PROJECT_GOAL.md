@@ -31,7 +31,7 @@ Deliver a traceable engineering prototype package: original parametric CAD, prin
 
 ## B2 / Q4 expansion
 
-Q4 is retired from the public viewer at the user's request. Files remain as archived design evidence. Active priorities are the Microduck-joint Micro Rex first, and a separate cost-reduced Nano Rex later.
+Q4 is retired from the public viewer at the user's request. Files remain as archived design evidence. Active work here is the independent commercial Micro X: shorter friendly face, larger retained eyes, lower body, manufacturable parts, and measured validation. Micro Rex is a separate noncommercial hardware project; its policy compatibility does not apply to X.
 
 - [x] Q4 common-part packaging CAD and model viewer selection
 - [ ] B2 13-axis and Q4 15-axis candidate drive configuration validation
@@ -49,3 +49,15 @@ User requested a cute and robust product competitive with Microduck. Current eye
 - [x] Original synthesized chirp preview and honest public feature comparison
 - [ ] Physical camera, audio, sensor, compute and power integration
 - [ ] Measured performance comparison against Microduck; superiority not established
+
+## Commercial X redesign and browser lab
+
+- [x] Owner commercial-use scope explicit; third-party design manufacturing rights remain reserved
+- [x] Shorter smooth head, larger retained eyes, lower torso, shortened tail and updated printable CAD
+- [x] STEP export/reimport validation and updated static/jaw checks
+- [x] Printed-geometry-only center of mass report, with excluded hardware stated
+- [x] Actual CAD README portrait and X-first product page
+- [x] Anatomy layers and part inspection in the X Lab
+- [x] Real browser-worker CEM learning for a normalized virtual jaw; held-out evaluation and policy import/export
+- [x] Browser speech expression preview and desktop/mobile interaction tests
+- [ ] Whole-body dynamics, locomotion training, physical integration and production verification

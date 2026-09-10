@@ -5,7 +5,7 @@ import cadquery as cq
 import hashlib
 R=Path(__file__).resolve().parents[1];parts=json.loads((R/'artifacts/parts.json').read_text());shapes={p['name']:cq.importers.importStep(str(R/p['step'])) for p in parts};jaw=shapes.pop('jaw');collisions=[];exact=0
 for angle in range(0,21,2):
- moving=jaw.rotate((59,0,212),(59,1,212),angle);A=moving.val().BoundingBox()
+ moving=jaw.rotate((59,0,188),(59,1,188),angle);A=moving.val().BoundingBox()
  for name,shape in shapes.items():
   B=shape.val().BoundingBox()
   if any(getattr(A,k+'max')<=getattr(B,k+'min')+1e-5 or getattr(B,k+'max')<=getattr(A,k+'min')+1e-5 for k in 'xyz'):continue

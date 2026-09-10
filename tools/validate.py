@@ -19,23 +19,24 @@ for p in parts:
     assert static['step_sha256'][p['name']]==sha and jaw['step_sha256'][p['name']]==sha, 'stale collision report'
 assert not static['overlaps'], 'static assembly intersections present'
 assert not jaw['collisions'], 'sampled jaw intersections present'
+balance=json.loads((R/'artifacts/balance.json').read_text())
+for p in parts:
+    assert balance['stl_sha256'][p['name']]==hashlib.sha256((R/'models'/f"{p['name']}.stl").read_bytes()).hexdigest(), 'stale printed-geometry balance report'
+assert balance['minimum_static_margin_mm']>0, 'printed reference COM outside assumed support polygon'
 for name in ['m3_pilot_coupon','m3_clearance_coupon']:
     coupon=trimesh.load_mesh(R/'models/coupons'/f'{name}.stl');assert coupon.is_watertight and coupon.volume>0
 report=dict(revision='P0',parts=len(parts),mesh_checks=checks,geometry='valid generated CAD checked during build; closed positive-volume meshes checked here',physical_fit='NOT VERIFIED',actuation='NOT INTEGRATED',interference='No exact STEP volume overlap at reference pose; jaw 0–20 degrees sampled every 2 degrees clear. Continuous sweep/tolerance/fasteners NOT VERIFIED',production_release=False,license='original design rights reserved; software MIT; see LICENSE')
 (R/'artifacts/validation.json').write_text(json.dumps(report,indent=2)+'\n')
 qparts=json.loads((R/'artifacts/q4_parts.json').read_text());qr=json.loads((R/'artifacts/q4_validation.json').read_text())
+archive=json.loads((R/'artifacts/q4_archive.json').read_text())
+for path,sha in archive['sha256'].items():assert hashlib.sha256((R/path).read_bytes()).hexdigest()==sha,'retired Q4 archive changed'
 assert not qr['reference_overlaps'], 'Q4 reference intersections present'
 assert qr['source_sha256']==hashlib.sha256((R/'cad/quadruped.py').read_bytes()).hexdigest(), 'stale Q4 generator'
 for p in qparts:
     assert qr['step_sha256'][p['name']]==hashlib.sha256((R/p['step']).read_bytes()).hexdigest(), 'stale Q4 STEP report'
     m=trimesh.load_mesh(R/p['stl']);assert m.is_watertight and m.volume>0 and abs(m.bounds[0,2])<.001 and max(m.extents)<220,p['name']
-    if p['source_part']:
-        base=next(b for b in parts if b['name']==p['source_part'])
-        assert qr['source_step_sha256'][base['name']]==hashlib.sha256((R/base['step']).read_bytes()).hexdigest(), 'stale shared source geometry'
-        assert abs(p['mass_g']-base['mass_g'])<.03, 'shared part mass changed'
-        assert (R/p['stl']).read_bytes()==(R/base['stl']).read_bytes(), 'shared print geometry/orientation changed'
 assert len(qparts)==20 and qr['unique_common_designs']==14 and qr['new_designs']==2
-print('Q4: 20 printable instances, 14 shared designs, 2 new rail designs verified')
+print('Retired Q4: archived file hashes and 20 printable instances verified independently of current B2')
 files=[f for folder in ['models','cad'] for f in (R/folder).rglob('*') if f.is_file() and '__pycache__' not in str(f)]
 (R/'artifacts/SHA256SUMS.json').write_text(json.dumps({str(f.relative_to(R)):hashlib.sha256(f.read_bytes()).hexdigest() for f in sorted(files)},indent=2)+'\n')
 print(f'{len(parts)} printable models checked; production release remains false')

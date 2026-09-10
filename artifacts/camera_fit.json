@@ -1,6 +1,6 @@
 {
   "scope": "Rectangular field corner within circular nose opening; assumed pupil and lens envelope, not measured vignetting",
-  "manifest_sha256": "f560873c3eb7512703d667425d1ea9db6e7d896cf0f0f6aaf315d1b3f6c8f0ff",
+  "manifest_sha256": "68a3b174b5eea373b911650beffa756cd91c601c8c3979c8caf80466447766c3",
   "pupil_to_nose_mm": 4.9,
   "required_port_radius_mm": 8.373,
   "designed_port_radius_mm": 9,

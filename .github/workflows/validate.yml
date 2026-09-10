@@ -11,3 +11,7 @@ jobs:
       - run: pip install numpy==2.2.6 trimesh==4.11.1
       - run: python tools/validate.py
       - run: python -m unittest discover -s tests -v
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --test tests/learning.test.mjs

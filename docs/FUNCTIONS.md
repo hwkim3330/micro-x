@@ -22,9 +22,9 @@
 [제조사 기구 도면](https://datasheets.raspberrypi.com/camera/camera-module-3-standard-mechanical-drawing.pdf)의 PCB 및 구멍 치수만 사용해 브래킷을 직접 설계했습니다. 제조사 CAD나 그림은 재배포하지 않습니다. [카메라 사양](https://www.raspberrypi.com/documentation/accessories/camera.html): Standard 모델, 11.9 MP, 자동초점, 수평 66° / 수직 41°.
 
 - PCB 25 × 23.862 × 1.12 mm; 장착 홀 Ø2.2 mm.
-- 로봇 좌표에서 PCB 뒷면 X144, 아래 Z209.6; 홀 Y±10.5, Z211.6/224.1.
+- 로봇 좌표에서 PCB 뒷면 X122, 아래 Z185.6; 홀 Y±10.5, Z187.6/200.1.
 - 네 M2 체결 위치와 두 M3 측면 체결 위치를 가진 `camera_carrier`; M2×10 및 M3×10은 잠정안입니다. 나사 머리·너트·와셔·PCB 부품 간섭, 조립 순서와 체결 토크는 실물 확인이 필요합니다.
-- 광축 Z224, 코의 개구 Ø18 mm. 가정한 동공 위치 X152.1 및 여유를 적용한 [개구 계산](../artifacts/camera_fit.json)에서 반지름 여유 약 0.63 mm입니다. 실제 비네팅이나 전체 전자부품 간섭의 검증 결과는 아닙니다.
+- 광축 Z200, 코의 개구 Ø18 mm. 가정한 동공 위치 X130.1 및 여유를 적용한 [개구 계산](../artifacts/camera_fit.json)에서 반지름 여유 약 0.63 mm입니다. 실제 비네팅이나 전체 전자부품 간섭의 검증 결과는 아닙니다.
 - FPC 홈을 두었지만 케이블 굽힘과 몸통까지의 배선은 미완성입니다. Pi Zero 계열에는 맞는 15→22핀 카메라 케이블이 필요합니다.
 
 [Pi Zero 2 W](https://www.raspberrypi.com/products/raspberry-pi-zero-2-w/)는 촬영 서비스 초기 시험용 후보입니다. 전체 비전·대화·보행을 동시에 처리할 최종 보드로 선정하지 않았습니다. 배터리, 보호 회로, 모터 전원, 로직 전원과 발열 설계도 남아 있습니다.
