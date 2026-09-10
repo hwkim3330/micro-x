@@ -3,3 +3,5 @@
 @media(max-width:750px){.stage{height:500px}#view{height:420px}.tools{right:15px;bottom:28px}.tools button,.tools select{padding:7px;font-size:10px}.hint{bottom:8px}}
 
 body.lab-embed header,body.lab-embed .copy,body.lab-embed main>section:not(.hero),body.lab-embed footer,body.lab-embed .tools,body.lab-embed .hint,body.lab-embed .coordinates{display:none}body.lab-embed main,body.lab-embed .hero,body.lab-embed .stage{display:block;margin:0;padding:0;width:100%;max-width:none}body.lab-embed #view{height:100vh;width:100%;min-height:0}body.lab-embed{overflow:hidden}
+
+body.lab-embed>div{display:none}

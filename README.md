@@ -1,5 +1,7 @@
 # MICRO X
 
+**현재 외형 선택: [Microduck 원본 보기](https://hwkim3330.github.io/micro-rex/web/).** 공룡 콘셉트 방향을 취소하고 원본을 기본 참고 모델로 복귀했습니다. 아래 X 독자 설계와 학습 Lab은 별도 보존하며 원본 하드웨어를 X의 상업용 라이선스로 바꾸지 않습니다.
+
 ![Micro X — actual CAD, mint and cream T-rex](artifacts/readme_hero.png)
 
 **소유자 hwkim3330가 제작·판매할 상업용 독자 설계 티렉스입니다.** 비상업 조건의 Micro Rex와 별도 프로젝트입니다. **현재 P0 외형·조립 설계이며, 완성된 구동 로봇이나 양산 승인품은 아닙니다.**
