@@ -8,8 +8,8 @@
       88.0,
       56.99
     ],
-    "volume_mm3": 49715.43,
-    "mass_g": 61.65,
+    "volume_mm3": 49289.94,
+    "mass_g": 61.12,
     "step": "models/step/torso_lower.step",
     "stl": "models/print/torso_lower.stl"
   },
@@ -22,8 +22,8 @@
       79.05,
       33.0
     ],
-    "volume_mm3": 26630.21,
-    "mass_g": 33.02,
+    "volume_mm3": 26024.05,
+    "mass_g": 32.27,
     "step": "models/step/torso_upper.step",
     "stl": "models/print/torso_upper.stl"
   },
@@ -44,14 +44,14 @@
   {
     "name": "foot_left",
     "group": "legs",
-    "note": "M3 ankle bolt, three shorter integral blunt toes: 12 mm loft, 7 mm tip diameter. Support under lug overhangs. Impact strength untested.",
+    "note": "M3 ankle bolt, rounded continuous sole without decorative claws. Support under lug overhangs. Impact strength untested.",
     "dimensions_mm": [
-      76.5,
+      73.0,
       42.0,
       26.0
     ],
-    "volume_mm3": 26279.83,
-    "mass_g": 32.59,
+    "volume_mm3": 25826.78,
+    "mass_g": 32.03,
     "step": "models/step/foot_left.step",
     "stl": "models/print/foot_left.stl"
   },
@@ -72,14 +72,14 @@
   {
     "name": "foot_right",
     "group": "legs",
-    "note": "M3 ankle bolt, three shorter integral blunt toes: 12 mm loft, 7 mm tip diameter. Support under lug overhangs. Impact strength untested.",
+    "note": "M3 ankle bolt, rounded continuous sole without decorative claws. Support under lug overhangs. Impact strength untested.",
     "dimensions_mm": [
-      76.5,
+      73.0,
       42.0,
       26.0
     ],
-    "volume_mm3": 26279.83,
-    "mass_g": 32.59,
+    "volume_mm3": 25826.78,
+    "mass_g": 32.03,
     "step": "models/step/foot_right.step",
     "stl": "models/print/foot_right.stl"
   },
@@ -194,33 +194,5 @@
     "mass_g": 12.52,
     "step": "models/step/tail_right.step",
     "stl": "models/print/tail_right.stl"
-  },
-  {
-    "name": "forearm_left",
-    "group": "arms",
-    "note": "Short broad two-finger arm, 9 mm thick, R1 profile corners. Existing M3 pivot interface retained; fastener length and pull/impact strength need physical validation. Actuator and motion stops not integrated.",
-    "dimensions_mm": [
-      32.64,
-      9.0,
-      22.62
-    ],
-    "volume_mm3": 3050.49,
-    "mass_g": 3.78,
-    "step": "models/step/forearm_left.step",
-    "stl": "models/print/forearm_left.stl"
-  },
-  {
-    "name": "forearm_right",
-    "group": "arms",
-    "note": "Short broad two-finger arm, 9 mm thick, R1 profile corners. Existing M3 pivot interface retained; fastener length and pull/impact strength need physical validation. Actuator and motion stops not integrated.",
-    "dimensions_mm": [
-      32.64,
-      9.0,
-      22.62
-    ],
-    "volume_mm3": 3050.49,
-    "mass_g": 3.78,
-    "step": "models/step/forearm_right.step",
-    "stl": "models/print/forearm_right.stl"
   }
 ]

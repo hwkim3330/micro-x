@@ -1,10 +1,10 @@
 {
   "scope": "Uniform PLA-equivalent printed shells in fixed reference pose. Both feet assumed flat; contact points within 0.05 mm of foot minimum Z. Excludes fasteners, electronics, battery, motors and deformation. Not whole-robot balance or strength validation.",
-  "mass_g": 396.55,
+  "mass_g": 386.58,
   "center_of_mass_mm": [
-    22.465,
-    -0.543,
-    124.391
+    21.867,
+    -0.558,
+    124.07
   ],
   "support_hull_xy_mm": [
     [
@@ -664,15 +664,15 @@
       68.0
     ]
   ],
-  "minimum_static_margin_mm": 32.035,
+  "minimum_static_margin_mm": 32.633,
   "physical_verified": false,
   "stl_sha256": {
-    "torso_lower": "f2f64e015c29aa7cdf49a12db7e0c0c377658ce54517c5c409c3e9b421c0bf68",
-    "torso_upper": "39d3d4379e46b8400a212e406d49da536dc054f52946e65ab5ee9f00619c7676",
+    "torso_lower": "d4e2e742d72337131516ab9dff6a07d37203898577c8e5c83859c03b546ac436",
+    "torso_upper": "9a71e3b156efa2836096b702c251dcef25a12a3fc095cd3b099b867d9c09fd26",
     "hindleg_left": "c621ebffd4798291d22c51a12827885443df2a9621beb7722bc3e0468d1e7e39",
-    "foot_left": "dbec9373c815ab23071f1cbb961e5ca99fe3f00a5232f5bb59c55343946fea66",
+    "foot_left": "f03349a7cf274bc821897d707238fc03f70cba106aa56b3923aaeb7cebe02452",
     "hindleg_right": "d231078c0efb1c4418f4e5e699270f118697cd328fc47b8f1a7c157108abf894",
-    "foot_right": "afd566bc15b49cf6cc461baebe7a02e08f955d6543a745e24aebdb617dbdc461",
+    "foot_right": "d57b1d35bff4009768f503604de54a528c51e8ccb450466721b06a50776e6f4d",
     "neck_cradle": "bdad0773f1f67f0bf7bb6584ba8d5a323c6934a119ad0a20b76016db3b597104",
     "eye_left": "64ca97b3a935e2f9dedb4ac2b179e0c9da31c6b05a87abcb1583211308f10edb",
     "eye_right": "f85c6fd32e1403488024b4b50c7afae365f49a00dba7c77b5d95e45e1f75bed2",
@@ -680,8 +680,6 @@
     "skull": "8aa0c1282920f549be37cb8411477f028b341b0fbd856fe46fc37c4b89799fdb",
     "jaw": "426ec5282ddb6caf8e5fb3e53984365261226015ac4fa8d49eb2c69ced10be5a",
     "tail_left": "33b7873585fd4fdf0a43f6fe225f37853142f91f886824b032c1cf3fa961373f",
-    "tail_right": "86b59f46d9b4e9d76db893c7f1ec47eab92d4aac144f67b049d8b23cf3383a07",
-    "forearm_left": "ab17aae89918e4ea0cfcb688beafb08e66504b0c2bf43a58ac1a4006cc0a0caa",
-    "forearm_right": "08c550a2d3f3eac91d448869bf581d0d17f0fa5295855c539a9f62c1600f96d5"
+    "tail_right": "86b59f46d9b4e9d76db893c7f1ec47eab92d4aac144f67b049d8b23cf3383a07"
   }
 }

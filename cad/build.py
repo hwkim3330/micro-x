@@ -54,10 +54,6 @@ for x,z,w,h in [sections[0],sections[-1]]:
     shell=shell.union(cap)
 for y in [-8,8]:
     shell=shell.union(bore(-58,y,153,4,10,'X')).cut(bore(-59,y,153,1.3,12,'X'))
-# Forearm bearing posts meet the existing arm inner faces, shared seam at z180.
-for sign in [-1,1]:
-    start=34 if sign==1 else -24
-    shell=shell.union(bore(36,start,181,5,10,'Y')).cut(bore(36,start+1,181,1.7,12,'Y'))
 # Four tubular fastening columns bridge the seam, M3 clearance through roof and pilot below.
 mounts=[(-25,-22),(-25,22),(15,-22),(15,22)]
 for x,y in mounts:
@@ -95,10 +91,8 @@ for sign,side in [(1,'left'),(-1,'right')]:
         lug=box(15,5,20,(8,sign*53+dy,20))
         foot=foot.union(lug)
     foot=foot.cut(bore(8,sign*53+20,27,1.7,40,'Y'))
-    for yy in [-10,0,10]:
-        toe=loft([(46,10,4.8,5),(58,9,3.5,3.5)]).translate((0,sign*53+yy,0));foot=foot.union(toe)
     foot=foot.cut(box(55,18.6,20,(8,sign*53,22)))
-    add('foot_'+side,foot,CREAM,'legs',note='M3 ankle bolt, three shorter integral blunt toes: 12 mm loft, 7 mm tip diameter. Support under lug overhangs. Impact strength untested.')
+    add('foot_'+side,foot,CREAM,'legs',note='M3 ankle bolt, rounded continuous sole without decorative claws. Support under lug overhangs. Impact strength untested.')
 # Neck fixed mounting cradle and ball-like visual transition, bolted to front service aperture.
 neck=neck.cut(bore(39,0,185,1.7,18,'X'))
 add('neck_cradle',neck,CREAM,'neck',note='Appearance bridge; head actuation cartridge not yet integrated.')
@@ -174,14 +168,6 @@ for y in [-8,8]:tail=tail.cut(bore(-63,y,153,1.7,7,'X'))
 for sign,side in [(1,'left'),(-1,'right')]:
     half=tail.intersect(box(400,100,400,(-100,sign*50,150)))
     add('tail_'+side,half,JADE,'tail','Y','M3 seam bolts at X -102/-146, Z122/113; two axial M3 mount holes at Y ±8, Z129. Physical fit unverified.')
-# Small two-finger forearms, visually separate from the load-bearing hind limbs.
-for sign,side in [(1,'left'),(-1,'right')]:
-    profile=[(30,185),(40,188),(55,176),(61,173),(63,168),(59,166),(54,169),(52,165),(47,167),(40,176),(31,176)]
-    # Preserve the existing inner mating face; add thickness outward only.
-    arm_y=43 if sign==1 else -34
-    arm=cq.Workplane('XZ',origin=(0,arm_y,0)).polyline(profile).close().extrude(9).edges('|Y').fillet(1)
-    arm=arm.cut(bore(36,arm_y+1,181,1.7,11,'Y'))
-    add('forearm_'+side,arm,JADE,'arms','Y','Short broad two-finger arm, 9 mm thick, R1 profile corners. Existing M3 pivot interface retained; fastener length and pull/impact strength need physical validation. Actuator and motion stops not integrated.')
 assembly=cq.Assembly(name='Micro_X_P0')
 scene=trimesh.Scene()
 report=[]

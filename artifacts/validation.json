@@ -1,6 +1,6 @@
 {
   "revision": "P0",
-  "parts": 16,
+  "parts": 14,
   "mesh_checks": [
     {
       "part": "torso_lower",
@@ -36,7 +36,7 @@
       "part": "foot_left",
       "watertight": true,
       "print_envelope_mm": [
-        76.5,
+        73.0,
         42.0,
         26.0
       ],
@@ -56,7 +56,7 @@
       "part": "foot_right",
       "watertight": true,
       "print_envelope_mm": [
-        76.5,
+        73.0,
         42.0,
         26.0
       ],
@@ -139,26 +139,6 @@
         122.0,
         42.35,
         17.0
-      ],
-      "step_exists": true
-    },
-    {
-      "part": "forearm_left",
-      "watertight": true,
-      "print_envelope_mm": [
-        32.64,
-        22.62,
-        9.0
-      ],
-      "step_exists": true
-    },
-    {
-      "part": "forearm_right",
-      "watertight": true,
-      "print_envelope_mm": [
-        32.64,
-        22.62,
-        9.0
       ],
       "step_exists": true
     }

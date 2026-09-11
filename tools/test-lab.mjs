@@ -14,7 +14,7 @@ try{
     assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));checks++;
     await page.select('#layer','camera');assert.equal(await page.evaluate(()=>window.microXLab.robot.items.filter(m=>m.visible).length),1);checks++;
     await page.click('#part-list button');assert.match(await page.$eval('#part-detail',e=>e.textContent),/카메라 브래킷/);checks++;
-    await page.click('#reset-view');assert.equal(await page.evaluate(()=>window.microXLab.robot.items.filter(m=>m.visible).length),16);checks++;
+    await page.click('#reset-view');assert.equal(await page.evaluate(()=>window.microXLab.robot.items.filter(m=>m.visible).length),14);checks++;
     await page.click('#tab-learn');await page.click('#train');await page.waitForFunction(()=>window.microXLab.policy,{timeout:30000});assert.ok(await page.evaluate(()=>window.microXLab.policy.heldout.rmseDegrees<4));checks++;
     await page.click('#run');await page.waitForFunction(()=>window.microXLab.robot.jawPivot.rotation.y>.01);await page.click('#run');assert.equal(await page.evaluate(()=>window.microXLab.robot.jawPivot.rotation.y),0);checks++;
     await page.screenshot({path:path.join(root,`artifacts/lab_${name}.png`),fullPage:true});

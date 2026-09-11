@@ -50,12 +50,17 @@ class Handler(SimpleHTTPRequestHandler):
             if not 0<size<=2048:raise ValueError('Invalid body size')
             data=json.loads(self.rfile.read(size))
             if not isinstance(data,dict):raise ValueError('Object required')
+            if self.path in ('/api/sim/start','/api/sim/step'):
+                from simulation_session import simulation
+                value=simulation.start(data) if self.path.endswith('/start') else simulation.step(data)
+                return self.reply(200,value)
             if self.path=='/api/train':jobs.start(data)
             elif self.path=='/api/stop':jobs.stop()
             else:return self.reply(404,{'error':'Unknown endpoint'})
             self.reply(202,jobs.snapshot())
-        except (ValueError,TypeError):self.reply(400,{'error':'Invalid training settings'})
+        except (ValueError,TypeError):self.reply(400,{'error':'Invalid settings'})
         except RuntimeError as error:self.reply(409,{'error':str(error)})
+        except (ModuleNotFoundError,FileNotFoundError):self.reply(503,{'error':'Install requirements-policy.txt and run tools/fetch_compat.py first'})
     def do_GET(self):
         if not self.allowed():return self.reply(403,{'error':'Local origin required'})
         path=urlsplit(self.path).path

@@ -2,7 +2,7 @@
 
 [Open the lab](https://hwkim3330.github.io/micro-x/web/lab.html). The commercial Micro X design remains independent of the separate Micro Rex hardware experiment.
 
-The lab uses the current 16-part Micro X GLB. Anatomy controls isolate the head, torso, legs, tail or camera carrier, select dimensions and download STEP/STL. The carrier is present; a complete camera or motor assembly is not depicted as integrated hardware.
+The lab uses the current 14-part Micro X GLB. Anatomy controls isolate the head, torso, legs, tail or camera carrier, select dimensions and download STEP/STL. The carrier is present; a complete camera or motor assembly is not depicted as integrated hardware.
 
 ## Learning that runs in the browser
 
@@ -39,3 +39,7 @@ python3 -m http.server 5191
 The desktop/mobile browser checks train a real policy, replay it, download and reimport it, reject a foreign environment, cancel a run, inspect CAD layers and check overflow. Headless tests do not certify audible speech on every operating system.
 
 Before whole-body learning, X still needs an actuated joint architecture, measured purchased-component inertias and transmissions, a validated dynamics/contact model, observation/action definitions, training/evaluation tasks and supported hardware safety limits. The current fixed-leg appearance model is not presented as that finished system.
+
+## Live local locomotion study
+
+`web/simulator.html` renders actual geom poses returned by the local MuJoCo/BAM simulation. Run the existing training server and open `/web/simulator.html`; reset, run, pause and held keyboard/touch direction commands are supported. Server-side step limits, command bounds, session identifiers and local-origin checks apply. A detected fall stops stepping. Public Pages loads a static initial-pose snapshot and does not enable control. This is the X dynamics study, not a physics model of the printable exterior or a complete robot daemon. `node tools/test-simulator.mjs` checks actual time/position advance, pause, reset, invalid commands/session/origin and mobile layout.

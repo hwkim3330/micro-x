@@ -65,3 +65,7 @@ User requested a cute and robust product competitive with Microduck. Current eye
 ## Corrected compatibility target
 
 Commercial X remains independent hardware. The original-model restoration was withdrawn. Active target: 14 axes, 61 observations, 14 actions, same pretrained actor and motor model. Independent dynamics and unchanged-weight evaluation plus PPO warm-start/export now run; some walking/standing trials fall. Full upstream training recipe parity, actuator manufacturing CAD and physical compatibility are unfinished. See docs/COMPATIBILITY.md.
+
+## Active acceptance target — 2026-09-11
+
+User direction: remove unnecessary forearms and decorative claws, including unused mounts. Keep one central camera and independent expression eyes. Verify official walking/training before applying its recipe to X. Acceptance requires measured velocity/yaw tracking, fall rates and reproducible training; short smoke tests are not gait acceptance. Publish actual CAD, evaluation and local training workflow. Hardware strength, production and rights clearance remain separate unresolved gates.

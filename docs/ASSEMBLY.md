@@ -19,7 +19,7 @@
 2. Print a torso screw and jaw hinge interface coupon; tune dimensional compensation for the actual printer/material.
 3. Print upper/lower torso and jaw/skull for access/clearance assessment. Test screw selection and opening sequence without electronics.
 4. Check foot/leg alignment in a supported fixture. Do not use the fixed mock-up to infer balance or walking capability.
-5. Trial the tail seam and axial mounting bolts, then the forearm posts. Neck/head retention remains unresolved; support those parts in a fixture. None of these interfaces is a production release.
+5. Trial the tail seam and axial mounting bolts, with no forearm hardware. Neck/head retention remains unresolved; support those parts in a fixture. None of these interfaces is a production release.
 6. Integrate the selected drive cartridges, cable paths and controller only after the product architecture is settled.
 
 ## Explicit remaining work
@@ -39,6 +39,6 @@ No adhesive joint or missing interface should be interpreted as production-ready
 
 The neck entry clearance tool is the union of its shape translated by ±0.3 mm along each CAD axis. This reserves an axial clearance envelope, not an exact constant normal offset. Foot fork opening is 18.6 mm for an 18 mm leg. Both still need physical tolerance tests.
 
-Exact STEP booleans show no positive-volume overlap among the 16 parts at the reference pose (threshold 0.01 mm³). The jaw is separately sampled every 2° from 0° to 20°. Fasteners, production tolerances, continuous movement, load and minimum pinch gap are outside these checks.
+Exact STEP booleans show no positive-volume overlap among the 14 parts at the reference pose (threshold 0.01 mm³). The jaw is separately sampled every 2° from 0° to 20°. Fasteners, production tolerances, continuous movement, load and minimum pinch gap are outside these checks.
 
 Camera carrier and lower-lip relief were added for the candidate camera; see [camera mounting and remaining fit work](FUNCTIONS.md). This opens the lower shell locally for carrier/PCB clearance; sealing and structural effects have not been physically tested.

@@ -1,6 +1,6 @@
 {
   "status": "proposed measurable targets; no physical test has passed yet",
-  "appearance": ["recognizable dinosaur silhouette for B2 and Q4", "large expressive eyes with finish graphics rather than extra loose highlight parts", "rounded forearm corners"],
+  "appearance": ["recognizable dinosaur silhouette for B2 and Q4", "large expressive eyes with finish graphics rather than extra loose highlight parts", "no decorative forearms or protruding claws"],
   "mechanical": [
     {"id":"eye_retention","design":"rear M3 screw, integrated skull support, no adhesive-only retention","test":"record installation torque, pull-out force and failure mode on actual printed and final-process parts","result":null},
     {"id":"service","target_minutes":10,"test":"replace one drive cartridge with standard tools after power isolation; measure with a new operator","result":null},

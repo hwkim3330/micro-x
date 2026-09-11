@@ -8,14 +8,14 @@ def upstream():
         if hashlib.sha256((R/'.cache/compat'/name).read_bytes()).hexdigest()!=record['sha256']:raise ValueError('Stale policy dependency: '+name)
     spec=importlib.util.spec_from_file_location('pinned_policy_runtime',R/'.cache/compat/infer_policy.py');module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module);return module
 class Environment:
-    def __init__(self,standing=False,model_path=None):
+    def __init__(self,standing=False,model_path=None,walking_path=None):
         self.model_path=Path(model_path or R/'models/micro_x_14.xml')
         self.model_sha256=hashlib.sha256(self.model_path.read_bytes()).hexdigest()
         self.up=upstream()
         with contextlib.redirect_stdout(io.StringIO()):
             motor=self.up.load_bam_model(200,7.4,None)
             self.model,self.data,self.motor,_=self.up.load_mujoco_with_bam(str(model_path or R/'models/micro_x_14.xml'),motor,.005,.1,6)
-            self.policy=self.up.PolicyInference(self.model,self.data,walking_onnx_path=None if standing else str(R/'.cache/compat/alpha_walking.onnx'),standing_onnx_path=str(R/'.cache/compat/alpha_stand.onnx') if standing else None,bam_ctrl=self.motor,new_cmd_obs=True,use_projected_gravity=True)
+            self.policy=self.up.PolicyInference(self.model,self.data,walking_onnx_path=None if standing else str(walking_path or R/'.cache/compat/alpha_walking.onnx'),standing_onnx_path=str(R/'.cache/compat/alpha_stand.onnx') if standing else None,bam_ctrl=self.motor,new_cmd_obs=True,use_projected_gravity=True)
         names=[mujoco.mj_id2name(self.model,mujoco.mjtObj.mjOBJ_JOINT,int(j)) for j in self.model.actuator_trnid[:,0]]
         assert names==json.loads((R/'engineering/control_interface.json').read_text())['joint_names']
     def reset(self,seed=0,command=(0,0,0)):

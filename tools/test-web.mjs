@@ -16,6 +16,6 @@ await page.$eval('#yield',e=>{e.value=0;e.dispatchEvent(new Event('input'))});as
 assert.equal(await page.$$eval('#variant option',e=>e.length),1);checks++;
 assert.equal(await page.evaluate(()=>window.microX.items.filter(m=>m.name.includes('hindleg')).length),2);checks++;
 const qlinks=await page.$$eval('a[href^="../"]',links=>[...new Set(links.map(a=>a.href))]);for(const url of qlinks){assert.equal((await fetch(url)).status,200,url);checks++}
-await page.goto(base+'/web/?model=q4');await page.waitForFunction(()=>window.microX?.variant==='b2');assert.equal(await page.$eval('#part-count',e=>e.textContent),'16');assert.ok(page.url().includes('model=b2'));checks++;
+await page.goto(base+'/web/?model=q4');await page.waitForFunction(()=>window.microX?.variant==='b2');assert.equal(await page.$eval('#part-count',e=>e.textContent),'14');assert.ok(page.url().includes('model=b2'));checks++;
 assert.deepEqual(errors,[]);checks++;await page.close()}
 const page=await browser.newPage();await page.goto(base+'/web/');await page.waitForFunction(()=>window.microX);const links=await page.$$eval('a[href^="../"]',links=>[...new Set(links.map(a=>a.href))]);for(const url of links){const response=await fetch(url);assert.equal(response.status,200,url);checks++}await page.close();console.log(`${checks} browser and download checks passed`)}finally{await browser.close();server.close()}

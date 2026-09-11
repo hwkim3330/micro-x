@@ -1,7 +1,7 @@
 import {advance,validatePolicy,evaluate} from './learning-core.js';
 const $=s=>document.querySelector(s),frame=$('#robot');
 let robot,worker,policy,history=[],animation=0,utterance,exploded=false;
-const names={torso_lower:'아랫몸통',torso_upper:'윗몸통',hindleg_left:'왼쪽 다리',hindleg_right:'오른쪽 다리',foot_left:'왼발',foot_right:'오른발',neck_cradle:'목 받침',eye_left:'왼쪽 눈',eye_right:'오른쪽 눈',camera_carrier:'카메라 브래킷',skull:'머리 쉘',jaw:'턱',tail_left:'왼쪽 꼬리',tail_right:'오른쪽 꼬리',forearm_left:'왼쪽 앞팔',forearm_right:'오른쪽 앞팔'};
+const names={torso_lower:'아랫몸통',torso_upper:'윗몸통',hindleg_left:'왼쪽 다리',hindleg_right:'오른쪽 다리',foot_left:'왼발',foot_right:'오른발',neck_cradle:'목 받침',eye_left:'왼쪽 눈',eye_right:'오른쪽 눈',camera_carrier:'카메라 브래킷',skull:'머리 쉘',jaw:'턱',tail_left:'왼쪽 꼬리',tail_right:'오른쪽 꼬리'};
 function stopMotion(){cancelAnimationFrame(animation);animation=0;window.speechSynthesis?.cancel();utterance=null;if(robot)robot.jawPivot.rotation.y=0;$('#run').textContent='정책 실행';}
 function showPart(part){
   const detail=$('#part-detail');detail.replaceChildren();

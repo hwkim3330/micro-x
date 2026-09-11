@@ -1,0 +1,375 @@
+{
+  "scope": "Custom trained walking policy with the pinned deployment adapter and BAM M6 on X dynamics. Compared separately from official unchanged weights.",
+  "interface_passed": true,
+  "observation_size": 61,
+  "action_size": 14,
+  "control_hz": 50,
+  "model_sha256": "8d9ae27ff7a8ec464f958b4fec88c38c8a200d7f34eb98d6a745c2a722cc1122",
+  "weights": {
+    "infer_policy.py": {
+      "url": "https://raw.githubusercontent.com/pollen-robotics/microduck_rl/2b25a48b08f1f17bc38c90bb03144c81fbd9ed07/scripts/infer_policy.py",
+      "sha256": "bfeb91fb477490c932754eb7726207697628629229b9495fde1f56232acb1b45"
+    },
+    "LICENSE": {
+      "url": "https://raw.githubusercontent.com/pollen-robotics/microduck_rl/2b25a48b08f1f17bc38c90bb03144c81fbd9ed07/LICENSE",
+      "sha256": "2d3fd9ffffa70a4307498ec630b14a6b4731e010f8ddda92686eaf65733c2dfe"
+    },
+    "README.md": {
+      "url": "https://huggingface.co/pollen-robotics/microduck-policies/resolve/088524a64e2557dc453256b6071dbb9d23888802/README.md",
+      "sha256": "98b45ea81164d1e1a1dd82255207053b15cd6c69d922a1c5cf3387ce604d4b74"
+    },
+    "alpha_walking.onnx": {
+      "url": "https://huggingface.co/pollen-robotics/microduck-policies/resolve/088524a64e2557dc453256b6071dbb9d23888802/alpha_walking.onnx",
+      "sha256": "e36332d383997d51401897734cd3e79cf5038406feddb18b4d57ecfb141daa6c"
+    },
+    "alpha_stand.onnx": {
+      "url": "https://huggingface.co/pollen-robotics/microduck-policies/resolve/088524a64e2557dc453256b6071dbb9d23888802/alpha_stand.onnx",
+      "sha256": "1569268713e40deea795dd2922dba50d3621e15a872855408b6b1b125b1c094b"
+    }
+  },
+  "results": [
+    {
+      "policy": "custom_walking",
+      "command": [
+        0,
+        0,
+        0
+      ],
+      "seed": 10,
+      "duration_s": 30.0,
+      "first_fall_s": null,
+      "max_tilt_degrees": 2.38,
+      "final_xy_m": [
+        0.024,
+        -0.0003
+      ],
+      "finite": true,
+      "mean_body_velocity": [
+        3e-05,
+        1e-05,
+        0.00026
+      ],
+      "tracking_mae": [
+        3e-05,
+        1e-05,
+        0.00026
+      ],
+      "tracking_gate_passed": true
+    },
+    {
+      "policy": "custom_walking",
+      "command": [
+        0,
+        0,
+        0
+      ],
+      "seed": 11,
+      "duration_s": 30.0,
+      "first_fall_s": null,
+      "max_tilt_degrees": 2.37,
+      "final_xy_m": [
+        0.0239,
+        0.0002
+      ],
+      "finite": true,
+      "mean_body_velocity": [
+        3e-05,
+        1e-05,
+        0.00025
+      ],
+      "tracking_mae": [
+        3e-05,
+        1e-05,
+        0.00025
+      ],
+      "tracking_gate_passed": true
+    },
+    {
+      "policy": "custom_walking",
+      "command": [
+        0,
+        0,
+        0
+      ],
+      "seed": 12,
+      "duration_s": 30.0,
+      "first_fall_s": null,
+      "max_tilt_degrees": 2.33,
+      "final_xy_m": [
+        0.0239,
+        -0.0003
+      ],
+      "finite": true,
+      "mean_body_velocity": [
+        3e-05,
+        0.0,
+        0.00029
+      ],
+      "tracking_mae": [
+        3e-05,
+        1e-05,
+        0.00029
+      ],
+      "tracking_gate_passed": true
+    },
+    {
+      "policy": "custom_walking",
+      "command": [
+        0.1,
+        0,
+        0
+      ],
+      "seed": 10,
+      "duration_s": 30.0,
+      "first_fall_s": null,
+      "max_tilt_degrees": 1.91,
+      "final_xy_m": [
+        0.0237,
+        0.0006
+      ],
+      "finite": true,
+      "mean_body_velocity": [
+        3e-05,
+        0.0,
+        0.00029
+      ],
+      "tracking_mae": [
+        0.09997,
+        1e-05,
+        0.00029
+      ],
+      "tracking_gate_passed": false
+    },
+    {
+      "policy": "custom_walking",
+      "command": [
+        0.1,
+        0,
+        0
+      ],
+      "seed": 11,
+      "duration_s": 30.0,
+      "first_fall_s": null,
+      "max_tilt_degrees": 1.9,
+      "final_xy_m": [
+        0.0236,
+        0.0014
+      ],
+      "finite": true,
+      "mean_body_velocity": [
+        3e-05,
+        0.0,
+        0.00028
+      ],
+      "tracking_mae": [
+        0.09997,
+        1e-05,
+        0.00028
+      ],
+      "tracking_gate_passed": false
+    },
+    {
+      "policy": "custom_walking",
+      "command": [
+        0.1,
+        0,
+        0
+      ],
+      "seed": 12,
+      "duration_s": 30.0,
+      "first_fall_s": null,
+      "max_tilt_degrees": 1.87,
+      "final_xy_m": [
+        0.0237,
+        0.0004
+      ],
+      "finite": true,
+      "mean_body_velocity": [
+        3e-05,
+        0.0,
+        0.00031
+      ],
+      "tracking_mae": [
+        0.09997,
+        1e-05,
+        0.00031
+      ],
+      "tracking_gate_passed": false
+    },
+    {
+      "policy": "custom_walking",
+      "command": [
+        0.3,
+        0,
+        0
+      ],
+      "seed": 10,
+      "duration_s": 30.0,
+      "first_fall_s": null,
+      "max_tilt_degrees": 1.18,
+      "final_xy_m": [
+        0.0244,
+        0.0023
+      ],
+      "finite": true,
+      "mean_body_velocity": [
+        5e-05,
+        0.0,
+        -0.00017
+      ],
+      "tracking_mae": [
+        0.29995,
+        1e-05,
+        0.00017
+      ],
+      "tracking_gate_passed": false
+    },
+    {
+      "policy": "custom_walking",
+      "command": [
+        0.3,
+        0,
+        0
+      ],
+      "seed": 11,
+      "duration_s": 30.0,
+      "first_fall_s": null,
+      "max_tilt_degrees": 1.18,
+      "final_xy_m": [
+        0.0242,
+        0.0028
+      ],
+      "finite": true,
+      "mean_body_velocity": [
+        5e-05,
+        -0.0,
+        -0.00015
+      ],
+      "tracking_mae": [
+        0.29995,
+        0.0,
+        0.00015
+      ],
+      "tracking_gate_passed": false
+    },
+    {
+      "policy": "custom_walking",
+      "command": [
+        0.3,
+        0,
+        0
+      ],
+      "seed": 12,
+      "duration_s": 30.0,
+      "first_fall_s": null,
+      "max_tilt_degrees": 1.15,
+      "final_xy_m": [
+        0.0246,
+        0.0018
+      ],
+      "finite": true,
+      "mean_body_velocity": [
+        5e-05,
+        -0.0,
+        -0.00012
+      ],
+      "tracking_mae": [
+        0.29995,
+        0.0,
+        0.00013
+      ],
+      "tracking_gate_passed": false
+    },
+    {
+      "policy": "custom_walking",
+      "command": [
+        0,
+        0,
+        0.3
+      ],
+      "seed": 10,
+      "duration_s": 30.0,
+      "first_fall_s": null,
+      "max_tilt_degrees": 2.93,
+      "final_xy_m": [
+        0.0259,
+        -0.0013
+      ],
+      "finite": true,
+      "mean_body_velocity": [
+        3e-05,
+        -1e-05,
+        0.00022
+      ],
+      "tracking_mae": [
+        3e-05,
+        1e-05,
+        0.29978
+      ],
+      "tracking_gate_passed": false
+    },
+    {
+      "policy": "custom_walking",
+      "command": [
+        0,
+        0,
+        0.3
+      ],
+      "seed": 11,
+      "duration_s": 30.0,
+      "first_fall_s": null,
+      "max_tilt_degrees": 2.91,
+      "final_xy_m": [
+        0.0259,
+        -0.0008
+      ],
+      "finite": true,
+      "mean_body_velocity": [
+        3e-05,
+        -1e-05,
+        0.00021
+      ],
+      "tracking_mae": [
+        3e-05,
+        1e-05,
+        0.29979
+      ],
+      "tracking_gate_passed": false
+    },
+    {
+      "policy": "custom_walking",
+      "command": [
+        0,
+        0,
+        0.3
+      ],
+      "seed": 12,
+      "duration_s": 30.0,
+      "first_fall_s": null,
+      "max_tilt_degrees": 2.9,
+      "final_xy_m": [
+        0.0259,
+        -0.0011
+      ],
+      "finite": true,
+      "mean_body_velocity": [
+        3e-05,
+        -1e-05,
+        0.00023
+      ],
+      "tracking_mae": [
+        3e-05,
+        1e-05,
+        0.29977
+      ],
+      "tracking_gate_passed": false
+    }
+  ],
+  "all_trials_upright": true,
+  "physical_verified": false,
+  "complete_compatibility_verified": false,
+  "tracking_protocol": "Exclude first 1 s. Body forward/lateral m/s and body yaw rad/s. Provisional engineering gate: forward MAE <= max(0.03, 25% of command), lateral <=0.03, yaw <=0.10, no fall. These thresholds are targets, not an industry standard.",
+  "tracking_gate_passed": false,
+  "seed_start": 10,
+  "custom_walking_sha256": "dc8f449efa3c2111ee562c6b4c313eac5eeba22a804d2066bd1ecb086aa9e592"
+}

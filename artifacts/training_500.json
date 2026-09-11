@@ -1,0 +1,24 @@
+{
+  "source_revision": "2b25a48b08f1f17bc38c90bb03144c81fbd9ed07",
+  "command": "tools/train_official_recipe.py --iterations 500 --num-envs 256",
+  "iterations_completed": 500,
+  "environment_count": 256,
+  "reported_training_time_s": 434,
+  "exit_code": 0,
+  "initialization": "From scratch; official recipe architecture, not warm-started from alpha_walking",
+  "model_sha256": "8d9ae27ff7a8ec464f958b4fec88c38c8a200d7f34eb98d6a745c2a722cc1122",
+  "adapter_sha256": "3897706689eedff18fd4595fd696778c2ff0dde52915985cf03dca827c15afc3",
+  "onnx_sha256": "dc8f449efa3c2111ee562c6b4c313eac5eeba22a804d2066bd1ecb086aa9e592",
+  "onnx_output_finite": true,
+  "actor_weights_changed": true,
+  "files": {
+    ".cache/official_recipe/20260911_234134/20260911_234134.onnx": "dc8f449efa3c2111ee562c6b4c313eac5eeba22a804d2066bd1ecb086aa9e592",
+    ".cache/official_recipe/20260911_234134/model_499.pt": "6c14a603ee4646419ab7221b899aa4cc013f0ebb5c9a8477029e8e694079b8a2",
+    ".cache/official_recipe/20260911_234134/params/env.yaml": "c452d7a327078617969f5f5fb5d473d31a6e98fe83731e943630b5faadec8e1d",
+    ".cache/official_recipe/20260911_234134/params/agent.yaml": "310ab8e0b37e1148023be6117b85adbfc36a022c5fcd66b26e81a5d2512661f6"
+  },
+  "evaluation": "artifacts/trained_500_evaluation.json",
+  "accepted_as_default": false,
+  "reason": "All nine moving-command trials failed the provisional tracking gate. No default policy replacement.",
+  "physical_verified": false
+}

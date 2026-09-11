@@ -4,7 +4,7 @@ The active goal is an independently designed commercial Micro X with the same po
 
 ## Three separate pieces
 
-1. The existing 16-part printable P0 shell is an appearance/assembly prototype with fixed legs. It is not an integrated 14-axis robot.
+1. The existing 14-part printable P0 shell is an appearance/assembly prototype with fixed legs. It is not an integrated 14-axis robot.
 2. `cad/compat_model.py` creates a separate, independent 14-axis MuJoCo study using authored primitive shapes and assumed masses. Functional joint axes and pivot locations at HOME were measured from the separate reference model and rounded to 0.1 mm; see `engineering/functional_interface.json` for source attribution. No upstream meshes, component surfaces, mass or inertia tables are imported. It is not manufacturing CAD or a validated physical model of P0.
 3. `runtime/compat_env.py` connects that study to pinned, unchanged inference software and walking/standing ONNX weights. Only software and weights are downloaded to the excluded local cache; source hashes and URLs are in `engineering/policy_sources.json`.
 
@@ -46,3 +46,11 @@ python3 cad/compat_model.py
 The local workbench starts/cancels real training processes and downloads the generated ONNX. It binds only to loopback, rejects foreign origins, validates bounded integer settings, runs fixed commands without a shell, and exposes no motor endpoint. Public GitHub Pages displays published results and links to these local instructions; it does not pretend to run server-side training.
 
 Before commercial manufacture, finish independently authored actuator housings and load paths, purchased-part fit, measured inertia and thermal/power design, original-recipe training acceptance, unchanged-weight command-tracking acceptance, and physical validation. These are outstanding engineering tasks.
+
+## Longer trials with new initial conditions
+
+`artifacts/compat_heldout_evaluation.json` records 15 trials of 30 seconds each using seeds 10–12, not the initial geometry-search seeds. All remained upright, but only the six stationary trials met the provisional tracking gate. All nine commanded forward/turn trials failed tracking. In seed 10, a 0.1 m/s command produced only about 0.00004 m/s mean forward velocity; a 0.3 m/s command produced about 0.11648 m/s. Upright stability is not accepted as useful walking. The report specifies body-frame velocity MAE, a one-second warmup exclusion and provisional thresholds.
+
+## 500-iteration official-recipe training result
+
+The 256-environment run completed 500 iterations from initialization and exported normalized ONNX. Its 12 held-out 30-second trials stayed upright, but all nine forward/turn-command trials failed tracking; only stationary trials passed. This policy is not accepted as the default. See `artifacts/training_500.json` and `artifacts/trained_500_evaluation.json`. More training alone is not assumed to solve the problem: command curriculum, rest-state reward balance and the authored dynamics must be examined before another run.

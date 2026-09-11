@@ -27,7 +27,7 @@ try {
     camera.position.set(.29,.22,.49);controls.target.set(-.005,.125,0);controls.update();
     const label=document.createElement('div');label.style.cssText='position:fixed;top:65px;left:75px;color:#173d30;font-family:Arial,sans-serif';
     label.innerHTML='<div style="font-size:58px;font-weight:800;letter-spacing:3px">MICRO <span style="color:#d87832">X</span></div><div style="font-size:20px;letter-spacing:5px;margin-top:14px">YOUR LITTLE T-REX</div>';
-    const note=document.createElement('div');note.style.cssText='position:fixed;bottom:45px;left:75px;color:#476454;font:18px Arial,sans-serif';note.textContent='Original commercial design · Actual 16-part CAD · P0 assembly prototype';
+    const note=document.createElement('div');note.style.cssText='position:fixed;bottom:45px;left:75px;color:#476454;font:18px Arial,sans-serif';note.textContent='Original commercial design · Actual 14-part CAD · P0 assembly prototype';
     document.body.append(label,note);renderer.setSize(innerWidth,innerHeight);camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.render(scene,camera);
   });
   await page.screenshot({path:path.join(root,'artifacts/readme_hero.png')});
