@@ -96,9 +96,9 @@ for sign,side in [(1,'left'),(-1,'right')]:
         foot=foot.union(lug)
     foot=foot.cut(bore(8,sign*53+20,27,1.7,40,'Y'))
     for yy in [-10,0,10]:
-        toe=loft([(46,10,4,5),(62,8,2,2)]).translate((0,sign*53+yy,0));foot=foot.union(toe)
+        toe=loft([(46,10,4.8,5),(58,9,3.5,3.5)]).translate((0,sign*53+yy,0));foot=foot.union(toe)
     foot=foot.cut(box(55,18.6,20,(8,sign*53,22)))
-    add('foot_'+side,foot,CREAM,'legs',note='M3 ankle bolt, three integral rounded toes. Support under lug overhangs.')
+    add('foot_'+side,foot,CREAM,'legs',note='M3 ankle bolt, three shorter integral blunt toes: 12 mm loft, 7 mm tip diameter. Support under lug overhangs. Impact strength untested.')
 # Neck fixed mounting cradle and ball-like visual transition, bolted to front service aperture.
 neck=neck.cut(bore(39,0,185,1.7,18,'X'))
 add('neck_cradle',neck,CREAM,'neck',note='Appearance bridge; head actuation cartridge not yet integrated.')
@@ -176,10 +176,12 @@ for sign,side in [(1,'left'),(-1,'right')]:
     add('tail_'+side,half,JADE,'tail','Y','M3 seam bolts at X -102/-146, Z122/113; two axial M3 mount holes at Y ±8, Z129. Physical fit unverified.')
 # Small two-finger forearms, visually separate from the load-bearing hind limbs.
 for sign,side in [(1,'left'),(-1,'right')]:
-    profile=[(31,184),(40,187),(58,173),(63,173),(68,168),(64,165),(56,169),(54,163),(49,164),(42,176),(32,176)]
-    arm=cq.Workplane('XZ',origin=(0,sign*37+3,0)).polyline(profile).close().extrude(6).edges('|Y').fillet(.7)
-    arm=arm.cut(bore(36,sign*37+4,181,1.7,8,'Y'))
-    add('forearm_'+side,arm,JADE,'arms','Y','Manual M3 pivot mating torso bearing posts at X36 Z157. Actuator and motion stops not integrated.')
+    profile=[(30,185),(40,188),(55,176),(61,173),(63,168),(59,166),(54,169),(52,165),(47,167),(40,176),(31,176)]
+    # Preserve the existing inner mating face; add thickness outward only.
+    arm_y=43 if sign==1 else -34
+    arm=cq.Workplane('XZ',origin=(0,arm_y,0)).polyline(profile).close().extrude(9).edges('|Y').fillet(1)
+    arm=arm.cut(bore(36,arm_y+1,181,1.7,11,'Y'))
+    add('forearm_'+side,arm,JADE,'arms','Y','Short broad two-finger arm, 9 mm thick, R1 profile corners. Existing M3 pivot interface retained; fastener length and pull/impact strength need physical validation. Actuator and motion stops not integrated.')
 assembly=cq.Assembly(name='Micro_X_P0')
 scene=trimesh.Scene()
 report=[]
