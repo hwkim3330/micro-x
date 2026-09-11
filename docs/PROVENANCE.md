@@ -17,3 +17,7 @@ Original design data including parametric CAD source is reserved for the owner u
 - Pollen Robotics Robot HAT repository is Apache-2.0, unlike the noncommercial mechanical model: https://github.com/pollen-robotics/elec_RPI_Robot_HAT . Not bundled or integrated here.
 
 None of the supplier names imply partnership, endorsement or manufacturing approval.
+
+## Functional interoperability measurements
+
+The separate 14-axis study uses joint pivots at HOME (rounded to 0.1 mm) and axes measured from the reference model. `engineering/functional_interface.json` records attribution and the source hash. These measurements are not claimed as exclusive original X artwork. X study surfaces, primitive links, masses and inertias are authored separately; no original hardware meshes or XML are redistributed as X. This is not a legal clearance opinion or relicensing of upstream hardware. The earlier P0-only provenance descriptions do not describe this separate dynamics study.

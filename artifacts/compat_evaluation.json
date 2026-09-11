@@ -1,0 +1,290 @@
+{
+  "scope": "Unchanged official ONNX + published observation/action adapter + BAM M6, on an independent primitive X dynamics study. Not the P0 printable model, not a validated commercial robot.",
+  "interface_passed": true,
+  "observation_size": 61,
+  "action_size": 14,
+  "control_hz": 50,
+  "model_sha256": "8d9ae27ff7a8ec464f958b4fec88c38c8a200d7f34eb98d6a745c2a722cc1122",
+  "weights": {
+    "infer_policy.py": {
+      "url": "https://raw.githubusercontent.com/pollen-robotics/microduck_rl/2b25a48b08f1f17bc38c90bb03144c81fbd9ed07/scripts/infer_policy.py",
+      "sha256": "bfeb91fb477490c932754eb7726207697628629229b9495fde1f56232acb1b45"
+    },
+    "LICENSE": {
+      "url": "https://raw.githubusercontent.com/pollen-robotics/microduck_rl/2b25a48b08f1f17bc38c90bb03144c81fbd9ed07/LICENSE",
+      "sha256": "2d3fd9ffffa70a4307498ec630b14a6b4731e010f8ddda92686eaf65733c2dfe"
+    },
+    "README.md": {
+      "url": "https://huggingface.co/pollen-robotics/microduck-policies/resolve/088524a64e2557dc453256b6071dbb9d23888802/README.md",
+      "sha256": "98b45ea81164d1e1a1dd82255207053b15cd6c69d922a1c5cf3387ce604d4b74"
+    },
+    "alpha_walking.onnx": {
+      "url": "https://huggingface.co/pollen-robotics/microduck-policies/resolve/088524a64e2557dc453256b6071dbb9d23888802/alpha_walking.onnx",
+      "sha256": "e36332d383997d51401897734cd3e79cf5038406feddb18b4d57ecfb141daa6c"
+    },
+    "alpha_stand.onnx": {
+      "url": "https://huggingface.co/pollen-robotics/microduck-policies/resolve/088524a64e2557dc453256b6071dbb9d23888802/alpha_stand.onnx",
+      "sha256": "1569268713e40deea795dd2922dba50d3621e15a872855408b6b1b125b1c094b"
+    }
+  },
+  "results": [
+    {
+      "policy": "alpha_walking",
+      "command": [
+        0,
+        0,
+        0
+      ],
+      "seed": 0,
+      "duration_s": 10.0,
+      "first_fall_s": null,
+      "max_tilt_degrees": 1.41,
+      "final_xy_m": [
+        0.0018,
+        0.0
+      ],
+      "finite": true
+    },
+    {
+      "policy": "alpha_walking",
+      "command": [
+        0,
+        0,
+        0
+      ],
+      "seed": 1,
+      "duration_s": 10.0,
+      "first_fall_s": null,
+      "max_tilt_degrees": 1.44,
+      "final_xy_m": [
+        0.0016,
+        0.0002
+      ],
+      "finite": true
+    },
+    {
+      "policy": "alpha_walking",
+      "command": [
+        0,
+        0,
+        0
+      ],
+      "seed": 2,
+      "duration_s": 10.0,
+      "first_fall_s": null,
+      "max_tilt_degrees": 1.48,
+      "final_xy_m": [
+        0.0014,
+        0.0001
+      ],
+      "finite": true
+    },
+    {
+      "policy": "alpha_walking",
+      "command": [
+        0.1,
+        0,
+        0
+      ],
+      "seed": 0,
+      "duration_s": 10.0,
+      "first_fall_s": null,
+      "max_tilt_degrees": 1.85,
+      "final_xy_m": [
+        0.0046,
+        0.0002
+      ],
+      "finite": true
+    },
+    {
+      "policy": "alpha_walking",
+      "command": [
+        0.1,
+        0,
+        0
+      ],
+      "seed": 1,
+      "duration_s": 10.0,
+      "first_fall_s": null,
+      "max_tilt_degrees": 1.91,
+      "final_xy_m": [
+        0.0044,
+        0.0004
+      ],
+      "finite": true
+    },
+    {
+      "policy": "alpha_walking",
+      "command": [
+        0.1,
+        0,
+        0
+      ],
+      "seed": 2,
+      "duration_s": 10.0,
+      "first_fall_s": null,
+      "max_tilt_degrees": 1.9,
+      "final_xy_m": [
+        0.0042,
+        0.0004
+      ],
+      "finite": true
+    },
+    {
+      "policy": "alpha_walking",
+      "command": [
+        0.3,
+        0,
+        0
+      ],
+      "seed": 0,
+      "duration_s": 10.0,
+      "first_fall_s": null,
+      "max_tilt_degrees": 3.05,
+      "final_xy_m": [
+        0.7846,
+        0.6199
+      ],
+      "finite": true
+    },
+    {
+      "policy": "alpha_walking",
+      "command": [
+        0.3,
+        0,
+        0
+      ],
+      "seed": 1,
+      "duration_s": 10.0,
+      "first_fall_s": null,
+      "max_tilt_degrees": 2.99,
+      "final_xy_m": [
+        0.8199,
+        0.5978
+      ],
+      "finite": true
+    },
+    {
+      "policy": "alpha_walking",
+      "command": [
+        0.3,
+        0,
+        0
+      ],
+      "seed": 2,
+      "duration_s": 10.0,
+      "first_fall_s": null,
+      "max_tilt_degrees": 2.98,
+      "final_xy_m": [
+        0.8065,
+        0.6094
+      ],
+      "finite": true
+    },
+    {
+      "policy": "alpha_walking",
+      "command": [
+        0,
+        0,
+        0.3
+      ],
+      "seed": 0,
+      "duration_s": 10.0,
+      "first_fall_s": null,
+      "max_tilt_degrees": 1.42,
+      "final_xy_m": [
+        0.0036,
+        0.0003
+      ],
+      "finite": true
+    },
+    {
+      "policy": "alpha_walking",
+      "command": [
+        0,
+        0,
+        0.3
+      ],
+      "seed": 1,
+      "duration_s": 10.0,
+      "first_fall_s": null,
+      "max_tilt_degrees": 1.5,
+      "final_xy_m": [
+        0.0035,
+        0.0005
+      ],
+      "finite": true
+    },
+    {
+      "policy": "alpha_walking",
+      "command": [
+        0,
+        0,
+        0.3
+      ],
+      "seed": 2,
+      "duration_s": 10.0,
+      "first_fall_s": null,
+      "max_tilt_degrees": 1.49,
+      "final_xy_m": [
+        0.0033,
+        0.0005
+      ],
+      "finite": true
+    },
+    {
+      "policy": "alpha_stand",
+      "command": [
+        0,
+        0,
+        0
+      ],
+      "seed": 0,
+      "duration_s": 10.0,
+      "first_fall_s": null,
+      "max_tilt_degrees": 2.52,
+      "final_xy_m": [
+        0.0013,
+        -0.0002
+      ],
+      "finite": true
+    },
+    {
+      "policy": "alpha_stand",
+      "command": [
+        0,
+        0,
+        0
+      ],
+      "seed": 1,
+      "duration_s": 10.0,
+      "first_fall_s": null,
+      "max_tilt_degrees": 2.56,
+      "final_xy_m": [
+        0.001,
+        -0.0001
+      ],
+      "finite": true
+    },
+    {
+      "policy": "alpha_stand",
+      "command": [
+        0,
+        0,
+        0
+      ],
+      "seed": 2,
+      "duration_s": 10.0,
+      "first_fall_s": null,
+      "max_tilt_degrees": 2.62,
+      "final_xy_m": [
+        0.0008,
+        -0.0001
+      ],
+      "finite": true
+    }
+  ],
+  "all_trials_upright": true,
+  "physical_verified": false,
+  "complete_compatibility_verified": false
+}

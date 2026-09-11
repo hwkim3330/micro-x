@@ -61,3 +61,7 @@ User requested a cute and robust product competitive with Microduck. Current eye
 - [x] Real browser-worker CEM learning for a normalized virtual jaw; held-out evaluation and policy import/export
 - [x] Browser speech expression preview and desktop/mobile interaction tests
 - [ ] Whole-body dynamics, locomotion training, physical integration and production verification
+
+## Corrected compatibility target
+
+Commercial X remains independent hardware. The original-model restoration was withdrawn. Active target: 14 axes, 61 observations, 14 actions, same pretrained actor and motor model. Independent dynamics and unchanged-weight evaluation plus PPO warm-start/export now run; some walking/standing trials fall. Full upstream training recipe parity, actuator manufacturing CAD and physical compatibility are unfinished. See docs/COMPATIBILITY.md.

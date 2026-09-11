@@ -1,12 +1,14 @@
 # MICRO X
 
+**현재 목표: Microduck 제어·가중치·학습 인터페이스와 호환되는 상업용 독자 기구.** 원본 CAD로 복귀하는 방향은 취소했습니다. [14축 호환 개발과 실제 실패 포함 시험 기록](docs/COMPATIBILITY.md)
+
 ![Micro X — actual CAD, mint and cream T-rex](artifacts/readme_hero.png)
 
 **소유자 hwkim3330가 제작·판매할 상업용 독자 설계 티렉스입니다.** 비상업 조건의 Micro Rex와 별도 프로젝트입니다. **현재 P0 외형·조립 설계이며, 완성된 구동 로봇이나 양산 승인품은 아닙니다.**
 
-[제품 개발 페이지](https://hwkim3330.github.io/micro-x/) · **[구조·학습·목소리 Lab](https://hwkim3330.github.io/micro-x/web/lab.html)** · [목표와 진행 기준](PROJECT_GOAL.md) · [출처와 권리](docs/PROVENANCE.md)
+[제품 개발 페이지](https://hwkim3330.github.io/micro-x/) · **[14축 가중치·학습 Lab](https://hwkim3330.github.io/micro-x/web/lab.html#compatibility)** · [목표와 진행 기준](PROJECT_GOAL.md) · [출처와 권리](docs/PROVENANCE.md)
 
-기존 [Micro Rex 비상업 시제품](https://github.com/hwkim3330/micro-rex)은 별도 보존합니다. 이 저장소의 CAD는 독립적인 치수와 기본 형상으로 새로 생성하며, Microduck 메시·CAD·관절 데이터·학습 정책을 포함하지 않습니다.
+기존 [Micro Rex 비상업 시제품](https://github.com/hwkim3330/micro-rex)은 별도 보존합니다. 이 저장소의 CAD는 독립적인 치수와 기본 형상으로 새로 생성하며, Microduck 원본 메시·CAD·하드웨어 XML을 포함하지 않습니다. 별도 14관절 연구에는 출처를 명시한 기능적 관절 치수와 축 측정값을 사용하며, 학습 소프트웨어와 가중치는 별도 라이선스로 로컬에 내려받습니다.
 
 ## 제공 파일
 
@@ -27,7 +29,7 @@ STEP를 내보낸 뒤 다시 읽어 유효한 입체인지 검사합니다. 기�
 
 Lab에서 구조 레이어를 살펴보고 가상 턱 정책을 브라우저에서 직접 학습·평가·실행·저장·불러오기 할 수 있습니다. 음성 합성과 턱 표현도 제공합니다. Hugging Face의 Simulator·Anatomy·3D Voice를 인터랙션 참고로 삼아 독자 구현했습니다.
 
-현재 학습 범위는 정규화된 **가상 턱 1축 제어**입니다. 보행 RL·실물 제어·Microduck 가중치 호환은 아직 구현되지 않았습니다. [학습 환경, 참고 링크, 테스트 방법](docs/LAB.md)
+현재 학습 범위는 정규화된 **가상 턱 1축 제어**입니다. 별도 14축 동역학 연구에서는 공식 가중치 실행과 같은 신경망의 PPO 학습·ONNX 내보내기를 구현했습니다. 보행 호환 및 원본 전체 학습 설정의 동일성은 아직 미달입니다. [학습 환경, 참고 링크, 테스트 방법](docs/LAB.md)
 
 ## 재생성
 

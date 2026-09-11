@@ -1,0 +1,47 @@
+{
+  "model_sha256": "8d9ae27ff7a8ec464f958b4fec88c38c8a200d7f34eb98d6a745c2a722cc1122",
+  "scope": "Independent CPU PPO warm-start/fine-tuning smoke run. Same pretrained 61\u2192512\u2192256\u2192128\u219214 ELU actor and normalization; not full upstream training recipe parity or locomotion acceptance.",
+  "source_sha256": "e36332d383997d51401897734cd3e79cf5038406feddb18b4d57ecfb141daa6c",
+  "initial_actor_max_error": 9.08970832824707e-07,
+  "export_max_error": 4.172325134277344e-07,
+  "actor_weights_changed": true,
+  "updates": 5,
+  "steps_per_update": 128,
+  "seed": 42,
+  "elapsed_s": 1.03,
+  "history": [
+    {
+      "update": 1,
+      "mean_reward": 1.2859,
+      "falls": 0,
+      "loss": 188.72958374023438
+    },
+    {
+      "update": 2,
+      "mean_reward": 1.2786,
+      "falls": 0,
+      "loss": 187.8018798828125
+    },
+    {
+      "update": 3,
+      "mean_reward": 1.279,
+      "falls": 0,
+      "loss": 187.6903839111328
+    },
+    {
+      "update": 4,
+      "mean_reward": 1.2986,
+      "falls": 0,
+      "loss": 169.3269500732422
+    },
+    {
+      "update": 5,
+      "mean_reward": 1.4991,
+      "falls": 0,
+      "loss": 257.89422607421875
+    }
+  ],
+  "checkpoint_sha256": "20cba4641113cbd8e9fd1fc3e1da05d3a2e28ce971e49a9c9005c44386d78328",
+  "physical_verified": false,
+  "upstream_training_recipe_parity": false
+}

@@ -11,7 +11,7 @@ await page.click('#explode');assert.ok(await page.evaluate(()=>window.microX.ite
 await page.$eval('#jaw',e=>{e.value=15;e.dispatchEvent(new Event('input'))});assert.ok(await page.evaluate(()=>Math.abs(window.microX.jawPivot.rotation.y-Math.PI/12)<1e-9));checks++;
 await page.click('#parts button');assert.ok(await page.$eval('#selection',e=>e.textContent.includes('STEP')));checks++;
 await page.click('#reset');assert.equal(await page.$eval('#jaw-value',e=>e.textContent),'0°');checks++;
-assert.equal(await page.$eval('#cost-result',e=>e.textContent),'$332.49');checks++;
+assert.equal(await page.$eval('#cost-result',e=>e.textContent),'$350.38');checks++;
 await page.$eval('#yield',e=>{e.value=0;e.dispatchEvent(new Event('input'))});assert.equal(await page.$eval('#cost-result',e=>e.textContent),'입력 확인');checks++;
 assert.equal(await page.$$eval('#variant option',e=>e.length),1);checks++;
 assert.equal(await page.evaluate(()=>window.microX.items.filter(m=>m.name.includes('hindleg')).length),2);checks++;

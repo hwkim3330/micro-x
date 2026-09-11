@@ -1,0 +1,48 @@
+{
+  "source_url": "https://huggingface.co/spaces/pollen-robotics/microduck-simulator",
+  "source_revision": "023172c8a7d629b5258d90364c13bafe013abbfa",
+  "scope": "Local official browser simulator, keyboard forward input; live WASM physics and ONNX, not prerecorded animation. Single smoke trial only.",
+  "trial": {
+    "before": {
+      "time": 1.2799999999999947,
+      "xyz": [
+        -0.5984056502738978,
+        0.0002066561737014631,
+        0.11651175590225817
+      ]
+    },
+    "after": {
+      "time": 11.32000000000037,
+      "qpos": [
+        0.430728394607402,
+        -0.07784827564585187,
+        0.12039649707925171,
+        0.9978259422579056,
+        0.021904559685871922,
+        -0.007002544011238317,
+        -0.06176199154384793
+      ],
+      "obs": 61,
+      "watchdog": []
+    },
+    "errors": []
+  },
+  "forward_displacement_m": 1.0291,
+  "simulation_duration_s": 10.04,
+  "rendering_environment": "Headless Chrome, SwiftShader; observed HUD approximately 4 FPS / 4 Hz; real-time performance not accepted",
+  "continuous_fall_monitoring": false,
+  "training_verified": false,
+  "micro_x_transfer_verified": false,
+  "physical_verified": false,
+  "asset_sha256": {
+    "app/public/policies/roulade.onnx": "3d60da08fc13f29c1b57f41977aa898132c0d60042100149d8e775affcbca32b",
+    "app/public/policies/alpha_ground_pick.onnx": "ffbf5109982ff999b0ba53afe86b9ae731bbec679d67fb7f8ab4c52152c88872",
+    "app/public/policies/BEST_roller_crouch.onnx": "a1a084be240469c76ac9d3fa44d4792f16d4b1da60398b3ecd3cfc5e2244d990",
+    "app/public/policies/BEST_roller.onnx": "cf05651d2708a2f9364212e86b866c97a70ace8131c492500105e8f28bf99afd",
+    "app/public/policies/BEST_alpha_sitstand.onnx": "c6c40e35e726eabd803d633e090d112994f469921152448367953fbaf9799bc8",
+    "app/public/policies/BEST_alpha_stand.onnx": "1569268713e40deea795dd2922dba50d3621e15a872855408b6b1b125b1c094b",
+    "app/public/policies/ball_kick_left.onnx": "d6928284dccd3dd61e08bf2f760effa74309fbefd97b2b31afb2a60f526d196a",
+    "app/public/policies/ball_kick_right.onnx": "147a32c388c6b19111b3ac3b550a9a6dc8b8bf267118af4d8c3712522eedb5af",
+    "app/public/policies/BEST_alpha_walking.onnx": "e36332d383997d51401897734cd3e79cf5038406feddb18b4d57ecfb141daa6c"
+  }
+}

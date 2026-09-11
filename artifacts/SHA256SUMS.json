@@ -1,6 +1,7 @@
 {
   "cad/appearance.py": "12d4413bbe5ca0aa78efc2d0d36baab7e573233928a2412b6d38518e200d2d96",
   "cad/build.py": "ea0b04e38bdaa4c4dcd7a8128130082f0f5365d410fea542d2fe01a49bd4bba4",
+  "cad/compat_model.py": "944eaafd25ae3cf808bc8c7cc3942655fe09a43a723b42b0dbe4774347707134",
   "cad/coupons.py": "739717dd14684c869ff1c7d7a837462dff786ce11868076eb94531f3437742b0",
   "cad/quadruped.py": "e2501379feba5954fe0c6060018e957a9d2538c3a4d7fb23283620964757a636",
   "models/camera_carrier.stl": "20ff85317138aa109de6dacbdd4d4c963ffede149714e6bb603cdc36b45b98a5",
@@ -19,6 +20,7 @@
   "models/jaw.stl": "426ec5282ddb6caf8e5fb3e53984365261226015ac4fa8d49eb2c69ced10be5a",
   "models/micro_x.glb": "027c03efa0e40d05fefab491781490ce0639b20db240b47f738bbc429deccb6e",
   "models/micro_x.step": "003409b85a889cd6f9f851c8c6207e2680886e8630a8a285f4876108b6e22ff2",
+  "models/micro_x_14.xml": "8d9ae27ff7a8ec464f958b4fec88c38c8a200d7f34eb98d6a745c2a722cc1122",
   "models/neck_cradle.stl": "bdad0773f1f67f0bf7bb6584ba8d5a323c6934a119ad0a20b76016db3b597104",
   "models/print/camera_carrier.stl": "87c201eedb6714f555870963611a4fe87e279449f4eff0a4f9eb90e5e5e6fc1b",
   "models/print/eye_left.stl": "711c17edfc683e3a470ce844d5969a9837f756c8c62a1431886d2ee8462fd8c0",

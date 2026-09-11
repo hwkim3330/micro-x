@@ -1,0 +1,37 @@
+{
+  "source_revision": "2b25a48b08f1f17bc38c90bb03144c81fbd9ed07",
+  "command": "uv run train Mjlab-Velocity-Flat-MicroDuck --env.scene.num-envs 64 --agent.max-iterations 5 --agent.logger tensorboard",
+  "environment_count": 64,
+  "iterations_completed": 5,
+  "device": "NVIDIA GeForce RTX 3090",
+  "training_process_exit_code": 0,
+  "onnx_input_shape": [
+    1,
+    61
+  ],
+  "onnx_output_shape": [
+    1,
+    14
+  ],
+  "export_output_finite": true,
+  "checkpoint_keys": [
+    "actor_state_dict",
+    "critic_state_dict",
+    "optimizer_state_dict",
+    "iter",
+    "infos"
+  ],
+  "files": {
+    "logs/rsl_rl/velocity/2026-09-11_15-40-57_velocity/model_0.pt": "cf3cfcbf79d0f2aa921fbe530c3334164404f758c4167e9a58c67b6324199817",
+    "logs/rsl_rl/velocity/2026-09-11_15-40-57_velocity/model_4.pt": "0ff75ff62b9f7c50c0e4d3f436348ddea997dd9a12a77d99e63f09e7e7c7756a",
+    "logs/rsl_rl/velocity/2026-09-11_15-40-57_velocity/2026-09-11_15-40-57_velocity.onnx": "3f41a51afa296443471b8f9c6826c865b3b54f8196e795399c401d2975032178",
+    "logs/rsl_rl/velocity/2026-09-11_15-40-57_velocity/params/env.yaml": "43b354b738bf889ecb5932dd7b01e75c353199738e7326fb1bf0941620367d25",
+    "logs/rsl_rl/velocity/2026-09-11_15-40-57_velocity/params/agent.yaml": "bca97b392d8de0630bdd59de46f0de1990dc274051fb30a7fedbe7c798399edd",
+    "uv.lock": "2eeeb680025baa737e7ccf3a87da3695a9d49b228de0bb60d8af0c022ab5f1aa"
+  },
+  "scope": "Official unmodified recipe smoke test from initialization; five iterations do not establish learned walking quality. Separate from the pretrained browser walking policy.",
+  "learned_locomotion_accepted": false,
+  "physical_verified": false,
+  "actor_state_dict_changed": true,
+  "critic_state_dict_changed": true
+}

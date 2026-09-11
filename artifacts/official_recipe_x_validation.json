@@ -1,0 +1,27 @@
+{
+  "source_revision": "2b25a48b08f1f17bc38c90bb03144c81fbd9ed07",
+  "environment_count": 64,
+  "iterations_completed": 5,
+  "exit_code": 0,
+  "model_sha256": "8d9ae27ff7a8ec464f958b4fec88c38c8a200d7f34eb98d6a745c2a722cc1122",
+  "adapter_sha256": "3897706689eedff18fd4595fd696778c2ff0dde52915985cf03dca827c15afc3",
+  "onnx_input_shape": [
+    1,
+    61
+  ],
+  "onnx_output_shape": [
+    1,
+    14
+  ],
+  "finite_output": true,
+  "actor_weights_changed": true,
+  "artifact_hashes": {
+    ".cache/official_recipe/20260911_154523/20260911_154523.onnx": "b04c52024e9ca0108731d504b4a970710f09bf750741f58ea529a07224012bbb",
+    ".cache/official_recipe/20260911_154523/model_4.pt": "cc9af00f98fe9b4a5ef1592f827639b8ce80843099e71beee24afa616745cd04",
+    ".cache/official_recipe/20260911_154523/params/env.yaml": "1767a689fc4d4bb874816b874af075d59c2b30da5a0e653e6f2ce48e8ecb7443",
+    ".cache/official_recipe/20260911_154523/params/agent.yaml": "87761b8e4c290d33a57b119b4b5ea32075ecb7f5f9b611b687bdc3d064474003"
+  },
+  "prior_attempt": "Missing root_angmom sensor caused reward lookup failure; supplied actual subtree angular-momentum sensor, then reran successfully.",
+  "learned_locomotion_accepted": false,
+  "physical_verified": false
+}

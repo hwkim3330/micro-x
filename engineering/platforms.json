@@ -1,11 +1,64 @@
 {
   "revision": "P1 requirements; not a released actuator assembly",
   "locomotion_required": true,
-  "common_head": {"axes": ["head_yaw", "head_pitch", "jaw_pitch"], "actuator_count": 3},
-  "b2": {"name": "Micro X B2", "legs": 2, "axes_per_leg": ["hip_roll", "hip_pitch", "knee_pitch", "ankle_pitch", "ankle_roll"], "total_actuators": 13, "target_mass_kg": 1.5, "support_legs_for_screening": 1, "horizontal_load_arm_m": 0.05, "load_multiplier": 1.5},
-  "q4": {"name": "Micro X Q4", "legs": 4, "axes_per_leg": ["hip_roll", "hip_pitch", "knee_pitch"], "total_actuators": 15, "target_mass_kg": 1.8, "support_legs_for_screening": 2, "horizontal_load_arm_m": 0.06, "load_multiplier": 1.5},
-  "candidate": {"name": "Waveshare ST3215 12 V variant", "source": "https://www.waveshare.com/product/modules/st3215-servo.htm", "published_stall_kg_cm": 30, "continuous_torque_nm": null, "status": "candidate only; dimensional drawing, continuous torque, thermals and sample checks not complete"},
-  "screening_only": {"assumed_fraction_of_stall": 0.3, "price_per_axis_usd_low": 16.99, "price_per_axis_usd_high": 21.99, "price_note": "family retail range, not a 12 V procurement quote; head axes may use different servos"},
-  "shared_strategy": ["same head mechanism", "same controller software interface", "common M3 fasteners where loading permits", "shared pitch/knee actuator cartridge target, not yet designed", "voltage architecture must be selected with actuators, not inferred from shared connector"],
-  "physical_validation": false
+  "common_head": {
+    "axes": [
+      "head_yaw",
+      "head_pitch",
+      "jaw_pitch"
+    ],
+    "actuator_count": 3
+  },
+  "b2": {
+    "name": "Micro X B2",
+    "legs": 2,
+    "axes_per_leg": [
+      "hip_roll",
+      "hip_pitch",
+      "knee_pitch",
+      "ankle_pitch",
+      "ankle_roll"
+    ],
+    "total_actuators": 13,
+    "target_mass_kg": 1.5,
+    "support_legs_for_screening": 1,
+    "horizontal_load_arm_m": 0.05,
+    "load_multiplier": 1.5
+  },
+  "q4": {
+    "name": "Micro X Q4",
+    "legs": 4,
+    "axes_per_leg": [
+      "hip_roll",
+      "hip_pitch",
+      "knee_pitch"
+    ],
+    "total_actuators": 15,
+    "target_mass_kg": 1.8,
+    "support_legs_for_screening": 2,
+    "horizontal_load_arm_m": 0.06,
+    "load_multiplier": 1.5
+  },
+  "candidate": {
+    "name": "Waveshare ST3215 12 V variant",
+    "source": "https://www.waveshare.com/product/modules/st3215-servo.htm",
+    "published_stall_kg_cm": 30,
+    "continuous_torque_nm": null,
+    "status": "candidate only; dimensional drawing, continuous torque, thermals and sample checks not complete"
+  },
+  "screening_only": {
+    "assumed_fraction_of_stall": 0.3,
+    "price_per_axis_usd_low": 16.99,
+    "price_per_axis_usd_high": 21.99,
+    "price_note": "family retail range, not a 12 V procurement quote; head axes may use different servos"
+  },
+  "shared_strategy": [
+    "same head mechanism",
+    "same controller software interface",
+    "common M3 fasteners where loading permits",
+    "shared pitch/knee actuator cartridge target, not yet designed",
+    "voltage architecture must be selected with actuators, not inferred from shared connector"
+  ],
+  "physical_validation": false,
+  "status": "Historical 13-axis cost/load planning; superseded for compatibility development by control_interface.json"
 }

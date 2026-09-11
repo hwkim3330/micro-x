@@ -4,3 +4,7 @@ node_modules/
 .venv/
 
 *.token
+
+.cache/
+.venv-policy/
+MUJOCO_LOG.TXT

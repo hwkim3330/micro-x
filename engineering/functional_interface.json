@@ -1,0 +1,189 @@
+{
+  "source": "https://github.com/pollen-robotics/microduck_rl/tree/2b25a48b08f1f17bc38c90bb03144c81fbd9ed07",
+  "source_xml_sha256": "80fc4424ed71e430ec4919110dfdb5c714dc1c4e1138e1832a16865cf31eb8c8",
+  "scope": "Numerical functional-interoperability measurements at HOME, pivots rounded to 0.1 mm. No surfaces, component geometry, masses or inertias. Upstream hardware is not relicensed. These values are not asserted to be original copyrighted X artwork; see docs/PROVENANCE.md.",
+  "joints": [
+    {
+      "name": "left_hip_yaw",
+      "pivot_at_home_m": [
+        0.006,
+        0.0175,
+        -0.005
+      ],
+      "axis_at_home": [
+        0.0,
+        0.0,
+        -1.0
+      ]
+    },
+    {
+      "name": "left_hip_roll",
+      "pivot_at_home_m": [
+        0.0225,
+        0.0175,
+        -0.0175
+      ],
+      "axis_at_home": [
+        1.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "left_hip_pitch",
+      "pivot_at_home_m": [
+        0.004,
+        0.0424,
+        -0.0197
+      ],
+      "axis_at_home": [
+        0.0,
+        0.9961918,
+        -0.0871892
+      ]
+    },
+    {
+      "name": "left_knee",
+      "pivot_at_home_m": [
+        -0.0184,
+        0.0353,
+        -0.0547
+      ],
+      "axis_at_home": [
+        0.0,
+        -0.9961918,
+        0.0871892
+      ]
+    },
+    {
+      "name": "left_ankle",
+      "pivot_at_home_m": [
+        0.0,
+        0.0579,
+        -0.0946
+      ],
+      "axis_at_home": [
+        0.0,
+        0.9961918,
+        -0.0871892
+      ]
+    },
+    {
+      "name": "neck_pitch",
+      "pivot_at_home_m": [
+        0.026,
+        0.0145,
+        0.0324
+      ],
+      "axis_at_home": [
+        0.0,
+        -1.0,
+        0.0
+      ]
+    },
+    {
+      "name": "head_pitch",
+      "pivot_at_home_m": [
+        0.0089,
+        0.0145,
+        0.0794
+      ],
+      "axis_at_home": [
+        0.0,
+        1.0,
+        0.0
+      ]
+    },
+    {
+      "name": "head_yaw",
+      "pivot_at_home_m": [
+        0.0089,
+        0.0,
+        0.0981
+      ],
+      "axis_at_home": [
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "name": "head_roll",
+      "pivot_at_home_m": [
+        -0.009,
+        0.0,
+        0.1126
+      ],
+      "axis_at_home": [
+        -1.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "right_hip_yaw",
+      "pivot_at_home_m": [
+        0.006,
+        -0.0175,
+        -0.005
+      ],
+      "axis_at_home": [
+        0.0,
+        0.0,
+        -1.0
+      ]
+    },
+    {
+      "name": "right_hip_roll",
+      "pivot_at_home_m": [
+        0.0225,
+        -0.0175,
+        -0.0175
+      ],
+      "axis_at_home": [
+        1.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "right_hip_pitch",
+      "pivot_at_home_m": [
+        0.004,
+        -0.0424,
+        -0.0197
+      ],
+      "axis_at_home": [
+        0.0,
+        -0.9961918,
+        -0.0871892
+      ]
+    },
+    {
+      "name": "right_knee",
+      "pivot_at_home_m": [
+        -0.0184,
+        -0.0353,
+        -0.0547
+      ],
+      "axis_at_home": [
+        0.0,
+        0.9961918,
+        0.0871892
+      ]
+    },
+    {
+      "name": "right_ankle",
+      "pivot_at_home_m": [
+        0.0,
+        -0.0579,
+        -0.0946
+      ],
+      "axis_at_home": [
+        0.0,
+        -0.9961918,
+        -0.0871892
+      ]
+    }
+  ]
+}
