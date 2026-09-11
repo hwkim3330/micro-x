@@ -1,0 +1,656 @@
+{
+  "scope": "Exploratory single-variable simulation probes, one seed, unchanged ONNX/BAM. Contact removal is diagnostic only, not a proposed physical design. No default model changes or hardware validation.",
+  "base_sha256": "8d9ae27ff7a8ec464f958b4fec88c38c8a200d7f34eb98d6a745c2a722cc1122",
+  "results": [
+    {
+      "variant": "baseline",
+      "command": [
+        0,
+        0,
+        0
+      ],
+      "seed": 10,
+      "duration_s": 10,
+      "first_fall_s": null,
+      "mean_body_velocity": [
+        1.5805477146149802e-05,
+        -1.8458951776194567e-06,
+        8.78294884640891e-05
+      ],
+      "mae": [
+        1.5805477146149802e-05,
+        1.8458951776194567e-06,
+        8.78294884640891e-05
+      ],
+      "tracking_passed": true,
+      "penetrating_contact_samples": {
+        "floor / left_ankle_sole": 2000,
+        "floor / right_ankle_sole": 2000
+      }
+    },
+    {
+      "variant": "baseline",
+      "command": [
+        0.1,
+        0,
+        0
+      ],
+      "seed": 10,
+      "duration_s": 10,
+      "first_fall_s": null,
+      "mean_body_velocity": [
+        8.061638712246087e-05,
+        -9.249267248218378e-07,
+        -5.372353765257425e-05
+      ],
+      "mae": [
+        0.09991938361287758,
+        9.249267248218378e-07,
+        0.0001395350069884767
+      ],
+      "tracking_passed": false,
+      "penetrating_contact_samples": {
+        "floor / left_ankle_sole": 2000,
+        "floor / right_ankle_sole": 2000
+      }
+    },
+    {
+      "variant": "baseline",
+      "command": [
+        0.3,
+        0,
+        0
+      ],
+      "seed": 10,
+      "duration_s": 10,
+      "first_fall_s": null,
+      "mean_body_velocity": [
+        0.11516967161646333,
+        0.008312089768522577,
+        0.1275358407605645
+      ],
+      "mae": [
+        0.1848303283835368,
+        0.12586747042587873,
+        0.3351670484429748
+      ],
+      "tracking_passed": false,
+      "penetrating_contact_samples": {
+        "floor / left_ankle_sole": 725,
+        "floor / right_ankle_sole": 763
+      }
+    },
+    {
+      "variant": "baseline",
+      "command": [
+        0,
+        0,
+        0.3
+      ],
+      "seed": 10,
+      "duration_s": 10,
+      "first_fall_s": null,
+      "mean_body_velocity": [
+        6.845778641610719e-05,
+        -7.99112918903157e-06,
+        0.0010659247272584388
+      ],
+      "mae": [
+        6.845778641610719e-05,
+        7.99112918903157e-06,
+        0.2989340752727419
+      ],
+      "tracking_passed": false,
+      "penetrating_contact_samples": {
+        "floor / left_ankle_sole": 2000,
+        "floor / right_ankle_sole": 1741
+      }
+    },
+    {
+      "variant": "baseline",
+      "command": [
+        0,
+        0,
+        -0.3
+      ],
+      "seed": 10,
+      "duration_s": 10,
+      "first_fall_s": null,
+      "mean_body_velocity": [
+        2.4411695580894096e-05,
+        4.1482054461705365e-06,
+        -0.000504582490741823
+      ],
+      "mae": [
+        2.4411695580894096e-05,
+        4.1482054461705365e-06,
+        0.2994954175092583
+      ],
+      "tracking_passed": false,
+      "penetrating_contact_samples": {
+        "floor / left_ankle_sole": 2000,
+        "floor / right_ankle_sole": 2000
+      }
+    },
+    {
+      "variant": "friction_08",
+      "command": [
+        0,
+        0,
+        0
+      ],
+      "seed": 10,
+      "duration_s": 10,
+      "first_fall_s": null,
+      "mean_body_velocity": [
+        1.563190082670646e-05,
+        -2.5713532322440677e-06,
+        9.969886874799756e-05
+      ],
+      "mae": [
+        1.563190082670646e-05,
+        2.5713532322440677e-06,
+        9.969886874799756e-05
+      ],
+      "tracking_passed": true,
+      "penetrating_contact_samples": {
+        "floor / left_ankle_sole": 2000,
+        "floor / right_ankle_sole": 2000
+      }
+    },
+    {
+      "variant": "friction_08",
+      "command": [
+        0.1,
+        0,
+        0
+      ],
+      "seed": 10,
+      "duration_s": 10,
+      "first_fall_s": null,
+      "mean_body_velocity": [
+        8.098122983519314e-05,
+        -1.899641192450137e-06,
+        -2.1294890931343667e-05
+      ],
+      "mae": [
+        0.09991901877016483,
+        1.899641192450137e-06,
+        0.00013974896711814152
+      ],
+      "tracking_passed": false,
+      "penetrating_contact_samples": {
+        "floor / left_ankle_sole": 2000,
+        "floor / right_ankle_sole": 2000
+      }
+    },
+    {
+      "variant": "friction_08",
+      "command": [
+        0.3,
+        0,
+        0
+      ],
+      "seed": 10,
+      "duration_s": 10,
+      "first_fall_s": null,
+      "mean_body_velocity": [
+        0.1106186884656795,
+        0.009452131155719603,
+        0.14202413205565567
+      ],
+      "mae": [
+        0.1893813115343204,
+        0.12568740503248074,
+        0.3634726869052327
+      ],
+      "tracking_passed": false,
+      "penetrating_contact_samples": {
+        "floor / left_ankle_sole": 679,
+        "floor / right_ankle_sole": 710
+      }
+    },
+    {
+      "variant": "friction_08",
+      "command": [
+        0,
+        0,
+        0.3
+      ],
+      "seed": 10,
+      "duration_s": 10,
+      "first_fall_s": null,
+      "mean_body_velocity": [
+        4.443355987686761e-05,
+        -7.415811615060225e-06,
+        0.000592748895783206
+      ],
+      "mae": [
+        4.443355987686761e-05,
+        7.415811615060225e-06,
+        0.29940725110421657
+      ],
+      "tracking_passed": false,
+      "penetrating_contact_samples": {
+        "floor / left_ankle_sole": 1980,
+        "floor / right_ankle_sole": 1039
+      }
+    },
+    {
+      "variant": "friction_08",
+      "command": [
+        0,
+        0,
+        -0.3
+      ],
+      "seed": 10,
+      "duration_s": 10,
+      "first_fall_s": null,
+      "mean_body_velocity": [
+        2.330663487528444e-05,
+        4.463885977802274e-06,
+        -0.00048758377243770775
+      ],
+      "mae": [
+        2.330663487528444e-05,
+        4.463885977802274e-06,
+        0.29951241622756203
+      ],
+      "tracking_passed": false,
+      "penetrating_contact_samples": {
+        "floor / left_ankle_sole": 2000,
+        "floor / right_ankle_sole": 2000
+      }
+    },
+    {
+      "variant": "sole_width_16mm",
+      "command": [
+        0,
+        0,
+        0
+      ],
+      "seed": 10,
+      "duration_s": 10,
+      "first_fall_s": null,
+      "mean_body_velocity": [
+        1.5130386541393028e-05,
+        -1.2404675634797097e-06,
+        7.637817244596787e-05
+      ],
+      "mae": [
+        1.5130386541393028e-05,
+        1.2404675634797097e-06,
+        7.637817244596787e-05
+      ],
+      "tracking_passed": true,
+      "penetrating_contact_samples": {
+        "floor / left_ankle_sole": 2000,
+        "floor / right_ankle_sole": 2000
+      }
+    },
+    {
+      "variant": "sole_width_16mm",
+      "command": [
+        0.1,
+        0,
+        0
+      ],
+      "seed": 10,
+      "duration_s": 10,
+      "first_fall_s": null,
+      "mean_body_velocity": [
+        8.061495994545414e-05,
+        1.8155124768216948e-07,
+        -7.027879684751662e-05
+      ],
+      "mae": [
+        0.09991938504005456,
+        1.2199254636008042e-06,
+        0.00013896952208372008
+      ],
+      "tracking_passed": false,
+      "penetrating_contact_samples": {
+        "floor / left_ankle_sole": 2000,
+        "floor / right_ankle_sole": 2000
+      }
+    },
+    {
+      "variant": "sole_width_16mm",
+      "command": [
+        0.3,
+        0,
+        0
+      ],
+      "seed": 10,
+      "duration_s": 10,
+      "first_fall_s": null,
+      "mean_body_velocity": [
+        0.11639024636237102,
+        0.009411490231049213,
+        0.10300044565931424
+      ],
+      "mae": [
+        0.18360975363762902,
+        0.12757362596471217,
+        0.3122028905041522
+      ],
+      "tracking_passed": false,
+      "penetrating_contact_samples": {
+        "floor / left_ankle_sole": 735,
+        "floor / right_ankle_sole": 806
+      }
+    },
+    {
+      "variant": "sole_width_16mm",
+      "command": [
+        0,
+        0,
+        0.3
+      ],
+      "seed": 10,
+      "duration_s": 10,
+      "first_fall_s": null,
+      "mean_body_velocity": [
+        6.43019833656411e-05,
+        -3.6993193532442408e-06,
+        0.0009896459621753066
+      ],
+      "mae": [
+        6.43019833656411e-05,
+        4.5155936511821396e-06,
+        0.2990103540378244
+      ],
+      "tracking_passed": false,
+      "penetrating_contact_samples": {
+        "floor / left_ankle_sole": 2000,
+        "floor / right_ankle_sole": 1732
+      }
+    },
+    {
+      "variant": "sole_width_16mm",
+      "command": [
+        0,
+        0,
+        -0.3
+      ],
+      "seed": 10,
+      "duration_s": 10,
+      "first_fall_s": null,
+      "mean_body_velocity": [
+        2.4184553769353684e-05,
+        3.968956653984202e-06,
+        -0.0005151263804513539
+      ],
+      "mae": [
+        2.4184553769353684e-05,
+        4.2902210225737685e-06,
+        0.29948487361954873
+      ],
+      "tracking_passed": false,
+      "penetrating_contact_samples": {
+        "floor / left_ankle_sole": 2000,
+        "floor / right_ankle_sole": 2000
+      }
+    },
+    {
+      "variant": "sole_length_28mm",
+      "command": [
+        0,
+        0,
+        0
+      ],
+      "seed": 10,
+      "duration_s": 10,
+      "first_fall_s": null,
+      "mean_body_velocity": [
+        1.6832158675768204e-05,
+        -1.8793508792668702e-06,
+        6.90749585852544e-05
+      ],
+      "mae": [
+        1.6832158675768204e-05,
+        1.8793508792668702e-06,
+        6.90749585852544e-05
+      ],
+      "tracking_passed": true,
+      "penetrating_contact_samples": {
+        "floor / left_ankle_sole": 2000,
+        "floor / right_ankle_sole": 2000
+      }
+    },
+    {
+      "variant": "sole_length_28mm",
+      "command": [
+        0.1,
+        0,
+        0
+      ],
+      "seed": 10,
+      "duration_s": 10,
+      "first_fall_s": null,
+      "mean_body_velocity": [
+        7.56531836365251e-05,
+        -1.207038092516026e-06,
+        -0.00011532528713503
+      ],
+      "mae": [
+        0.09992434681636345,
+        1.207038092516026e-06,
+        0.00014454665537390636
+      ],
+      "tracking_passed": false,
+      "penetrating_contact_samples": {
+        "floor / left_ankle_sole": 1999,
+        "floor / right_ankle_sole": 2000
+      }
+    },
+    {
+      "variant": "sole_length_28mm",
+      "command": [
+        0.3,
+        0,
+        0
+      ],
+      "seed": 10,
+      "duration_s": 10,
+      "first_fall_s": null,
+      "mean_body_velocity": [
+        0.12438958155982185,
+        0.00922040872851792,
+        0.1580622399858717
+      ],
+      "mae": [
+        0.17561041844017808,
+        0.12804768754483983,
+        0.32479147980928164
+      ],
+      "tracking_passed": false,
+      "penetrating_contact_samples": {
+        "floor / left_ankle_sole": 674,
+        "floor / right_ankle_sole": 712
+      }
+    },
+    {
+      "variant": "sole_length_28mm",
+      "command": [
+        0,
+        0,
+        0.3
+      ],
+      "seed": 10,
+      "duration_s": 10,
+      "first_fall_s": null,
+      "mean_body_velocity": [
+        5.433021646167591e-05,
+        -5.76413999749704e-06,
+        0.0007724130818855094
+      ],
+      "mae": [
+        5.433021646167591e-05,
+        5.76413999749704e-06,
+        0.2992275869181146
+      ],
+      "tracking_passed": false,
+      "penetrating_contact_samples": {
+        "floor / left_ankle_sole": 1998,
+        "floor / right_ankle_sole": 1705
+      }
+    },
+    {
+      "variant": "sole_length_28mm",
+      "command": [
+        0,
+        0,
+        -0.3
+      ],
+      "seed": 10,
+      "duration_s": 10,
+      "first_fall_s": null,
+      "mean_body_velocity": [
+        2.510377761144368e-05,
+        3.6409231500264283e-06,
+        -0.000548302620073161
+      ],
+      "mae": [
+        2.510377761144368e-05,
+        3.645451295966115e-06,
+        0.29945169737992716
+      ],
+      "tracking_passed": false,
+      "penetrating_contact_samples": {
+        "floor / left_ankle_sole": 2000,
+        "floor / right_ankle_sole": 2000
+      }
+    },
+    {
+      "variant": "no_nonfoot_contact",
+      "command": [
+        0,
+        0,
+        0
+      ],
+      "seed": 10,
+      "duration_s": 10,
+      "first_fall_s": null,
+      "mean_body_velocity": [
+        1.5805477146149802e-05,
+        -1.8458951776194567e-06,
+        8.78294884640891e-05
+      ],
+      "mae": [
+        1.5805477146149802e-05,
+        1.8458951776194567e-06,
+        8.78294884640891e-05
+      ],
+      "tracking_passed": true,
+      "penetrating_contact_samples": {
+        "floor / left_ankle_sole": 2000,
+        "floor / right_ankle_sole": 2000
+      }
+    },
+    {
+      "variant": "no_nonfoot_contact",
+      "command": [
+        0.1,
+        0,
+        0
+      ],
+      "seed": 10,
+      "duration_s": 10,
+      "first_fall_s": null,
+      "mean_body_velocity": [
+        8.061638712246087e-05,
+        -9.249267248218378e-07,
+        -5.372353765257425e-05
+      ],
+      "mae": [
+        0.09991938361287758,
+        9.249267248218378e-07,
+        0.0001395350069884767
+      ],
+      "tracking_passed": false,
+      "penetrating_contact_samples": {
+        "floor / left_ankle_sole": 2000,
+        "floor / right_ankle_sole": 2000
+      }
+    },
+    {
+      "variant": "no_nonfoot_contact",
+      "command": [
+        0.3,
+        0,
+        0
+      ],
+      "seed": 10,
+      "duration_s": 10,
+      "first_fall_s": null,
+      "mean_body_velocity": [
+        0.11516967161646333,
+        0.008312089768522577,
+        0.1275358407605645
+      ],
+      "mae": [
+        0.1848303283835368,
+        0.12586747042587873,
+        0.3351670484429748
+      ],
+      "tracking_passed": false,
+      "penetrating_contact_samples": {
+        "floor / left_ankle_sole": 725,
+        "floor / right_ankle_sole": 763
+      }
+    },
+    {
+      "variant": "no_nonfoot_contact",
+      "command": [
+        0,
+        0,
+        0.3
+      ],
+      "seed": 10,
+      "duration_s": 10,
+      "first_fall_s": null,
+      "mean_body_velocity": [
+        6.845778641610719e-05,
+        -7.99112918903157e-06,
+        0.0010659247272584388
+      ],
+      "mae": [
+        6.845778641610719e-05,
+        7.99112918903157e-06,
+        0.2989340752727419
+      ],
+      "tracking_passed": false,
+      "penetrating_contact_samples": {
+        "floor / left_ankle_sole": 2000,
+        "floor / right_ankle_sole": 1741
+      }
+    },
+    {
+      "variant": "no_nonfoot_contact",
+      "command": [
+        0,
+        0,
+        -0.3
+      ],
+      "seed": 10,
+      "duration_s": 10,
+      "first_fall_s": null,
+      "mean_body_velocity": [
+        2.4411695580894096e-05,
+        4.1482054461705365e-06,
+        -0.000504582490741823
+      ],
+      "mae": [
+        2.4411695580894096e-05,
+        4.1482054461705365e-06,
+        0.2994954175092583
+      ],
+      "tracking_passed": false,
+      "penetrating_contact_samples": {
+        "floor / left_ankle_sole": 2000,
+        "floor / right_ankle_sole": 2000
+      }
+    }
+  ]
+}

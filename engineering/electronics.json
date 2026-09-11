@@ -41,13 +41,17 @@
     "implemented_runtime": "operator-enabled real JPEG capture through rpicam-still; hardware not tested"
   },
   "compute": {
-    "candidate": "Raspberry Pi Zero 2 W for camera/service bring-up only",
-    "source": "https://www.raspberrypi.com/products/raspberry-pi-zero-2-w/",
+    "candidate": "Raspberry Pi 5 4GB bench prototype; Raspberry Pi Compute Module 5 4GB with eMMC and wireless for product feasibility",
+    "source": "https://www.raspberrypi.com/products/compute-module-5/",
     "dimensions_mm": [
-      65,
-      30
+      55,
+      40,
+      4.7
     ],
-    "status": "not integrated; 512 MB RAM and processing limits must be measured before selecting for vision/voice/walking"
+    "dimensions_scope": "CM5 module only; excludes custom carrier, connectors and cooling",
+    "reference_baseline": "Microduck official runtime uses Radxa Zero 3; a separate compatibility baseline, not a drop-in Pi camera host",
+    "status": "proposed architecture; no ARM board benchmark, carrier design, thermal test or hardware integration yet",
+    "architecture_document": "docs/ONBOARD_COMPUTE.md"
   },
   "microphone": {
     "required": true,
@@ -71,7 +75,10 @@
     "status": "sensor/load-cell or estimated-contact design pending for B2 and Q4"
   },
   "power": {
-    "status": "battery, protection, motor supply, logic regulator, fuse and current limits not designed"
+    "status": "battery, protection, motor supply, logic regulator, fuse and current limits not designed",
+    "motor_candidate": "XL330-M288-T, manufacturer operating range 3.7–6.0 V; recommended 5.0 V; independently regulated motor rail",
+    "source": "https://emanual.robotis.com/docs/en/dxl/x/xl330-m288/",
+    "simulation_discrepancy": "Existing BAM experiments use 7.4 V for reference reproduction. This is outside the XL330 published operating range and is not a physical power recommendation; recalibration/re-evaluation at selected hardware voltage required."
   },
   "physical_validation": false,
   "feature_superiority_verified": false

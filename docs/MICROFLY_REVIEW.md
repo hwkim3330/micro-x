@@ -41,3 +41,5 @@ node tools/evaluate_fly_brain.mjs /path/to/microfly-reference
 ```
 
 첫 명령은 로컬 포트 5220을 사용합니다. 두 번째 명령은 원본 XML 옆의 메시 파일도 필요합니다. 공개 Pages에서 이 뇌 실험이 실행되는 것은 아니며 현재는 로컬 실험입니다. 다음 합격 조건은 여러 시드에서 전진·회전 추종을 통과한 뒤 목표 접근과 입력 차단을 검증하는 것입니다.
+
+실제 보드 후보와 CPU 실측, 모터 전압 차이는 [온보드 실행 설계](ONBOARD_COMPUTE.md)에 정리했습니다.

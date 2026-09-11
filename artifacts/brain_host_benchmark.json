@@ -1,0 +1,25 @@
+{
+  "scope": "Headless full graph CPU benchmark, 10 neural ticks/update, 30 warmup + 300 timed updates. No renderer, camera, motor I/O or concurrent workload; not physical robot validation.",
+  "host": {
+    "arch": "x64",
+    "cpu": "Intel(R) Core(TM) i7-10700K CPU @ 3.80GHz",
+    "node": "v22.22.0",
+    "platform": "linux"
+  },
+  "reference_hashes": {
+    "src/brain-core.js": "34fe05716eabdb5d386c23f088bca486243492bf7a383ab7d85c5266a94fe4b3",
+    "public/brain/connectome.bin.gz": "fbf8d440ca1207c7573e1acdd2366f9d0beb9b533c1710f21681264f81b1cc49",
+    "public/brain/channels.json": "faf1490b965da1e69a5e8d0783882326c5a0b1e43571555cb2ab48f6757f5df7"
+  },
+  "neurons": 139255,
+  "edges": 2698236,
+  "latency_ms": {
+    "p50": 14.632916999999907,
+    "p95": 17.359523999999965,
+    "p99": 20.232536999999866,
+    "max": 20.691357000000153
+  },
+  "updates_over_100ms": 0,
+  "peak_rss_bytes": 206413824,
+  "board_qualified": false
+}
