@@ -17,6 +17,7 @@ class Simulation:
         out = dict(session=self.session, time=float(d.time), fallen=self.fallen,
                    model_sha256=self.env.model_sha256,
                    position=d.qpos[:3].tolist(),
+                   quaternion_wxyz=d.qpos[3:7].tolist(),
                    transforms=[dict(position=d.geom_xpos[i].tolist(), rotation=d.geom_xmat[i].tolist()) for i in range(m.ngeom)])
         if geometry:
             out['geometries'] = [dict(name=mujoco.mj_id2name(m, mujoco.mjtObj.mjOBJ_GEOM, i),

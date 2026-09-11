@@ -1,0 +1,129 @@
+{
+  "scope": "Paired replay of X-generated neural commands. Same pinned Python policy/BAM M6 runtime, seed 10, reset height .125 m, 50 Hz. Reference robot_walk XML is NOT Microfly browser robot_allcollisions XML. Body/contact differences remain; no isolated causal conclusion.",
+  "trace_sha256": "5b0b82f82bd626b9b44c6a1bb15d0c132f82f0f7f7ce51b69afeaff8f7d29b2f",
+  "reference_xml_sha256": "80fc4424ed71e430ec4919110dfdb5c714dc1c4e1138e1832a16865cf31eb8c8",
+  "x_xml_sha256": "8d9ae27ff7a8ec464f958b4fec88c38c8a200d7f34eb98d6a745c2a722cc1122",
+  "physical_verified": false,
+  "results": [
+    {
+      "body": "microduck_reference",
+      "condition": "left",
+      "duration_s": 10.000000000000163,
+      "path_m": 0.013955694188568464,
+      "final_position": [
+        0.010261230423387708,
+        0.0029114536782942077,
+        0.11472140345644727
+      ],
+      "first_fall_s": null
+    },
+    {
+      "body": "microduck_reference",
+      "condition": "right",
+      "duration_s": 10.000000000000163,
+      "path_m": 1.0357482079353522,
+      "final_position": [
+        0.23771008200813667,
+        -0.36924161538096534,
+        0.11942542660180953
+      ],
+      "first_fall_s": null
+    },
+    {
+      "body": "microduck_reference",
+      "condition": "no_scent",
+      "duration_s": 10.000000000000163,
+      "path_m": 0.006010762916750567,
+      "final_position": [
+        0.001976287690854873,
+        0.0001436640056772312,
+        0.11652476423098136
+      ],
+      "first_fall_s": null
+    },
+    {
+      "body": "microduck_reference",
+      "condition": "cut_synapses",
+      "duration_s": 10.000000000000163,
+      "path_m": 0.006010762916750567,
+      "final_position": [
+        0.001976287690854873,
+        0.0001436640056772312,
+        0.11652476423098136
+      ],
+      "first_fall_s": null
+    },
+    {
+      "body": "microduck_reference",
+      "condition": "disconnected",
+      "duration_s": 10.000000000000163,
+      "path_m": 0.006010762916750567,
+      "final_position": [
+        0.001976287690854873,
+        0.0001436640056772312,
+        0.11652476423098136
+      ],
+      "first_fall_s": null
+    },
+    {
+      "body": "micro_x",
+      "condition": "left",
+      "duration_s": 10.000000000000163,
+      "path_m": 0.010733254097095447,
+      "final_position": [
+        0.01045404275053842,
+        0.001844908082746707,
+        0.12272163678191382
+      ],
+      "first_fall_s": null
+    },
+    {
+      "body": "micro_x",
+      "condition": "right",
+      "duration_s": 10.000000000000163,
+      "path_m": 0.027967968681647783,
+      "final_position": [
+        0.01207853519737221,
+        0.0012648215492173595,
+        0.12144702967759874
+      ],
+      "first_fall_s": null
+    },
+    {
+      "body": "micro_x",
+      "condition": "no_scent",
+      "duration_s": 10.000000000000163,
+      "path_m": 0.0017914547780123113,
+      "final_position": [
+        0.001727100059123168,
+        -1.3378144353995811e-05,
+        0.12444508867790702
+      ],
+      "first_fall_s": null
+    },
+    {
+      "body": "micro_x",
+      "condition": "cut_synapses",
+      "duration_s": 10.000000000000163,
+      "path_m": 0.0017919114327569856,
+      "final_position": [
+        0.0017274974795194662,
+        -1.2605772789661651e-05,
+        0.12444503285877247
+      ],
+      "first_fall_s": null
+    },
+    {
+      "body": "micro_x",
+      "condition": "disconnected",
+      "duration_s": 10.000000000000163,
+      "path_m": 0.0017919006485973908,
+      "final_position": [
+        0.0017274866265137,
+        -1.2606179454656717e-05,
+        0.12444503343152369
+      ],
+      "first_fall_s": null
+    }
+  ]
+}
