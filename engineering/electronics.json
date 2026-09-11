@@ -1,6 +1,10 @@
 {
   "revision": "camera fit study; not an integrated electronic product",
   "camera": {
+    "count": 1,
+    "variant": "base",
+    "placement": "single central nose camera; two decorative expression eyes",
+    "stereo_depth": false,
     "candidate": "Raspberry Pi Camera Module 3 Standard",
     "source": "https://datasheets.raspberrypi.com/camera/camera-module-3-standard-mechanical-drawing.pdf",
     "capability_source": "https://www.raspberrypi.com/documentation/accessories/camera.html",
@@ -58,7 +62,8 @@
     "status": "not selected or integrated; timing, calibration and vibration isolation required"
   },
   "range_sensor": {
-    "required": true,
+    "required": false,
+    "selection_gate": "Add only if obstacle-distance tests require a dedicated sensor; not a second camera by default",
     "status": "candidate selection and optical crosstalk/latency tests pending"
   },
   "foot_contact": {

@@ -1,0 +1,32 @@
+{
+  "default": "base",
+  "base": {
+    "camera_count": 1,
+    "expression_eye_count": 2,
+    "eye_function": "decorative expression, not cameras",
+    "placement": "central nose",
+    "cad_status": "P0 single-camera carrier exists; 14-axis head integration pending",
+    "stereo_depth": false,
+    "physical_validation": false
+  },
+  "stereo": {
+    "status": "deferred separate variant; not implemented or offered for sale",
+    "camera_count": 2,
+    "purpose": "binocular depth perception",
+    "release_gates": [
+      "Define required depth range and error before choosing baseline",
+      "Select synchronized cameras and verify compute/interface support",
+      "Calibrate intrinsics and extrinsics, measure depth error and latency",
+      "Revalidate head mass, inertia, neck torque and walking policy",
+      "Verify optical clearance, wiring, assembly and production calibration cost"
+    ]
+  },
+  "shared_design_targets": [
+    "Keep expression eyes independent of camera count",
+    "Recess optics behind a replaceable protective surround without obstructing field of view",
+    "Service camera from inside the head with retained fasteners",
+    "Verify cable strain relief throughout neck motion",
+    "Keep heavier electronics low in the torso where feasible"
+  ],
+  "targets_verified": false
+}
