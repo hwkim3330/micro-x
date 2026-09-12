@@ -1,0 +1,316 @@
+{
+ "units": "m",
+ "root": "trunk",
+ "root_position_m": [
+  0.0,
+  0.0,
+  0.125
+ ],
+ "qpos_layout": {
+  "free": 7,
+  "joints": [
+   "left_hip_yaw",
+   "left_hip_roll",
+   "left_hip_pitch",
+   "left_knee",
+   "left_ankle",
+   "neck_pitch",
+   "head_pitch",
+   "head_yaw",
+   "head_roll",
+   "jaw",
+   "right_hip_yaw",
+   "right_hip_roll",
+   "right_hip_pitch",
+   "right_knee",
+   "right_ankle"
+  ]
+ },
+ "bodies": [
+  {
+   "name": "trunk",
+   "parent": null,
+   "pivot_m": [
+    0.0,
+    0.0,
+    0.125
+   ],
+   "joint": null,
+   "axis": null,
+   "home_rad": null,
+   "mass_kg": 0.2864
+  },
+  {
+   "name": "left_yaw2roll",
+   "parent": "trunk",
+   "pivot_m": [
+    0.006,
+    0.0175,
+    0.12
+   ],
+   "joint": "left_hip_yaw",
+   "axis": [
+    0.0,
+    0.0,
+    -1.0
+   ],
+   "home_rad": 0,
+   "mass_kg": 0.02366
+  },
+  {
+   "name": "left_hip",
+   "parent": "left_yaw2roll",
+   "pivot_m": [
+    0.0225,
+    0.0175,
+    0.1075
+   ],
+   "joint": "left_hip_roll",
+   "axis": [
+    1.0,
+    0.0,
+    0.0
+   ],
+   "home_rad": -0.0873,
+   "mass_kg": 0.01847
+  },
+  {
+   "name": "left_thigh",
+   "parent": "left_hip",
+   "pivot_m": [
+    0.004,
+    0.0424,
+    0.1053
+   ],
+   "joint": "left_hip_pitch",
+   "axis": [
+    0.0,
+    0.996192,
+    -0.087189
+   ],
+   "home_rad": -0.4579,
+   "mass_kg": 0.03624
+  },
+  {
+   "name": "left_shin",
+   "parent": "left_thigh",
+   "pivot_m": [
+    -0.0184,
+    0.0353,
+    0.0703
+   ],
+   "joint": "left_knee",
+   "axis": [
+    0.0,
+    -0.996192,
+    0.087189
+   ],
+   "home_rad": -0.0049,
+   "mass_kg": 0.05086
+  },
+  {
+   "name": "left_foot",
+   "parent": "left_shin",
+   "pivot_m": [
+    0.0,
+    0.0579,
+    0.0304
+   ],
+   "joint": "left_ankle",
+   "axis": [
+    0.0,
+    0.996192,
+    -0.087189
+   ],
+   "home_rad": 0.453,
+   "mass_kg": 0.03544
+  },
+  {
+   "name": "neck",
+   "parent": "trunk",
+   "pivot_m": [
+    0.026,
+    0.0145,
+    0.1574
+   ],
+   "joint": "neck_pitch",
+   "axis": [
+    0.0,
+    -1.0,
+    0.0
+   ],
+   "home_rad": 0.3491,
+   "mass_kg": 0.03207
+  },
+  {
+   "name": "head_base",
+   "parent": "neck",
+   "pivot_m": [
+    0.0089,
+    0.0145,
+    0.2044
+   ],
+   "joint": "head_pitch",
+   "axis": [
+    0.0,
+    1.0,
+    0.0
+   ],
+   "home_rad": 0.3491,
+   "mass_kg": 0.00361
+  },
+  {
+   "name": "head_yoke",
+   "parent": "head_base",
+   "pivot_m": [
+    0.0089,
+    0.0,
+    0.2231
+   ],
+   "joint": "head_yaw",
+   "axis": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "home_rad": 0,
+   "mass_kg": 0.05711
+  },
+  {
+   "name": "head",
+   "parent": "head_yoke",
+   "pivot_m": [
+    -0.009,
+    0.0,
+    0.2376
+   ],
+   "joint": "head_roll",
+   "axis": [
+    -1.0,
+    0.0,
+    0.0
+   ],
+   "home_rad": 0,
+   "mass_kg": 0.1026
+  },
+  {
+   "name": "jaw",
+   "parent": "head",
+   "pivot_m": [
+    0.037,
+    0.014,
+    0.226
+   ],
+   "joint": "jaw",
+   "axis": [
+    0.0,
+    1.0,
+    0.0
+   ],
+   "home_rad": 0,
+   "mass_kg": 0.0135
+  },
+  {
+   "name": "right_yaw2roll",
+   "parent": "trunk",
+   "pivot_m": [
+    0.006,
+    -0.0175,
+    0.12
+   ],
+   "joint": "right_hip_yaw",
+   "axis": [
+    0.0,
+    0.0,
+    -1.0
+   ],
+   "home_rad": 0,
+   "mass_kg": 0.02366
+  },
+  {
+   "name": "right_hip",
+   "parent": "right_yaw2roll",
+   "pivot_m": [
+    0.0225,
+    -0.0175,
+    0.1075
+   ],
+   "joint": "right_hip_roll",
+   "axis": [
+    1.0,
+    0.0,
+    0.0
+   ],
+   "home_rad": 0.0873,
+   "mass_kg": 0.01847
+  },
+  {
+   "name": "right_thigh",
+   "parent": "right_hip",
+   "pivot_m": [
+    0.004,
+    -0.0424,
+    0.1053
+   ],
+   "joint": "right_hip_pitch",
+   "axis": [
+    0.0,
+    -0.996192,
+    -0.087189
+   ],
+   "home_rad": 0.4579,
+   "mass_kg": 0.03624
+  },
+  {
+   "name": "right_shin",
+   "parent": "right_thigh",
+   "pivot_m": [
+    -0.0184,
+    -0.0353,
+    0.0703
+   ],
+   "joint": "right_knee",
+   "axis": [
+    0.0,
+    0.996192,
+    0.087189
+   ],
+   "home_rad": 0.0049,
+   "mass_kg": 0.05086
+  },
+  {
+   "name": "right_foot",
+   "parent": "right_shin",
+   "pivot_m": [
+    0.0,
+    -0.0579,
+    0.0304
+   ],
+   "joint": "right_ankle",
+   "axis": [
+    0.0,
+    -0.996192,
+    -0.087189
+   ],
+   "home_rad": -0.453,
+   "mass_kg": 0.03544
+  }
+ ],
+ "policy_joints": [
+  "left_hip_yaw",
+  "left_hip_roll",
+  "left_hip_pitch",
+  "left_knee",
+  "left_ankle",
+  "neck_pitch",
+  "head_pitch",
+  "head_yaw",
+  "head_roll",
+  "right_hip_yaw",
+  "right_hip_roll",
+  "right_hip_pitch",
+  "right_knee",
+  "right_ankle"
+ ],
+ "mass_kg": 0.8247
+}

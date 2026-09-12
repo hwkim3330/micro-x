@@ -1,82 +1,92 @@
-<mujoco model="Micro_X_14_functional_interface_study">
+<mujoco model="Micro_X_RevA_14">
   <compiler angle="radian" autolimits="true" />
   <option timestep=".005" gravity="0 0 -9.81" iterations="80" />
   <default>
-    <joint damping=".02" armature=".00001" />
+    <joint damping=".02" armature=".00001" frictionloss=".005" />
     <geom friction="1 .005 .0001" condim="3" />
   </default>
   <worldbody>
     <geom name="floor" type="plane" size="3 3 .01" rgba=".85 .85 .8 1" />
-    <body name="trunk_base" pos="0 0 .125">
+    <body name="trunk_base" pos="0 0 0.125">
       <freejoint name="trunk_base_freejoint" />
-      <site name="imu" size=".003" />
-      <geom name="x_torso" type="ellipsoid" size=".036 .035 .025" mass=".17" rgba=".92 .89 .78 1" />
-      <body name="x_left_hip_yaw" pos="0.006 0.0175 -0.005">
-        <joint name="left_hip_yaw" axis="0 0 -1" range="-2.4 2.4" ref="0" />
-        <geom name="left_hip_yaw_link" type="capsule" size=".009" fromto="0 0 0 0.0165 0 -0.0125" mass=".018" rgba=".19 .22 .2 1" contype="0" conaffinity="0" />
-        <body name="x_left_hip_roll" pos="0.0165 0 -0.0125">
-          <joint name="left_hip_roll" axis="1 0 0" range="-2.4 2.4" ref="-0.0873" />
-          <geom name="left_hip_roll_link" type="capsule" size=".009" fromto="0 0 0 -0.0185 0.0249 -0.0022" mass=".018" rgba=".19 .22 .2 1" contype="0" conaffinity="0" />
-          <body name="x_left_hip_pitch" pos="-0.0185 0.0249 -0.0022">
-            <joint name="left_hip_pitch" axis="0 0.996191771 -0.0871891974" range="-2.4 2.4" ref="-0.4579" />
-            <geom name="left_hip_pitch_link" type="capsule" size=".01" fromto="0 0 0 -0.0224 -0.0071 -0.035" mass=".04" rgba=".19 .22 .2 1" contype="1" conaffinity="1" />
-            <body name="x_left_knee" pos="-0.0224 -0.0071 -0.035">
-              <joint name="left_knee" axis="0 -0.996191771 0.0871891974" range="-2.4 2.4" ref="-0.0049" />
-              <geom name="left_knee_link" type="capsule" size=".01" fromto="0 0 0 0.0184 0.0226 -0.0399" mass=".04" rgba=".19 .22 .2 1" contype="1" conaffinity="1" />
-              <body name="x_left_ankle" pos="0.0184 0.0226 -0.0399">
-                <joint name="left_ankle" axis="0 0.996191771 -0.0871891974" range="-2.4 2.4" ref="0.453" />
-                <geom name="left_ankle_sole" type="box" size=".036 .021 .006" pos="0.008 0 -0.0244" mass=".035" rgba=".86 .56 .16 1" />
-                <geom name="left_ankle_bracket" type="capsule" size=".009" fromto="0 0 0 0.008 0 -0.0184" mass=".025" rgba=".19 .22 .2 1" />
+      <site name="imu" size=".003" pos="-0.02 0 -0.01" />
+      <inertial pos="-0.0286297682 -0.000249245616 0.00954124214" mass="0.286405" fullinertia="0.000111878855 0.000715856263 0.000740803729 3.9842721e-06 -4.23969411e-05 1.06742175e-06" />
+      <body name="x_left_yaw2roll" pos="0.006 0.0175 -0.005">
+        <joint name="left_hip_yaw" axis="0 0 -1" range="-0.45 0.55" ref="0" />
+        <inertial pos="0.00136581649 2.37433725e-10 -0.0182540723" mass="0.0236637" fullinertia="3.86532872e-06 4.33634929e-06 2.76171651e-06 -1.00932147e-16 5.34964596e-08 4.51522347e-15" />
+        <body name="x_left_hip" pos="0.0165 0 -0.0125">
+          <joint name="left_hip_roll" axis="1 0 0" range="-0.26 0.09" ref="-0.0873" />
+          <inertial pos="-0.0144153079 0.0218143496 -0.0029335458" mass="0.0184698" fullinertia="1.33597295e-05 6.86161106e-06 1.17155404e-05 8.66952248e-07 1.45662193e-07 -3.47346255e-06" />
+          <body name="x_left_thigh" pos="-0.0185 0.0249 -0.0022">
+            <joint name="left_hip_pitch" axis="0 0.9961918 -0.0871892" range="-1.3 1.3" ref="-0.4579" />
+            <inertial pos="-0.00502293087 0.0132706005 -0.0135640354" mass="0.0362406" fullinertia="1.14509203e-05 1.28419089e-05 9.11346639e-06 -8.89732248e-07 -2.84000629e-06 -8.74628786e-07" />
+            <body name="x_left_shin" pos="-0.0224 -0.0071 -0.035">
+              <joint name="left_knee" axis="0 -0.9961918 0.0871892" range="-1.0 1.0" ref="-0.0049" />
+              <inertial pos="0.00935407877 0.0102449663 -0.0217202422" mass="0.0508638" fullinertia="1.69942373e-05 2.18435634e-05 1.34769835e-05 1.5808148e-06 5.27200294e-06 -1.80754813e-06" />
+              <body name="x_left_foot" pos="0.0184 0.0226 -0.0399">
+                <joint name="left_ankle" axis="0 0.9961918 -0.0871892" range="-0.9 0.9" ref="0.453" />
+                <inertial pos="0.0113122637 -0.0094373394 -0.0189364665" mass="0.0354421" fullinertia="1.10500246e-05 2.72243441e-05 3.25294008e-05 -6.20125921e-07 1.02305391e-06 7.71226344e-07" />
+                <geom name="left_foot_collision" type="box" pos="0.003 -0.0079 -0.0249" size="0.041 0.024 0.0055" mass="0" rgba=".8 .3 .1 .25" group="3" />
+                <site name="left_foot" pos="0.004 -0.0079 -0.0304" size=".003" />
               </body>
+              <geom name="left_shin_collision" type="box" pos="0.0119525188 0.0113002436 -0.0228644875" size="0.0253525181 0.0187849264 0.0320231438" mass="0" rgba=".8 .3 .1 .25" group="3" contype="2" conaffinity="2" />
             </body>
+            <geom name="left_thigh_collision" type="box" pos="-0.0105 0.00943156681 -0.0192642544" size="0.0238999996 0.0206536016 0.0315634823" mass="0" rgba=".8 .3 .1 .25" group="3" contype="2" conaffinity="2" />
           </body>
         </body>
       </body>
-      <body name="x_neck_pitch" pos="0.026 0.0145 0.0324">
-        <joint name="neck_pitch" axis="0 -1 0" range="-2.4 2.4" ref="0.3491" />
-        <geom name="neck_pitch_link" type="capsule" size=".01" fromto="0 0 0 -0.0171 0 0.047" mass=".04" rgba=".19 .22 .2 1" contype="1" conaffinity="1" />
-        <body name="x_head_pitch" pos="-0.0171 0 0.047">
-          <joint name="head_pitch" axis="0 1 0" range="-2.4 2.4" ref="0.3491" />
-          <geom name="head_pitch_link" type="capsule" size=".009" fromto="0 0 0 0 -0.0145 0.0187" mass=".018" rgba=".19 .22 .2 1" contype="0" conaffinity="0" />
-          <body name="x_head_yaw" pos="0 -0.0145 0.0187">
-            <joint name="head_yaw" axis="0 0 1" range="-2.4 2.4" ref="0" />
-            <geom name="head_yaw_link" type="capsule" size=".009" fromto="0 0 0 -0.0179 0 0.0145" mass=".018" rgba=".19 .22 .2 1" contype="0" conaffinity="0" />
-            <body name="x_head_roll" pos="-0.0179 0 0.0145">
-              <joint name="head_roll" axis="-1 0 0" range="-2.4 2.4" ref="0" />
-              <geom name="x_head_shell" type="ellipsoid" size=".046 .036 .025" pos=".036 0 .006" mass=".13" rgba=".92 .89 .78 1" />
-              <geom name="x_eye_-1" type="sphere" size=".01" pos="0.058 -0.031 0.015" mass=".003" rgba=".06 .07 .06 1" contype="0" conaffinity="0" />
-              <geom name="x_eye_1" type="sphere" size=".01" pos="0.058 0.031 0.015" mass=".003" rgba=".06 .07 .06 1" contype="0" conaffinity="0" />
-            </body>
-          </body>
-        </body>
-      </body>
-      <body name="x_right_hip_yaw" pos="0.006 -0.0175 -0.005">
-        <joint name="right_hip_yaw" axis="0 0 -1" range="-2.4 2.4" ref="0" />
-        <geom name="right_hip_yaw_link" type="capsule" size=".009" fromto="0 0 0 0.0165 0 -0.0125" mass=".018" rgba=".19 .22 .2 1" contype="0" conaffinity="0" />
-        <body name="x_right_hip_roll" pos="0.0165 0 -0.0125">
-          <joint name="right_hip_roll" axis="1 0 0" range="-2.4 2.4" ref="0.0873" />
-          <geom name="right_hip_roll_link" type="capsule" size=".009" fromto="0 0 0 -0.0185 -0.0249 -0.0022" mass=".018" rgba=".19 .22 .2 1" contype="0" conaffinity="0" />
-          <body name="x_right_hip_pitch" pos="-0.0185 -0.0249 -0.0022">
-            <joint name="right_hip_pitch" axis="0 -0.996191771 -0.0871891974" range="-2.4 2.4" ref="0.4579" />
-            <geom name="right_hip_pitch_link" type="capsule" size=".01" fromto="0 0 0 -0.0224 0.0071 -0.035" mass=".04" rgba=".19 .22 .2 1" contype="1" conaffinity="1" />
-            <body name="x_right_knee" pos="-0.0224 0.0071 -0.035">
-              <joint name="right_knee" axis="0 0.996191771 0.0871891974" range="-2.4 2.4" ref="0.0049" />
-              <geom name="right_knee_link" type="capsule" size=".01" fromto="0 0 0 0.0184 -0.0226 -0.0399" mass=".04" rgba=".19 .22 .2 1" contype="1" conaffinity="1" />
-              <body name="x_right_ankle" pos="0.0184 -0.0226 -0.0399">
-                <joint name="right_ankle" axis="0 -0.996191771 -0.0871891974" range="-2.4 2.4" ref="-0.453" />
-                <geom name="right_ankle_sole" type="box" size=".036 .021 .006" pos="0.008 0 -0.0244" mass=".035" rgba=".86 .56 .16 1" />
-                <geom name="right_ankle_bracket" type="capsule" size=".009" fromto="0 0 0 0.008 0 -0.0184" mass=".025" rgba=".19 .22 .2 1" />
+      <body name="x_neck" pos="0.026 0.0145 0.0324">
+        <joint name="neck_pitch" axis="0 -1 0" range="0.15 1.05" ref="0.3491" />
+        <inertial pos="-0.0159155541 -0.0158500892 0.0348797359" mass="0.0320677" fullinertia="9.64601407e-06 8.70385952e-06 5.55276722e-06 -6.44387932e-07 1.20637102e-06 1.37244229e-06" />
+        <body name="x_head_base" pos="-0.0171 0 0.047">
+          <joint name="head_pitch" axis="0 1 0" range="-1.2 1.2" ref="0.3491" />
+          <inertial pos="0.000212725595 -0.00540492978 0.00857615785" mass="0.0036146" fullinertia="6.30321087e-07 4.52384501e-07 4.05958148e-07 -4.06179418e-09 -5.04424677e-09 2.13904493e-07" />
+          <body name="x_head_yoke" pos="0 -0.0145 0.0187">
+            <joint name="head_yaw" axis="0 0 1" range="-2.0 2.0" ref="0" />
+            <inertial pos="-0.0172575223 0.00709150683 0.01463285" mass="0.0571121" fullinertia="1.15822978e-05 2.00201429e-05 2.32191125e-05 3.3985571e-07 -9.34253608e-07 1.40344997e-07" />
+            <body name="x_head" pos="-0.0179 0 0.0145">
+              <joint name="head_roll" axis="-1 0 0" range="-0.21 0.21" ref="0" />
+              <inertial pos="0.0201365812 -0.000419124069 0.00601324921" mass="0.102602" fullinertia="6.98678949e-05 0.000125887369 0.000151698608 1.15900926e-06 7.90088142e-06 -3.98302795e-07" />
+              <body name="x_jaw" pos="0.046 0.014 -0.0116">
+                <joint name="jaw" axis="0 1 0" range="0 0.35" ref="0" stiffness=".05" />
+                <inertial pos="0.00966103379 -0.0130823484 -0.0108757699" mass="0.0135002" fullinertia="2.97585027e-06 1.13346268e-06 3.49785434e-06 1.10610155e-07 6.54048276e-08 -1.2256558e-07" />
               </body>
+              <geom name="head_shell_collision" type="ellipsoid" pos="0.005 0 0.0004" size=".05 .038 .036" mass="0" rgba=".8 .3 .1 .25" group="3" contype="1" conaffinity="1" />
             </body>
           </body>
         </body>
       </body>
+      <body name="x_right_yaw2roll" pos="0.006 -0.0175 -0.005">
+        <joint name="right_hip_yaw" axis="0 0 -1" range="-0.55 0.45" ref="0" />
+        <inertial pos="0.00136581649 -2.37433725e-10 -0.0182540723" mass="0.0236637" fullinertia="3.86532872e-06 4.33634929e-06 2.76171651e-06 1.00932139e-16 5.34964596e-08 -4.51522337e-15" />
+        <body name="x_right_hip" pos="0.0165 0 -0.0125">
+          <joint name="right_hip_roll" axis="1 0 0" range="-0.09 0.26" ref="0.0873" />
+          <inertial pos="-0.0144153079 -0.0218143496 -0.0029335458" mass="0.0184698" fullinertia="1.33597295e-05 6.86161106e-06 1.17155404e-05 -8.66952241e-07 1.45662198e-07 3.47346255e-06" />
+          <body name="x_right_thigh" pos="-0.0185 -0.0249 -0.0022">
+            <joint name="right_hip_pitch" axis="0 -0.9961918 -0.0871892" range="-1.3 1.3" ref="0.4579" />
+            <inertial pos="-0.00502293088 -0.013270595 -0.013564035" mass="0.0362406" fullinertia="1.145092e-05 1.28419094e-05 9.11346557e-06 8.89731257e-07 -2.84000638e-06 8.74625616e-07" />
+            <body name="x_right_shin" pos="-0.0224 0.0071 -0.035">
+              <joint name="right_knee" axis="0 0.9961918 0.0871892" range="-1.0 1.0" ref="0.0049" />
+              <inertial pos="0.00935407885 -0.0102449655 -0.0217202398" mass="0.0508638" fullinertia="1.69942405e-05 2.18435662e-05 1.34769837e-05 -1.58081486e-06 5.27200278e-06 1.80754712e-06" />
+              <body name="x_right_foot" pos="0.0184 -0.0226 -0.0399">
+                <joint name="right_ankle" axis="0 -0.9961918 -0.0871892" range="-0.9 0.9" ref="-0.453" />
+                <inertial pos="0.0113122631 0.00943733721 -0.0189364663" mass="0.0354421" fullinertia="1.10500258e-05 2.72243445e-05 3.25294022e-05 6.20112866e-07 1.02305405e-06 -7.71219952e-07" />
+                <geom name="right_foot_collision" type="box" pos="0.003 0.0079 -0.0249" size="0.041 0.024 0.0055" mass="0" rgba=".8 .3 .1 .25" group="3" />
+                <site name="right_foot" pos="0.004 0.0079 -0.0304" size=".003" />
+              </body>
+              <geom name="right_shin_collision" type="box" pos="0.0119525188 -0.0113002436 -0.0228644875" size="0.0253525181 0.0187849264 0.0320231438" mass="0" rgba=".8 .3 .1 .25" group="3" contype="2" conaffinity="2" />
+            </body>
+            <geom name="right_thigh_collision" type="box" pos="-0.0105 -0.00943156681 -0.0192642544" size="0.0238999996 0.0206536016 0.0315634823" mass="0" rgba=".8 .3 .1 .25" group="3" contype="2" conaffinity="2" />
+          </body>
+        </body>
+      </body>
+      <geom name="trunk_shell_collision" type="ellipsoid" pos="0.002 0 0.007" size=".054 .037 .044" mass="0" rgba=".8 .3 .1 .25" group="3" contype="1" conaffinity="1" />
     </body>
   </worldbody>
   <contact>
-    <exclude body1="x_neck_pitch" body2="x_head_roll" />
-    <exclude body1="x_head_pitch" body2="x_head_roll" />
-    <exclude body1="x_head_yaw" body2="x_head_roll" />
+    <exclude body1="trunk_base" body2="x_head" />
+    <exclude body1="x_left_thigh" body2="x_right_thigh" />
+    <exclude body1="x_left_shin" body2="x_right_shin" />
   </contact>
   <actuator>
     <position name="left_hip_yaw" joint="left_hip_yaw" kp="5" ctrlrange="-2.4 2.4" forcerange="-.5 .5" />
@@ -97,5 +107,6 @@
   <sensor>
     <gyro name="imu_ang_vel" site="imu" />
     <accelerometer name="imu_accel" site="imu" />
+    <subtreeangmom name="root_angmom" body="trunk_base" />
   </sensor>
 </mujoco>

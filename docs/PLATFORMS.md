@@ -1,3 +1,5 @@
+> 기록 문서. B2/Q4 13/15축 계획은 Rev A의 14+1축 구동 설계로 대체되었습니다. [DESIGN_REVA.md](DESIGN_REVA.md) 참고.
+
 # Micro X B2 and Q4 product platforms
 
 User confirmed that the primary product must walk on two legs and requested an additional four-legged model. Locomotion is required, not an optional animation. P0 geometry is a packaging study, not that finished locomotion mechanism.

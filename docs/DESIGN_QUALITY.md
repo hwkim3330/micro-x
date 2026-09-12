@@ -1,3 +1,5 @@
+> Rev A(2026-09-13)에서 P0 외형 설계가 폐기되었습니다. 현재 설계 원칙과 검증 상태는 [DESIGN_REVA.md](DESIGN_REVA.md)를 보세요. 아래는 P0 기록입니다.
+
 # Cute appearance and measurable durability
 
 The user requested a cute, robust product that can compete with Microduck. We treat that as a design and verification objective, not an achieved comparative claim.

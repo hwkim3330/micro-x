@@ -7,11 +7,17 @@ def paint(mesh,name,color):
  if name.startswith('eye_'):
   sign=1 if name.endswith('left') else -1
   x,y,z=mesh.vertices.T
-  front=sign*y>36
-  pupil=front&(((x-78)/9.8)**2+((z-222)/10.5)**2<1)
-  colors[pupil]=[13,24,21,255]
-  highlight=pupil&(((x-74)/2.8)**2+((z-227)/3.1)**2<1)
-  glint=pupil&(((x-82)/1.2)**2+((z-218)/1.2)**2<1)
-  colors[highlight|glint]=[251,252,240,255]
+  outward=sign*y>31
+  # Large dark pupil looking slightly forward, with two highlights.
+  pupil=outward&(((x-27)/9)**2+((z-250)/10)**2<1)
+  colors[pupil]=[18,30,28,255]
+  highlight=pupil&(((x-24.5)/2.8)**2+((z-253.5)/3.2)**2<1)
+  glint=pupil&(((x-30)/1.4)**2+((z-246.5)/1.4)**2<1)
+  colors[highlight|glint]=[252,252,246,255]
+ if name=='torso_shell':
+  x,y,z=mesh.vertices.T
+  # Softer belly tone below the equator, painted, not a separate part.
+  belly=(z<128)&(np.abs(y)<26)
+  colors[belly]=[241,214,186,255]
  mesh.visual.vertex_colors=colors
  return mesh

@@ -1,19 +1,28 @@
-# Cost model, not a production quote
+# 원가 가정 (견적이 아님)
 
-Accessed 2026-09-08: Waveshare ST3215 family listing shows $16.99–21.99 (variant dependent). https://www.waveshare.com/product/modules/st3215-servo.htm
+기준 시점 2026-09-13. 웹의 계산기는 아래 입력을 기본값으로 쓰며 모두 편집 가능합니다. 세금·배송·관세·금형·개발비·인증·포장·유통·보증·마진은 제외합니다.
 
-The website uses the low end as an **editable comparison input**, not a selected motor or BOM guarantee. The B2 website default uses the 14-axis compatibility target, $60 other components, $35 fabrication/assembly and 95% yield: `(14*16.99+60+35)/0.95 = $350.38`. Q4 is retired. The current compatibility study assumes XL330/BAM; this ST3215 comparison price is not an XL330 quote or a compatible BOM. These unquoted allowances are not market evidence. Changing motor count does not automatically create a mechanically feasible architecture.
+| 항목 | 기본값 | 근거 |
+|---|---|---|
+| 모터 15개 | $27.49 × 15 = $412.35 | XL330-M288-T ROBOTIS 미국 소매가 1개, 수량 할인 미표시 (https://www.robotis.us/dynamixel-xl330-m288-t/) |
+| 전장·배터리·카메라·체결 | $110 (가정) | 컴퓨트 모듈+캐리어, IMU, 마이크·스피커, TTL 버스 어댑터, 전원 보드, NP-F550급 배터리, Camera Module 3, 나사류 |
+| 출력·마감·조립 | $45 (가정) | 22개 출력 부품 약 470 g(꽉 찬 기준; 실제 인필은 더 적음), 조립 인건 |
+| 수율 | 95 % (가정) | |
+| **계산기 합계** | **≈ $597** | 소매가 모터 기준이므로 Microduck 사전예약가 $399보다 높음 |
 
-Price excludes tax, freight, duties, tooling, development, certification, scrap rework beyond the simplified yield model, packaging, distribution, warranty and margin. Prices are USD; no exchange-rate conversion is asserted. For quantity pricing obtain written supplier quotes on a frozen revision.
+결론은 명확합니다: **소매가 XL330 15개만으로 Microduck 판매가를 넘습니다.** 상업화 경로는 (1) 모터 대량 견적, (2) 헤드·턱 등 저부하 축에 저가 서보 혼용 검토(정책 호환은 다리 10축과 목 4축에 한정되므로 턱은 자유), (3) 출력 대신 사출은 수량이 확정된 뒤. 이 저장소는 계산기와 가정을 공개하고 실제 견적을 받은 뒤 값을 바꿉니다.
 
-## Cost reduction decisions
+## Microduck 참고 가격 (공개 정보)
 
-- Start with FDM prototypes, avoiding injection tooling before geometry and demand are validated.
-- Use common M3 interfaces and serviceable shell halves, aiming to reduce fastener assortment and repair labor.
-- Compare purchased serial-bus actuators rather than choosing from stall torque or unit price alone. Mass, continuous load, current, backlash, noise and thermal limits matter.
-- Keep arms as passive mechanisms unless product behavior justifies added motors. B2 walking and Q4 quadruped platforms are now required; do not drop required degrees of freedom merely to hit a price.
-- Record actual slicer mass, print time, assembly minutes, first-pass yield and failures after a physical build.
+- 조립 완제품 $399 (사전예약, 세금·배송 별도), 게임패드 포함, 배터리 1개 (NP-F550, 2600 mAh, 약 1시간). 출처: Pollen Robotics 프레스킷·스토어, Engadget 2026-08-27.
+- 액세서리 팩 $39, 충전 팩 $39, 개발 팩 $119.
+- 하드웨어 설계 파일은 비공개(소프트웨어만 오픈소스). Micro X는 독자 설계로 이 제약을 받지 않습니다.
 
-No percentage cost saving is claimed because neither a comparable baseline production BOM nor supplier quote is available.
+## 설계로 낮추는 항목
 
-The B2/Q4 candidate axis budgets and load assumptions are in `engineering/platforms.json`. The cheaper candidate does not pass the stated B2 torque screen. No procurement decision follows from the website calculator.
+- 공용 M2/M3 두 규격, 혼·아이들러 판 8볼트로 서보 교체 표준화.
+- 배터리는 소비자용 규격(NP-F550급)을 그대로 써 충전기·예비 배터리 생태계를 활용.
+- 외장 6개(몸통·가슴·꼬리·두개골·눈 2)와 프레임 16개로 분리해 외장만 사출 전환 가능.
+- 발 바닥은 비워 TPU 패드만 교체.
+
+실측(슬라이서 질량, 출력 시간, 조립 분, 1차 수율)은 실물 제작 후 이 파일에 추가합니다.

@@ -1,44 +1,39 @@
-# P0 assembly and unresolved interfaces
+# Rev A 조립 순서와 인터페이스
 
-**This is an appearance/fit development model, not a complete powered robot kit.** All dimensions use the independent CAD coordinate system: X forward, Y left, Z up; mm. `models/print/` contains bed-oriented STL. STEP and `models/*.stl` retain the world assembly pose. Use one set, not duplicate print and world files.
+디지털 설계의 조립 의도입니다. 실물 출력 공차·나사 체결·케이블 경로는 아직 확인 전입니다. 좌표는 조립 기준 프레임(mm, X 앞, Y 왼쪽, Z 위, 바닥 Z=0). `models/print/`는 출력 방향으로 눕힌 STL, `models/step/`와 `models/*.stl`은 조립 좌표입니다.
 
-## Defined interfaces
+## 공통 규칙
 
-- Torso split at Z = 156 mm. Four screw axes: X = -25 and +15 mm, Y = ±22 mm, parallel to Z. Upper Ø3.4 clearance, lower Ø2.6 pilot over Z143–156. M3 plastic thread-forming screw fit and head access must be tested; do not substitute a heat-set insert into the pilot without redesign. Screw lengths depend on the local roof height and available product; measure STEP before procurement.
-- Rear leg axes: X = -14 mm, Z = 119 mm, parallel to Y, Ø3.4 clearance. Fixed pose concept; one axis does not provide anti-rotation locking. Final fastener/locking feature is pending.
-- Ankle axes: X = 8 mm, Z = 27 mm, parallel to Y, Ø3.4 clearance. Feet have fork lugs. Add washers only after measuring actual print clearance.
-- Jaw axes: X = 59 mm, Z = 188 mm, parallel to Y, Ø3.4 clearance. Two side bolts are intended; sufficient bearing engagement, stops and finger access are unverified.
-- Eyes: rear-fastened caps with Ø10 mm bosses, Ø2.6 × 7 mm blind pilots and skull support plates 2 mm thick with Ø3.4 clearance. Candidate M3×8 plastic thread-forming screws and 1 mm washers must be fitted and pull-tested; no adhesive is needed for the intended retention.
+- **서보 인터페이스**: 혼 면과 자식 판 사이 0.5 mm, 혼·아이들러 판 두께 3 mm, Ø12 원 위 4×Ø2.2 관통(M2). 포켓은 몸체보다 각 방향 0.4~0.6 mm 크게 파여 있습니다. 실제 서보의 케이스 홀·케이블 위치는 `engineering/actuator_interface.json`의 확인 항목을 먼저 검사하세요.
+- **M3 체결**: Ø2.6 파일럿(플라스틱용 태핑 나사)과 Ø3.4 관통을 사용합니다. `models/coupons/`의 시편으로 프린터 보정 후 출력하세요.
+- 서보 몸체는 포켓 벽과 이웃 링크의 혼·아이들러 볼트로 잡히며, 케이스 홀 확인 후 몸체 고정 나사 또는 키퍼를 추가해야 합니다.
 
-- Tail seam: transverse M3 axes at (X,Z) = (-102,122) and (-146,113), Ø3.4. Axial tail-to-torso bolts: Y = ±8, Z = 129, parallel to X, Ø3.4 in tail / Ø2.6 torso pilots. Mating face X = -58. Verify print fit and select bolt lengths from the STEP stack.
-- Forearm posts: X = 36, Z = 157, parallel to Y, Ø3.4; inner arm faces Y = ±34. Posts are split by the torso service seam, so access and stiffness need a build test.
+## 1. 다리 (좌우 대칭, 좌측 기준)
 
-## Prototype evaluation sequence
+1. **발** `left_foot`: 발목 서보 혼 판(Y 57.9~60.9)과 아이들러 판(Y 24.9~27.9)이 발바닥에서 올라옵니다. 바닥은 비어 있어 TPU 패드를 채웁니다.
+2. **종아리** `left_shin`: 안쪽 척추판(Y≈39~42) 하나가 무릎 서보(뒤·위)와 발목 서보(앞·아래, 15° 앞으로 기울여 세움)를 함께 잡습니다. 발목 서보를 앞·뒤 벽과 바닥 캡 포켓에 넣고(위는 열려 있음), 발을 혼(바깥)·아이들러(안쪽) 볼트 8개로 체결합니다.
+3. **허벅지** `left_thigh`: 고관절 피치 서보가 컵(앞·뒤 벽, 바닥, 캡)에 들어가고, 무릎 서보의 혼(안쪽 Y≈35)·아이들러(바깥 Y≈69) 판을 가집니다. 종아리에 무릎 서보를 넣은 뒤 허벅지 판에 볼트 8개.
+4. **고관절 브래킷** `left_hip`: 롤 서보의 혼(X 22.5~25.5)·아이들러(X -10.5~-7.5) 판과 아래 바, 피치 서보의 혼(Y 39.4~42.4)·아이들러(Y 73~76) 판, 그리고 허벅지 캡 위를 지나는 타이(Z≈123~126). 허벅지 컵에 피치 서보를 넣고 브래킷 판에 볼트 8개.
+5. **요·롤 브래킷** `left_yaw2roll`: 고관절 요 혼 판(Z 117~120) 아래에 롤 서보 크래들(양옆 벽). 롤 서보를 아래에서 밀어 넣고 고관절 브래킷의 혼·아이들러 볼트로 잡습니다.
 
-1. Review the full assembly STEP and unresolved interfaces before printing a complete set.
-2. Print a torso screw and jaw hinge interface coupon; tune dimensional compensation for the actual printer/material.
-3. Print upper/lower torso and jaw/skull for access/clearance assessment. Test screw selection and opening sequence without electronics.
-4. Check foot/leg alignment in a supported fixture. Do not use the fixed mock-up to infer balance or walking capability.
-5. Trial the tail seam and axial mounting bolts, with no forearm hardware. Neck/head retention remains unresolved; support those parts in a fixture. None of these interfaces is a production release.
-6. Integrate the selected drive cartridges, cable paths and controller only after the product architecture is settled.
+## 2. 몸통
 
-## Explicit remaining work
+1. **섀시** `chassis`: 타원 윗판(Z 150~153, 80 × 50)에 고관절 요 서보 행어 2개(혼 아래 방향), 목 서보 베이(X 16~39), 배터리 트레이(X -96~-30, Z 118~140, NP-F550급), 가슴 보드 벽(X 36.4~40), 쉘 보스 4개(X -22/25, Y ±20~27). 요 서보는 아래에서 삽입 후 요·롤 브래킷 혼 판(M2×4)으로 고정. 트레이 옆벽에 꼬리 커버 나사(Ø2.6, Y 방향, X -55, Z 129).
+2. **몸통 쉘** `torso_shell`: 알 형태(108 × 78 × 88), Z 121 아래 개방, 양쪽 다리 개구(X ±32, Z <134), 목 개구 Ø48 + 뒤쪽 슬롯(X -16~26), 뒤 배터리 개구, 앞 가슴 그릴. 옆면 구멍 4개(X -22/25, Z 140)로 바깥에서 M3를 섀시 보스에 체결. 컴퓨트 보드(50 × 36급)는 섀시 가슴 벽에 세워 장착하며 쉘을 벗기면 접근합니다.
+3. **꼬리 커버** `tail_cover`: 배터리를 트레이에 넣고 커버를 뒤에서 밀어 M3 2개로 고정. 배터리 교체는 커버만 빼면 됩니다.
 
-- Neck/head retention assembly and physical verification of the new tail bolt interfaces.
-- Forearm motion stops and fastener stack; anti-rotation rear-leg fixing.
-- Jaw motion stops, bearing stack and retention; physical pull-out/installation-torque testing of the new eye fasteners.
-- Actuator cradles with verified purchased-part dimensions, horn and load path.
-- Continuous assembly clearance sweep including screws/tolerances, slicer settings and support removal access. Reference-pose STEP intersections have been cleared; see artifacts/interference.json.
-- Electronics, power distribution, firmware and motion/thermal testing.
+## 3. 목과 머리
 
-No adhesive joint or missing interface should be interpreted as production-ready. This package is P0, with visible design debt rather than a manufacturing release.
+1. **목 링크** `neck_link`: 목 피치 서보 혼 판(Y 14.5~17.5, X 16~36)에서 올라가 머리 피치 서보 베이(X -4.1~21.9, Z 176~214.5)로 이어집니다. 머리 피치 서보를 베이에 넣습니다.
+2. **머리 베이스** `head_base`: 머리 피치 혼 판(Y 14.5~17.5)과 머리 요 혼 판(Z 220.1~223.1). 이 부품만 머리가 요 회전해도 고정입니다.
+3. **요크** `head_yoke`: 머리 요 서보 몸체(혼 아래, 베이스 판에 볼트)와 머리 롤 서보(장축 Y)를 담습니다. +X와 +Y 쪽이 열려 있어 서보를 옆에서 넣습니다.
+4. **머리 프레임** `head_frame`: 롤 혼(X -9~-6)·아이들러(X -42~-39) 판, 윗 레일(Z 261~264, X -42~20.5), 턱 서보 베이(뒤 벽 X 24.4~26.6, -Y 벽, 위는 열림), 카메라 벽(X 47.5~49.5, CM3 홀 Y ±10.5 / Z 229.75, 242.25, 렌즈 Ø12).
+5. **두개골** `skull`: 뒤·아래가 열린 한 조각. 레일 보스(X -30, 15)에 위에서 M3 2개. 눈 소켓 Ø30.8, 코 카메라 포트 Ø12, 콧구멍 2개, 부리 팔 슬롯.
+6. **눈** `eye_left/right`: Ø30 돔, Ø10 스템, 안쪽에서 M3.
+7. **아래턱** `jaw_beak`: 왼쪽 팔이 턱 서보 혼(Y 14)에 볼트, 오른쪽 팔(Y -22~-19)은 Ø2.6 핀. 부리 후단은 요 회전 시 목 스택을 피하도록 잘려 있고, 개구는 0.35 rad까지입니다.
 
-## Calibration files and static geometry evidence
+## 검증 상태와 남은 확인
 
-`models/coupons/m3_pilot_coupon.stl`: left-to-right X order Ø2.4 / 2.5 / 2.6 / 2.7 / 2.8 mm, blind pilots with 1 mm bottom. `m3_clearance_coupon.stl`: Ø3.1 / 3.2 / 3.3 / 3.4 / 3.5 mm, through holes. These test actual printer and screw combinations; no particular screw supplier fit is implied.
-
-The neck entry clearance tool is the union of its shape translated by ±0.3 mm along each CAD axis. This reserves an axial clearance envelope, not an exact constant normal offset. Foot fork opening is 18.6 mm for an 18 mm leg. Both still need physical tolerance tests.
-
-Exact STEP booleans show no positive-volume overlap among the 14 parts at the reference pose (threshold 0.01 mm³). The jaw is separately sampled every 2° from 0° to 20°. Fasteners, production tolerances, continuous movement, load and minimum pinch gap are outside these checks.
-
-Camera carrier and lower-lip relief were added for the candidate camera; see [camera mounting and remaining fit work](FUNCTIONS.md). This opens the lower shell locally for carrier/PCB clearance; sealing and structural effects have not been physically tested.
+- HOME 자세 정적 간섭과 관절별 가동 샘플 검사: `artifacts/interference.json` (현재 겹침 0, 충돌 샘플 0). 검사한 각도 범위가 Rev A 기구의 가동 범위이며 실물 스토퍼 설계의 입력입니다.
+- 미검증: 출력 공차, 서보 케이스 고정, 케이블 경로(특히 목·머리 4축과 다리 5축), IMU·마이크·스피커·전원 보드 위치, 낙하·피로·발열, 실제 보행.
+- 출력 순서 권장: 시편 → 발·종아리·허벅지 한 세트 → 고관절 브래킷 → 몸통 → 머리.

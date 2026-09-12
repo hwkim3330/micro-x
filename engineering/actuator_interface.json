@@ -1,0 +1,25 @@
+{
+  "actuator_class": "ROBOTIS DYNAMIXEL XL330-M288-T class smart servo (TTL bus)",
+  "used_in_cad": {
+    "body_mm": [20.0, 34.0, 23.0],
+    "body_note": "width across the axis x length along the long side x depth along the output axis; manufacturer lists 20 x 34 x 26 including the horn",
+    "horn_axis_from_short_end_mm": 9.5,
+    "horn_disc_diameter_mm": 16.0,
+    "horn_disc_height_mm": 3.0,
+    "horn_hole_pattern": "4 x M2 on a 12 mm diameter circle, repeated on the rear idler side",
+    "running_clearance_mm": 0.5,
+    "pocket_clearance_mm": 0.4,
+    "mass_g": 18
+  },
+  "sources": [
+    {"item": "dimensions, mass, voltage, stall torque", "url": "https://emanual.robotis.com/docs/en/dxl/x/xl330-m288/", "accessed": "2026-09-13", "values": "20 x 34 x 26 mm, 18 g, 3.7-6.0 V (5.0 V recommended), 0.52 N.m at 5.0 V"},
+    {"item": "unit retail price", "url": "https://www.robotis.us/dynamixel-xl330-m288-t/", "accessed": "2026-09-13", "values": "USD 27.49 per unit, no quantity tiers listed"}
+  ],
+  "provenance": "Interface dimensions are purchased-part data (measured from a vendor mesh of the servo and cross-checked with the manufacturer listing). No manufacturer CAD is redistributed. Case mounting-hole positions are NOT modelled; brackets rely on horn/idler bolt patterns and pocket walls until the drawing is confirmed.",
+  "verify_before_ordering": [
+    "horn and idler hole pattern, thread size and depth",
+    "case side-hole pattern for body retention screws or keeper clips",
+    "actual cable exit position and connector clearance per joint",
+    "operating voltage: BAM simulations reproduce 7.4 V reference data; the physical rail must follow the 3.7-6.0 V rating"
+  ]
+}

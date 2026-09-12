@@ -1,15 +1,65 @@
-"""Exact BREP static intersections; this is not a dynamic clearance sweep."""
+"""Exact BREP interference checks for the actuated Micro X.
+
+1. Static: every printed part and purchased envelope at HOME, pairwise, positive-volume overlap.
+2. Motion sweep: rotate each joint's subtree through sampled angles and re-check the pairs
+   whose relative pose changes. This is a sampled clearance check, not a continuous sweep,
+   and it excludes fasteners, cables and print tolerance.
+"""
 from pathlib import Path
-import itertools,json,time
+import itertools,json,math,sys,hashlib
+import numpy as np
 import cadquery as cq
-import hashlib
-R=Path(__file__).resolve().parents[1];parts=json.loads((R/'artifacts/parts.json').read_text())
-shapes={p['name']:cq.importers.importStep(str(R/p['step'])) for p in parts};overlaps=[];tested=0
-for a,b in itertools.combinations(shapes,2):
- A=shapes[a].val().BoundingBox();B=shapes[b].val().BoundingBox()
- if any(getattr(A,k+'max')<=getattr(B,k+'min')+1e-5 or getattr(B,k+'max')<=getattr(A,k+'min')+1e-5 for k in 'xyz'):continue
- intersection=shapes[a].intersect(shapes[b]);volume=sum(s.Volume() for s in intersection.solids().vals());tested+=1
- if volume>.01:overlaps.append(dict(parts=[a,b],overlap_mm3=round(volume,3)))
-report=dict(scope='zero-pose exact STEP intersection; no swept-volume, tolerance or strength inference',broadphase_pairs=len(parts)*(len(parts)-1)//2,exact_pairs=tested,overlaps=overlaps,assembly_cleared=len(overlaps)==0)
-report['step_sha256']={p['name']:hashlib.sha256((R/p['step']).read_bytes()).hexdigest() for p in parts}
-(R/'artifacts/interference.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report,indent=2))
+R=Path(__file__).resolve().parents[1];sys.path.insert(0,str(R/'cad'))
+import layout as L
+report=json.loads((R/'artifacts/parts.json').read_text())
+items={p['name']:p for p in report['parts']+report['purchased']}
+shapes={}
+for name,p in items.items():
+    if p['printed']:shapes[name]=cq.importers.importStep(str(R/p['step']))
+    elif p['kind']=='actuator':
+        import servo;j=L.get(name[6:]);shapes[name]=servo.envelope(j['P'],j['h'],j['d']) # exact envelope incl. horn/idler discs
+    else:
+        import trimesh
+        m=trimesh.load_mesh(R/p['stl']);lo,hi=m.bounds
+        shapes[name]=cq.Workplane('XY').box(*(hi-lo)).translate(tuple((lo+hi)/2)) # boxes for battery/board/camera
+body_of={n:p['body'] for n,p in items.items()}
+children={b:[c for c in L.BODIES if L.PARENT[c]==b] for b in L.BODIES}
+def subtree(b):
+    out=[b]
+    for c in children[b]:out+=subtree(c)
+    return out
+def overlap(a,b):
+    A=a.val().BoundingBox();B=b.val().BoundingBox()
+    if any(getattr(A,k+'max')<=getattr(B,k+'min')+1e-6 or getattr(B,k+'max')<=getattr(A,k+'min')+1e-6 for k in 'xyz'):return 0.0
+    return sum(s.Volume() for s in a.intersect(b).solids().vals())
+def rotated(shape,joint,angle):
+    P=joint['P'];ax=np.asarray(joint['axis'],float);ax/=np.linalg.norm(ax)
+    return shape.rotate(tuple(P),tuple(P+ax),math.degrees(angle))
+names=list(shapes);static=[];tested=0
+for a,b in itertools.combinations(names,2):
+    v=overlap(shapes[a],shapes[b]);tested+=1
+    if v>1.0:static.append(dict(parts=[a,b],overlap_mm3=round(v,3))) # 1 mm3 threshold: exact-boolean noise below that
+print('static pairs',tested,'overlaps',len(static))
+for s in static:print('  STATIC',s)
+# Sampled joint sweeps: each joint moved alone from HOME, others at HOME.
+# Angles are relative to the HOME pose in which the CAD is built; they are the intended mechanical envelopes, not the policy's full range.
+sweeps={'hip_yaw':[-.4,-.2,.2,.4],'hip_roll':[-.17,-.09,.09,.17],'hip_pitch':[-.7,-.35,.35,.7],'knee':[-.5,-.25,.25,.5],'ankle':[-.5,-.25,.25,.5],
+        'neck_pitch':[-.2,-.1,.2,.4],'head_pitch':[-.6,-.3,.3,.6],'head_yaw':[-1.2,-.6,.6,1.2],'head_roll':[-.2,-.1,.1,.2],'jaw':[.12,.24,.35]}
+motion=[]
+for joint in L.SERVOS:
+    key=joint['name'].replace('left_','').replace('right_','')
+    moving=set(subtree(joint['child']));fixed=[n for n in names if body_of[n] not in moving];mov=[n for n in names if body_of[n] in moving]
+    worst=0;hits=[]
+    for angle in sweeps[key]:
+        rot={n:rotated(shapes[n],joint,angle) for n in mov}
+        for m in mov:
+            for f in fixed:
+                v=overlap(rot[m],shapes[f])
+                if v>1.0:hits.append(dict(angle_rad=angle,parts=[m,f],overlap_mm3=round(v,3)));worst=max(worst,v)
+    motion.append(dict(joint=joint['name'],angles_rad=sweeps[key],collisions=hits))
+    print(f"  {joint['name']:16s} {len(hits)} collision samples" + (f" worst {worst:.1f} mm3" if hits else ''))
+out=dict(scope='Exact STEP intersections at HOME plus single-joint sampled sweeps; purchased items as bounding boxes. Not a continuous sweep, tolerance, cable or fastener check.',
+    static_pairs=tested,static_overlaps=static,assembly_cleared=not static,motion=motion,motion_cleared=all(not m['collisions'] for m in motion),
+    step_sha256={p['name']:hashlib.sha256((R/p['step']).read_bytes()).hexdigest() for p in report['parts']})
+(R/'artifacts/interference.json').write_text(json.dumps(out,indent=2)+'\n')
+print('assembly_cleared',out['assembly_cleared'],'motion_cleared',out['motion_cleared'])

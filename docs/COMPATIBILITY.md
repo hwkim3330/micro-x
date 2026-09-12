@@ -1,56 +1,40 @@
-# Commercial Micro X, compatible control target
+# 14축 정책 호환 검증 (Rev A)
 
-The active goal is an independently designed commercial Micro X with the same policy interface as Microduck. It is **not** a return to original Microduck CAD or a relicensing of noncommercial hardware. The earlier “original model first” direction was withdrawn.
+목표는 **독자 설계 상업용 Micro X가 Microduck의 정책 인터페이스(61 관측 → 14 행동, 50 Hz)를 그대로 쓰는 것**입니다. 원본 CAD로 돌아가거나 비상업 하드웨어를 재라이선스하는 것이 아닙니다.
 
-## Three separate pieces
+## 세 층
 
-1. The existing 14-part printable P0 shell is an appearance/assembly prototype with fixed legs. It is not an integrated 14-axis robot.
-2. `cad/compat_model.py` creates a separate, independent 14-axis MuJoCo study using authored primitive shapes and assumed masses. Functional joint axes and pivot locations at HOME were measured from the separate reference model and rounded to 0.1 mm; see `engineering/functional_interface.json` for source attribution. No upstream meshes, component surfaces, mass or inertia tables are imported. It is not manufacturing CAD or a validated physical model of P0.
-3. `runtime/compat_env.py` connects that study to pinned, unchanged inference software and walking/standing ONNX weights. Only software and weights are downloaded to the excluded local cache; source hashes and URLs are in `engineering/policy_sources.json`.
+1. **Rev A CAD** (`cad/build.py`): 21개 출력 부품 + 15개 서보·배터리·보드·카메라 외형. 관절 피벗·축은 `engineering/functional_interface.json`(기능 인터페이스 측정값)을 따르고 나머지는 새로 설계.
+2. **CAD 기반 동역학 모델** (`cad/compat_model.py` → `models/micro_x_14.xml`): 부품 메시에서 링크별 질량·질량중심·관성을 계산(PLA 꽉 찬 밀도 + 구매품 카탈로그 질량). 접촉은 발바닥 상자, 몸통·머리 타원체, 다리 상자. 이전의 원시 도형 연구 모델은 `models/archive/micro_x_14_primitive_study.xml`로 보존.
+3. **고정된 공식 추론 코드 + 가중치** (`runtime/compat_env.py`, `.cache/compat/`): 변경 없는 `alpha_walking.onnx`/`alpha_stand.onnx`와 BAM M6 XL330 모터 모델(kp 200, 7.4 V 재현 조건).
 
-The design owner retains commercial use of original X designs. The published policy model card declares Apache-2.0, and the inference software repository has an Apache-2.0 license. Those software terms do not grant a commercial license to upstream hardware. Functional interface names and HOME references are used for interoperability; no claim of trademark/patent clearance or legal clean-room certification is made.
+## 제어 계약
 
-## Control contract
+`engineering/control_interface.json`: 14 액추에이터 이름·순서, HOME 오프셋, 61 관측(자이로 3, 투영 중력 3, HOME 상대 관절 위치 14, 관절 속도 14, 이전 행동 14, 명령 13), 50 Hz 제어 / 200 Hz 물리. 목표 = HOME + 행동, 스케일 1. 턱은 15번째 수동 관절(정책 외)로 모델에 포함되며 `models/rig.json`이 qpos 배열 순서를 기록합니다.
 
-`engineering/control_interface.json` fixes 14 actuator names and order, HOME offsets, 61 observations, 14 actions, a 13-value command vector and 50 Hz control over 200 Hz physics. Observation order is gyro (3), projected gravity (3), HOME-relative joint position (14), joint velocity (14), previous action (14), command (13). Targets are HOME + action, scale 1. The actuator study uses the published XL330 BAM M6 settings: kp 200, 7.4 V, sag gain 0.1 and voltage floor 6 V.
+Rev A에서 기구적으로 제한한 범위: 고관절 롤 HOME ±10° (원본 ±22°), 목 피치 절대 0.15~1.05 rad(HOME +0.35에서 뒤로 -0.2), 머리 롤 ±12°, 머리 요 ±2.0 rad, 턱 0~0.35 rad. 무릎은 모델에서 ±1.0 rad이지만 기울인 발목 서보 때문에 ±0.5 rad 이상에서 허벅지와 닿을 수 있어 학습 시 제한을 권장합니다. 정책이 그 이상을 명령하면 시뮬레이션에서 관절 한계에 걸립니다.
 
-The target hardware arrangement is five axes in each leg (hip yaw/roll/pitch, knee, ankle) and four neck/head axes (neck pitch, head pitch/yaw/roll). The jaw is not one of the 14 policy-controlled axes. This replaces the earlier 13-axis ST3215-oriented planning assumption; that cost study does not demonstrate weight compatibility.
+## 시험 프로토콜
 
-## Actual evaluation, not a compatibility claim
+`tools/evaluate_compat.py`: 정지, 전진 0.1 / 0.3 m/s, 회전 0.3 rad/s 명령 × 시드, 각 N초. 넘어짐 = 몸통 기울기 45° 초과 또는 높이 65 mm 미만. 1초 워밍업 후 몸체 좌표 속도 MAE. 통과 = 넘어짐 없음, 전진 MAE ≤ max(0.03, 명령의 25 %), 좌우 ≤ 0.03, 요 ≤ 0.10. 학습 체크포인트는 `--walking-policy`로 같은 프로토콜에 넣습니다(Lab의 "평가 실행").
 
-`artifacts/compat_evaluation.json` records untouched walking and standing weights on the independent X study, using 0, 0.1 and 0.3 m/s forward commands and 0.3 rad/s turning, plus standing. Three initial-noise seeds and ten-second trials are used. The current functional-interface study stays upright in all 15 trials. It still has substantial tracking error: the seed-0 0.3 m/s forward trial ends at X=0.7846 m, Y=0.6199 m after ten seconds. Low-command upright behavior does not demonstrate command tracking. The complete report, including first-fall times, is published rather than treating successful ONNX loading as successful walking.
+## 현재 결과
 
-Whole-body geometry, axes, masses, inertias, transmissions and contact behavior still need to converge before “drop-in weights compatible” is justified. Real-hardware compatibility and production readiness remain unverified.
+- `artifacts/compat_evaluation.json`: CAD 기반 모델에 변경 없는 공식 가중치. 결과 요약은 Lab 14축 학습 탭의 첫 카드와 `README.md`에 있으며, 모델 SHA256이 파일에 묶여 있어 모델을 바꾸면 테스트가 실패합니다.
+- `artifacts/compat_training.json`: 같은 액터를 CPU PPO로 짧게 이어 학습·ONNX 재내보내기 (파이프라인 검증).
+- 이전 원시 연구 모델의 기록(`compat_heldout_evaluation.json`, `training_500.json`, `trained_500_evaluation.json`, `official_recipe_x_validation.json`)은 아카이브 모델 SHA256에 묶여 보존됩니다.
 
-## Training and exporting the same actor
+원본 Microduck 모델에 같은 프로토콜을 돌린 비교값은 [micro-rex](https://github.com/hwkim3330/micro-rex)의 `tools/evaluate_policy.py`가 만듭니다. 두 결과를 나란히 읽어야 "가중치 호환"의 의미가 정해집니다: 원본에서도 이 하네스의 전진 명령 추종은 미달이므로, X의 미달을 X 기구만의 문제로 보지 않습니다.
 
-`runtime/trainable_policy.py` loads the official actor and its fixed observation normalization into a differentiable PyTorch network of the same 61→512→256→128→14 ELU architecture. It rejects a different ONNX operator layout. Against 128 seeded input vectors, the initial conversion's maximum absolute discrepancy is approximately 9.1e-7.
-
-`tools/train_compat.py` genuinely updates that actor with PPO rollouts in the independent X MuJoCo/BAM environment, saves a checkpoint and exports a new ONNX. The checkpoint is a fine-tuned X policy, **not the unchanged official weights**. Original policy files are preserved separately. The export is checked against the trained PyTorch actor. `artifacts/compat_training.json` records the executed run, falls, losses, update count and hashes.
-
-The compact training harness is **not identical to the full upstream mjlab training recipe**: rewards, domain randomization, curriculum, parallel simulation and versioned training stack are handled separately by the new `tools/train_official_recipe.py` adapter, whose smoke trial and remaining parity limits are reported in `docs/OFFICIAL_BASELINE.md`. Same actor, input/output contract and motor model are necessary steps, not evidence that all training behavior is the same. Short training runs are pipeline checks and do not prove a better walking policy.
-
-## Run locally
+## 재현
 
 ```sh
-python3 -m venv --system-site-packages .venv-policy
-.venv-policy/bin/python -m pip install -r requirements-policy.txt
+uv venv --python 3.12 .venv-policy && uv pip install --python .venv-policy/bin/python -r requirements-policy.txt
 .venv-policy/bin/python tools/fetch_compat.py
-python3 cad/compat_model.py
+.venv/bin/python cad/build.py && .venv/bin/python cad/compat_model.py
 .venv-policy/bin/python tools/evaluate_compat.py --seconds 10 --seeds 3
-.venv-policy/bin/python tools/train_compat.py --updates 30 --steps 256
-.venv-policy/bin/python runtime/training_service.py
-# Open http://127.0.0.1:5201/web/lab.html
+.venv-policy/bin/python tools/train_compat.py --updates 10 --steps 256
+.venv-policy/bin/python runtime/training_service.py   # Lab에서 학습·평가·재생
 ```
 
-The local workbench starts/cancels real training processes and downloads the generated ONNX. It binds only to loopback, rejects foreign origins, validates bounded integer settings, runs fixed commands without a shell, and exposes no motor endpoint. Public GitHub Pages displays published results and links to these local instructions; it does not pretend to run server-side training.
-
-Before commercial manufacture, finish independently authored actuator housings and load paths, purchased-part fit, measured inertia and thermal/power design, original-recipe training acceptance, unchanged-weight command-tracking acceptance, and physical validation. These are outstanding engineering tasks.
-
-## Longer trials with new initial conditions
-
-`artifacts/compat_heldout_evaluation.json` records 15 trials of 30 seconds each using seeds 10–12, not the initial geometry-search seeds. All remained upright, but only the six stationary trials met the provisional tracking gate. All nine commanded forward/turn trials failed tracking. In seed 10, a 0.1 m/s command produced only about 0.00004 m/s mean forward velocity; a 0.3 m/s command produced about 0.11648 m/s. Upright stability is not accepted as useful walking. The report specifies body-frame velocity MAE, a one-second warmup exclusion and provisional thresholds.
-
-## 500-iteration official-recipe training result
-
-The 256-environment run completed 500 iterations from initialization and exported normalized ONNX. Its 12 held-out 30-second trials stayed upright, but all nine forward/turn-command trials failed tracking; only stationary trials passed. This policy is not accepted as the default. See `artifacts/training_500.json` and `artifacts/trained_500_evaluation.json`. More training alone is not assumed to solve the problem: command curriculum, rest-state reward balance and the authored dynamics must be examined before another run.
+실물 호환(전압 5 V 재보정, 실제 관성, 케이블, 접촉)과 생산 준비는 별도 미해결 과제입니다.

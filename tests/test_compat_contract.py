@@ -1,28 +1,40 @@
 from pathlib import Path
 import hashlib,json,unittest,xml.etree.ElementTree as E
 R=Path(__file__).resolve().parents[1]
+def sha(path):return hashlib.sha256((R/path).read_bytes()).hexdigest()
 class ContractTests(unittest.TestCase):
-    def test_independent_model_has_policy_interface_without_external_hardware(self):
+    def test_cad_derived_model_has_policy_interface_without_external_hardware(self):
         root=E.parse(R/'models/micro_x_14.xml').getroot();contract=json.loads((R/'engineering/control_interface.json').read_text())
         self.assertEqual([a.get('joint') for a in root.find('actuator')],contract['joint_names']);self.assertEqual(len(contract['joint_names']),14)
         self.assertEqual(contract['observation_size'],3+3+14+14+14+13)
         self.assertFalse(root.findall('.//mesh'));self.assertFalse(root.findall('.//include'));self.assertFalse(any('file' in e.attrib for e in root.iter()))
-        self.assertEqual(len(root.findall('.//gyro')),1)
+        self.assertEqual(len(root.findall('.//gyro')),1);self.assertEqual(root.find('.//body').get('name'),'trunk_base')
+        # Joint pivots in the dynamics model follow the functional interface exactly.
+        rig=json.loads((R/'models/rig.json').read_text());ref={j['name']:j for j in json.loads((R/'engineering/functional_interface.json').read_text())['joints']}
+        for b in rig['bodies']:
+            if b['joint'] in ref:
+                expected=[0.0,0.0,0.125];expected=[e+p for e,p in zip(expected,ref[b['joint']]['pivot_at_home_m'])]
+                self.assertTrue(all(abs(a-c)<1e-6 for a,c in zip(b['pivot_m'],expected)),b['joint'])
+        self.assertGreater(contract['model_mass_kg'],.6);self.assertLess(contract['model_mass_kg'],1.2)
     def test_evaluation_is_current_and_does_not_hide_failures(self):
         data=json.loads((R/'artifacts/compat_evaluation.json').read_text())
-        self.assertEqual(data['model_sha256'],hashlib.sha256((R/'models/micro_x_14.xml').read_bytes()).hexdigest())
+        self.assertEqual(data['model_sha256'],sha('models/micro_x_14.xml'))
         self.assertEqual(data['all_trials_upright'],all(r['first_fall_s'] is None for r in data['results']))
         self.assertFalse(data['complete_compatibility_verified']);self.assertFalse(data['physical_verified'])
+        self.assertIn('tracking_gate_passed',data)
     def test_actor_import_training_export_evidence(self):
         data=json.loads((R/'artifacts/compat_training.json').read_text());self.assertLess(data['initial_actor_max_error'],1e-5);self.assertLess(data['export_max_error'],1e-5)
         self.assertTrue(data['actor_weights_changed']);self.assertFalse(data['upstream_training_recipe_parity'])
         self.assertEqual(data['source_sha256'],json.loads((R/'engineering/policy_sources.json').read_text())['alpha_walking.onnx']['sha256'])
-        self.assertEqual(data['model_sha256'],hashlib.sha256((R/'models/micro_x_14.xml').read_bytes()).hexdigest())
-
-    def test_official_recipe_evidence_matches_model_and_adapter(self):
+        self.assertEqual(data['model_sha256'],sha('models/micro_x_14.xml'))
+    def test_historical_primitive_study_evidence_is_bound_to_its_archived_model(self):
+        archived=sha('models/archive/micro_x_14_primitive_study.xml')
+        for path in ['artifacts/official_recipe_x_validation.json','artifacts/compat_heldout_evaluation.json','artifacts/trained_500_evaluation.json','artifacts/training_500.json']:
+            self.assertEqual(json.loads((R/path).read_text())['model_sha256'],archived,path)
         data=json.loads((R/'artifacts/official_recipe_x_validation.json').read_text())
-        for key,path in [('model_sha256','models/micro_x_14.xml'),('adapter_sha256','tools/train_official_recipe.py')]:
-            self.assertEqual(data[key],hashlib.sha256((R/path).read_bytes()).hexdigest())
-        self.assertEqual(data['exit_code'],0)
-        self.assertTrue(data['finite_output']);self.assertTrue(data['actor_weights_changed'])
-        self.assertFalse(data['learned_locomotion_accepted'])
+        self.assertEqual(data['exit_code'],0);self.assertTrue(data['finite_output']);self.assertTrue(data['actor_weights_changed']);self.assertFalse(data['learned_locomotion_accepted'])
+    def test_interference_report_is_current_and_static_assembly_is_clear(self):
+        inter=json.loads((R/'artifacts/interference.json').read_text());parts=json.loads((R/'artifacts/parts.json').read_text())['parts']
+        for p in parts:self.assertEqual(inter['step_sha256'][p['name']],sha(p['step']))
+        self.assertTrue(inter['assembly_cleared']);self.assertEqual(len(inter['motion']),15)
+if __name__=='__main__':unittest.main()

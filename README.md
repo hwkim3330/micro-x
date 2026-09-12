@@ -1,85 +1,65 @@
-# MICRO X
+# MICRO X — Rev A
 
-**현재 목표: Microduck 제어·가중치·학습 인터페이스와 호환되는 상업용 독자 기구.** 원본 CAD로 복귀하는 방향은 취소했습니다. [14축 호환 개발과 실제 실패 포함 시험 기록](docs/COMPATIBILITY.md)
+**소유자 hwkim3330이 제작·판매를 목표로 개발하는 상업용 독자 설계 치비 티렉스 로봇.** Microduck의 14축 정책 인터페이스(61 관측 → 14 행동, 50 Hz)를 그대로 쓰지만 기구·외장·서보 배치·전장 자리는 새로 설계했습니다. 비상업 호환 시험기 [Micro Rex](https://github.com/hwkim3330/micro-rex)는 별도 저장소로 보존합니다.
 
-![Micro X — actual CAD, mint and cream T-rex](artifacts/readme_hero.png)
+[![Micro X Rev A — 실제 CAD 렌더](artifacts/readme_hero.png)](https://hwkim3330.github.io/micro-x/web/)
 
-**소유자 hwkim3330가 제작·판매할 상업용 독자 설계 티렉스입니다.** 비상업 조건의 Micro Rex와 별도 프로젝트입니다. **현재 P0 외형·조립 설계이며, 완성된 구동 로봇이나 양산 승인품은 아닙니다.**
+[제품 페이지 · 3D 뷰어](https://hwkim3330.github.io/micro-x/web/) · [학습 Lab](https://hwkim3330.github.io/micro-x/web/lab.html) · [보행 실험](https://hwkim3330.github.io/micro-x/web/simulator.html) · [설계 설명](docs/DESIGN_REVA.md) · [목표와 진행 기준](PROJECT_GOAL.md)
 
-[제품 개발 페이지](https://hwkim3330.github.io/micro-x/) · **[14축 가중치·학습 Lab](https://hwkim3330.github.io/micro-x/web/lab.html#compatibility)** · [목표와 진행 기준](PROJECT_GOAL.md) · [출처와 권리](docs/PROVENANCE.md)
+**현재 단계: Rev A 구동 설계 · 디지털 검증.** 출력·조립·보행·내구의 실물 검증은 아직 없으며, 판매 가능 완제품이 아닙니다.
 
-기존 [Micro Rex 비상업 시제품](https://github.com/hwkim3330/micro-rex)은 별도 보존합니다. 이 저장소의 CAD는 독립적인 치수와 기본 형상으로 새로 생성하며, Microduck 원본 메시·CAD·하드웨어 XML을 포함하지 않습니다. 별도 14관절 연구에는 출처를 명시한 기능적 관절 치수와 축 측정값을 사용하며, 학습 소프트웨어와 가중치는 별도 라이선스로 로컬에 내려받습니다.
+## Rev A에서 바뀐 것
 
-## 제공 파일
+| | P0 (이전) | Rev A |
+|---|---|---|
+| 기구 | 다리 고정 외형 모델 14부품 | **15서보 구동 기구**: 브래킷·컵·클레비스 판, 배터리 트레이, 보드 벽, 카메라 벽 포함 21개 출력 부품 |
+| 외형 | 긴 주둥이, 판형 다리 | **치비 비율**: 머리 100×80×74 mm, 알 몸통, Ø30 돔 눈, 82×48 mm 발 |
+| 동역학 모델 | 원시 도형 + 가정 질량 | **CAD 메시에서 계산한 링크별 질량·관성** (`cad/compat_model.py`) |
+| 검증 | 기본 자세 겹침만 | 기본 자세 겹침 0 + **관절 15개 가동 샘플 충돌 0** |
+| 웹 | 부품 뷰어 + 1축 턱 학습 | 관절 조작·보행 기록 재생 뷰어, **14축 학습 스튜디오**(학습·평가·비교·ONNX), 실제 CAD 위에서 도는 시뮬레이터 |
 
-- `cad/build.py`: 독자적인 매개변수 CAD 생성기 (mm).
-- `models/micro_x.step`, `models/micro_x.glb`: 전체 외형 조립체.
-- `models/step/`, `models/print/`: 부품별 STEP 및 출력 방향을 정리한 STL.
-- `artifacts/drawings.pdf`, `artifacts/bom.csv`: 부품 도면 및 잠정 BOM.
-- `artifacts/validation.json`: 닫힌 메시·출력 범위 검사. 물리적 제작 검증과 구분합니다.
-- 웹페이지: 실제 모델 회전·분해·부품 선택·턱 자세 시연·파일 다운로드·가정 기반 원가 비교.
+## 숫자로 보는 Rev A
 
-## 이번 X 디자인
+| 항목 | 값 | 출처 |
+|---|---|---|
+| 출력 부품 | 21개, 421.6 g (PLA 꽉 찬 기준; 실제 인필은 더 가벼움) | `artifacts/parts.json` |
+| 구매품 | 서보 15 × 18 g, 배터리 100 g, 보드 30 g, 카메라 4 g = 404 g | 카탈로그 질량 |
+| 모델 총질량 | 825 g (Microduck 780 g) | `artifacts/balance.json` |
+| HOME 정적 여유 | 무게중심이 발바닥 지지영역 안 30.6 mm | `artifacts/balance.json` |
+| 간섭 | 정적 겹침 0 / 관절별 가동 샘플 충돌 0 (1 mm³ 기준) | `artifacts/interference.json` |
+| 공식 가중치 시험 | 15회 모두 10초 직립, 속도·방향 기준 통과 6회(정지·서기). 전진 0.3 m/s 명령에 0.11 m/s와 요 드리프트 | `artifacts/compat_evaluation.json` |
+| 원가 계산기 기본값 | 15 × $27.49 + $110 + $45, 수율 95 % ≈ $597 (소매가 기준, 견적 아님) | `docs/COST.md` |
 
-주둥이를 22 mm 줄이고 머리·꼬리를 곡면으로 다듬었습니다. 상체 위치를 24 mm 낮추고 다리 길이를 맞췄으며, 큰 크림색 눈과 민트·크림 배색을 적용했습니다. README 이미지는 이 저장소의 실제 14개 CAD 부품을 렌더링한 것입니다.
+전진 명령 추종 미달은 원본 Microduck 모델에서도 같은 하네스로 나타나는 현상이며([Micro Rex 비교](https://github.com/hwkim3330/micro-rex)), X 기구만의 결함으로 해석하지 않습니다. 보행 합격 기준과 학습 계획은 [COMPATIBILITY.md](docs/COMPATIBILITY.md)에 있습니다.
 
-STEP를 내보낸 뒤 다시 읽어 유효한 입체인지 검사합니다. 기본 자세 부품 간 겹침과 0–20° 턱의 2° 간격 검사에서 겹침이 없습니다. 출력 형상만 계산한 무게중심의 정적 지지영역 여유는 약 32.15 mm입니다. 배터리·모터·나사·변형을 제외한 값이며 전체 로봇의 안정성이나 내구성 검증은 아닙니다. [계산 기록](artifacts/balance.json)
+## 설계 개요
 
-## 직접 학습하는 웹
-
-Lab에서 구조 레이어를 살펴보고 가상 턱 정책을 브라우저에서 직접 학습·평가·실행·저장·불러오기 할 수 있습니다. 음성 합성과 턱 표현도 제공합니다. Hugging Face의 Simulator·Anatomy·3D Voice를 인터랙션 참고로 삼아 독자 구현했습니다.
-
-현재 학습 범위는 정규화된 **가상 턱 1축 제어**입니다. 별도 14축 동역학 연구에서는 공식 가중치 실행과 같은 신경망의 PPO 학습·ONNX 내보내기를 구현했습니다. 보행 호환 및 원본 전체 학습 설정의 동일성은 아직 미달입니다. [학습 환경, 참고 링크, 테스트 방법](docs/LAB.md)
-
-[실제 보행 조작 화면](https://hwkim3330.github.io/micro-x/web/simulator.html)에서는 로컬 서버의 MuJoCo·BAM·공식 ONNX로 움직임을 계산합니다. 공개 페이지는 정지 미리 보기이며, 제품 외장과 별도인 14관절 동역학 모델을 표시합니다. [Pollen 전체 구성 조사와 적용 판단](docs/POLLEN_STACK_REVIEW.md)
+- **관절**: 좌우 고관절 요·롤·피치, 무릎, 발목(10) + 목 피치, 머리 피치·요·롤(4) + 턱(1). 피벗·축은 `engineering/functional_interface.json`.
+- **서보 배치 규칙**: 몸체는 한 링크의 포켓에, 혼·아이들러 판 두 장은 이웃 링크에. 모든 관절 양단 지지. XL330급 인터페이스 치수와 발주 전 확인 항목은 `engineering/actuator_interface.json`.
+- **패키징**: 배터리(NP-F550급)는 꼬리 커버 안 트레이, 컴퓨트 보드는 가슴 그릴 뒤 세워 장착, 카메라는 주둥이 안 카메라 벽.
+- **가동 범위(Rev A 기구 한계)**: 고관절 롤 HOME ±10°, 목 피치 뒤로 -0.2 rad, 머리 롤 ±12°, 턱 0.35 rad. 이 범위 밖은 시뮬레이션 관절 한계로 막습니다.
+- 자세한 원칙·남은 일: [DESIGN_REVA.md](docs/DESIGN_REVA.md) · 조립 순서: [ASSEMBLY.md](docs/ASSEMBLY.md)
 
 ## 재생성
 
 ```sh
-python3 -m pip install -r requirements.txt
-python3 cad/build.py
-python3 cad/coupons.py
-python3 tools/interference.py
-python3 tools/jaw_clearance.py
-python3 tools/documents.py
-python3 tools/camera_fit.py
-python3 tools/balance.py
-python3 tools/validate.py
-python3 -m unittest discover -s tests -v
-npm ci
-npm test
-node --test tests/learning.test.mjs
-node tools/test-lab.mjs
-node tools/portrait.mjs
-python3 -m http.server 5191
-```
+uv venv --python 3.11 .venv && uv pip install --python .venv/bin/python -r requirements.txt
+.venv/bin/python cad/build.py            # 21 STEP/STL + GLB 리그 + parts.json
+.venv/bin/python cad/compat_model.py     # models/micro_x_14.xml, models/rig.json
+.venv/bin/python tools/interference.py   # 정적 + 관절 가동 샘플 간섭
+.venv/bin/python tools/balance.py
+.venv/bin/python tools/documents.py      # drawings.pdf, bom.csv
+.venv/bin/python tools/validate.py && .venv/bin/python -m unittest discover -s tests
 
-[조립 문서](docs/ASSEMBLY.md)에 체결 좌표와 미해결 연결부를 기록했습니다. 현재 목·머리의 최종 체결 및 꼬리의 실물 끼워맞춤, 구동부, 간섭 검증, 실물 시험이 남아 있습니다. 이 상태로 양산 발주하거나 완성 로봇으로 판매할 수 있다는 뜻이 아닙니다.
+uv venv --python 3.12 .venv-policy && uv pip install --python .venv-policy/bin/python -r requirements-policy.txt
+.venv-policy/bin/python tools/fetch_compat.py
+.venv-policy/bin/python tools/evaluate_compat.py --seconds 10 --seeds 3
+.venv-policy/bin/python runtime/training_service.py   # Lab 학습·평가·시뮬레이터 http://127.0.0.1:5201/web/lab.html
+
+npm ci && node --test tests/learning.test.mjs
+CHROME_PATH=/path/to/chrome node tools/test-web.mjs && node tools/test-lab.mjs && node tools/test-simulator.mjs && node tools/test-compat-web.mjs
+```
 
 ## 권리와 판매 방향
 
-원본 기구·CAD 생성 소스·모델·도면은 소유자 권리를 유보합니다. **소유자의 원본 설계 상업 이용·제작·판매를 금지하는 비상업 라이선스가 아닙니다.** 공개 저장소 열람이 제3자에게 추가적인 제조·판매 허락을 뜻하지는 않습니다. 웹과 일반 도구 코드는 MIT, Three.js는 원래 MIT 조건을 유지합니다. 상세 범위는 [LICENSE](LICENSE), [THIRD_PARTY.md](THIRD_PARTY.md)를 따릅니다. 제품 이름과 독자 설계의 권리 검토는 상용 출시 전에 별도로 필요합니다.
-
-## 두 발 티렉스에 집중
-
-사용자 요청에 따라 Q4는 공개 모델 선택에서 내렸습니다. 기존 CAD는 설계 기록으로 보존하며, 예전 Q4 웹 링크는 B2로 연결됩니다. 현재 이 저장소에서는 **상업용 Micro X의 독자 설계와 제품화**에 집중합니다. Micro Rex의 관절·가중치 호환 시험 결과를 X의 성능으로 주장하지 않습니다. 저가형 Nano Rex는 후속 단계입니다.
-
-[플랫폼 요구사항과 하중 검토](docs/PLATFORMS.md) · [Q4 CAD](models/q4/micro_x_q4.step) · [검사 기록](artifacts/q4_validation.json)
-
-```sh
-python3 tools/platform_screen.py
-```
-
-## 표정과 고정 구조 개선
-
-눈동자·하이라이트는 GLB의 도색 표현이며 추가 소형 부품이 아닙니다. 눈 부품을 안쪽 M3 나사와 일체형 받침판으로 고정하도록 변경했고 팔·팔 고정부·돌출 발톱을 제거하고 둥근 발바닥으로 정리했습니다. 고정력·반복 수명·낙하·수리 시간은 [시험 목표](engineering/acceptance.json)로 관리하며 실물 통과값은 아직 없습니다. [설계 상세](docs/DESIGN_QUALITY.md)
-
-## 카메라와 음성
-
-기본형은 **중앙 카메라 1개 + 표정용 눈 2개**입니다. 눈은 카메라가 아닙니다. 카메라 2개는 깊이 인식이 필요한 별도 스테레오 버전으로 보류하며, 현재 구현된 기능으로 표시하지 않습니다. [버전 기준과 검증 조건](engineering/camera_variants.json)
-
-Camera Module 3 Standard의 제조사 장착 치수에 맞춘 독자 브래킷과 코의 렌즈 포트를 추가했습니다. 현재 B2는 14개 출력 부품입니다. 로컬 장치 서비스는 명시적으로 활성화한 촬영·마이크 샘플·합성 울음소리 재생을 지원하며 실제 로봇 검증은 아직 없습니다. [기능 상태·비교·실행 방법](docs/FUNCTIONS.md)
-
-### 실제 실행 보드
-
-개발용 Pi 5 4GB → 제품 검토용 CM5 4GB를 우선 후보로 정했습니다. 보행·행동 계산은 로봇 내부, 학습은 PC에서 실행하는 구조입니다. [배선 구상·전체 신경망 CPU 실측·미검증 항목](docs/ONBOARD_COMPUTE.md)을 확인하세요. 실제 보드·전원 검증 전이며 기존 7.4 V BAM 실험은 XL330의 실물 전원 사양이 아닙니다.
+원본 기구·CAD 생성 소스·모델·도면은 소유자 권리를 유보합니다(소유자의 상업 이용을 제한하는 비상업 라이선스가 아닙니다). 웹·도구 코드는 MIT, Three.js는 MIT. 공식 추론 코드·가중치(Apache-2.0)는 저장소에 재배포하지 않고 로컬 캐시에만 내려받습니다. 상세: [LICENSE](LICENSE) · [THIRD_PARTY.md](THIRD_PARTY.md) · [PROVENANCE.md](docs/PROVENANCE.md). 제품명·디자인 권리 검토와 공급자 견적은 출시 전 별도 게이트입니다.

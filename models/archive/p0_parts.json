@@ -1,0 +1,198 @@
+[
+  {
+    "name": "torso_lower",
+    "group": "torso",
+    "note": "4 \u00d7 M3 pilot \u00d82.6 at (-25/15, \u00b122), z143\u2013156. Verify self-tapping screw fit in coupon.",
+    "dimensions_mm": [
+      111.0,
+      88.0,
+      56.99
+    ],
+    "volume_mm3": 49289.94,
+    "mass_g": 61.12,
+    "step": "models/step/torso_lower.step",
+    "stl": "models/print/torso_lower.stl"
+  },
+  {
+    "name": "torso_upper",
+    "group": "torso",
+    "note": "4 \u00d7 \u00d83.4 clearance. Roof access; remove four M3 screws for servicing.",
+    "dimensions_mm": [
+      103.69,
+      79.05,
+      33.0
+    ],
+    "volume_mm3": 26024.05,
+    "mass_g": 32.27,
+    "step": "models/step/torso_upper.step",
+    "stl": "models/print/torso_upper.stl"
+  },
+  {
+    "name": "hindleg_left",
+    "group": "legs",
+    "note": "Fixed display leg; lateral M3 through bolts. No motor/locomotion claim.",
+    "dimensions_mm": [
+      69.94,
+      18.0,
+      110.79
+    ],
+    "volume_mm3": 33011.96,
+    "mass_g": 40.93,
+    "step": "models/step/hindleg_left.step",
+    "stl": "models/print/hindleg_left.stl"
+  },
+  {
+    "name": "foot_left",
+    "group": "legs",
+    "note": "M3 ankle bolt, rounded continuous sole without decorative claws. Support under lug overhangs. Impact strength untested.",
+    "dimensions_mm": [
+      73.0,
+      42.0,
+      26.0
+    ],
+    "volume_mm3": 25826.78,
+    "mass_g": 32.03,
+    "step": "models/step/foot_left.step",
+    "stl": "models/print/foot_left.stl"
+  },
+  {
+    "name": "hindleg_right",
+    "group": "legs",
+    "note": "Fixed display leg; lateral M3 through bolts. No motor/locomotion claim.",
+    "dimensions_mm": [
+      69.94,
+      18.0,
+      110.79
+    ],
+    "volume_mm3": 33011.96,
+    "mass_g": 40.93,
+    "step": "models/step/hindleg_right.step",
+    "stl": "models/print/hindleg_right.stl"
+  },
+  {
+    "name": "foot_right",
+    "group": "legs",
+    "note": "M3 ankle bolt, rounded continuous sole without decorative claws. Support under lug overhangs. Impact strength untested.",
+    "dimensions_mm": [
+      73.0,
+      42.0,
+      26.0
+    ],
+    "volume_mm3": 25826.78,
+    "mass_g": 32.03,
+    "step": "models/step/foot_right.step",
+    "stl": "models/print/foot_right.stl"
+  },
+  {
+    "name": "neck_cradle",
+    "group": "neck",
+    "note": "Appearance bridge; head actuation cartridge not yet integrated.",
+    "dimensions_mm": [
+      20.0,
+      24.0,
+      51.0
+    ],
+    "volume_mm3": 8493.82,
+    "mass_g": 10.53,
+    "step": "models/step/neck_cradle.step",
+    "stl": "models/print/neck_cradle.stl"
+  },
+  {
+    "name": "eye_left",
+    "group": "head",
+    "note": "Rear M3 plastic thread-forming screw through skull \u00d83.4, eye pilot \u00d82.6 \u00d7 7 deep. Plate 2 mm; shaft \u00d810. Pull-out/torque test pending. Pupil graphics are paint intent.",
+    "dimensions_mm": [
+      27.99,
+      24.99,
+      28.0
+    ],
+    "volume_mm3": 8655.62,
+    "mass_g": 10.73,
+    "step": "models/step/eye_left.step",
+    "stl": "models/print/eye_left.stl"
+  },
+  {
+    "name": "eye_right",
+    "group": "head",
+    "note": "Rear M3 plastic thread-forming screw through skull \u00d83.4, eye pilot \u00d82.6 \u00d7 7 deep. Plate 2 mm; shaft \u00d810. Pull-out/torque test pending. Pupil graphics are paint intent.",
+    "dimensions_mm": [
+      27.99,
+      24.99,
+      28.0
+    ],
+    "volume_mm3": 8655.62,
+    "mass_g": 10.73,
+    "step": "models/step/eye_right.step",
+    "stl": "models/print/eye_right.stl"
+  },
+  {
+    "name": "camera_carrier",
+    "group": "head",
+    "note": "CM3 Standard: 4 x M2 clear \u00d82.2 at Y\u00b110.5/Z187.6,200.1. PCB rear X122. Side M3 carrier holes X115.5/Z197. Manufacturer layout used; fit and optical tests pending.",
+    "dimensions_mm": [
+      10.5,
+      29.0,
+      26.75
+    ],
+    "volume_mm3": 1272.97,
+    "mass_g": 1.58,
+    "step": "models/step/camera_carrier.step",
+    "stl": "models/print/camera_carrier.stl"
+  },
+  {
+    "name": "skull",
+    "group": "head",
+    "note": "Open underside hollow skull, \u00d83.4 jaw hinge holes. CM3 carrier side posts and lower-lip service relief; hardware fit pending.",
+    "dimensions_mm": [
+      90.0,
+      78.01,
+      72.45
+    ],
+    "volume_mm3": 44923.15,
+    "mass_g": 55.7,
+    "step": "models/step/skull.step",
+    "stl": "models/print/skull.stl"
+  },
+  {
+    "name": "jaw",
+    "group": "jaw",
+    "note": "Two M3 hinge bolts. Manual pose prototype; powered linkage and pinch protection pending.",
+    "dimensions_mm": [
+      82.0,
+      70.0,
+      20.99
+    ],
+    "volume_mm3": 27847.29,
+    "mass_g": 34.53,
+    "step": "models/step/jaw.step",
+    "stl": "models/print/jaw.stl"
+  },
+  {
+    "name": "tail_left",
+    "group": "tail",
+    "note": "M3 seam bolts at X -102/-146, Z122/113; two axial M3 mount holes at Y \u00b18, Z129. Physical fit unverified.",
+    "dimensions_mm": [
+      122.0,
+      17.0,
+      42.35
+    ],
+    "volume_mm3": 10094.14,
+    "mass_g": 12.52,
+    "step": "models/step/tail_left.step",
+    "stl": "models/print/tail_left.stl"
+  },
+  {
+    "name": "tail_right",
+    "group": "tail",
+    "note": "M3 seam bolts at X -102/-146, Z122/113; two axial M3 mount holes at Y \u00b18, Z129. Physical fit unverified.",
+    "dimensions_mm": [
+      122.0,
+      17.0,
+      42.35
+    ],
+    "volume_mm3": 10094.16,
+    "mass_g": 12.52,
+    "step": "models/step/tail_right.step",
+    "stl": "models/print/tail_right.stl"
+  }
+]

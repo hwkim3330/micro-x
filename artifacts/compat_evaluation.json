@@ -4,7 +4,7 @@
   "observation_size": 61,
   "action_size": 14,
   "control_hz": 50,
-  "model_sha256": "8d9ae27ff7a8ec464f958b4fec88c38c8a200d7f34eb98d6a745c2a722cc1122",
+  "model_sha256": "e7d4cea6fd7e4cea5174983317c1926ec7a7331752cc2466b9a2a0098c92760d",
   "weights": {
     "infer_policy.py": {
       "url": "https://raw.githubusercontent.com/pollen-robotics/microduck_rl/2b25a48b08f1f17bc38c90bb03144c81fbd9ed07/scripts/infer_policy.py",
@@ -38,233 +38,387 @@
       "seed": 0,
       "duration_s": 10.0,
       "first_fall_s": null,
-      "max_tilt_degrees": 1.41,
-      "final_xy_m": [
-        0.0018,
-        0.0
-      ],
-      "finite": true
-    },
-    {
-      "policy": "alpha_walking",
-      "command": [
-        0,
-        0,
-        0
-      ],
-      "seed": 1,
-      "duration_s": 10.0,
-      "first_fall_s": null,
-      "max_tilt_degrees": 1.44,
-      "final_xy_m": [
-        0.0016,
-        0.0002
-      ],
-      "finite": true
-    },
-    {
-      "policy": "alpha_walking",
-      "command": [
-        0,
-        0,
-        0
-      ],
-      "seed": 2,
-      "duration_s": 10.0,
-      "first_fall_s": null,
-      "max_tilt_degrees": 1.48,
+      "max_tilt_degrees": 0.29,
       "final_xy_m": [
         0.0014,
         0.0001
       ],
-      "finite": true
+      "finite": true,
+      "mean_body_velocity": [
+        6e-05,
+        -0.0,
+        0.00011
+      ],
+      "tracking_mae": [
+        6e-05,
+        0.0,
+        0.00011
+      ],
+      "tracking_gate_passed": true
     },
     {
       "policy": "alpha_walking",
       "command": [
-        0.1,
         0,
-        0
-      ],
-      "seed": 0,
-      "duration_s": 10.0,
-      "first_fall_s": null,
-      "max_tilt_degrees": 1.85,
-      "final_xy_m": [
-        0.0046,
-        0.0002
-      ],
-      "finite": true
-    },
-    {
-      "policy": "alpha_walking",
-      "command": [
-        0.1,
         0,
         0
       ],
       "seed": 1,
       "duration_s": 10.0,
       "first_fall_s": null,
-      "max_tilt_degrees": 1.91,
+      "max_tilt_degrees": 0.37,
       "final_xy_m": [
-        0.0044,
+        0.0012,
         0.0004
       ],
-      "finite": true
+      "finite": true,
+      "mean_body_velocity": [
+        6e-05,
+        -0.0,
+        7e-05
+      ],
+      "tracking_mae": [
+        6e-05,
+        0.0,
+        9e-05
+      ],
+      "tracking_gate_passed": true
     },
     {
       "policy": "alpha_walking",
       "command": [
-        0.1,
+        0,
         0,
         0
       ],
       "seed": 2,
       "duration_s": 10.0,
       "first_fall_s": null,
-      "max_tilt_degrees": 1.9,
-      "final_xy_m": [
-        0.0042,
-        0.0004
-      ],
-      "finite": true
-    },
-    {
-      "policy": "alpha_walking",
-      "command": [
-        0.3,
-        0,
-        0
-      ],
-      "seed": 0,
-      "duration_s": 10.0,
-      "first_fall_s": null,
-      "max_tilt_degrees": 3.05,
-      "final_xy_m": [
-        0.7846,
-        0.6199
-      ],
-      "finite": true
-    },
-    {
-      "policy": "alpha_walking",
-      "command": [
-        0.3,
-        0,
-        0
-      ],
-      "seed": 1,
-      "duration_s": 10.0,
-      "first_fall_s": null,
-      "max_tilt_degrees": 2.99,
-      "final_xy_m": [
-        0.8199,
-        0.5978
-      ],
-      "finite": true
-    },
-    {
-      "policy": "alpha_walking",
-      "command": [
-        0.3,
-        0,
-        0
-      ],
-      "seed": 2,
-      "duration_s": 10.0,
-      "first_fall_s": null,
-      "max_tilt_degrees": 2.98,
-      "final_xy_m": [
-        0.8065,
-        0.6094
-      ],
-      "finite": true
-    },
-    {
-      "policy": "alpha_walking",
-      "command": [
-        0,
-        0,
-        0.3
-      ],
-      "seed": 0,
-      "duration_s": 10.0,
-      "first_fall_s": null,
-      "max_tilt_degrees": 1.42,
-      "final_xy_m": [
-        0.0036,
-        0.0003
-      ],
-      "finite": true
-    },
-    {
-      "policy": "alpha_walking",
-      "command": [
-        0,
-        0,
-        0.3
-      ],
-      "seed": 1,
-      "duration_s": 10.0,
-      "first_fall_s": null,
-      "max_tilt_degrees": 1.5,
-      "final_xy_m": [
-        0.0035,
-        0.0005
-      ],
-      "finite": true
-    },
-    {
-      "policy": "alpha_walking",
-      "command": [
-        0,
-        0,
-        0.3
-      ],
-      "seed": 2,
-      "duration_s": 10.0,
-      "first_fall_s": null,
-      "max_tilt_degrees": 1.49,
-      "final_xy_m": [
-        0.0033,
-        0.0005
-      ],
-      "finite": true
-    },
-    {
-      "policy": "alpha_stand",
-      "command": [
-        0,
-        0,
-        0
-      ],
-      "seed": 0,
-      "duration_s": 10.0,
-      "first_fall_s": null,
-      "max_tilt_degrees": 2.52,
-      "final_xy_m": [
-        0.0013,
-        -0.0002
-      ],
-      "finite": true
-    },
-    {
-      "policy": "alpha_stand",
-      "command": [
-        0,
-        0,
-        0
-      ],
-      "seed": 1,
-      "duration_s": 10.0,
-      "first_fall_s": null,
-      "max_tilt_degrees": 2.56,
+      "max_tilt_degrees": 0.43,
       "final_xy_m": [
         0.001,
-        -0.0001
+        0.0003
       ],
-      "finite": true
+      "finite": true,
+      "mean_body_velocity": [
+        6e-05,
+        -0.0,
+        8e-05
+      ],
+      "tracking_mae": [
+        6e-05,
+        0.0,
+        0.00011
+      ],
+      "tracking_gate_passed": true
+    },
+    {
+      "policy": "alpha_walking",
+      "command": [
+        0.1,
+        0,
+        0
+      ],
+      "seed": 0,
+      "duration_s": 10.0,
+      "first_fall_s": null,
+      "max_tilt_degrees": 0.33,
+      "final_xy_m": [
+        0.0056,
+        0.0003
+      ],
+      "finite": true,
+      "mean_body_velocity": [
+        0.00011,
+        -1e-05,
+        3e-05
+      ],
+      "tracking_mae": [
+        0.09989,
+        1e-05,
+        0.00011
+      ],
+      "tracking_gate_passed": false
+    },
+    {
+      "policy": "alpha_walking",
+      "command": [
+        0.1,
+        0,
+        0
+      ],
+      "seed": 1,
+      "duration_s": 10.0,
+      "first_fall_s": null,
+      "max_tilt_degrees": 0.41,
+      "final_xy_m": [
+        0.0054,
+        0.0005
+      ],
+      "finite": true,
+      "mean_body_velocity": [
+        0.00011,
+        -1e-05,
+        -0.0
+      ],
+      "tracking_mae": [
+        0.09989,
+        1e-05,
+        0.0001
+      ],
+      "tracking_gate_passed": false
+    },
+    {
+      "policy": "alpha_walking",
+      "command": [
+        0.1,
+        0,
+        0
+      ],
+      "seed": 2,
+      "duration_s": 10.0,
+      "first_fall_s": null,
+      "max_tilt_degrees": 0.47,
+      "final_xy_m": [
+        0.0052,
+        0.0004
+      ],
+      "finite": true,
+      "mean_body_velocity": [
+        0.00011,
+        -0.0,
+        2e-05
+      ],
+      "tracking_mae": [
+        0.09989,
+        0.0,
+        0.00013
+      ],
+      "tracking_gate_passed": false
+    },
+    {
+      "policy": "alpha_walking",
+      "command": [
+        0.3,
+        0,
+        0
+      ],
+      "seed": 0,
+      "duration_s": 10.0,
+      "first_fall_s": null,
+      "max_tilt_degrees": 2.83,
+      "final_xy_m": [
+        0.8228,
+        0.4137
+      ],
+      "finite": true,
+      "mean_body_velocity": [
+        0.1093,
+        -0.00402,
+        0.11686
+      ],
+      "tracking_mae": [
+        0.1907,
+        0.10741,
+        0.53896
+      ],
+      "tracking_gate_passed": false
+    },
+    {
+      "policy": "alpha_walking",
+      "command": [
+        0.3,
+        0,
+        0
+      ],
+      "seed": 1,
+      "duration_s": 10.0,
+      "first_fall_s": null,
+      "max_tilt_degrees": 2.87,
+      "final_xy_m": [
+        0.7635,
+        0.4684
+      ],
+      "finite": true,
+      "mean_body_velocity": [
+        0.10862,
+        -0.00063,
+        0.12617
+      ],
+      "tracking_mae": [
+        0.19138,
+        0.10713,
+        0.54254
+      ],
+      "tracking_gate_passed": false
+    },
+    {
+      "policy": "alpha_walking",
+      "command": [
+        0.3,
+        0,
+        0
+      ],
+      "seed": 2,
+      "duration_s": 10.0,
+      "first_fall_s": null,
+      "max_tilt_degrees": 2.63,
+      "final_xy_m": [
+        0.8173,
+        0.4518
+      ],
+      "finite": true,
+      "mean_body_velocity": [
+        0.11041,
+        -0.00263,
+        0.10678
+      ],
+      "tracking_mae": [
+        0.18959,
+        0.10729,
+        0.53934
+      ],
+      "tracking_gate_passed": false
+    },
+    {
+      "policy": "alpha_walking",
+      "command": [
+        0,
+        0,
+        0.3
+      ],
+      "seed": 0,
+      "duration_s": 10.0,
+      "first_fall_s": null,
+      "max_tilt_degrees": 0.8,
+      "final_xy_m": [
+        0.004,
+        0.0004
+      ],
+      "finite": true,
+      "mean_body_velocity": [
+        0.00012,
+        -2e-05,
+        0.00091
+      ],
+      "tracking_mae": [
+        0.00012,
+        2e-05,
+        0.29909
+      ],
+      "tracking_gate_passed": false
+    },
+    {
+      "policy": "alpha_walking",
+      "command": [
+        0,
+        0,
+        0.3
+      ],
+      "seed": 1,
+      "duration_s": 10.0,
+      "first_fall_s": null,
+      "max_tilt_degrees": 0.82,
+      "final_xy_m": [
+        0.0038,
+        0.0006
+      ],
+      "finite": true,
+      "mean_body_velocity": [
+        0.00011,
+        -2e-05,
+        0.00081
+      ],
+      "tracking_mae": [
+        0.00011,
+        2e-05,
+        0.29919
+      ],
+      "tracking_gate_passed": false
+    },
+    {
+      "policy": "alpha_walking",
+      "command": [
+        0,
+        0,
+        0.3
+      ],
+      "seed": 2,
+      "duration_s": 10.0,
+      "first_fall_s": null,
+      "max_tilt_degrees": 0.83,
+      "final_xy_m": [
+        0.0037,
+        0.0006
+      ],
+      "finite": true,
+      "mean_body_velocity": [
+        0.00011,
+        -2e-05,
+        0.00076
+      ],
+      "tracking_mae": [
+        0.00011,
+        2e-05,
+        0.29924
+      ],
+      "tracking_gate_passed": false
+    },
+    {
+      "policy": "alpha_stand",
+      "command": [
+        0,
+        0,
+        0
+      ],
+      "seed": 0,
+      "duration_s": 10.0,
+      "first_fall_s": null,
+      "max_tilt_degrees": 1.34,
+      "final_xy_m": [
+        0.0027,
+        -0.0002
+      ],
+      "finite": true,
+      "mean_body_velocity": [
+        2e-05,
+        -1e-05,
+        0.0002
+      ],
+      "tracking_mae": [
+        2e-05,
+        1e-05,
+        0.0002
+      ],
+      "tracking_gate_passed": true
+    },
+    {
+      "policy": "alpha_stand",
+      "command": [
+        0,
+        0,
+        0
+      ],
+      "seed": 1,
+      "duration_s": 10.0,
+      "first_fall_s": null,
+      "max_tilt_degrees": 1.4,
+      "final_xy_m": [
+        0.0026,
+        0.0
+      ],
+      "finite": true,
+      "mean_body_velocity": [
+        2e-05,
+        -0.0,
+        0.00017
+      ],
+      "tracking_mae": [
+        2e-05,
+        0.0,
+        0.00017
+      ],
+      "tracking_gate_passed": true
     },
     {
       "policy": "alpha_stand",
@@ -276,15 +430,29 @@
       "seed": 2,
       "duration_s": 10.0,
       "first_fall_s": null,
-      "max_tilt_degrees": 2.62,
+      "max_tilt_degrees": 1.46,
       "final_xy_m": [
-        0.0008,
+        0.0024,
         -0.0001
       ],
-      "finite": true
+      "finite": true,
+      "mean_body_velocity": [
+        2e-05,
+        -0.0,
+        0.00017
+      ],
+      "tracking_mae": [
+        2e-05,
+        0.0,
+        0.00017
+      ],
+      "tracking_gate_passed": true
     }
   ],
   "all_trials_upright": true,
   "physical_verified": false,
-  "complete_compatibility_verified": false
+  "complete_compatibility_verified": false,
+  "tracking_protocol": "Exclude first 1 s. Body forward/lateral m/s and body yaw rad/s. Provisional engineering gate: forward MAE <= max(0.03, 25% of command), lateral <=0.03, yaw <=0.10, no fall. These thresholds are targets, not an industry standard.",
+  "tracking_gate_passed": false,
+  "seed_start": 0
 }

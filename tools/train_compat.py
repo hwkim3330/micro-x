@@ -8,7 +8,9 @@ from torch import nn
 R=Path(__file__).resolve().parents[1];sys.path.insert(0,str(R/'runtime'))
 from compat_env import Environment
 from trainable_policy import Actor
-p=argparse.ArgumentParser();p.add_argument('--updates',type=int,default=10);p.add_argument('--steps',type=int,default=256);p.add_argument('--seed',type=int,default=42);args=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--updates',type=int,default=10);p.add_argument('--steps',type=int,default=256);p.add_argument('--seed',type=int,default=42);p.add_argument('--name',default='micro_x_14');args=p.parse_args()
+import re
+if not re.fullmatch(r'[A-Za-z0-9_-]{1,40}',args.name):raise ValueError('Invalid checkpoint name')
 if not 1<=args.updates<=10000 or not 32<=args.steps<=4096:raise ValueError('Invalid training workload')
 torch.set_num_threads(2);torch.manual_seed(args.seed);rng=np.random.default_rng(args.seed)
 source=R/'.cache/compat/alpha_walking.onnx';actor=Actor(source);critic=nn.Sequential(nn.Linear(61,128),nn.ELU(),nn.Linear(128,1));log_std=nn.Parameter(torch.full((14,),-2.5));parameters=list(actor.parameters())+list(critic.parameters())+[log_std];optimizer=torch.optim.Adam(parameters,lr=1e-5)
@@ -36,12 +38,14 @@ for update in range(args.updates):
     returns=advantage+torch.stack(values);advantage=(advantage-advantage.mean())/(advantage.std()+1e-8);x=torch.stack(observations);a=torch.stack(actions);old=torch.stack(old_logp)
     for _ in range(4):
         distribution=torch.distributions.Normal(actor(x),log_std.exp());ratio=(distribution.log_prob(a).sum(-1)-old).exp();policy_loss=-torch.minimum(ratio*advantage,ratio.clamp(.8,1.2)*advantage).mean();value_loss=(critic(x).squeeze(-1)-returns).square().mean();loss=policy_loss+.5*value_loss-.001*distribution.entropy().mean();optimizer.zero_grad();loss.backward();nn.utils.clip_grad_norm_(parameters,.5);optimizer.step()
-    row=dict(update=update+1,mean_reward=round(float(np.mean(rewards)),4),falls=falls,loss=float(loss.detach()));history.append(row);print(row,flush=True)
+    row=dict(update=update+1,mean_reward=round(float(np.mean(rewards)),4),falls=falls,loss=float(loss.detach()),elapsed_s=round(time.time()-started,1));history.append(row);print(row,flush=True)
+    progress=R/'.cache/checkpoints';progress.mkdir(parents=True,exist_ok=True);(progress/'progress.json').write_text(json.dumps(dict(name=args.name,updates=args.updates,steps=args.steps,seed=args.seed,history=history),separators=(',',':')))
 dest=R/'.cache/checkpoints';dest.mkdir(parents=True,exist_ok=True)
-torch.save(dict(actor=actor.state_dict(),critic=critic.state_dict(),log_std=log_std.detach(),optimizer=optimizer.state_dict(),seed=args.seed,source_sha256=hashlib.sha256(source.read_bytes()).hexdigest()),dest/'micro_x_14.pt')
-torch.onnx.export(actor,torch.zeros(1,61),str(dest/'micro_x_14.onnx'),input_names=['obs'],output_names=['actions'],opset_version=17,dynamo=False)
-exported=ort.InferenceSession(str(dest/'micro_x_14.onnx'),providers=['CPUExecutionProvider'])
+torch.save(dict(actor=actor.state_dict(),critic=critic.state_dict(),log_std=log_std.detach(),optimizer=optimizer.state_dict(),seed=args.seed,source_sha256=hashlib.sha256(source.read_bytes()).hexdigest()),dest/f'{args.name}.pt')
+torch.onnx.export(actor,torch.zeros(1,61),str(dest/f'{args.name}.onnx'),input_names=['obs'],output_names=['actions'],opset_version=17,dynamo=False)
+exported=ort.InferenceSession(str(dest/f'{args.name}.onnx'),providers=['CPUExecutionProvider'])
 with torch.no_grad():expected=actor(torch.tensor(samples[:1])).numpy()
 export_error=float(np.max(np.abs(exported.run(None,{'obs':samples[:1]})[0]-expected)));assert export_error<1e-5
-report=dict(model_sha256=env.model_sha256,scope='Independent CPU PPO warm-start/fine-tuning smoke run. Same pretrained 61→512→256→128→14 ELU actor and normalization; not full upstream training recipe parity or locomotion acceptance.',source_sha256=hashlib.sha256(source.read_bytes()).hexdigest(),initial_actor_max_error=max_error,export_max_error=export_error,actor_weights_changed=any(not torch.equal(before,after.detach()) for before,after in zip(initial,actor.parameters())),updates=args.updates,steps_per_update=args.steps,seed=args.seed,elapsed_s=round(time.time()-started,2),history=history,checkpoint_sha256=hashlib.sha256((dest/'micro_x_14.onnx').read_bytes()).hexdigest(),physical_verified=False,upstream_training_recipe_parity=False)
-(R/'artifacts/compat_training.json').write_text(json.dumps(report,indent=2)+'\n')
+report=dict(model_sha256=env.model_sha256,scope='Independent CPU PPO warm-start/fine-tuning smoke run. Same pretrained 61→512→256→128→14 ELU actor and normalization; not full upstream training recipe parity or locomotion acceptance.',source_sha256=hashlib.sha256(source.read_bytes()).hexdigest(),initial_actor_max_error=max_error,export_max_error=export_error,actor_weights_changed=any(not torch.equal(before,after.detach()) for before,after in zip(initial,actor.parameters())),updates=args.updates,steps_per_update=args.steps,seed=args.seed,elapsed_s=round(time.time()-started,2),history=history,checkpoint_sha256=hashlib.sha256((dest/f'{args.name}.onnx').read_bytes()).hexdigest(),checkpoint=f'{args.name}.onnx',physical_verified=False,upstream_training_recipe_parity=False)
+(dest/f'{args.name}.json').write_text(json.dumps(report,indent=2)+'\n')
+if args.name=='micro_x_14':(R/'artifacts/compat_training.json').write_text(json.dumps(report,indent=2)+'\n')

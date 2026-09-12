@@ -1,13 +1,13 @@
 <!doctype html>
-<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Micro X · 실제 보행 실험</title><link rel="stylesheet" href="lab.css"><script type="importmap">{"imports":{"three":"./vendor/three/build/three.module.js"}}</script>
-<style>#simulation-view{height:520px;background:#f0eee4;border-radius:18px;overflow:hidden}#simulation-view canvas{height:100%;border-radius:0}.drive{display:flex;gap:10px;flex-wrap:wrap}.drive button{min-width:70px;min-height:48px;touch-action:none}.drive button:active{background:#c5ddc5}#sim-metrics{font-variant-numeric:tabular-nums}@media(max-width:600px){#simulation-view{height:380px}h1{font-size:32px}}</style></head>
-<body><header><a href="./" class="brand">MICRO <b>X</b></a><a href="lab.html#compatibility">학습 Lab ↗</a></header><main>
-<section class="intro"><div><span class="eyebrow">14관절 동역학 연구</span><h1>명령하고.<br>움직임을 확인하고.</h1></div><p>독자 모델에 공식 보행 정책을 연결합니다. 아래 형상은 동역학 연구용이며 제품 외장 CAD와 다릅니다. 속도·회전 추종은 아직 미달입니다.</p></section>
-<div id="simulation-view" aria-label="Micro X 실제 물리 시뮬레이션 모델"></div>
-<p id="sim-status" role="status">정지 모델을 불러오는 중…</p><p id="sim-metrics">시뮬레이션 시간 0.00초</p>
-<div class="buttons"><button id="sim-reset" disabled>초기화</button><button id="sim-toggle" disabled>실행</button></div>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Micro X · 보행 실험</title><link rel="stylesheet" href="lab.css"><script type="importmap">{"imports":{"three":"./vendor/three/build/three.module.js"}}</script>
+<style>#simulation-view{height:520px;background:#f0eee4;border-radius:18px;overflow:hidden}#simulation-view canvas{display:block}.drive{display:flex;gap:10px;flex-wrap:wrap}.drive button{min-width:70px;min-height:48px;touch-action:none}.drive button:active{background:#c5ddc5}#sim-metrics{font-variant-numeric:tabular-nums}.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}@media(max-width:600px){#simulation-view{height:380px}h1{font-size:32px}}</style></head>
+<body><header><a href="./" class="brand">MICRO <b>X</b></a><a href="lab.html">학습 Lab ↗</a></header><main>
+<section class="intro"><div><span class="eyebrow">14관절 동역학 · 실제 CAD</span><h1>명령하고.<br>움직임을 확인하고.</h1></div><p>새 Rev A CAD에서 질량·관성·접촉을 뽑아 만든 14축 모델에 공식 보행 정책 또는 직접 학습한 체크포인트를 연결합니다. 화면의 로봇은 실제 부품 형상이며, 관절 각도는 MuJoCo 계산값입니다.</p></section>
+<div id="simulation-view" aria-label="Micro X 물리 시뮬레이션"></div>
+<p id="sim-status" role="status">모델을 불러오는 중…</p><p id="sim-metrics">시뮬레이션 시간 0.00초</p>
+<div class="row"><label>정책 <select id="sim-policy" disabled><option value="official">공식 alpha_walking</option></select></label><button id="sim-reset" disabled>초기화</button><button id="sim-toggle" disabled>실행</button><button id="replay-toggle" disabled>기록 재생</button></div>
 <div class="drive" aria-label="누르고 있는 동안 이동"><button data-drive="left" disabled>↶ 좌회전</button><button data-drive="forward" disabled>↑ 전진</button><button data-drive="back" disabled>↓ 후진</button><button data-drive="right" disabled>우회전 ↷</button></div>
 <p>실행 중 방향 버튼을 누르거나 방향키를 사용하세요. 버튼에서 손을 떼면 정지 명령으로 돌아갑니다. 일시정지는 물리 시간도 멈춥니다.</p>
-<p class="scope">공개 페이지는 정지 미리 보기입니다. 실제 조작은 로컬에서 <code>.venv-policy/bin/python runtime/training_service.py</code> 실행 후 <a href="http://127.0.0.1:5201/web/simulator.html">로컬 실험 화면</a>에서 가능합니다. MuJoCo·BAM·ONNX로 계산하며 실물 로봇에는 연결하지 않습니다.</p>
-<p><a href="../artifacts/compat_heldout_evaluation.json">30초 보행 시험 결과 ↗</a> · <a href="../docs/COMPATIBILITY.md">실행 준비와 검증 범위 ↗</a></p>
+<p class="scope">공개 페이지는 저장된 기록을 재생합니다. 실시간 조작은 로컬에서 <code>.venv-policy/bin/python runtime/training_service.py</code> 실행 후 <a href="http://127.0.0.1:5201/web/simulator.html">로컬 실험 화면</a>에서 가능합니다. 실물 로봇에는 연결하지 않습니다.</p>
+<p><a href="../artifacts/compat_evaluation.json">공식 가중치 시험 결과 ↗</a> · <a href="../docs/COMPATIBILITY.md">실행 준비와 검증 범위 ↗</a></p>
 </main><script type="module" src="simulator.js"></script></body></html>

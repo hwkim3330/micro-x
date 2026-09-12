@@ -1,21 +1,46 @@
-part,quantity,material_basis,mass_g,status,file
-torso_lower,1,PLA volume estimate; material not frozen,61.12,P0 prototype,models/step/torso_lower.step
-torso_upper,1,PLA volume estimate; material not frozen,32.27,P0 prototype,models/step/torso_upper.step
-hindleg_left,1,PLA volume estimate; material not frozen,40.93,P0 prototype,models/step/hindleg_left.step
-foot_left,1,PLA volume estimate; material not frozen,32.03,P0 prototype,models/step/foot_left.step
-hindleg_right,1,PLA volume estimate; material not frozen,40.93,P0 prototype,models/step/hindleg_right.step
-foot_right,1,PLA volume estimate; material not frozen,32.03,P0 prototype,models/step/foot_right.step
-neck_cradle,1,PLA volume estimate; material not frozen,10.53,P0 prototype,models/step/neck_cradle.step
-eye_left,1,PLA volume estimate; material not frozen,10.73,P0 prototype,models/step/eye_left.step
-eye_right,1,PLA volume estimate; material not frozen,10.73,P0 prototype,models/step/eye_right.step
-camera_carrier,1,PLA volume estimate; material not frozen,1.58,P0 prototype,models/step/camera_carrier.step
-skull,1,PLA volume estimate; material not frozen,55.7,P0 prototype,models/step/skull.step
-jaw,1,PLA volume estimate; material not frozen,34.53,P0 prototype,models/step/jaw.step
-tail_left,1,PLA volume estimate; material not frozen,12.52,P0 prototype,models/step/tail_left.step
-tail_right,1,PLA volume estimate; material not frozen,12.52,P0 prototype,models/step/tail_right.step
-Eye M3 plastic thread-forming screw,2,Candidate length 8 mm; verify chosen supplier and installed torque,,Prototype fit/pull test required,docs/DESIGN_QUALITY.md
-Eye M3 washer,2,Candidate 1 mm thickness; verify bearing area and actual screw head,,Prototype fit required,docs/DESIGN_QUALITY.md
-Camera carrier M2 screws/nuts/washers,4,Candidate M2 x 10; PCB and nut clearance fit pending,,Not procurement-ready,docs/FUNCTIONS.md
-Camera carrier M3 plastic thread-forming screws,2,Candidate M3 x 10; engagement and torque test pending,,Not procurement-ready,docs/FUNCTIONS.md
-M3 screws and nuts,TBD,Purchased; length/retention audit pending,,Not procurement-ready,docs/ASSEMBLY.md
-Actuators/electronics,TBD,Not integrated,,Architecture decision required,docs/COST.md
+item,quantity,kind,link,basis,mass_g,status,file
+left_yaw2roll,1,printed,left_yaw2roll,PLA solid-equivalent volume; infill and material not frozen,5.66,Rev A digital design,models/step/left_yaw2roll.step
+left_hip,1,printed,left_hip,PLA solid-equivalent volume; infill and material not frozen,18.47,Rev A digital design,models/step/left_hip.step
+left_thigh,1,printed,left_thigh,PLA solid-equivalent volume; infill and material not frozen,18.24,Rev A digital design,models/step/left_thigh.step
+left_shin,1,printed,left_shin,PLA solid-equivalent volume; infill and material not frozen,14.86,Rev A digital design,models/step/left_shin.step
+left_foot,1,printed,left_foot,PLA solid-equivalent volume; infill and material not frozen,35.45,Rev A digital design,models/step/left_foot.step
+right_yaw2roll,1,printed,right_yaw2roll,PLA solid-equivalent volume; infill and material not frozen,5.66,Rev A digital design,models/step/right_yaw2roll.step
+right_hip,1,printed,right_hip,PLA solid-equivalent volume; infill and material not frozen,18.47,Rev A digital design,models/step/right_hip.step
+right_thigh,1,printed,right_thigh,PLA solid-equivalent volume; infill and material not frozen,18.24,Rev A digital design,models/step/right_thigh.step
+right_shin,1,printed,right_shin,PLA solid-equivalent volume; infill and material not frozen,14.86,Rev A digital design,models/step/right_shin.step
+right_foot,1,printed,right_foot,PLA solid-equivalent volume; infill and material not frozen,35.45,Rev A digital design,models/step/right_foot.step
+chassis,1,printed,trunk,PLA solid-equivalent volume; infill and material not frozen,43.34,Rev A digital design,models/step/chassis.step
+torso_shell,1,printed,trunk,PLA solid-equivalent volume; infill and material not frozen,26.81,Rev A digital design,models/step/torso_shell.step
+tail_cover,1,printed,trunk,PLA solid-equivalent volume; infill and material not frozen,32.72,Rev A digital design,models/step/tail_cover.step
+neck_link,1,printed,neck,PLA solid-equivalent volume; infill and material not frozen,14.07,Rev A digital design,models/step/neck_link.step
+head_base,1,printed,head_base,PLA solid-equivalent volume; infill and material not frozen,3.62,Rev A digital design,models/step/head_base.step
+head_yoke,1,printed,head_yoke,PLA solid-equivalent volume; infill and material not frozen,21.11,Rev A digital design,models/step/head_yoke.step
+head_frame,1,printed,head,PLA solid-equivalent volume; infill and material not frozen,16.85,Rev A digital design,models/step/head_frame.step
+skull,1,printed,head,PLA solid-equivalent volume; infill and material not frozen,47.89,Rev A digital design,models/step/skull.step
+eye_left,1,printed,head,PLA solid-equivalent volume; infill and material not frozen,8.12,Rev A digital design,models/step/eye_left.step
+eye_right,1,printed,head,PLA solid-equivalent volume; infill and material not frozen,8.12,Rev A digital design,models/step/eye_right.step
+jaw_beak,1,printed,jaw,PLA solid-equivalent volume; infill and material not frozen,13.62,Rev A digital design,models/step/jaw_beak.step
+servo_left_hip_yaw,1,actuator,trunk,XL330-class smart servo envelope; verify drawing before ordering,18.0,purchased envelope; supplier quote pending,models/purchased/servo_left_hip_yaw.stl
+servo_left_hip_roll,1,actuator,left_yaw2roll,XL330-class smart servo envelope; verify drawing before ordering,18.0,purchased envelope; supplier quote pending,models/purchased/servo_left_hip_roll.stl
+servo_left_hip_pitch,1,actuator,left_thigh,XL330-class smart servo envelope; verify drawing before ordering,18.0,purchased envelope; supplier quote pending,models/purchased/servo_left_hip_pitch.stl
+servo_left_knee,1,actuator,left_shin,XL330-class smart servo envelope; verify drawing before ordering,18.0,purchased envelope; supplier quote pending,models/purchased/servo_left_knee.stl
+servo_left_ankle,1,actuator,left_shin,XL330-class smart servo envelope; verify drawing before ordering,18.0,purchased envelope; supplier quote pending,models/purchased/servo_left_ankle.stl
+servo_neck_pitch,1,actuator,trunk,XL330-class smart servo envelope; verify drawing before ordering,18.0,purchased envelope; supplier quote pending,models/purchased/servo_neck_pitch.stl
+servo_head_pitch,1,actuator,neck,XL330-class smart servo envelope; verify drawing before ordering,18.0,purchased envelope; supplier quote pending,models/purchased/servo_head_pitch.stl
+servo_head_yaw,1,actuator,head_yoke,XL330-class smart servo envelope; verify drawing before ordering,18.0,purchased envelope; supplier quote pending,models/purchased/servo_head_yaw.stl
+servo_head_roll,1,actuator,head_yoke,XL330-class smart servo envelope; verify drawing before ordering,18.0,purchased envelope; supplier quote pending,models/purchased/servo_head_roll.stl
+servo_right_hip_yaw,1,actuator,trunk,XL330-class smart servo envelope; verify drawing before ordering,18.0,purchased envelope; supplier quote pending,models/purchased/servo_right_hip_yaw.stl
+servo_right_hip_roll,1,actuator,right_yaw2roll,XL330-class smart servo envelope; verify drawing before ordering,18.0,purchased envelope; supplier quote pending,models/purchased/servo_right_hip_roll.stl
+servo_right_hip_pitch,1,actuator,right_thigh,XL330-class smart servo envelope; verify drawing before ordering,18.0,purchased envelope; supplier quote pending,models/purchased/servo_right_hip_pitch.stl
+servo_right_knee,1,actuator,right_shin,XL330-class smart servo envelope; verify drawing before ordering,18.0,purchased envelope; supplier quote pending,models/purchased/servo_right_knee.stl
+servo_right_ankle,1,actuator,right_shin,XL330-class smart servo envelope; verify drawing before ordering,18.0,purchased envelope; supplier quote pending,models/purchased/servo_right_ankle.stl
+servo_jaw,1,actuator,head,XL330-class smart servo envelope; verify drawing before ordering,18.0,purchased envelope; supplier quote pending,models/purchased/servo_jaw.stl
+battery_np_f550,1,battery,trunk,NP-F550 class 7.4 V 2600 mAh removable pack; dimensions 70.8 x 38.4 x 20.5 mm nominal,100,purchased envelope; supplier quote pending,models/purchased/battery_np_f550.stl
+compute_board,1,electronics,trunk,Vertical carrier for a compute module (50 x 36 usable outline); PCB placeholder behind the chest grille,30,purchased envelope; supplier quote pending,models/purchased/compute_board.stl
+camera_module_3,1,camera,head,"Raspberry Pi Camera Module 3 Standard class, 25 x 24 mm board",4,purchased envelope; supplier quote pending,models/purchased/camera_module_3.stl
+"M2 x 6 screws, servo horn/idler to clevis plates",120,hardware,,Four per horn and four per idler pattern; confirm thread engagement in the printed plate,,Not procurement-ready,
+"M2 case screws or keeper clips, servo body retention",30,hardware,,Depends on the confirmed XL330 case hole pattern,,Not procurement-ready,
+"M3 x 8 plastic thread-forming screws (shell to chassis, skull to rail, eyes, tail cover)",12,hardware,,Pilot Ø2.6 in printed bosses; coupon test first,,Not procurement-ready,
+16 x 22 x 4 mm bearing (optional hip yaw support),2,hardware,,Optional plain/rolling bearing under each hip yaw plate,,Design option,
+"IMU board, microphone, speaker, wiring, TTL bus adapter, power board",1,hardware,,Not yet placed in CAD; chest board volume reserved,,Architecture decision required,
+TPU sole pads,2,hardware,,Fill the hollow sole underside; durometer to be chosen,,Follow-up,
