@@ -17,7 +17,7 @@ import servo as S
 from appearance import paint
 R=Path(__file__).resolve().parents[1]
 for folder in ['models/step','models/print','artifacts','models/purchased']:(R/folder).mkdir(parents=True,exist_ok=True)
-CREAM=[.96,.92,.84,1];CORAL=[.93,.45,.25,1];GRAPHITE=[.16,.18,.19,1];WHITE=[.99,.99,.97,1];MINT=[.62,.82,.72,1];SLATE=[.22,.24,.26,1]
+CREAM=[.98,.94,.79,1];CORAL=[.98,.94,.79,1];GRAPHITE=[.16,.18,.19,1];WHITE=[.99,.99,.97,1];MINT=[.62,.82,.72,1];SLATE=[.30,.34,.34,1]
 DENSITY=0.00124 # g/mm3 PLA solid-equivalent; slicer mass will be lower
 parts=[];purchased=[]
 
@@ -120,25 +120,29 @@ def build_leg(side):
     th=th.cut(pocket(hp,clearance=.5)).cut(pocket(kn,clearance=.6))
     add(f'{side}_thigh',th,CREAM,f'{side}_thigh','Y' if s>0 else '-Y','Thigh: houses the hip pitch servo, carries the knee horn and idler plates with a tie above the knee servo.')
     # --- shin: inboard spine plate, knee servo rear/bottom walls, upright ankle servo cradle (front wall, bottom, cap)
-    sh=lb(-54.3,-35,21.5,24,-78,-30).union(lb(-35,-9.5,21.5,24,-85.5,-30)).union(lb(-54.3,-51.3,21.5,49,-60.4,-30)).union(lb(-54.3,-33,21.5,49,-63,-60.4))
+    sh=lb(-54.3,-9.5,21.5,49,-86,-30,7).cut(lb(-52.1,-11.7,23.7,50,-84,-28)) # rounded shin shell: front/back/inboard walls + bottom, open outboard side and top
+    sh=sh.union(lb(-54.3,-51.3,21.5,49,-60.4,-30)).union(lb(-54.3,-33,21.5,49,-63,-60.4)).union(lb(-35,-9.5,21.5,49,-86,-83.8)) # knee servo rear wall, bridge, floor
     sh=sh.union(S.cradle(an['P'],an['h'],an['d'],['y+','y-','cap'],wall=2.5)) # cradle follows the leaning ankle servo; open at the top
+    sh=sh.cut(lb(-60,0,20,50,-95,-74)) # keep the shell above the foot's swing
+    sh=sh.cut(lb(-33,0,20,50,-46,-20)) # front of the shell steps down so it clears the hip-pitch servo when the knee bends
     sh=sh.cut(pocket(kn,clearance=.5)).cut(pocket(an,clearance=.5))
     add(f'{side}_shin',sh,CREAM,f'{side}_shin','Y' if s>0 else '-Y','Shin: spine plate with knee servo bay above an upright ankle servo cradle; both servos retained by the neighbouring clevis plates.')
     # --- foot: ankle horn/idler plates on a wide rounded hollow sole with a toe bumper
     sole=rbox(-38,44,s*26 if s>0 else -74,s*74 if s>0 else -26,0,11,9)
     sole=sole.union(rbox(24,52,s*30 if s>0 else -70,s*70 if s>0 else -30,0,15,7))
     sole=sole.cut(rbox(-34,40,s*30 if s>0 else -70,s*70 if s>0 else -30,-5,8.5,6)) # hollow underside, 2.5 mm skin; TPU pad fills it
-    ft=sole.union(horn(an,width=24,length=32,thickness=3)).union(idler(an,width=24,length=32,thickness=3))
-    ft=ft.union(box(-12,12,s*57 if s>0 else -62,s*62 if s>0 else -57,8,17.5)).union(box(-12,12,s*24 if s>0 else -29,s*29 if s>0 else -24,8,17.5))
+    ft=sole.union(horn(an,width=22,length=24,thickness=3)).union(idler(an,width=22,length=24,thickness=3))
+    for y0,y1 in [(24.5,28.5),(57.5,61.5)]:ft=ft.union(box(-8,8,s*y0 if s>0 else -y1,s*y1 if s>0 else -y0,8,21)) # posts join the plates to the sole
+    ft=ft.union(rbox(-15,15,s*22 if s>0 else -64,s*64 if s>0 else -22,8,25,5).cut(box(-13.5,13.5,s*24.5 if s>0 else -61.5,s*61.5 if s>0 else -24.5,7,40))) # low boot cuff around the ankle plates
     ft=ft.cut(pocket(an,clearance=.5))
-    add(f'{side}_foot',ft,CORAL,f'{side}_foot','Z','Foot: ankle horn/idler plates on a wide rounded sole with a toe bumper; replaceable TPU sole pad is a follow-up.',group='shell')
+    add(f'{side}_foot',ft,CREAM,f'{side}_foot','Z','Foot: ankle horn/idler plates on a wide rounded sole with a toe bumper; replaceable TPU sole pad is a follow-up.',group='shell')
 
 for side in ['left','right']:
     print(side,'leg');build_leg(side)
 
 # ---------------------------------------------------------------- trunk: chassis, shell, chest panel, tail battery cover
 print('trunk')
-egg_c=(2,0,132);egg_h=(54,39,44)
+egg_c=(2,0,133);egg_h=(56,42,44)
 np_=L.get('neck_pitch');lhy=L.get('left_hip_yaw');rhy=L.get('right_hip_yaw')
 chassis=cq.Workplane('XY',origin=(2,0,150)).ellipse(40,25).extrude(3) # elliptical top plate fits the egg interior at Z 150
 for s,hy in [(1,lhy),(-1,rhy)]:
@@ -149,25 +153,24 @@ chassis=chassis.union(neckbox).cut(pocket(np_,clearance=.6))
 tray=box(-96,-30,-21.1,21.1,118,120).union(box(-96,-30,-21.1,-19.5,120,140)).union(box(-96,-30,19.5,21.1,120,140)).union(box(-33,-30,-21.1,21.1,120,140))
 tray=tray.cut(box(-92,-40,-12,12,117,121)) # tray floor window
 chassis=chassis.union(box(-33,-30,-16,16,139,151)) # tray-to-plate web on the tray's rear wall, behind the battery
-chassis=chassis.union(box(36.4,40,-19,19,106,151)) # chest board mount wall
+chassis=chassis.union(box(36.4,40,-19,19,106,151)).cut(box(30,41,-20,20,151.5,170)) # chest board mount wall
 for y in [-15,15]:
     for z in [110,154]:chassis=chassis.cut(cyl((36,y,z),'X',1.3,6))
 chassis=chassis.cut(box(13,39,11,20,138,175)) # clearance for the neck horn plate
 chassis=chassis.union(tray) # the tray runs out the back into the tail cover
-for x,reach in [(-22,27.0),(25,26.0)]: # shell bosses stop inside the skin; M3 from outside through the shell flank
+for x,reach in [(-22,29.0),(25,28.0)]: # shell bosses stop inside the skin; M3 from outside through the shell flank
     for sgn in (1,-1):
         boss=box(x-2,x+2,min(sgn*20,sgn*reach),max(sgn*20,sgn*reach),136,151)
         chassis=chassis.union(boss).cut(cyl((x,35,140),'Y',1.3,15) if sgn>0 else cyl((x,-20,140),'Y',1.3,15))
 chassis=chassis.cut(cyl((-55,40,129),'Y',1.3,80)) # tail cover screws through both tray walls
 add('chassis',chassis,SLATE,'trunk','-Z','Internal chassis: hip yaw hangers, neck servo bay, battery tray (NP-F550 class), chest board wall and four M3 shell bosses.')
 egg=ell(egg_c,egg_h).cut(ell(egg_c,tuple(h-2.4 for h in egg_h)))
-egg=egg.cut(box(-200,200,-200,200,-10,121)) # open underneath: hip yaw/roll mechanism swings below
-egg=egg.cut(cyl((26,0,140),'Z',24,60)).cut(box(-16,26,-21,21,140,200)) # neck opening, extended rearward so the neck can pitch back
-for sgn in (1,-1):egg=egg.cut(box(-32,32,min(sgn*28,sgn*60),max(sgn*28,sgn*60),100,134)) # leg openings: the hip brackets swing here
-egg=egg.cut(box(-120,-30,-23,23,113,142)) # battery / tail opening
+egg=egg.cut(box(-40,36,-200,200,-10,133)).cut(box(-200,200,-200,200,-10,113)) # open underneath over the hips; the belly and rump run lower for a full egg
+egg=egg.cut(box(-21,40,-23,23,140,200)) # neck slot: the sleeve passes through and pitches; also clears the neck servo bay
+egg=egg.cut(box(-120,-30,-23,23,100,142)) # battery / tail opening (runs out the bottom so no sliver is left under it)
 for z in range(122,152,6):egg=egg.cut(box(40,70,-9,9,z,z+2.5)) # speaker grille on the chest
 for x in [-22,25]:egg=egg.cut(cyl((x,60,140),'Y',1.7,120)) # four M3 through the flanks into the chassis bosses
-add('torso_shell',egg,CREAM,'trunk','-Z','One-piece egg shell, open below the hips, with neck and tail-battery openings and a chest grille. Four M3 through the flanks into chassis bosses; remove it to reach the board.',group='shell')
+add('torso_shell',egg,MINT,'trunk','-Z','One-piece egg shell, open below the hips, with neck and tail-battery openings and a chest grille. Four M3 through the flanks into chassis bosses; remove it to reach the board.',group='shell')
 tail_o=ell((-70,0,130),(58,33,24));tail_i=ell((-70,0,130),(55.8,30.8,21.8))
 tail=tail_o.cut(tail_i).cut(box(-50,60,-100,100,0,300)) # cap open toward the torso
 for sgn in [1,-1]:
@@ -185,10 +188,14 @@ neck=horn(np_,width=20,length=30)
 neck=neck.union(box(-4.1,21.9,-18,10.5,176,214.5).cut(box(-1.5,19.3,-15.4,12,179.4,215)))
 neck=neck.union(box(13,21.9,10,17.5,170,180)).cut(pocket(hp_,clearance=.6))
 add('neck_link',neck,GRAPHITE,'neck','Y','Neck: neck-pitch horn plate rising into the head-pitch servo bay.')
+sleeve=rbox(-11,28,-21.5,21.5,172,213,9).cut(rbox(-8.6,25.6,-19.1,19.1,170,215,7)) # neck sleeve: hides both neck servos, rides inside the torso's neck slot
+sleeve=sleeve.cut(box(-12,30,10,25,170,182)) # notch for the neck horn plate
+for sgn in (1,-1):sleeve=sleeve.cut(box(-12,30,min(sgn*19,sgn*25),max(sgn*19,sgn*25),170,177)) # trim the side walls at the bottom for the pitch swing
+add('neck_sleeve',sleeve,MINT,'neck','Z','Neck sleeve: rounded tube around the neck link and head-pitch servo; rotates with the neck inside the torso slot.',group='shell')
 hbase=horn(hp_,width=24,length=26).union(box(8,14.5,11,17.5,216,223.1)).union(horn(hyw,width=20,length=26))
 add('head_base',hbase,SLATE,'head_base','Z','Head base: head-pitch horn plate and the fixed head-yaw horn plate; the only part that stays still while the head yaws.')
 yoke=box(-4.1,19,-12.5,25,224.2,255).cut(box(-1.5,20,-9.9,26,226.2,253)).cut(pocket(hyw,clearance=.5)) # open toward +X and +Y
-yoke=yoke.union(box(-36,-12.5,-12.4,26.5,223.5,250).cut(box(-36.1,-12.4,-10,25,227.6,247.6))).cut(pocket(hro,clearance=.6)) # roll servo box
+yoke=yoke.union(box(-36,-12.5,-12.4,26.5,223.5,250).cut(box(-36.1,-12.4,-10,25,227.6,247.6))).cut(pocket(hro,clearance=.6)).cut(box(-37,-28,22,27,223,229)) # roll servo box; rear-outer corner chamfered away from the skull
 yoke=yoke.union(box(-12.1,-3.6,12.8,26.5,224,250)).union(box(-14,-12.1,24.9,26.5,224,250)).union(box(-12.1,-3.6,-15,-12.8,224,250)).union(box(-14,-12.1,-15,-10.5,224,250)).union(box(-4.1,-3.6,-15,-9.9,224,250)) # rails join the yaw and roll boxes beside the head roll plate's sweep
 add('head_yoke',yoke,SLATE,'head_yoke','Z','Yoke: carries the head-yaw servo body (horn down onto the base) and the head-roll servo.')
 frame=horn(hro,width=20,length=24).union(idler(hro,width=20,length=24)).union(box(-9,-6,-10,10,226,264)).union(box(-42,-39,-10,10,226,258)).union(box(-42,-6,-10,10,255,258)).union(box(-9,20.5,-10,10,261,264)).union(box(19.4,24.6,-10,10,246,261.5))
@@ -202,24 +209,17 @@ add('head_frame',frame,SLATE,'head','Z','Head frame: head-roll clevis, top rail,
 
 # ---------------------------------------------------------------- head shells
 print('head')
-head_c=(-8,0,238);head_h=(50,40,37);muz_c=(40,0,231);muz_h=(24,32,25)
+head_c=(-8,0,241);head_h=(50,41,37);muz_c=(38,0,234);muz_h=(28,34,27)
 outer=ell(head_c,head_h).union(ell(muz_c,muz_h));inner=ell(head_c,tuple(h-2.2 for h in head_h)).union(ell(muz_c,tuple(h-2.2 for h in muz_h)))
 skull=outer.cut(inner)
 skull=skull.cut(box(-200,30,-200,200,0,214)) # open below for the neck stack
 skull=skull.cut(box(28,200,-200,200,0,222)) # mouth opening; the jaw closes it
 skull=skull.cut(cyl((8.9,0,214),'Z',26,10))
-for sgn in [1,-1]:skull=skull.cut(cq.Workplane('XY').sphere(15.4).translate((25,sgn*31,250)))
-skull=skull.cut(cyl((51,0,236),'X',6,20)) # camera port
-for sgn in [1,-1]:skull=skull.cut(cyl((60,sgn*10,232),'X',1.8,10)) # nostrils
+skull=skull.union(cyl((58,0,236),'X',10,10).intersect(ell(muz_c,tuple(h+3 for h in muz_h)))).cut(cyl((49,0,236),'X',6.5,30)) # camera ring boss: the single camera is the eye
+for sgn in [1,-1]:skull=skull.cut(cyl((62,sgn*11,228),'X',1.8,10)) # nostrils
 for x in [-30,15]:skull=skull.union(cyl((x,0,264.5),'Z',4,12).intersect(ell(head_c,tuple(h-.6 for h in head_h)))).cut(cyl((x,0,263),'Z',1.7,14)) # bosses sit on the head frame rail
 for y in [20,-17]:skull=skull.cut(cyl((37,y,226),'Y',9,8)) # beak arm slots
-add('skull',skull,CREAM,'head','Z','Skull: one-piece hollow head with muzzle, eye sockets, nose camera port and nostrils. Two M3 screws down into the head frame rail.',group='shell')
-for sgn,side in [(1,'left'),(-1,'right')]:
-    eye=cq.Workplane('XY').sphere(15).translate((25,sgn*31,250)).intersect(box(0,60,28,60,220,280) if sgn>0 else box(0,60,-60,-28,220,280))
-    eye=eye.cut(cq.Workplane('XY').sphere(12.6).translate((25,sgn*31,250)).intersect(box(0,60,33,60,220,280) if sgn>0 else box(0,60,-60,-33,220,280))) # hollow dome
-    eye=eye.union(cyl((25,28,250),'Y',5,8) if sgn>0 else cyl((25,-20,250),'Y',5,8)) # stem y 20..28
-    eye=eye.cut(cyl((25,27,250),'Y',1.3,7) if sgn>0 else cyl((25,-20,250),'Y',1.3,7))
-    add(f'eye_{side}',eye,WHITE,'head','-Y' if sgn>0 else 'Y','Eye cap: Ø28 dome with Ø10 stem, fixed from inside the skull with an M3 plastic screw. Pupil and highlight are paint intent.',group='shell')
+add('skull',skull,MINT,'head','Z','Skull: one-piece hollow head with muzzle, camera ring and nostrils; no separate eye parts. Two M3 screws down into the head frame rail.',group='shell')
 def loft(sections):
     wires=[cq.Workplane('YZ',origin=(x,0,z)).ellipse(w,h).val() for x,z,w,h in sections]
     return cq.Workplane(obj=cq.Solid.makeLoft(wires,ruled=False))
@@ -229,7 +229,7 @@ beak=beak.cut(box(-100,100,-100,100,219,400)).cut(box(-100,48,-18,16,214.5,400))
 beak=beak.union(box(33.5,41.5,14,17,212,234)).union(box(33.5,41.5,-22,-19,212,230)) # arms start 3.5 mm behind the pivot so a 20-degree opening clears the servo # arms: left on the horn, right 1.5 mm outside the idler clearance
 beak=beak.union(horn(jaw,width=18,length=20,thickness=3)) # the servo body lives in the head frame; the plate sits outside the horn disc
 beak=beak.cut(cyl((37,-18.5,226),'Y',1.3,6)).cut(cyl((8.9,0,200),'Z',24,16)) # right pin; keep clear of the neck stack when yawing
-add('jaw_beak',beak,CORAL,'jaw','-Z','Lower beak: solid rounded scoop with a left arm bolted to the jaw servo horn and a right pin pivot; rear trimmed to clear the neck stack when the head yaws.',group='shell')
+add('jaw_beak',beak,CREAM,'jaw','-Z','Lower beak: solid rounded scoop with a left arm bolted to the jaw servo horn and a right pin pivot; rear trimmed to clear the neck stack when the head yaws.',group='shell')
 buy('camera_module_3',box(49.5,50.6,-12.5,12.5,224,248),GRAPHITE,'head',4,'Raspberry Pi Camera Module 3 Standard class, 25 x 24 mm board','camera')
 
 # ---------------------------------------------------------------- assembly, GLB rig, report

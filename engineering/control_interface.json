@@ -40,6 +40,6 @@
   "actuator_target": "XL330 / BAM M6; assumed kp 200, 7.4 V",
   "geometry": "Rev A CAD-derived bodies: printed-part meshes at PLA solid density plus purchased envelopes with catalogue masses",
   "functional_dimensions": "engineering/functional_interface.json",
-  "model_mass_kg": 0.8247,
+  "model_mass_kg": 0.8299,
   "physical_verified": false
 }

@@ -4,9 +4,9 @@
     {
       "name": "left_yaw2roll",
       "color": [
-        0.22,
-        0.24,
-        0.26,
+        0.3,
+        0.34,
+        0.34,
         1
       ],
       "body": "left_yaw2roll",
@@ -26,9 +26,9 @@
     {
       "name": "left_hip",
       "color": [
-        0.22,
-        0.24,
-        0.26,
+        0.3,
+        0.34,
+        0.34,
         1
       ],
       "body": "left_hip",
@@ -48,9 +48,9 @@
     {
       "name": "left_thigh",
       "color": [
-        0.96,
-        0.92,
-        0.84,
+        0.98,
+        0.94,
+        0.79,
         1
       ],
       "body": "left_thigh",
@@ -70,9 +70,9 @@
     {
       "name": "left_shin",
       "color": [
-        0.96,
-        0.92,
-        0.84,
+        0.98,
+        0.94,
+        0.79,
         1
       ],
       "body": "left_shin",
@@ -81,20 +81,20 @@
       "printed": true,
       "dimensions_mm": [
         50.71,
-        33.93,
-        60.33
+        32.66,
+        46.06
       ],
-      "volume_mm3": 11986.8,
-      "mass_g": 14.86,
+      "volume_mm3": 8706.8,
+      "mass_g": 10.8,
       "step": "models/step/left_shin.step",
       "stl": "models/print/left_shin.stl"
     },
     {
       "name": "left_foot",
       "color": [
-        0.93,
-        0.45,
-        0.25,
+        0.98,
+        0.94,
+        0.79,
         1
       ],
       "body": "left_foot",
@@ -103,20 +103,20 @@
       "printed": true,
       "dimensions_mm": [
         90.0,
-        50.36,
-        49.08
+        52.0,
+        45.2
       ],
-      "volume_mm3": 28587.1,
-      "mass_g": 35.45,
+      "volume_mm3": 29702.6,
+      "mass_g": 36.83,
       "step": "models/step/left_foot.step",
       "stl": "models/print/left_foot.stl"
     },
     {
       "name": "right_yaw2roll",
       "color": [
-        0.22,
-        0.24,
-        0.26,
+        0.3,
+        0.34,
+        0.34,
         1
       ],
       "body": "right_yaw2roll",
@@ -136,9 +136,9 @@
     {
       "name": "right_hip",
       "color": [
-        0.22,
-        0.24,
-        0.26,
+        0.3,
+        0.34,
+        0.34,
         1
       ],
       "body": "right_hip",
@@ -158,9 +158,9 @@
     {
       "name": "right_thigh",
       "color": [
-        0.96,
-        0.92,
-        0.84,
+        0.98,
+        0.94,
+        0.79,
         1
       ],
       "body": "right_thigh",
@@ -180,9 +180,9 @@
     {
       "name": "right_shin",
       "color": [
-        0.96,
-        0.92,
-        0.84,
+        0.98,
+        0.94,
+        0.79,
         1
       ],
       "body": "right_shin",
@@ -191,20 +191,20 @@
       "printed": true,
       "dimensions_mm": [
         50.71,
-        33.93,
-        60.33
+        32.66,
+        46.06
       ],
-      "volume_mm3": 11986.8,
-      "mass_g": 14.86,
+      "volume_mm3": 8706.8,
+      "mass_g": 10.8,
       "step": "models/step/right_shin.step",
       "stl": "models/print/right_shin.stl"
     },
     {
       "name": "right_foot",
       "color": [
-        0.93,
-        0.45,
-        0.25,
+        0.98,
+        0.94,
+        0.79,
         1
       ],
       "body": "right_foot",
@@ -213,20 +213,20 @@
       "printed": true,
       "dimensions_mm": [
         90.0,
-        50.36,
-        49.08
+        52.0,
+        45.2
       ],
-      "volume_mm3": 28587.1,
-      "mass_g": 35.45,
+      "volume_mm3": 29702.6,
+      "mass_g": 36.83,
       "step": "models/step/right_foot.step",
       "stl": "models/print/right_foot.stl"
     },
     {
       "name": "chassis",
       "color": [
-        0.22,
-        0.24,
-        0.26,
+        0.3,
+        0.34,
+        0.34,
         1
       ],
       "body": "trunk",
@@ -238,17 +238,17 @@
         58.4,
         64.0
       ],
-      "volume_mm3": 34953.8,
-      "mass_g": 43.34,
+      "volume_mm3": 33749.0,
+      "mass_g": 41.85,
       "step": "models/step/chassis.step",
       "stl": "models/print/chassis.stl"
     },
     {
       "name": "torso_shell",
       "color": [
-        0.96,
-        0.92,
-        0.84,
+        0.62,
+        0.82,
+        0.72,
         1
       ],
       "body": "trunk",
@@ -256,21 +256,21 @@
       "note": "One-piece egg shell, open below the hips, with neck and tail-battery openings and a chest grille. Four M3 through the flanks into chassis bosses; remove it to reach the board.",
       "printed": true,
       "dimensions_mm": [
-        106.58,
-        77.92,
-        52.48
+        110.81,
+        83.99,
+        60.12
       ],
-      "volume_mm3": 21619.0,
-      "mass_g": 26.81,
+      "volume_mm3": 26262.7,
+      "mass_g": 32.57,
       "step": "models/step/torso_shell.step",
       "stl": "models/print/torso_shell.stl"
     },
     {
       "name": "tail_cover",
       "color": [
-        0.96,
-        0.92,
-        0.84,
+        0.98,
+        0.94,
+        0.79,
         1
       ],
       "body": "trunk",
@@ -310,11 +310,33 @@
       "stl": "models/print/neck_link.stl"
     },
     {
+      "name": "neck_sleeve",
+      "color": [
+        0.62,
+        0.82,
+        0.72,
+        1
+      ],
+      "body": "neck",
+      "group": "shell",
+      "note": "Neck sleeve: rounded tube around the neck link and head-pitch servo; rotates with the neck inside the torso slot.",
+      "printed": true,
+      "dimensions_mm": [
+        39.0,
+        43.0,
+        36.73
+      ],
+      "volume_mm3": 10147.4,
+      "mass_g": 12.58,
+      "step": "models/step/neck_sleeve.step",
+      "stl": "models/print/neck_sleeve.stl"
+    },
+    {
       "name": "head_base",
       "color": [
-        0.22,
-        0.24,
-        0.26,
+        0.3,
+        0.34,
+        0.34,
         1
       ],
       "body": "head_base",
@@ -334,9 +356,9 @@
     {
       "name": "head_yoke",
       "color": [
-        0.22,
-        0.24,
-        0.26,
+        0.3,
+        0.34,
+        0.34,
         1
       ],
       "body": "head_yoke",
@@ -348,17 +370,17 @@
         41.5,
         31.5
       ],
-      "volume_mm3": 17025.7,
-      "mass_g": 21.11,
+      "volume_mm3": 16877.3,
+      "mass_g": 20.93,
       "step": "models/step/head_yoke.step",
       "stl": "models/print/head_yoke.stl"
     },
     {
       "name": "head_frame",
       "color": [
-        0.22,
-        0.24,
-        0.26,
+        0.3,
+        0.34,
+        0.34,
         1
       ],
       "body": "head",
@@ -378,75 +400,31 @@
     {
       "name": "skull",
       "color": [
-        0.96,
-        0.92,
-        0.84,
+        0.62,
+        0.82,
+        0.72,
         1
       ],
       "body": "head",
       "group": "shell",
-      "note": "Skull: one-piece hollow head with muzzle, eye sockets, nose camera port and nostrils. Two M3 screws down into the head frame rail.",
+      "note": "Skull: one-piece hollow head with muzzle, camera ring and nostrils; no separate eye parts. Two M3 screws down into the head frame rail.",
       "printed": true,
       "dimensions_mm": [
-        121.98,
-        79.94,
-        61.0
+        126.0,
+        81.94,
+        64.0
       ],
-      "volume_mm3": 38623.5,
-      "mass_g": 47.89,
+      "volume_mm3": 46630.3,
+      "mass_g": 57.82,
       "step": "models/step/skull.step",
       "stl": "models/print/skull.stl"
     },
     {
-      "name": "eye_left",
-      "color": [
-        0.99,
-        0.99,
-        0.97,
-        1
-      ],
-      "body": "head",
-      "group": "shell",
-      "note": "Eye cap: \u00d828 dome with \u00d810 stem, fixed from inside the skull with an M3 plastic screw. Pupil and highlight are paint intent.",
-      "printed": true,
-      "dimensions_mm": [
-        29.99,
-        25.99,
-        30.0
-      ],
-      "volume_mm3": 6551.7,
-      "mass_g": 8.12,
-      "step": "models/step/eye_left.step",
-      "stl": "models/print/eye_left.stl"
-    },
-    {
-      "name": "eye_right",
-      "color": [
-        0.99,
-        0.99,
-        0.97,
-        1
-      ],
-      "body": "head",
-      "group": "shell",
-      "note": "Eye cap: \u00d828 dome with \u00d810 stem, fixed from inside the skull with an M3 plastic screw. Pupil and highlight are paint intent.",
-      "printed": true,
-      "dimensions_mm": [
-        29.99,
-        25.99,
-        30.0
-      ],
-      "volume_mm3": 6551.7,
-      "mass_g": 8.12,
-      "step": "models/step/eye_right.step",
-      "stl": "models/print/eye_right.stl"
-    },
-    {
       "name": "jaw_beak",
       "color": [
-        0.93,
-        0.45,
-        0.25,
+        0.98,
+        0.94,
+        0.79,
         1
       ],
       "body": "jaw",
@@ -1064,6 +1042,6 @@
       ]
     }
   ],
-  "printed_mass_g": 421.6,
+  "printed_mass_g": 426.6,
   "purchased_mass_g": 404.0
 }

@@ -12,8 +12,8 @@
 
 | | P0 (이전) | Rev A |
 |---|---|---|
-| 기구 | 다리 고정 외형 모델 14부품 | **15서보 구동 기구**: 브래킷·컵·클레비스 판, 배터리 트레이, 보드 벽, 카메라 벽 포함 21개 출력 부품 |
-| 외형 | 긴 주둥이, 판형 다리 | **치비 비율**: 머리 100×80×74 mm, 알 몸통, Ø30 돔 눈, 82×48 mm 발 |
+| 기구 | 다리 고정 외형 모델 14부품 | **15서보 구동 기구**: 브래킷·컵·클레비스 판, 배터리 트레이, 보드 벽, 카메라 벽 포함 20개 출력 부품 |
+| 외형 | 긴 주둥이, 판형 다리 | **치비 비율 + 단순 외장**: 머리 100×82×74 mm, 닫힌 알 몸통, 목 슬리브, 둥근 종아리 쉘, 82×48 mm 발. 눈·손·발톱 부품 없음(카메라 링이 눈) |
 | 동역학 모델 | 원시 도형 + 가정 질량 | **CAD 메시에서 계산한 링크별 질량·관성** (`cad/compat_model.py`) |
 | 검증 | 기본 자세 겹침만 | 기본 자세 겹침 0 + **관절 15개 가동 샘플 충돌 0** |
 | 웹 | 부품 뷰어 + 1축 턱 학습 | 관절 조작·보행 기록 재생 뷰어, **14축 학습 스튜디오**(학습·평가·비교·ONNX), 실제 CAD 위에서 도는 시뮬레이터 |
@@ -22,7 +22,7 @@
 
 | 항목 | 값 | 출처 |
 |---|---|---|
-| 출력 부품 | 21개, 421.6 g (PLA 꽉 찬 기준; 실제 인필은 더 가벼움) | `artifacts/parts.json` |
+| 출력 부품 | 20개, 422 g (PLA 꽉 찬 기준; 실제 인필은 더 가벼움) | `artifacts/parts.json` |
 | 구매품 | 서보 15 × 18 g, 배터리 100 g, 보드 30 g, 카메라 4 g = 404 g | 카탈로그 질량 |
 | 모델 총질량 | 825 g (Microduck 780 g) | `artifacts/balance.json` |
 | HOME 정적 여유 | 무게중심이 발바닥 지지영역 안 30.6 mm | `artifacts/balance.json` |
@@ -36,7 +36,7 @@
 
 - **관절**: 좌우 고관절 요·롤·피치, 무릎, 발목(10) + 목 피치, 머리 피치·요·롤(4) + 턱(1). 피벗·축은 `engineering/functional_interface.json`.
 - **서보 배치 규칙**: 몸체는 한 링크의 포켓에, 혼·아이들러 판 두 장은 이웃 링크에. 모든 관절 양단 지지. XL330급 인터페이스 치수와 발주 전 확인 항목은 `engineering/actuator_interface.json`.
-- **패키징**: 배터리(NP-F550급)는 꼬리 커버 안 트레이, 컴퓨트 보드는 가슴 그릴 뒤 세워 장착, 카메라는 주둥이 안 카메라 벽.
+- **패키징**: 배터리(NP-F550급)는 꼬리 커버 안 트레이, 컴퓨트 보드는 가슴 그릴 뒤 세워 장착, 카메라는 주둥이 안 카메라 벽. 외장 7개(몸통·목 슬리브·두개골·부리·꼬리 커버·발 2)만 보이고 나머지는 프레임.
 - **가동 범위(Rev A 기구 한계)**: 고관절 롤 HOME ±10°, 목 피치 뒤로 -0.2 rad, 머리 롤 ±12°, 턱 0.35 rad. 이 범위 밖은 시뮬레이션 관절 한계로 막습니다.
 - 자세한 원칙·남은 일: [DESIGN_REVA.md](docs/DESIGN_REVA.md) · 조립 순서: [ASSEMBLY.md](docs/ASSEMBLY.md)
 
@@ -44,7 +44,7 @@
 
 ```sh
 uv venv --python 3.11 .venv && uv pip install --python .venv/bin/python -r requirements.txt
-.venv/bin/python cad/build.py            # 21 STEP/STL + GLB 리그 + parts.json
+.venv/bin/python cad/build.py            # 20 STEP/STL + GLB 리그 + parts.json
 .venv/bin/python cad/compat_model.py     # models/micro_x_14.xml, models/rig.json
 .venv/bin/python tools/interference.py   # 정적 + 관절 가동 샘플 간섭
 .venv/bin/python tools/balance.py

@@ -1,10 +1,10 @@
 {
   "scope": "HOME pose, both feet flat; CAD-derived masses (PLA solid density + purchased catalogue masses); fasteners, cables and print infill not modelled.",
-  "mass_g": 824.7,
+  "mass_g": 829.9,
   "center_of_mass_mm": [
-    -7.39,
+    -7.27,
     0.35,
-    131.0
+    131.64
   ],
   "support_hull_xy_mm": [
     [
@@ -24,15 +24,15 @@
       74.0
     ]
   ],
-  "minimum_static_margin_mm": 30.61,
+  "minimum_static_margin_mm": 30.73,
   "bodies": [
     {
       "body": "trunk_base",
-      "mass_g": 286.4,
+      "mass_g": 290.8,
       "com_mm": [
-        -28.6,
+        -27.8,
         -0.2,
-        134.5
+        134.6
       ]
     },
     {
@@ -64,29 +64,29 @@
     },
     {
       "body": "x_left_shin",
-      "mass_g": 50.9,
+      "mass_g": 46.8,
       "com_mm": [
-        -9.0,
-        45.5,
-        48.6
+        -9.8,
+        46.2,
+        49.8
       ]
     },
     {
       "body": "x_left_foot",
-      "mass_g": 35.4,
+      "mass_g": 36.8,
       "com_mm": [
-        11.3,
-        48.5,
-        11.5
+        10.9,
+        48.3,
+        11.1
       ]
     },
     {
       "body": "x_neck",
-      "mass_g": 32.1,
+      "mass_g": 44.6,
       "com_mm": [
-        10.1,
-        -1.4,
-        192.3
+        9.6,
+        -1.3,
+        192.6
       ]
     },
     {
@@ -100,18 +100,18 @@
     },
     {
       "body": "x_head_yoke",
-      "mass_g": 57.1,
+      "mass_g": 56.9,
       "com_mm": [
-        -8.4,
-        7.1,
-        237.7
+        -8.3,
+        7.0,
+        237.8
       ]
     },
     {
       "body": "x_head",
-      "mass_g": 102.6,
+      "mass_g": 96.5,
       "com_mm": [
-        11.1,
+        10.1,
         -0.4,
         243.6
       ]
@@ -154,23 +154,23 @@
     },
     {
       "body": "x_right_shin",
-      "mass_g": 50.9,
+      "mass_g": 46.8,
       "com_mm": [
-        -9.0,
-        -45.5,
-        48.6
+        -9.8,
+        -46.2,
+        49.8
       ]
     },
     {
       "body": "x_right_foot",
-      "mass_g": 35.4,
+      "mass_g": 36.8,
       "com_mm": [
-        11.3,
-        -48.5,
-        11.5
+        10.9,
+        -48.3,
+        11.1
       ]
     }
   ],
-  "model_sha256": "e7d4cea6fd7e4cea5174983317c1926ec7a7331752cc2466b9a2a0098c92760d",
+  "model_sha256": "99e8980e378dd8dafda8a3e5afddbc6b62e112cebb058aeeecd4f32262d48318",
   "physical_verified": false
 }

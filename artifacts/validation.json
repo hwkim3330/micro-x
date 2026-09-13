@@ -1,6 +1,6 @@
 {
   "revision": "RevA",
-  "printed_parts": 21,
+  "printed_parts": 20,
   "purchased_items": 18,
   "mesh_checks": [
     {
@@ -42,10 +42,10 @@
       "watertight": true,
       "print_envelope_mm": [
         50.71,
-        60.33,
-        33.93
+        46.06,
+        32.66
       ],
-      "mass_g": 14.86
+      "mass_g": 10.8
     },
     {
       "part": "left_foot",
@@ -53,10 +53,10 @@
       "watertight": true,
       "print_envelope_mm": [
         90.0,
-        50.36,
-        49.08
+        52.0,
+        45.2
       ],
-      "mass_g": 35.45
+      "mass_g": 36.83
     },
     {
       "part": "right_yaw2roll",
@@ -97,10 +97,10 @@
       "watertight": true,
       "print_envelope_mm": [
         50.71,
-        60.33,
-        33.93
+        46.06,
+        32.66
       ],
-      "mass_g": 14.86
+      "mass_g": 10.8
     },
     {
       "part": "right_foot",
@@ -108,10 +108,10 @@
       "watertight": true,
       "print_envelope_mm": [
         90.0,
-        50.36,
-        49.08
+        52.0,
+        45.2
       ],
-      "mass_g": 35.45
+      "mass_g": 36.83
     },
     {
       "part": "chassis",
@@ -122,18 +122,18 @@
         58.4,
         64.0
       ],
-      "mass_g": 43.34
+      "mass_g": 41.85
     },
     {
       "part": "torso_shell",
       "body": "trunk",
       "watertight": true,
       "print_envelope_mm": [
-        106.58,
-        77.92,
-        52.48
+        110.81,
+        83.99,
+        60.12
       ],
-      "mass_g": 26.81
+      "mass_g": 32.57
     },
     {
       "part": "tail_cover",
@@ -158,6 +158,17 @@
       "mass_g": 14.07
     },
     {
+      "part": "neck_sleeve",
+      "body": "neck",
+      "watertight": true,
+      "print_envelope_mm": [
+        39.0,
+        43.0,
+        36.73
+      ],
+      "mass_g": 12.58
+    },
+    {
       "part": "head_base",
       "body": "head_base",
       "watertight": true,
@@ -177,7 +188,7 @@
         41.5,
         31.5
       ],
-      "mass_g": 21.11
+      "mass_g": 20.93
     },
     {
       "part": "head_frame",
@@ -195,33 +206,11 @@
       "body": "head",
       "watertight": true,
       "print_envelope_mm": [
-        121.98,
-        79.94,
-        61.0
+        126.0,
+        81.94,
+        64.0
       ],
-      "mass_g": 47.89
-    },
-    {
-      "part": "eye_left",
-      "body": "head",
-      "watertight": true,
-      "print_envelope_mm": [
-        29.99,
-        30.0,
-        25.99
-      ],
-      "mass_g": 8.12
-    },
-    {
-      "part": "eye_right",
-      "body": "head",
-      "watertight": true,
-      "print_envelope_mm": [
-        29.99,
-        30.0,
-        25.99
-      ],
-      "mass_g": 8.12
+      "mass_g": 57.82
     },
     {
       "part": "jaw_beak",
@@ -235,7 +224,7 @@
       "mass_g": 13.62
     }
   ],
-  "printed_mass_g": 421.6,
+  "printed_mass_g": 426.6,
   "purchased_mass_g": 404.0,
   "geometry": "valid generated CAD checked during build; closed positive-volume meshes checked here",
   "interference": "exact STEP intersections at HOME cleared; single-joint sampled sweeps recorded in artifacts/interference.json",

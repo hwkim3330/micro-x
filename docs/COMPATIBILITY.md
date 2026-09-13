@@ -4,7 +4,7 @@
 
 ## 세 층
 
-1. **Rev A CAD** (`cad/build.py`): 21개 출력 부품 + 15개 서보·배터리·보드·카메라 외형. 관절 피벗·축은 `engineering/functional_interface.json`(기능 인터페이스 측정값)을 따르고 나머지는 새로 설계.
+1. **Rev A CAD** (`cad/build.py`): 20개 출력 부품 + 15개 서보·배터리·보드·카메라 외형. 관절 피벗·축은 `engineering/functional_interface.json`(기능 인터페이스 측정값)을 따르고 나머지는 새로 설계.
 2. **CAD 기반 동역학 모델** (`cad/compat_model.py` → `models/micro_x_14.xml`): 부품 메시에서 링크별 질량·질량중심·관성을 계산(PLA 꽉 찬 밀도 + 구매품 카탈로그 질량). 접촉은 발바닥 상자, 몸통·머리 타원체, 다리 상자. 이전의 원시 도형 연구 모델은 `models/archive/micro_x_14_primitive_study.xml`로 보존.
 3. **고정된 공식 추론 코드 + 가중치** (`runtime/compat_env.py`, `.cache/compat/`): 변경 없는 `alpha_walking.onnx`/`alpha_stand.onnx`와 BAM M6 XL330 모터 모델(kp 200, 7.4 V 재현 조건).
 

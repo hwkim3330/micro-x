@@ -11,7 +11,7 @@ export async function loadRobot(base='../'){
   // GLB is Z-up (CAD frame); three.js is Y-up. Keep the CAD frame inside `robot` and tilt the wrapper.
   const robot=gltf.scene;root.add(robot);root.rotation.x=-Math.PI/2;
   const bodies={};robot.traverse(o=>{if(rig.bodies.some(b=>b.name===o.name))bodies[o.name]=o});
-  const meshes=[];robot.traverse(o=>{if(o.isMesh){o.name=o.name.replace(/^mesh_/,'');o.material=o.material.clone();o.material.metalness=0;o.material.roughness=o.name.startsWith('eye_')?.15:o.name.startsWith('servo_')?.45:.6;o.material.vertexColors=true;o.userData.base=o.position.clone();meshes.push(o)}});
+  const meshes=[];robot.traverse(o=>{if(o.isMesh){o.name=o.name.replace(/^mesh_/,'');o.material=o.material.clone();o.material.metalness=0;o.material.roughness=o.name.startsWith('servo_')?.45:.55;o.material.vertexColors=true;o.userData.base=o.position.clone();meshes.push(o)}});
   const info={};for(const p of parts.parts)info[p.name]=p;for(const p of parts.purchased)info[p.name]=p;
   const joints={};for(const b of rig.bodies){if(!b.joint)continue;joints[b.joint]={body:b.name,node:bodies[b.name],axis:new THREE.Vector3(...b.axis),home:b.home_rad,angle:b.home_rad}}
   const trunk=bodies[rig.root];
@@ -21,7 +21,7 @@ export async function loadRobot(base='../'){
     rig.qpos_layout.joints.forEach((name,i)=>setJoint(name,qpos[7+i]))
   }
   function home(){trunk.position.set(...rig.root_position_m);trunk.quaternion.identity();for(const name in joints)setJoint(name,joints[name].home)}
-  function explode(on){for(const m of meshes){m.position.copy(m.userData.base);if(!on)continue;const p=info[m.name];if(!p)continue;const d=new THREE.Vector3(0,0,0);if(p.group==='shell'){if(m.name.startsWith('eye_'))d.y=m.name.endsWith('left')?.04:-.04;else if(m.name==='skull')d.z=.05;else if(m.name==='jaw_beak')d.z=-.04;else if(m.name==='torso_shell')d.z=.06;else if(m.name==='chest_panel')d.x=.05;else if(m.name==='tail_cover')d.x=-.05;else if(m.name.includes('foot'))d.z=-.03}else if(!p.printed){d.y=m.name.includes('right')?-.03:m.name.includes('left')?.03:0;if(m.name==='battery_np_f550')d.x=-.03;if(m.name==='compute_board')d.x=.03}m.position.add(d)}}
+  function explode(on){for(const m of meshes){m.position.copy(m.userData.base);if(!on)continue;const p=info[m.name];if(!p)continue;const d=new THREE.Vector3(0,0,0);if(p.group==='shell'){if(m.name==='skull')d.z=.05;else if(m.name==='jaw_beak')d.z=-.04;else if(m.name==='torso_shell')d.z=.06;else if(m.name==='chest_panel')d.x=.05;else if(m.name==='tail_cover')d.x=-.05;else if(m.name.includes('foot'))d.z=-.03}else if(!p.printed){d.y=m.name.includes('right')?-.03:m.name.includes('left')?.03:0;if(m.name==='battery_np_f550')d.x=-.03;if(m.name==='compute_board')d.x=.03}m.position.add(d)}}
   function setVisible(filter){for(const m of meshes){const p=info[m.name];m.visible=!p||filter(p)}}
   home();
   return {root,robot,rig,parts,info,meshes,bodies,joints,setJoint,setPose,home,explode,setVisible};
