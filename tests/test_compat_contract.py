@@ -9,13 +9,19 @@ class ContractTests(unittest.TestCase):
         self.assertEqual(contract['observation_size'],3+3+14+14+14+13)
         self.assertFalse(root.findall('.//mesh'));self.assertFalse(root.findall('.//include'));self.assertFalse(any('file' in e.attrib for e in root.iter()))
         self.assertEqual(len(root.findall('.//gyro')),1);self.assertEqual(root.find('.//body').get('name'),'trunk_base')
-        # Joint pivots in the dynamics model follow the functional interface exactly.
-        rig=json.loads((R/'models/rig.json').read_text());ref={j['name']:j for j in json.loads((R/'engineering/functional_interface.json').read_text())['joints']}
+        # Joint pivots and axes in the dynamics model follow the measured design-pose layout exactly.
+        rig=json.loads((R/'models/rig.json').read_text());ref=json.loads((R/'engineering/functional_layout.json').read_text())['joints']
         for b in rig['bodies']:
             if b['joint'] in ref:
-                expected=[0.0,0.0,0.125];expected=[e+p for e,p in zip(expected,ref[b['joint']]['pivot_at_home_m'])]
-                self.assertTrue(all(abs(a-c)<1e-6 for a,c in zip(b['pivot_m'],expected)),b['joint'])
+                self.assertTrue(all(abs(a-c*.001)<1e-6 for a,c in zip(b['pivot_m'],ref[b['joint']]['pivot'])),b['joint']+' pivot')
+                self.assertTrue(all(abs(a-c)<1e-6 for a,c in zip(b['axis'],ref[b['joint']]['axis'])),b['joint']+' axis')
         self.assertGreater(contract['model_mass_kg'],.6);self.assertLess(contract['model_mass_kg'],1.2)
+    def test_joint_limits_are_the_measured_travel(self):
+        contract=json.loads((R/'engineering/control_interface.json').read_text())
+        travel=json.loads((R/'engineering/joint_travel.json').read_text())['joints']
+        for name in contract['joint_names']:
+            self.assertEqual(contract['joint_ranges_rad'][name],[travel[name]['min_rad'],travel[name]['max_rad']],name)
+            self.assertLessEqual(abs(travel[name]['min_rad']),abs(travel[name]['catalogue_rad'][0])+1e-9,name)
     def test_evaluation_is_current_and_does_not_hide_failures(self):
         data=json.loads((R/'artifacts/compat_evaluation.json').read_text())
         self.assertEqual(data['model_sha256'],sha('models/micro_x_14.xml'))

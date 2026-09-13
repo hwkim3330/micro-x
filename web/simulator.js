@@ -2,12 +2,12 @@ import * as THREE from 'three';
 import {OrbitControls} from './vendor/three/controls/OrbitControls.js';
 import {loadRobot,makeStage} from './rig.js';
 const $=s=>document.querySelector(s),host=$('#simulation-view');
-const {scene,camera,renderer}=makeStage(host,{grid:false});camera.position.set(.5,.32,.55);
-const controls=new OrbitControls(camera,renderer.domElement);controls.target.set(0,.14,0);
+const {scene,camera,renderer}=makeStage(host,{grid:false});camera.position.set(.7,.4,.8);
+const controls=new OrbitControls(camera,renderer.domElement);controls.target.set(0,.15,0);
 const floor=new THREE.Mesh(new THREE.PlaneGeometry(6,6),new THREE.MeshStandardMaterial({color:0xe6e2d4,roughness:1}));floor.rotation.x=-Math.PI/2;scene.add(floor);scene.add(new THREE.GridHelper(4,40,0xd2cdbd,0xe0dccd));
 let robot,state,ready=false,running=false,version=0,timer,frameCount=0,replay=null,replayIndex=0,replayTimer;
 const pressed=new Set();
-function pose(qpos){robot.setPose(qpos);const t=new THREE.Vector3(qpos[0],.14,-qpos[1]);camera.position.add(t.clone().sub(controls.target));controls.target.copy(t);controls.update();renderer.render(scene,camera)}
+function pose(qpos){robot.setPose(qpos);const t=new THREE.Vector3(qpos[0],.15,-qpos[1]);camera.position.add(t.clone().sub(controls.target));controls.target.copy(t);controls.update();renderer.render(scene,camera)}
 function draw(data){state=data;pose(data.qpos);$('#sim-metrics').textContent=`물리 시간 ${data.time.toFixed(2)}초 · X ${data.position[0].toFixed(3)}m · Y ${data.position[1].toFixed(3)}m · 정책 ${data.policy||'official'} · ${data.fallen?'넘어짐 감지':'계산 중인 자세'}`;frameCount++}
 async function post(path,data){const response=await fetch(path,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});const result=await response.json();if(!response.ok)throw Error(result.error||'시뮬레이션 오류');return result}
 function pause(){running=false;version++;clearTimeout(timer);pressed.clear();$('#sim-toggle').textContent='실행'}

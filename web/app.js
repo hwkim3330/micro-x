@@ -1,6 +1,6 @@
 import * as THREE from 'three';import {OrbitControls} from './vendor/three/controls/OrbitControls.js';import {loadRobot,makeStage,CAMERAS} from './rig.js';
 const $=s=>document.querySelector(s),el=$('#view');
-const {scene,camera,renderer}=makeStage(el);const controls=new OrbitControls(camera,renderer.domElement);controls.target.set(0,.14,0);controls.enableDamping=true;controls.minDistance=.2;controls.maxDistance=1.6;
+const {scene,camera,renderer}=makeStage(el);const controls=new OrbitControls(camera,renderer.domElement);controls.target.set(0,.15,0);controls.enableDamping=true;controls.minDistance=.2;controls.maxDistance=1.6;
 const KOREAN={chassis:'섀시',torso_shell:'몸통 쉘',chest_panel:'가슴 패널',tail_cover:'꼬리 · 배터리 커버',neck_link:'목 링크',head_base:'머리 베이스',head_yoke:'머리 요크',head_frame:'머리 프레임',skull:'두개골 쉘',jaw_beak:'아래턱',left_yaw2roll:'왼쪽 고관절 요·롤 브래킷',right_yaw2roll:'오른쪽 고관절 요·롤 브래킷',left_hip:'왼쪽 고관절 브래킷',right_hip:'오른잽 고관절 브래킷'.replace('오른잽','오른쪽'),left_thigh:'왼쪽 허벅지',right_thigh:'오른쪽 허벅지',left_shin:'왼쪽 종아리',right_shin:'오른쪽 종아리',left_foot:'왼발',right_foot:'오른발',battery_np_f550:'배터리 (NP-F550급)',compute_board:'컴퓨트 보드',camera_module_3:'카메라 모듈'};
 const JOINTS={left_hip_yaw:'왼 고관절 요',left_hip_roll:'왼 고관절 롤',left_hip_pitch:'왼 고관절 피치',left_knee:'왼 무릎',left_ankle:'왼 발목',neck_pitch:'목 피치',head_pitch:'머리 피치',head_yaw:'머리 요',head_roll:'머리 롤',jaw:'턱',right_hip_yaw:'오른 고관절 요',right_hip_roll:'오른 고관절 롤',right_hip_pitch:'오른 고관절 피치',right_knee:'오른 무릎',right_ankle:'오른 발목'};
 const label=n=>KOREAN[n]||(n.startsWith('servo_')?'서보 · '+(JOINTS[n.slice(6)]||n.slice(6)):n.replaceAll('_',' '));
@@ -24,16 +24,17 @@ try{robot=await loadRobot('../');scene.add(robot.root);
     for(const text of [p.body,p.dimensions_mm.join(' × '),p.mass_g+' g'+(p.printed?'':' (구매)')]){const td=document.createElement('td');td.textContent=text;tr.append(td)}
     const td=document.createElement('td');if(p.printed)for(const [l,path]of [['STL',p.stl],['STEP',p.step]]){const a=document.createElement('a');a.textContent=l+' ↓';a.href='../'+path;td.append(a)}else td.textContent=p.kind;tr.append(td);tbody.append(tr)}
   buildJointPanel();layer();loadReplay();$('#loading').hidden=true;
-  window.microX={robot,items:robot.meshes,parts:robot.parts.parts,inspect,scene,camera,renderer,controls,get playing(){return playing},get exploded(){return exploded}};
+  const boundingBox=()=>{const b=new THREE.Box3().setFromObject(robot.root);const c=b.getCenter(new THREE.Vector3());return {centre:[c.x,c.y,c.z],radius:b.getSize(new THREE.Vector3()).length()/2}};
+  window.microX={robot,items:robot.meshes,parts:robot.parts.parts,inspect,scene,camera,renderer,controls,boundingBox,get playing(){return playing},get exploded(){return exploded}};
 }catch(e){$("#loading").textContent="모델을 불러오지 못했습니다. GitHub에서 파일을 확인해 주세요.";window.microXError=String(e.stack||e);console.error(e)}
 $('#layer').onchange=layer;
 $('#explode').onclick=e=>{stopReplay();exploded=!exploded;robot.explode(exploded);e.target.textContent=exploded?'조립 보기':'분해 보기'};
 $('#rotate').onclick=e=>{controls.autoRotate=!controls.autoRotate;e.target.textContent=controls.autoRotate?'회전 끄기':'회전 켜기'};
 $('#reset').onclick=()=>{stopReplay();if(exploded)$('#explode').click();if(controls.autoRotate)$('#rotate').click();resetJoints();$('#camera').value='hero';$('#camera').dispatchEvent(new Event('change'))};
-$('#camera').onchange=e=>{camera.position.fromArray(CAMERAS[e.target.value]);controls.target.set(0,.14,0);controls.update()};
+$('#camera').onchange=e=>{camera.position.fromArray(CAMERAS[e.target.value]);controls.target.set(0,.15,0);controls.update()};
 $('#save').onclick=()=>{renderer.render(scene,camera);const a=document.createElement('a');a.href=renderer.domElement.toDataURL('image/png');a.download='micro-x-reva.png';a.click()};
 const raycaster=new THREE.Raycaster();let start;renderer.domElement.onpointerdown=e=>{start=[e.clientX,e.clientY]};renderer.domElement.onpointerup=e=>{if(!start||Math.hypot(e.clientX-start[0],e.clientY-start[1])>5||!robot)return;const r=renderer.domElement.getBoundingClientRect();raycaster.setFromCamera(new THREE.Vector2((e.clientX-r.left)/r.width*2-1,-(e.clientY-r.top)/r.height*2+1),camera);const hit=raycaster.intersectObjects(robot.meshes.filter(m=>m.visible),false)[0];if(hit)inspect(hit.object)};
 const costIds=['motor-count','motor-price','other-cost','assembly-cost','yield'];function calculate(){const values=costIds.map(id=>Number($('#'+id).value));const [n,p,o,a,y]=values;$('#cost-result').textContent=values.some(v=>!Number.isFinite(v)||v<0)||n>30||!Number.isInteger(n)||y<=0||y>100?'입력 확인':'$'+((n*p+o+a)/(y/100)).toFixed(2)}costIds.forEach(id=>$('#'+id).oninput=calculate);calculate();
 let visible=true;new IntersectionObserver(entries=>visible=entries[0].isIntersecting).observe(el);
-renderer.setAnimationLoop(time=>{if(!visible||document.hidden||time-last<16)return;const dt=Math.min((time-last)/1000,.1);last=time;if(playing&&replay){playhead+=dt;const i=Math.floor(playhead/replay.dt);if(i>=replay.qpos.length){playhead=0}else{const q=replay.qpos[i];robot.setPose(q);controls.target.set(q[0],.14,-q[1])}}controls.update();renderer.render(scene,camera)});
+renderer.setAnimationLoop(time=>{if(!visible||document.hidden||time-last<16)return;const dt=Math.min((time-last)/1000,.1);last=time;if(playing&&replay){playhead+=dt;const i=Math.floor(playhead/replay.dt);if(i>=replay.qpos.length){playhead=0}else{const q=replay.qpos[i];robot.setPose(q);controls.target.set(q[0],.15,-q[1])}}controls.update();renderer.render(scene,camera)});
 if(new URLSearchParams(location.search).get('embed')==='lab')document.body.classList.add('lab-embed');

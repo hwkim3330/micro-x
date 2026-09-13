@@ -29,11 +29,12 @@ export async function loadRobot(base='../'){
 
 export function makeStage(el,opts={}){
   const scene=new THREE.Scene();scene.background=new THREE.Color(opts.background||'#f0eee4');
-  const camera=new THREE.PerspectiveCamera(opts.fov||32,1,.001,10);camera.position.set(.34,.27,.46);
+  const camera=new THREE.PerspectiveCamera(opts.fov||32,1,.001,10);camera.position.set(.50,.34,.62);
   const renderer=new THREE.WebGLRenderer({antialias:true,preserveDrawingBuffer:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;el.append(renderer.domElement);
   scene.add(new THREE.HemisphereLight(0xffffff,0x8a7a60,2.6));const key=new THREE.DirectionalLight(0xfff2dc,3);key.position.set(1,2,1.5);scene.add(key);const fill=new THREE.DirectionalLight(0xdbe6ff,1.2);fill.position.set(-1,1,-1);scene.add(fill);
   if(opts.grid!==false)scene.add(new THREE.GridHelper(.8,16,0xc9c4b4,0xe2ded0));
   const resize=()=>{renderer.setSize(el.clientWidth,el.clientHeight);camera.aspect=el.clientWidth/Math.max(1,el.clientHeight);camera.updateProjectionMatrix()};new ResizeObserver(resize).observe(el);resize();
   return {scene,camera,renderer};
 }
-export const CAMERAS={hero:[.34,.27,.46],front:[.62,.16,0],side:[0,.16,.62],back:[-.6,.2,.1],top:[0,.7,.01],face:[.28,.26,.12]};
+export const CAMERAS={hero:[.50,.34,.62],front:[.82,.20,0],side:[0,.20,.82],back:[-.78,.26,.12],top:[0,.95,.01],face:[.44,.34,.20]};
+export const TARGET=[0,.15,0];

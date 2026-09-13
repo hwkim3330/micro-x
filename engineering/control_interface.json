@@ -38,8 +38,68 @@
   "physics_hz": 200,
   "action_scale": 1,
   "actuator_target": "XL330 / BAM M6; assumed kp 200, 7.4 V",
-  "geometry": "Rev A CAD-derived bodies: printed-part meshes at PLA solid density plus purchased envelopes with catalogue masses",
-  "functional_dimensions": "engineering/functional_interface.json",
-  "model_mass_kg": 0.8299,
+  "geometry": "Rev B CAD-derived bodies in the design pose: printed-part meshes at PLA solid density plus purchased envelopes with catalogue masses",
+  "functional_dimensions": "engineering/functional_layout.json",
+  "joint_ranges_rad": {
+    "left_hip_yaw": [
+      -0.45,
+      0.52
+    ],
+    "left_hip_roll": [
+      -0.35,
+      0.3
+    ],
+    "left_hip_pitch": [
+      -1.57,
+      1.1
+    ],
+    "left_knee": [
+      -1.57,
+      1.1
+    ],
+    "left_ankle": [
+      -0.9,
+      0.9
+    ],
+    "neck_pitch": [
+      -0.2,
+      0.7
+    ],
+    "head_pitch": [
+      -0.6,
+      0.6
+    ],
+    "head_yaw": [
+      -2.0,
+      2.0
+    ],
+    "head_roll": [
+      -0.3,
+      0.3
+    ],
+    "right_hip_yaw": [
+      -0.52,
+      0.45
+    ],
+    "right_hip_roll": [
+      -0.3,
+      0.35
+    ],
+    "right_hip_pitch": [
+      -1.1,
+      1.57
+    ],
+    "right_knee": [
+      -1.1,
+      1.57
+    ],
+    "right_ankle": [
+      -0.9,
+      0.9
+    ]
+  },
+  "joint_ranges_source": "engineering/joint_travel.json (measured)",
+  "model_mass_kg": 0.7459,
+  "home_trunk_z_m": 0.1193,
   "physical_verified": false
 }

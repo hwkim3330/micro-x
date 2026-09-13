@@ -7,9 +7,9 @@ from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A3,landscape
 R=Path(__file__).resolve().parents[1];report=json.loads((R/'artifacts/parts.json').read_text());parts=report['parts']
 c=canvas.Canvas(str(R/'artifacts/drawings.pdf'),pagesize=landscape(A3));W,H=landscape(A3)
-c.setFont('Helvetica-Bold',26);c.drawString(40,H-60,'MICRO X Rev A — printed part reference drawings');c.setFont('Helvetica',12)
+c.setFont('Helvetica-Bold',26);c.drawString(40,H-60,'MICRO X Rev B — printed part reference drawings');c.setFont('Helvetica',12)
 y=H-100
-for line in ['Actuated chibi T-rex; 14 policy joints + jaw. Millimetres. Assembly frame: X forward, Y left, Z up, floor Z=0.',
+for line in ['Actuated chibi T-rex; 14 policy joints + jaw. Millimetres. Design pose (straight legs). Assembly frame: X forward, Y left, Z up, floor Z=0, trunk frame Z=120.',
              f"{len(parts)} printed parts ({report['printed_mass_g']} g solid PLA equivalent) + {len(report['purchased'])} purchased items ({report['purchased_mass_g']} g catalogue).",
              'Overall views generated from the actual meshes; use STEP for exact geometry. Not production GD&T; prototype fit and fastener checks are still required.']:
     c.drawString(40,y,line);y-=18
@@ -21,7 +21,7 @@ for p in report['purchased']:
     c.drawString(40,y,f"{p['name']:<24} {p['kind']:<12} link {p['body']:<16} {p['mass_g']:>6.1f} g  {p['note'][:70]}");y-=13
 c.showPage()
 for p in parts:
-    c.setFont('Helvetica-Bold',22);c.drawString(40,H-48,'MICRO X Rev A / '+p['name'])
+    c.setFont('Helvetica-Bold',22);c.drawString(40,H-48,'MICRO X Rev B / '+p['name'])
     c.setFont('Helvetica',10);c.drawString(40,H-70,f"link: {p['body']} | millimetres | original design, prototype reference, not production released")
     m=trimesh.load_mesh(R/'models'/f"{p['name']}.stl")
     for k,(axes,label) in enumerate([([0,2],'SIDE X-Z'),([0,1],'TOP X-Y'),([1,2],'FRONT Y-Z')]):
@@ -42,14 +42,19 @@ for p in parts:
 c.save()
 with (R/'artifacts/bom.csv').open('w',newline='') as f:
     w=csv.writer(f,lineterminator='\n');w.writerow(['item','quantity','kind','link','basis','mass_g','status','file'])
-    for p in parts:w.writerow([p['name'],1,'printed',p['body'],'PLA solid-equivalent volume; infill and material not frozen',p['mass_g'],'Rev A digital design',p['step']])
+    for p in parts:w.writerow([p['name'],1,'printed',p['body'],'PLA solid-equivalent volume; infill and material not frozen',p['mass_g'],'Rev B digital design',p['step']])
     for p in report['purchased']:w.writerow([p['name'],1,p['kind'],p['body'],p['note'],p['mass_g'],'purchased envelope; supplier quote pending',p['stl']])
+    w.writerow([]);w.writerow(['# measured joint travel (deg)','min','max','','','','',''])
+    import math,json as _j
+    for n,t in _j.loads((R/'engineering/joint_travel.json').read_text())['joints'].items():
+        w.writerow([n,round(math.degrees(t['min_rad']),1),round(math.degrees(t['max_rad']),1),'','','','',''])
     for item,qty,basis,status in [
         ('M2 x 6 screws, servo horn/idler to clevis plates',15*8,'Four per horn and four per idler pattern; confirm thread engagement in the printed plate','Not procurement-ready'),
         ('M2 case screws or keeper clips, servo body retention',15*2,'Depends on the confirmed XL330 case hole pattern','Not procurement-ready'),
         ('M3 x 8 plastic thread-forming screws (shell to chassis, skull to rail, eyes, tail cover)',12,'Pilot Ø2.6 in printed bosses; coupon test first','Not procurement-ready'),
         ('16 x 22 x 4 mm bearing (optional hip yaw support)',2,'Optional plain/rolling bearing under each hip yaw plate','Design option'),
-        ('IMU board, microphone, speaker, wiring, TTL bus adapter, power board',1,'Not yet placed in CAD; chest board volume reserved','Architecture decision required'),
+        ('2S 18650 battery pack, 65 x 37 x 19 mm class',1,'Slides out with the tail cover; cells and chargers are commodity items','Not procurement-ready'),
+        ('IMU board, microphone, speaker, wiring, TTL bus adapter, power board',1,'Not yet placed in CAD; trunk deck volume reserved','Architecture decision required'),
         ('TPU sole pads',2,'Fill the hollow sole underside; durometer to be chosen','Follow-up')]:
         w.writerow([item,qty,'hardware','',basis,'',status,''])
-print('Wrote',len(parts),'drawing pages and the Rev A BOM')
+print('Wrote',len(parts),'drawing pages and the Rev B BOM')

@@ -1,38 +1,38 @@
 {
-  "model_sha256": "99e8980e378dd8dafda8a3e5afddbc6b62e112cebb058aeeecd4f32262d48318",
+  "model_sha256": "885bd62f49ef296776e53d3641644f637dd1a23b90e6fd62a5d427212bab9f36",
   "scope": "Independent CPU PPO warm-start/fine-tuning smoke run. Same pretrained 61\u2192512\u2192256\u2192128\u219214 ELU actor and normalization; not full upstream training recipe parity or locomotion acceptance.",
   "source_sha256": "e36332d383997d51401897734cd3e79cf5038406feddb18b4d57ecfb141daa6c",
   "initial_actor_max_error": 5.960464477539062e-07,
-  "export_max_error": 2.682209014892578e-07,
+  "export_max_error": 4.3958425521850586e-07,
   "actor_weights_changed": true,
   "updates": 3,
   "steps_per_update": 128,
   "seed": 42,
-  "elapsed_s": 0.25,
+  "elapsed_s": 0.19,
   "history": [
     {
       "update": 1,
-      "mean_reward": 1.2885,
+      "mean_reward": 1.2896,
       "falls": 0,
-      "loss": 189.68719482421875,
+      "loss": 189.75282287597656,
       "elapsed_s": 0.1
     },
     {
       "update": 2,
-      "mean_reward": 1.2781,
+      "mean_reward": 1.2783,
       "falls": 0,
-      "loss": 187.80642700195312,
-      "elapsed_s": 0.2
+      "loss": 187.85276794433594,
+      "elapsed_s": 0.1
     },
     {
       "update": 3,
-      "mean_reward": 1.2796,
+      "mean_reward": 1.2789,
       "falls": 0,
-      "loss": 187.81582641601562,
+      "loss": 187.6793670654297,
       "elapsed_s": 0.2
     }
   ],
-  "checkpoint_sha256": "6a86a1fc023f4ea40297b4d7a21c769bb89f4a7575eb20edf7efbae226906648",
+  "checkpoint_sha256": "d63a73096cbd5a5af267c23369047e95686d1a741e105357e3fae850515a3a31",
   "checkpoint": "micro_x_14.onnx",
   "physical_verified": false,
   "upstream_training_recipe_parity": false

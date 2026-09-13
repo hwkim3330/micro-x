@@ -1,0 +1,573 @@
+{
+  "scope": "Functional layout measured from the reference robot's MJCF at qpos = 0 (straight-leg design pose): joint pivots, joint axes, servo body centres and orientations, and link envelope sizes used as design targets. Numbers only; no surfaces, meshes or CAD are copied. Frame: X forward, Y left, Z up, mm.",
+  "source": "https://github.com/pollen-robotics/microduck_rl/tree/2b25a48b08f1f17bc38c90bb03144c81fbd9ed07 (robot_walk.xml + assets), measured with MuJoCo forward kinematics at qpos = 0",
+  "why_design_pose": "Measuring at qpos = 0 instead of the HOME pose gives axis-aligned joints, so every bracket is a simple prismatic shape that prints flat. The policy HOME offsets stay in control_interface.json and are applied as joint angles, not baked into the geometry.",
+  "servo_class": "XL330 class: body 20 (across) x 34 (long) x 23 (deep), output horn disc 16 dia x 3 with 4 x M2 on a 12 mm circle, matching idler disc on the rear. Case side-hole pattern is NOT modelled; see engineering/actuator_interface.json.",
+  "servo_frame": "h = unit vector from the servo body toward its output horn (the child link sits on that side of the pivot); d = unit vector along the body's long axis, with the horn axis 9.5 mm from the short end.",
+  "joints": {
+    "left_hip_yaw": {
+      "pivot": [
+        6.0,
+        17.5,
+        115.0
+      ],
+      "axis": [
+        0,
+        0,
+        -1
+      ],
+      "servo_in": "trunk",
+      "h": [
+        0,
+        0,
+        -1
+      ],
+      "d": [
+        -1,
+        0,
+        0
+      ]
+    },
+    "left_hip_roll": {
+      "pivot": [
+        22.5,
+        17.5,
+        102.5
+      ],
+      "axis": [
+        1,
+        0,
+        0
+      ],
+      "servo_in": "left_yaw2roll",
+      "h": [
+        1,
+        0,
+        0
+      ],
+      "d": [
+        0,
+        0,
+        -1
+      ]
+    },
+    "left_hip_pitch": {
+      "pivot": [
+        4.0,
+        42.5,
+        102.5
+      ],
+      "axis": [
+        0,
+        1,
+        0
+      ],
+      "servo_in": "left_upper_leg",
+      "h": [
+        0,
+        -1,
+        0
+      ],
+      "d": [
+        -1,
+        0,
+        0
+      ]
+    },
+    "left_knee": {
+      "pivot": [
+        -31.8,
+        38.5,
+        80.5
+      ],
+      "axis": [
+        0,
+        -1,
+        0
+      ],
+      "servo_in": "left_upper_leg",
+      "h": [
+        0,
+        -1,
+        0
+      ],
+      "d": [
+        0,
+        0,
+        1
+      ]
+    },
+    "left_ankle": {
+      "pivot": [
+        -31.8,
+        64.5,
+        38.5
+      ],
+      "axis": [
+        0,
+        1,
+        0
+      ],
+      "servo_in": "left_lower_leg",
+      "h": [
+        0,
+        1,
+        0
+      ],
+      "d": [
+        0,
+        0,
+        1
+      ]
+    },
+    "right_hip_yaw": {
+      "pivot": [
+        6.0,
+        -17.5,
+        115.0
+      ],
+      "axis": [
+        0,
+        0,
+        -1
+      ],
+      "servo_in": "trunk",
+      "h": [
+        0,
+        0,
+        -1
+      ],
+      "d": [
+        -1,
+        0,
+        0
+      ]
+    },
+    "right_hip_roll": {
+      "pivot": [
+        22.5,
+        -17.5,
+        102.5
+      ],
+      "axis": [
+        1,
+        0,
+        0
+      ],
+      "servo_in": "right_yaw2roll",
+      "h": [
+        1,
+        0,
+        0
+      ],
+      "d": [
+        0,
+        0,
+        -1
+      ]
+    },
+    "right_hip_pitch": {
+      "pivot": [
+        4.0,
+        -42.5,
+        102.5
+      ],
+      "axis": [
+        0,
+        -1,
+        0
+      ],
+      "servo_in": "right_upper_leg",
+      "h": [
+        0,
+        1,
+        0
+      ],
+      "d": [
+        -1,
+        0,
+        0
+      ]
+    },
+    "right_knee": {
+      "pivot": [
+        -31.8,
+        -38.5,
+        80.5
+      ],
+      "axis": [
+        0,
+        1,
+        0
+      ],
+      "servo_in": "right_upper_leg",
+      "h": [
+        0,
+        1,
+        0
+      ],
+      "d": [
+        0,
+        0,
+        1
+      ]
+    },
+    "right_ankle": {
+      "pivot": [
+        -31.8,
+        -64.5,
+        38.5
+      ],
+      "axis": [
+        0,
+        -1,
+        0
+      ],
+      "servo_in": "right_lower_leg",
+      "h": [
+        0,
+        -1,
+        0
+      ],
+      "d": [
+        0,
+        0,
+        1
+      ]
+    },
+    "neck_pitch": {
+      "pivot": [
+        26.0,
+        14.5,
+        152.4
+      ],
+      "axis": [
+        0,
+        -1,
+        0
+      ],
+      "servo_in": "neck",
+      "h": [
+        0,
+        1,
+        0
+      ],
+      "d": [
+        0,
+        0,
+        1
+      ]
+    },
+    "head_pitch": {
+      "pivot": [
+        26.0,
+        14.5,
+        202.4
+      ],
+      "axis": [
+        0,
+        1,
+        0
+      ],
+      "servo_in": "neck",
+      "h": [
+        0,
+        1,
+        0
+      ],
+      "d": [
+        0,
+        0,
+        -1
+      ]
+    },
+    "head_yaw": {
+      "pivot": [
+        26.0,
+        0.0,
+        221.1
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "servo_in": "head_yoke",
+      "h": [
+        0,
+        0,
+        -1
+      ],
+      "d": [
+        0,
+        -1,
+        0
+      ]
+    },
+    "head_roll": {
+      "pivot": [
+        8.1,
+        0.0,
+        235.6
+      ],
+      "axis": [
+        -1,
+        0,
+        0
+      ],
+      "servo_in": "head",
+      "h": [
+        1,
+        0,
+        0
+      ],
+      "d": [
+        0,
+        0,
+        1
+      ]
+    },
+    "jaw": {
+      "pivot": [
+        26.0,
+        18.0,
+        242.0
+      ],
+      "axis": [
+        0,
+        1,
+        0
+      ],
+      "servo_in": "head",
+      "h": [
+        0,
+        -1,
+        0
+      ],
+      "d": [
+        -1,
+        0,
+        0
+      ],
+      "note": "15th axis, outside the 14-joint policy; see design_servo_overrides"
+    }
+  },
+  "link_envelopes_mm": {
+    "trunk_shell": {
+      "x": [
+        -46.4,
+        34.5
+      ],
+      "y": [
+        -32.3,
+        31.8
+      ],
+      "z": [
+        120.3,
+        162.0
+      ]
+    },
+    "trunk_floor": {
+      "x": [
+        -19,
+        17
+      ],
+      "y": [
+        -28.5,
+        28.5
+      ],
+      "z": [
+        119,
+        122
+      ]
+    },
+    "yaw2roll": {
+      "x": [
+        -8.5,
+        17.3
+      ],
+      "y": [
+        6,
+        29
+      ],
+      "z": [
+        97.5,
+        118
+      ]
+    },
+    "hip": {
+      "x": [
+        -5.5,
+        29
+      ],
+      "y": [
+        8,
+        40.5
+      ],
+      "z": [
+        93,
+        112
+      ]
+    },
+    "upper_leg": {
+      "x": [
+        -44.8,
+        16.2
+      ],
+      "y": [
+        42.5,
+        70.5
+      ],
+      "z": [
+        68.3,
+        116
+      ]
+    },
+    "lower_leg": {
+      "x": [
+        -41.8,
+        -21.8
+      ],
+      "y": [
+        32.5,
+        40.4
+      ],
+      "z": [
+        32.5,
+        90.5
+      ]
+    },
+    "foot": {
+      "x": [
+        -51.8,
+        2.2
+      ],
+      "y": [
+        29.3,
+        70.4
+      ],
+      "z": [
+        13.5,
+        32.4
+      ]
+    },
+    "neck_plates": {
+      "x": [
+        16,
+        36
+      ],
+      "y": [
+        11.5,
+        13.5
+      ],
+      "z": [
+        171.9,
+        182.9
+      ]
+    },
+    "head_base": {
+      "x": [
+        17,
+        35
+      ],
+      "y": [
+        -17.5,
+        17.5
+      ],
+      "z": [
+        193.4,
+        221.1
+      ]
+    },
+    "head_yoke": {
+      "x": [
+        8.1,
+        44
+      ],
+      "y": [
+        -24.5,
+        9.5
+      ],
+      "z": [
+        226.6,
+        249.1
+      ]
+    },
+    "head_shell": {
+      "x": [
+        -30.4,
+        92.3
+      ],
+      "y": [
+        -45.9,
+        45.9
+      ],
+      "z": [
+        218.7,
+        277.4
+      ]
+    },
+    "beak": {
+      "x": [
+        17.1,
+        85.8
+      ],
+      "y": [
+        -45.7,
+        45.7
+      ],
+      "z": [
+        218.2,
+        247.6
+      ]
+    },
+    "camera_lens": {
+      "x": [
+        71,
+        90
+      ],
+      "y": [
+        -8.6,
+        8.4
+      ],
+      "z": [
+        242.6,
+        259.6
+      ]
+    }
+  },
+  "design_servo_overrides": {
+    "why": "Pivots and axes are kept exactly as measured. Two servo BODIES are turned to a different orientation about their own pivot because the Micro X skull is a T-rex head, not a duck head; the kinematics are unchanged.",
+    "head_roll": {
+      "reference_d": [
+        0,
+        -1,
+        0
+      ],
+      "micro_x_d": [
+        0,
+        0,
+        1
+      ],
+      "reason": "long axis vertical so the body stays inside the narrow rear of the skull instead of spanning it sideways"
+    },
+    "jaw": {
+      "reference_d": [
+        1,
+        0,
+        0
+      ],
+      "micro_x_d": [
+        -1,
+        0,
+        0
+      ],
+      "pivot_moved_mm": [
+        0,
+        7.0,
+        3.4
+      ],
+      "reason": "body points back into the wide part of the skull; the pivot moves outboard and up so the beak arm clears the head-yaw servo and the mouth opens further"
+    }
+  }
+}

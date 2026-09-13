@@ -1,44 +1,57 @@
-# MICRO X — Rev A
+# MICRO X — Rev B
 
-**소유자 hwkim3330이 제작·판매를 목표로 개발하는 상업용 독자 설계 치비 티렉스 로봇.** Microduck의 14축 정책 인터페이스(61 관측 → 14 행동, 50 Hz)를 그대로 쓰지만 기구·외장·서보 배치·전장 자리는 새로 설계했습니다. 비상업 호환 시험기 [Micro Rex](https://github.com/hwkim3330/micro-rex)는 별도 저장소로 보존합니다.
+**소유자 hwkim3330이 제작·판매를 목표로 개발하는 상업용 독자 설계 치비 티렉스 로봇.** Microduck의 14축 정책 인터페이스(61 관측 → 14 행동, 50 Hz)를 그대로 쓰되, 기구·외장·서보 배치·전장 자리는 독자 설계입니다. 원본 기구를 그대로 쓰는 비상업 비교 시험기 [Micro Rex](https://github.com/hwkim3330/micro-rex)는 별도 저장소로 보존합니다.
 
-[![Micro X Rev A — 실제 CAD 렌더](artifacts/readme_hero.png)](https://hwkim3330.github.io/micro-x/web/)
+[![Micro X Rev B — 실제 CAD 렌더](artifacts/readme_hero.png)](https://hwkim3330.github.io/micro-x/web/)
 
-[제품 페이지 · 3D 뷰어](https://hwkim3330.github.io/micro-x/web/) · [학습 Lab](https://hwkim3330.github.io/micro-x/web/lab.html) · [보행 실험](https://hwkim3330.github.io/micro-x/web/simulator.html) · [설계 설명](docs/DESIGN_REVA.md) · [목표와 진행 기준](PROJECT_GOAL.md)
+[제품 페이지 · 3D 뷰어](https://hwkim3330.github.io/micro-x/web/) · [학습 Lab](https://hwkim3330.github.io/micro-x/web/lab.html) · [보행 실험](https://hwkim3330.github.io/micro-x/web/simulator.html) · [설계](docs/DESIGN.md) · [조립](docs/ASSEMBLY.md) · [목표와 진행 기준](PROJECT_GOAL.md)
 
-**현재 단계: Rev A 구동 설계 · 디지털 검증.** 출력·조립·보행·내구의 실물 검증은 아직 없으며, 판매 가능 완제품이 아닙니다.
+**현재 단계: Rev B 구동 설계 · 디지털 검증 완료, 실물 검증 전.** 출력·조립·보행·내구 시험은 아직 없습니다. 판매 가능한 완제품이 아닙니다.
 
-## Rev A에서 바뀐 것
+## Rev B에서 바뀐 것
 
-| | P0 (이전) | Rev A |
+| | Rev A | Rev B |
 |---|---|---|
-| 기구 | 다리 고정 외형 모델 14부품 | **15서보 구동 기구**: 브래킷·컵·클레비스 판, 배터리 트레이, 보드 벽, 카메라 벽 포함 20개 출력 부품 |
-| 외형 | 긴 주둥이, 판형 다리 | **치비 비율 + 단순 외장**: 머리 100×82×74 mm, 닫힌 알 몸통, 목 슬리브, 둥근 종아리 쉘, 82×48 mm 발. 눈·손·발톱 부품 없음(카메라 링이 눈) |
-| 동역학 모델 | 원시 도형 + 가정 질량 | **CAD 메시에서 계산한 링크별 질량·관성** (`cad/compat_model.py`) |
-| 검증 | 기본 자세 겹침만 | 기본 자세 겹침 0 + **관절 15개 가동 샘플 충돌 0** |
-| 웹 | 부품 뷰어 + 1축 턱 학습 | 관절 조작·보행 기록 재생 뷰어, **14축 학습 스튜디오**(학습·평가·비교·ONNX), 실제 CAD 위에서 도는 시뮬레이터 |
+| 설계 자세 | HOME(다리 굽은 자세) 측정 → 축이 5° 기울고 브래킷이 사선 | **qpos 0(곧게 선 자세) 측정 → 모든 축이 정렬, 브래킷이 평평하게 출력** |
+| 서보 고정 | 관절마다 판 두 장으로 감싸는 클레비스 | **기준 로봇과 같은 방식: 한쪽 링크의 U자 채널 + 혼 판 한 장** |
+| 출력물 질량 | 422 g | **347 g** (20개 부품) |
+| 가동 범위 | 추측한 값을 모델에 기입 | **`tools/travel.py`가 0.05 rad씩 돌려 측정**, 그 값이 곧 MuJoCo 관절 한계 |
+| 머리 | 타원체 한 덩이 | 단면 7개 로프트 — 뒤는 넓고 주둥이로 좁아지는 티렉스 실루엣, 렌즈 후드 |
+| 출력성 | 미측정 | **`artifacts/printability.json`**: 20개 전부 220×220 침대, 최대 오버행 27 % |
 
-## 숫자로 보는 Rev A
+## 숫자
 
 | 항목 | 값 | 출처 |
 |---|---|---|
-| 출력 부품 | 20개, 422 g (PLA 꽉 찬 기준; 실제 인필은 더 가벼움) | `artifacts/parts.json` |
-| 구매품 | 서보 15 × 18 g, 배터리 100 g, 보드 30 g, 카메라 4 g = 404 g | 카탈로그 질량 |
-| 모델 총질량 | 825 g (Microduck 780 g) | `artifacts/balance.json` |
-| HOME 정적 여유 | 무게중심이 발바닥 지지영역 안 30.6 mm | `artifacts/balance.json` |
-| 간섭 | 정적 겹침 0 / 관절별 가동 샘플 충돌 0 (1 mm³ 기준) | `artifacts/interference.json` |
-| 공식 가중치 시험 | 15회 모두 10초 직립, 속도·방향 기준 통과 6회(정지·서기). 전진 0.3 m/s 명령에 0.11 m/s와 요 드리프트 | `artifacts/compat_evaluation.json` |
-| 원가 계산기 기본값 | 15 × $27.49 + $110 + $45, 수율 95 % ≈ $597 (소매가 기준, 견적 아님) | `docs/COST.md` |
+| 출력 부품 | 20개, 347 g (PLA 꽉 찬 기준, 실제 인필은 더 가벼움) | `artifacts/parts.json` |
+| 구매품 | 서보 15 × 18 g + 배터리 95 g + 보드 30 g + 카메라 4 g = 399 g | 카탈로그 질량 |
+| 모델 총질량 | 746 g (Microduck 780 g) | `artifacts/balance.json` |
+| 기립 높이 · 무게중심 | HOME에서 몸통 119 mm, 무게중심 141 mm, 지지영역 여유 12.2 mm | `artifacts/balance.json` |
+| 간섭 | 설계 자세 겹침 **0** / 측정 가동 범위 안 충돌 **0** | `artifacts/interference.json` |
+| 출력성 | 20개 모두 220×220 침대, 최대 오버행 27 % | `artifacts/printability.json` |
+| 공식 가중치 시험 | 15회 모두 10초 직립, 속도·방향 기준 6회 통과(정지·서기). 전진 0.3 m/s 명령에 0.11 m/s | `artifacts/compat_evaluation.json` |
 
-전진 명령 추종 미달은 원본 Microduck 모델에서도 같은 하네스로 나타나는 현상이며([Micro Rex 비교](https://github.com/hwkim3330/micro-rex)), X 기구만의 결함으로 해석하지 않습니다. 보행 합격 기준과 학습 계획은 [COMPATIBILITY.md](docs/COMPATIBILITY.md)에 있습니다.
+전진 명령 추종 미달은 원본 Microduck 모델에 같은 하네스를 돌려도 나타납니다([Micro Rex 비교](https://github.com/hwkim3330/micro-rex)). X 기구만의 결함으로 해석하지 않습니다.
+
+## 측정된 가동 범위
+
+| 관절 | 측정값 | 관절 | 측정값 |
+|---|---|---|---|
+| 고관절 요 | -26° … +30° | 목 피치 | -12° … +40° |
+| 고관절 롤 | -20° … +17° | 머리 피치 | ±34° |
+| 고관절 피치 | -90° … +63° | 머리 요 | ±115° |
+| 무릎 | -90° … +63° | 머리 롤 | ±17° |
+| 발목 | ±52° | 턱 | 0° … +17° |
+
+좌우가 비대칭인 것은 브래킷이 좌우 대칭이라 회전 방향에 따라 닿는 곳이 다르기 때문입니다. 전체 표는 `engineering/joint_travel.json`.
 
 ## 설계 개요
 
-- **관절**: 좌우 고관절 요·롤·피치, 무릎, 발목(10) + 목 피치, 머리 피치·요·롤(4) + 턱(1). 피벗·축은 `engineering/functional_interface.json`.
-- **서보 배치 규칙**: 몸체는 한 링크의 포켓에, 혼·아이들러 판 두 장은 이웃 링크에. 모든 관절 양단 지지. XL330급 인터페이스 치수와 발주 전 확인 항목은 `engineering/actuator_interface.json`.
-- **패키징**: 배터리(NP-F550급)는 꼬리 커버 안 트레이, 컴퓨트 보드는 가슴 그릴 뒤 세워 장착, 카메라는 주둥이 안 카메라 벽. 외장 7개(몸통·목 슬리브·두개골·부리·꼬리 커버·발 2)만 보이고 나머지는 프레임.
-- **가동 범위(Rev A 기구 한계)**: 고관절 롤 HOME ±10°, 목 피치 뒤로 -0.2 rad, 머리 롤 ±12°, 턱 0.35 rad. 이 범위 밖은 시뮬레이션 관절 한계로 막습니다.
-- 자세한 원칙·남은 일: [DESIGN_REVA.md](docs/DESIGN_REVA.md) · 조립 순서: [ASSEMBLY.md](docs/ASSEMBLY.md)
+- **관절**: 좌우 고관절 요·롤·피치, 무릎, 발목(10) + 목 피치, 머리 피치·요·롤(4) + 턱(1).
+- **피벗·축**: `engineering/functional_layout.json` (기준 로봇을 qpos 0에서 측정한 기능 치수). 서보 몸체 방향만 두 곳에서 바꿨고 이유를 같은 파일에 적었습니다.
+- **서보**: XL330급. 인터페이스 치수와 발주 전 확인 항목은 `engineering/actuator_interface.json`. 케이스 홀 패턴은 아직 모델에 없습니다.
+- **패키징**: 2S 18650급 배터리는 꼬리 커버 안, 보드(최대 50 × 27 mm)는 고관절 서보 위 데크, 카메라는 주둥이 끝.
+- **외장 7개**(몸통·목 커버·두개골·아래턱·꼬리·발 2)만 보이고 나머지는 프레임. 눈·손·발톱 부품 없음.
 
 ## 재생성
 
@@ -46,15 +59,16 @@
 uv venv --python 3.11 .venv && uv pip install --python .venv/bin/python -r requirements.txt
 .venv/bin/python cad/build.py            # 20 STEP/STL + GLB 리그 + parts.json
 .venv/bin/python cad/compat_model.py     # models/micro_x_14.xml, models/rig.json
-.venv/bin/python tools/interference.py   # 정적 + 관절 가동 샘플 간섭
-.venv/bin/python tools/balance.py
-.venv/bin/python tools/documents.py      # drawings.pdf, bom.csv
+.venv/bin/python tools/travel.py         # 관절별 가동 범위 측정 → engineering/joint_travel.json
+.venv/bin/python cad/compat_model.py     # 측정값을 관절 한계로 반영
+.venv/bin/python tools/interference.py   # 정적 + 가동 범위 안 간섭
+.venv/bin/python tools/balance.py && .venv/bin/python tools/printability.py && .venv/bin/python tools/documents.py
 .venv/bin/python tools/validate.py && .venv/bin/python -m unittest discover -s tests
 
 uv venv --python 3.12 .venv-policy && uv pip install --python .venv-policy/bin/python -r requirements-policy.txt
 .venv-policy/bin/python tools/fetch_compat.py
 .venv-policy/bin/python tools/evaluate_compat.py --seconds 10 --seeds 3
-.venv-policy/bin/python runtime/training_service.py   # Lab 학습·평가·시뮬레이터 http://127.0.0.1:5201/web/lab.html
+.venv-policy/bin/python runtime/training_service.py   # Lab http://127.0.0.1:5201/web/lab.html
 
 npm ci && node --test tests/learning.test.mjs
 CHROME_PATH=/path/to/chrome node tools/test-web.mjs && node tools/test-lab.mjs && node tools/test-simulator.mjs && node tools/test-compat-web.mjs

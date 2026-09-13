@@ -94,3 +94,27 @@ def cradle(P,h,d,faces,wall=2.5,clearance=0.4,extra=0.0):
     shape=parts[0]
     for q in parts[1:]:shape=shape.union(q)
     return to_world(shape,P,h,d)
+
+def channel(P,h,d,faces=('y+','y-','far','near','back'),thick=2.4,clear=0.4,grow=0.0):
+    """Walls hugging the servo body on the chosen faces, in world coordinates.
+
+    faces: 'y+'/'y-' the two ACROSS faces, 'near'/'far' the two ends along d
+    (near = short end, 9.5 mm from the horn axis), 'back' the rear face beyond the
+    idler disc. The horn side is always open so the child link can reach the horn.
+    grow extends the walls outward along d at both ends.
+    """
+    c=clear;t=thick;back=-(FACE+ALONG+HORN_H+c)
+    outer=local_box(back-t,-FACE+HORN_H,-(ACROSS/2+c+t),ACROSS/2+c+t,-(HORN_OFFSET+c+t)-grow,LONG-HORN_OFFSET+c+t+grow)
+    cavity=local_box(back,200,-(ACROSS/2+c),ACROSS/2+c,-(HORN_OFFSET+c),LONG-HORN_OFFSET+c)
+    shape=outer.cut(cavity)
+    big=400
+    if 'y+' not in faces:shape=shape.cut(local_box(-big,big,ACROSS/2+c,big,-big,big))
+    if 'y-' not in faces:shape=shape.cut(local_box(-big,big,-big,-(ACROSS/2+c),-big,big))
+    if 'far' not in faces:shape=shape.cut(local_box(-big,big,-big,big,LONG-HORN_OFFSET+c,big))
+    if 'near' not in faces:shape=shape.cut(local_box(-big,big,-big,big,-big,-(HORN_OFFSET+c)))
+    if 'back' not in faces:shape=shape.cut(local_box(-big,back,-big,big,-big,big))
+    return to_world(shape,P,h,d)
+
+def plate_frame(P,h,d):
+    """World axes of a horn plate: (out, across, along) unit vectors."""
+    x,y,z=frame(h,d);return x,y,z

@@ -2,14 +2,17 @@
 
 Owner: hwkim3330. Commercial, independently designed T-rex companion robot that keeps the Microduck 14-axis policy interface. The noncommercial Micro Rex repository stays separate as the unchanged-Microduck reference rig.
 
-## Direction as of 2026-09-13 (Rev A)
+## Direction as of 2026-09-13 (Rev B)
 
-User direction: the P0 appearance was rejected; redesign X to be as cute as the original Microduck (chibi proportions) and finish the web learning tool. Rev A therefore:
+User direction, in order: the P0 appearance was rejected; make X as cute as the original Microduck; drop parts that can break off (eyes, hands, claws); this is for sale, so do it properly and make it easy to print. Rev B therefore:
 
-- rebuilt the CAD as an **actuated** 15-servo mechanism (14 policy joints + jaw) with brackets, shells, battery bay, compute wall and camera carrier, around the measured functional joint pivots;
-- adopted chibi proportions: head larger than the body, egg torso, wide rounded feet, Ø30 dome eyes, cream/coral/graphite palette;
-- generates the 14-axis MuJoCo model from the CAD meshes (masses and inertias per link) and re-runs the unchanged official weights on it;
-- ships a Lab where the same evaluation protocol is used for the official weights and for locally trained checkpoints, and replays recorded gaits on the real CAD rig.
+- measures the reference robot's joint layout at qpos 0 (straight legs) instead of the HOME pose, so every axis is world-aligned and every bracket prints flat;
+- holds each servo the way the reference does - body in a U-channel on one link, a single horn plate on the next - giving 20 printed parts at 347 g;
+- has no eye, hand or claw parts: the nose camera is the eye and the eyes are painted;
+- measures each joint's collision-free travel by exact-boolean bisection and uses those numbers as the MuJoCo joint limits, instead of declaring a range and hoping;
+- reports printability (bed fit, overhang fraction, bed contact) per part;
+- generates the 14-axis MuJoCo model from the CAD meshes and re-runs the unchanged official weights on it;
+- ships a Lab where the same evaluation protocol covers the official weights and locally trained checkpoints, and replays recorded gaits on the real CAD rig.
 
 ## Acceptance and limits
 
@@ -21,9 +24,9 @@ User direction: the P0 appearance was rejected; redesign X to be as cute as the 
 
 ## Completion ledger
 
-- [x] Rev A actuated CAD: 22 printed parts, 15 servo envelopes, battery/board/camera placements, STEP/STL/GLB, drawings and BOM
+- [x] Rev B actuated CAD: 20 printed parts, 15 servo envelopes, battery/board/camera placements, STEP/STL/GLB, drawings and BOM
 - [x] Chibi appearance per user request; README portrait rendered from the actual CAD
-- [x] Static interference clear at HOME; per-joint sampled sweeps recorded (mechanical envelopes documented)
+- [x] Static interference clear in the design pose; per-joint sweeps clear inside the measured travel; travel and printability published as artefacts
 - [x] CAD-derived 14-axis dynamics model with the pinned adapter; unchanged official weights evaluated on it
 - [x] Lab: anatomy, 14-axis studio (train / evaluate / compare / download), gait replay on the CAD rig, 1-axis teaching example, voice
 - [x] Local simulator drives the CAD rig from MuJoCo qpos with official or trained policies

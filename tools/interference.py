@@ -43,11 +43,16 @@ print('static pairs',tested,'overlaps',len(static))
 for s in static:print('  STATIC',s)
 # Sampled joint sweeps: each joint moved alone from HOME, others at HOME.
 # Angles are relative to the HOME pose in which the CAD is built; they are the intended mechanical envelopes, not the policy's full range.
-sweeps={'hip_yaw':[-.4,-.2,.2,.4],'hip_roll':[-.17,-.09,.09,.17],'hip_pitch':[-.7,-.35,.35,.7],'knee':[-.5,-.25,.25,.5],'ankle':[-.5,-.25,.25,.5],
-        'neck_pitch':[-.2,-.1,.2,.4],'head_pitch':[-.6,-.3,.3,.6],'head_yaw':[-1.2,-.6,.6,1.2],'head_roll':[-.2,-.1,.1,.2],'jaw':[.12,.24,.35]}
+# Sampled inside the measured travel of each joint (engineering/joint_travel.json), which is
+# where the mechanism is allowed to go. tools/travel.py is what finds those limits.
+_t=json.loads((R/'engineering/joint_travel.json').read_text())['joints']
+sweeps={}
+for _n,_v in _t.items(): # keyed by the full joint name: left and right limits are not the same
+    _lo,_hi=_v['min_rad'],_v['max_rad']
+    sweeps[_n]=sorted({round(x,4) for x in [_lo,_lo/2,_hi/2,_hi] if abs(x)>1e-6})
 motion=[]
 for joint in L.SERVOS:
-    key=joint['name'].replace('left_','').replace('right_','')
+    key=joint['name']
     moving=set(subtree(joint['child']));fixed=[n for n in names if body_of[n] not in moving];mov=[n for n in names if body_of[n] in moving]
     worst=0;hits=[]
     for angle in sweeps[key]:

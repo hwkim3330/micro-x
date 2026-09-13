@@ -1,176 +1,176 @@
 {
   "scope": "HOME pose, both feet flat; CAD-derived masses (PLA solid density + purchased catalogue masses); fasteners, cables and print infill not modelled.",
-  "mass_g": 829.9,
+  "mass_g": 745.9,
   "center_of_mass_mm": [
-    -7.27,
-    0.35,
-    131.64
+    -10.21,
+    0.54,
+    141.29
   ],
   "support_hull_xy_mm": [
     [
-      -38.0,
-      -74.0
+      -52.0,
+      -71.0
     ],
     [
-      44.0,
-      -74.0
+      2.0,
+      -71.0
     ],
     [
-      44.0,
-      74.0
+      2.0,
+      71.0
     ],
     [
-      -38.0,
-      74.0
+      -52.0,
+      71.0
     ]
   ],
-  "minimum_static_margin_mm": 30.73,
+  "minimum_static_margin_mm": 12.21,
   "bodies": [
     {
       "body": "trunk_base",
-      "mass_g": 290.8,
+      "mass_g": 251.4,
       "com_mm": [
-        -27.8,
-        -0.2,
-        134.6
+        -36.1,
+        0.2,
+        133.3
       ]
     },
     {
       "body": "x_left_yaw2roll",
-      "mass_g": 23.7,
+      "mass_g": 31.9,
       "com_mm": [
-        7.4,
+        5.7,
         17.5,
-        101.7
+        95.0
       ]
     },
     {
       "body": "x_left_hip",
-      "mass_g": 18.5,
+      "mass_g": 6.3,
       "com_mm": [
-        8.1,
-        39.3,
-        104.6
+        17.0,
+        31.0,
+        101.9
       ]
     },
     {
-      "body": "x_left_thigh",
-      "mass_g": 36.2,
+      "body": "x_left_upper_leg",
+      "mass_g": 54.8,
       "com_mm": [
-        -1.0,
-        55.7,
-        91.7
+        -16.4,
+        58.5,
+        96.2
       ]
     },
     {
-      "body": "x_left_shin",
-      "mass_g": 46.8,
+      "body": "x_left_lower_leg",
+      "mass_g": 25.2,
       "com_mm": [
-        -9.8,
-        46.2,
-        49.8
+        -31.8,
+        45.8,
+        49.2
       ]
     },
     {
       "body": "x_left_foot",
-      "mass_g": 36.8,
+      "mass_g": 16.5,
       "com_mm": [
-        10.9,
-        48.3,
-        11.1
+        -25.8,
+        51.8,
+        21.9
       ]
     },
     {
       "body": "x_neck",
-      "mass_g": 44.6,
+      "mass_g": 65.4,
       "com_mm": [
-        9.6,
-        -1.3,
-        192.6
+        26.1,
+        -2.9,
+        177.5
       ]
     },
     {
       "body": "x_head_base",
-      "mass_g": 3.6,
+      "mass_g": 4.4,
       "com_mm": [
-        9.1,
-        9.1,
-        213.0
+        27.4,
+        6.0,
+        215.2
       ]
     },
     {
       "body": "x_head_yoke",
-      "mass_g": 56.9,
+      "mass_g": 30.6,
       "com_mm": [
-        -8.3,
-        7.0,
-        237.8
+        25.3,
+        -8.6,
+        237.6
       ]
     },
     {
       "body": "x_head",
-      "mass_g": 96.5,
+      "mass_g": 116.6,
       "com_mm": [
-        10.1,
-        -0.4,
-        243.6
+        18.1,
+        6.4,
+        249.9
       ]
     },
     {
       "body": "x_jaw",
-      "mass_g": 13.5,
+      "mass_g": 8.0,
       "com_mm": [
-        46.7,
-        0.9,
-        215.1
+        51.4,
+        4.3,
+        228.9
       ]
     },
     {
       "body": "x_right_yaw2roll",
-      "mass_g": 23.7,
+      "mass_g": 31.9,
       "com_mm": [
-        7.4,
+        5.7,
         -17.5,
-        101.7
+        95.0
       ]
     },
     {
       "body": "x_right_hip",
-      "mass_g": 18.5,
+      "mass_g": 6.3,
       "com_mm": [
-        8.1,
-        -39.3,
-        104.6
+        17.0,
+        -31.0,
+        101.9
       ]
     },
     {
-      "body": "x_right_thigh",
-      "mass_g": 36.2,
+      "body": "x_right_upper_leg",
+      "mass_g": 54.8,
       "com_mm": [
-        -1.0,
-        -55.7,
-        91.7
+        -16.4,
+        -58.5,
+        96.2
       ]
     },
     {
-      "body": "x_right_shin",
-      "mass_g": 46.8,
+      "body": "x_right_lower_leg",
+      "mass_g": 25.2,
       "com_mm": [
-        -9.8,
-        -46.2,
-        49.8
+        -31.8,
+        -45.8,
+        49.2
       ]
     },
     {
       "body": "x_right_foot",
-      "mass_g": 36.8,
+      "mass_g": 16.5,
       "com_mm": [
-        10.9,
-        -48.3,
-        11.1
+        -25.8,
+        -51.8,
+        21.9
       ]
     }
   ],
-  "model_sha256": "99e8980e378dd8dafda8a3e5afddbc6b62e112cebb058aeeecd4f32262d48318",
+  "model_sha256": "885bd62f49ef296776e53d3641644f637dd1a23b90e6fd62a5d427212bab9f36",
   "physical_verified": false
 }

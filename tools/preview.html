@@ -6,15 +6,15 @@
 import * as THREE from 'three';import {OrbitControls} from '../web/vendor/three/controls/OrbitControls.js';import {GLTFLoader} from '../web/vendor/three/loaders/GLTFLoader.js';
 const el=document.querySelector('#v'),scene=new THREE.Scene();scene.background=new THREE.Color('#f0eee4');
 const camera=new THREE.PerspectiveCamera(32,innerWidth/innerHeight,.001,10);const renderer=new THREE.WebGLRenderer({antialias:true,preserveDrawingBuffer:true});renderer.setSize(innerWidth,innerHeight);renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;el.append(renderer.domElement);
-const controls=new OrbitControls(camera,renderer.domElement);controls.target.set(0,.14,0);
+const controls=new OrbitControls(camera,renderer.domElement);controls.target.set(0,.15,0);
 scene.add(new THREE.HemisphereLight(0xffffff,0x8a7a60,2.6));const light=new THREE.DirectionalLight(0xfff2dc,3);light.position.set(1,2,1.5);scene.add(light);const fill=new THREE.DirectionalLight(0xdbe6ff,1.2);fill.position.set(-1,1,-1);scene.add(fill);scene.add(new THREE.GridHelper(.8,16,0xc9c4b4,0xe2ded0));
 const parts=await (await fetch('../artifacts/parts.json')).json();const g=await new GLTFLoader().loadAsync('../models/micro_x.glb');const model=g.scene;model.rotation.x=-Math.PI/2;scene.add(model);
 const shell=new Set(parts.parts.filter(p=>p.group==='shell').map(p=>p.name));const frame=new Set([...parts.parts.filter(p=>p.group!=='shell').map(p=>p.name),...parts.purchased.map(p=>p.name)]);
 model.traverse(o=>{if(o.isMesh){o.name=o.name.replace(/^mesh_/,"");o.material.metalness=0;o.material.roughness=o.name.startsWith('eye_')?.15:.6;o.material.vertexColors=true;}});
 function vis(){const f=document.querySelector('#frame').checked,s=document.querySelector('#shell').checked;model.traverse(o=>{if(o.isMesh)o.visible=(shell.has(o.name)&&s)||(frame.has(o.name)&&f)})}
 document.querySelector('#frame').onchange=vis;document.querySelector('#shell').onchange=vis;
-const cams={hero:[.34,.28,.46],front:[.62,.16,0],side:[0,.16,.62],top:[0,.7,.01],back:[-.62,.18,0]};
-function setCam(k){camera.position.set(...cams[k]);controls.target.set(0,.14,0);controls.update()}
+const cams={hero:[.50,.34,.62],front:[.82,.20,0],side:[0,.20,.82],top:[0,.95,.01],back:[-.78,.26,.12]};
+function setCam(k){camera.position.set(...cams[k]);controls.target.set(0,.15,0);controls.update()}
 document.querySelector('#cam').onchange=e=>setCam(e.target.value);setCam(new URLSearchParams(location.search).get('cam')||'hero');
 document.querySelector('#info').textContent=`${parts.parts.length} printed · ${parts.printed_mass_g} g solid PLA · ${parts.purchased.length} purchased ${parts.purchased_mass_g} g`;
 window.preview={scene,camera,renderer,model,controls,setCam};

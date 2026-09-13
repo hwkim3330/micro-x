@@ -19,7 +19,7 @@ class Environment:
         names=[mujoco.mj_id2name(self.model,mujoco.mjtObj.mjOBJ_JOINT,int(j)) for j in self.model.actuator_trnid[:,0]]
         assert names==json.loads((R/'engineering/control_interface.json').read_text())['joint_names']
     def reset(self,seed=0,command=(0,0,0)):
-        mujoco.mj_resetData(self.model,self.data);self.data.qpos[:7]=[0,0,.125,1,0,0,0]
+        mujoco.mj_resetData(self.model,self.data);self.data.qpos[:7]=[0,0,json.loads((R/'engineering/control_interface.json').read_text())['home_trunk_z_m'],1,0,0,0]
         self.data.qpos[self.policy.joint_qpos_indices]=self.policy.default_pose+np.random.default_rng(seed).normal(0,.003,14)
         self.policy.last_action[:]=0;self.policy.set_vel_cmd(*command);self.motor.reset(self.data.qpos);self.policy.set_position_targets(self.policy.default_pose);mujoco.mj_forward(self.model,self.data)
         return self.observation()

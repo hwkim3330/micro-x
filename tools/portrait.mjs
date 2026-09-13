@@ -18,7 +18,8 @@ try {
   browser=await puppeteer.launch({executablePath:process.env.CHROME_PATH,args:['--no-sandbox','--enable-unsafe-swiftshader']});
   const page=await browser.newPage();await page.setViewport({width:1800,height:1200,deviceScaleFactor:1});
   await page.goto(`http://127.0.0.1:${server.address().port}/web/`);await page.waitForFunction(()=>window.microX,{timeout:60000});
-  const shots=[['hero',[.30,.26,.42],'artifacts/readme_hero.png',true],['face',[.27,.25,.14],'artifacts/readme_face.png',false],['side',[0,.17,.55],'artifacts/readme_side.png',false]];
+  // Direction only; the distance is computed from the model's bounding sphere so the frame always fits.
+  const shots=[['hero',[.62,.42,.78],'artifacts/readme_hero.png',true],['face',[.80,.38,.34],'artifacts/readme_face.png',false],['side',[0,.22,1],'artifacts/readme_side.png',false]];
   for(const [name,position,file,labels]of shots){
     await page.evaluate(({position,labels})=>{
       const {scene,camera,renderer,controls}=window.microX;
@@ -27,14 +28,23 @@ try {
       stage.style.cssText='position:fixed;inset:0;width:100%;height:100%;background:#f0eee4';
       [...stage.children].filter(x=>x.tagName!=='CANVAS').forEach(x=>x.remove());
       document.querySelectorAll('.portrait-label').forEach(x=>x.remove());
-      camera.position.set(...position);controls.target.set(0,.14,0);controls.update();
+      const box=new (window.THREE_BOX||Object).constructor;
+      const bounds=window.microX.robot.root.clone();
+      const b3=new (Object.getPrototypeOf(window.microX.controls).constructor===Object?Object:Object)();
+      // Frame the actual model: centre on its bounding box, back off to fit its radius.
+      const bb=window.microX.boundingBox();
+      const centre=bb.centre,radius=bb.radius;
+      const dir=new Array(3).fill(0).map((_,i)=>position[i]);
+      const len=Math.hypot(...dir);const fit=radius/Math.sin((camera.fov*Math.PI/180)/2)*1.18;
+      camera.position.set(centre[0]+dir[0]/len*fit,centre[1]+dir[1]/len*fit,centre[2]+dir[2]/len*fit);
+      controls.target.set(...centre);camera.near=fit/50;camera.far=fit*8;controls.update();
       if(labels){const label=document.createElement('div');label.className='portrait-label';label.style.cssText='position:fixed;top:65px;left:75px;color:#173d30;font-family:Arial,sans-serif';
-        label.innerHTML='<div style="font-size:58px;font-weight:800;letter-spacing:3px">MICRO <span style="color:#d87832">X</span></div><div style="font-size:20px;letter-spacing:5px;margin-top:14px">YOUR LITTLE T-REX · REV A</div>';
-        const note=document.createElement('div');note.className='portrait-label';note.style.cssText='position:fixed;bottom:45px;left:75px;color:#476454;font:18px Arial,sans-serif';note.textContent='Original commercial design · actuated 15-servo CAD · digital validation stage';
+        label.innerHTML='<div style="font-size:58px;font-weight:800;letter-spacing:3px">MICRO <span style="color:#d87832">X</span></div><div style="font-size:20px;letter-spacing:5px;margin-top:14px">YOUR LITTLE T-REX · REV B</div>';
+        const note=document.createElement('div');note.className='portrait-label';note.style.cssText='position:fixed;bottom:45px;left:75px;color:#476454;font:18px Arial,sans-serif';note.textContent='Original commercial design · actuated 15-servo CAD · measured joint travel · digital validation stage';
         document.body.append(label,note);}
       renderer.setSize(innerWidth,innerHeight);camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.render(scene,camera);
     },{position,labels});
     await page.screenshot({path:path.join(root,file)});
   }
-  console.log('Rendered actual Micro X Rev A CAD to artifacts/readme_hero.png, readme_face.png, readme_side.png');
+  console.log('Rendered actual Micro X Rev B CAD to artifacts/readme_hero.png, readme_face.png, readme_side.png');
 } finally {await browser?.close();server.close();}

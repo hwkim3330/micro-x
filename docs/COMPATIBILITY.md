@@ -4,15 +4,15 @@
 
 ## 세 층
 
-1. **Rev A CAD** (`cad/build.py`): 20개 출력 부품 + 15개 서보·배터리·보드·카메라 외형. 관절 피벗·축은 `engineering/functional_interface.json`(기능 인터페이스 측정값)을 따르고 나머지는 새로 설계.
-2. **CAD 기반 동역학 모델** (`cad/compat_model.py` → `models/micro_x_14.xml`): 부품 메시에서 링크별 질량·질량중심·관성을 계산(PLA 꽉 찬 밀도 + 구매품 카탈로그 질량). 접촉은 발바닥 상자, 몸통·머리 타원체, 다리 상자. 이전의 원시 도형 연구 모델은 `models/archive/micro_x_14_primitive_study.xml`로 보존.
+1. **Rev B CAD** (`cad/build.py`): 20개 출력 부품 + 15개 서보·배터리·보드·카메라 외형. 관절 피벗·축은 `engineering/functional_layout.json`(기준 로봇을 qpos 0에서 측정한 기능 치수)을 따르고 나머지는 새로 설계.
+2. **CAD 기반 동역학 모델** (`cad/compat_model.py` → `models/micro_x_14.xml`): 부품 메시에서 링크별 질량·질량중심·관성을 계산(PLA 꽉 찬 밀도 + 구매품 카탈로그 질량). 관절 한계는 추측이 아니라 `tools/travel.py`가 측정한 실제 가동 범위입니다. 몸통 프레임은 기준 로봇과 같은 120 mm 높이이고, HOME 기립 높이는 119.3 mm입니다. 이전의 원시 도형 연구 모델은 `models/archive/micro_x_14_primitive_study.xml`로 보존.
 3. **고정된 공식 추론 코드 + 가중치** (`runtime/compat_env.py`, `.cache/compat/`): 변경 없는 `alpha_walking.onnx`/`alpha_stand.onnx`와 BAM M6 XL330 모터 모델(kp 200, 7.4 V 재현 조건).
 
 ## 제어 계약
 
 `engineering/control_interface.json`: 14 액추에이터 이름·순서, HOME 오프셋, 61 관측(자이로 3, 투영 중력 3, HOME 상대 관절 위치 14, 관절 속도 14, 이전 행동 14, 명령 13), 50 Hz 제어 / 200 Hz 물리. 목표 = HOME + 행동, 스케일 1. 턱은 15번째 수동 관절(정책 외)로 모델에 포함되며 `models/rig.json`이 qpos 배열 순서를 기록합니다.
 
-Rev A에서 기구적으로 제한한 범위: 고관절 롤 HOME ±10° (원본 ±22°), 목 피치 절대 0.15~1.05 rad(HOME +0.35에서 뒤로 -0.2), 머리 롤 ±12°, 머리 요 ±2.0 rad, 턱 0~0.35 rad. 무릎은 모델에서 ±1.0 rad이지만 기울인 발목 서보 때문에 ±0.5 rad 이상에서 허벅지와 닿을 수 있어 학습 시 제한을 권장합니다. 정책이 그 이상을 명령하면 시뮬레이션에서 관절 한계에 걸립니다.
+Rev B의 관절 한계는 `engineering/joint_travel.json`의 측정값입니다: 고관절 요 -26°…+30°, 롤 -20°…+17°, 피치 -90°…+63°, 무릎 -90°…+63°, 발목 ±52°, 목 피치 -12°…+40°, 머리 피치 ±34°, 요 ±115°, 롤 ±17°, 턱 0°…+17° (좌우 비대칭). 정책이 그 이상을 명령하면 시뮬레이션에서 관절 한계에 걸립니다.
 
 ## 시험 프로토콜
 
