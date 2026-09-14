@@ -41,17 +41,17 @@
     "implemented_runtime": "operator-enabled real JPEG capture through rpicam-still; hardware not tested"
   },
   "compute": {
-    "candidate": "Raspberry Pi 5 4GB bench prototype; Raspberry Pi Compute Module 5 4GB with eMMC and wireless for product feasibility",
-    "source": "https://www.raspberrypi.com/products/compute-module-5/",
+    "candidate": "Radxa Zero 3W 4GB for first integrated board qualification; 2GB cost-down only after measurement",
+    "source": "https://docs.radxa.com/en/zero/zero3",
     "dimensions_mm": [
-      55,
-      40,
-      4.7
+      65,
+      30
     ],
-    "dimensions_scope": "CM5 module only; excludes custom carrier, connectors and cooling",
-    "reference_baseline": "Microduck official runtime uses Radxa Zero 3; a separate compatibility baseline, not a drop-in Pi camera host",
+    "dimensions_scope": "Board outline only; connectors, wiring and cooling envelope not yet integrated",
+    "reference_baseline": "Official Microduck targets Radxa Zero 3; X camera and motor I/O require independent integration",
     "status": "proposed architecture; no ARM board benchmark, carrier design, thermal test or hardware integration yet",
-    "architecture_document": "docs/ONBOARD_COMPUTE.md"
+    "architecture_document": "docs/ONBOARD_COMPUTE.md",
+    "fallback": "Pi 5 / CM5 4GB if measured workload requires more CPU or camera integration favors Pi"
   },
   "microphone": {
     "required": true,

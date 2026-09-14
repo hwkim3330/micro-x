@@ -1,0 +1,21 @@
+{
+  "scope": "Single-thread CPU ONNX inference, synthetic observations, 100 warmup + 2000 timed calls. Excludes sensor acquisition, motor bus, scheduling, camera and brain. Not gait or board qualification.",
+  "host": {
+    "architecture": "x86_64",
+    "system": "Linux",
+    "python": "3.12.3"
+  },
+  "onnxruntime": "1.24.1",
+  "model_sha256": "e36332d383997d51401897734cd3e79cf5038406feddb18b4d57ecfb141daa6c",
+  "model_bytes": 793705,
+  "latency_ms": {
+    "p50": 0.029022,
+    "p95": 0.0428952,
+    "p99": 0.047144679999999994,
+    "max": 0.083076
+  },
+  "calls_over_20ms": 0,
+  "peak_rss_bytes": 73416704,
+  "board_qualified": false,
+  "physical_verified": false
+}
