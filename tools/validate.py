@@ -42,7 +42,7 @@ balance=json.loads((R/'artifacts/balance.json').read_text());assert balance['min
 assert balance['model_sha256']==hashlib.sha256((R/'models/micro_x_14.xml').read_bytes()).hexdigest(),'stale balance report'
 for name in ['m3_pilot_coupon','m3_clearance_coupon']:
     coupon=trimesh.load_mesh(R/'models/coupons'/f'{name}.stl');assert coupon.is_watertight and coupon.volume>0
-out=dict(revision='RevB',printed_parts=len(parts),purchased_items=len(report['purchased']),mesh_checks=checks,printed_mass_g=report['printed_mass_g'],purchased_mass_g=report['purchased_mass_g'],
+out=dict(revision='RevC',printed_parts=len(parts),purchased_items=len(report['purchased']),mesh_checks=checks,printed_mass_g=report['printed_mass_g'],purchased_mass_g=report['purchased_mass_g'],
     geometry='valid generated CAD checked during build; closed positive-volume meshes checked here',interference='exact STEP intersections in the design pose cleared; single-joint sweeps sampled inside the measured travel',travel='engineering/joint_travel.json',printability='artifacts/printability.json',
     motion_cleared=inter['motion_cleared'],physical_fit='NOT VERIFIED',actuation='designed, not built',production_release=False,license='original design rights reserved; software MIT; see LICENSE')
 (R/'artifacts/validation.json').write_text(json.dumps(out,indent=2)+'\n')

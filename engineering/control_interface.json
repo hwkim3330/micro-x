@@ -42,7 +42,7 @@
   "functional_dimensions": "engineering/functional_layout.json",
   "joint_ranges_rad": {
     "left_hip_yaw": [
-      -0.45,
+      -0.5,
       0.52
     ],
     "left_hip_roll": [
@@ -58,12 +58,12 @@
       1.1
     ],
     "left_ankle": [
-      -0.9,
-      0.9
+      -0.55,
+      0.55
     ],
     "neck_pitch": [
       -0.2,
-      0.7
+      0.65
     ],
     "head_pitch": [
       -0.6,
@@ -79,7 +79,7 @@
     ],
     "right_hip_yaw": [
       -0.52,
-      0.45
+      0.5
     ],
     "right_hip_roll": [
       -0.3,
@@ -94,12 +94,12 @@
       1.57
     ],
     "right_ankle": [
-      -0.9,
-      0.9
+      -0.55,
+      0.55
     ]
   },
   "joint_ranges_source": "engineering/joint_travel.json (measured)",
-  "model_mass_kg": 0.7459,
+  "model_mass_kg": 0.8339,
   "home_trunk_z_m": 0.1193,
   "physical_verified": false
 }

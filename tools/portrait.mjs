@@ -19,7 +19,7 @@ try {
   const page=await browser.newPage();await page.setViewport({width:1800,height:1200,deviceScaleFactor:1});
   await page.goto(`http://127.0.0.1:${server.address().port}/web/`);await page.waitForFunction(()=>window.microX,{timeout:60000});
   // Direction only; the distance is computed from the model's bounding sphere so the frame always fits.
-  const shots=[['hero',[.62,.42,.78],'artifacts/readme_hero.png',true],['face',[.80,.38,.34],'artifacts/readme_face.png',false],['side',[0,.22,1],'artifacts/readme_side.png',false]];
+  const shots=[['hero',[.62,.42,.78],'artifacts/readme_hero.png',true],['face',[.90,.12,.55],'artifacts/readme_face.png',false],['side',[0,.22,1],'artifacts/readme_side.png',false]];
   for(const [name,position,file,labels]of shots){
     await page.evaluate(({position,labels})=>{
       const {scene,camera,renderer,controls}=window.microX;
@@ -39,12 +39,12 @@ try {
       camera.position.set(centre[0]+dir[0]/len*fit,centre[1]+dir[1]/len*fit,centre[2]+dir[2]/len*fit);
       controls.target.set(...centre);camera.near=fit/50;camera.far=fit*8;controls.update();
       if(labels){const label=document.createElement('div');label.className='portrait-label';label.style.cssText='position:fixed;top:65px;left:75px;color:#173d30;font-family:Arial,sans-serif';
-        label.innerHTML='<div style="font-size:58px;font-weight:800;letter-spacing:3px">MICRO <span style="color:#d87832">X</span></div><div style="font-size:20px;letter-spacing:5px;margin-top:14px">YOUR LITTLE T-REX · REV B</div>';
+        label.innerHTML='<div style="font-size:58px;font-weight:800;letter-spacing:3px">MICRO <span style="color:#d87832">X</span></div><div style="font-size:20px;letter-spacing:5px;margin-top:14px">YOUR LITTLE WALKING BUDDY · REV C</div>';
         const note=document.createElement('div');note.className='portrait-label';note.style.cssText='position:fixed;bottom:45px;left:75px;color:#476454;font:18px Arial,sans-serif';note.textContent='Original commercial design · actuated 15-servo CAD · measured joint travel · digital validation stage';
         document.body.append(label,note);}
       renderer.setSize(innerWidth,innerHeight);camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.render(scene,camera);
     },{position,labels});
     await page.screenshot({path:path.join(root,file)});
   }
-  console.log('Rendered actual Micro X Rev B CAD to artifacts/readme_hero.png, readme_face.png, readme_side.png');
+  console.log('Rendered actual Micro X Rev C CAD to artifacts/readme_hero.png, readme_face.png, readme_side.png');
 } finally {await browser?.close();server.close();}

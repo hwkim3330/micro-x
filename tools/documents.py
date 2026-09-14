@@ -7,7 +7,7 @@ from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A3,landscape
 R=Path(__file__).resolve().parents[1];report=json.loads((R/'artifacts/parts.json').read_text());parts=report['parts']
 c=canvas.Canvas(str(R/'artifacts/drawings.pdf'),pagesize=landscape(A3));W,H=landscape(A3)
-c.setFont('Helvetica-Bold',26);c.drawString(40,H-60,'MICRO X Rev B — printed part reference drawings');c.setFont('Helvetica',12)
+c.setFont('Helvetica-Bold',26);c.drawString(40,H-60,'MICRO X Rev C — printed part reference drawings');c.setFont('Helvetica',12)
 y=H-100
 for line in ['Actuated chibi T-rex; 14 policy joints + jaw. Millimetres. Design pose (straight legs). Assembly frame: X forward, Y left, Z up, floor Z=0, trunk frame Z=120.',
              f"{len(parts)} printed parts ({report['printed_mass_g']} g solid PLA equivalent) + {len(report['purchased'])} purchased items ({report['purchased_mass_g']} g catalogue).",
@@ -21,7 +21,7 @@ for p in report['purchased']:
     c.drawString(40,y,f"{p['name']:<24} {p['kind']:<12} link {p['body']:<16} {p['mass_g']:>6.1f} g  {p['note'][:70]}");y-=13
 c.showPage()
 for p in parts:
-    c.setFont('Helvetica-Bold',22);c.drawString(40,H-48,'MICRO X Rev B / '+p['name'])
+    c.setFont('Helvetica-Bold',22);c.drawString(40,H-48,'MICRO X Rev C / '+p['name'])
     c.setFont('Helvetica',10);c.drawString(40,H-70,f"link: {p['body']} | millimetres | original design, prototype reference, not production released")
     m=trimesh.load_mesh(R/'models'/f"{p['name']}.stl")
     for k,(axes,label) in enumerate([([0,2],'SIDE X-Z'),([0,1],'TOP X-Y'),([1,2],'FRONT Y-Z')]):
@@ -42,7 +42,7 @@ for p in parts:
 c.save()
 with (R/'artifacts/bom.csv').open('w',newline='') as f:
     w=csv.writer(f,lineterminator='\n');w.writerow(['item','quantity','kind','link','basis','mass_g','status','file'])
-    for p in parts:w.writerow([p['name'],1,'printed',p['body'],'PLA solid-equivalent volume; infill and material not frozen',p['mass_g'],'Rev B digital design',p['step']])
+    for p in parts:w.writerow([p['name'],1,'printed',p['body'],'PLA solid-equivalent volume; infill and material not frozen',p['mass_g'],'Rev C digital design',p['step']])
     for p in report['purchased']:w.writerow([p['name'],1,p['kind'],p['body'],p['note'],p['mass_g'],'purchased envelope; supplier quote pending',p['stl']])
     w.writerow([]);w.writerow(['# measured joint travel (deg)','min','max','','','','',''])
     import math,json as _j
@@ -57,4 +57,4 @@ with (R/'artifacts/bom.csv').open('w',newline='') as f:
         ('IMU board, microphone, speaker, wiring, TTL bus adapter, power board',1,'Not yet placed in CAD; trunk deck volume reserved','Architecture decision required'),
         ('TPU sole pads',2,'Fill the hollow sole underside; durometer to be chosen','Follow-up')]:
         w.writerow([item,qty,'hardware','',basis,'',status,''])
-print('Wrote',len(parts),'drawing pages and the Rev B BOM')
+print('Wrote',len(parts),'drawing pages and the Rev C BOM')

@@ -1,24 +1,24 @@
 item,quantity,kind,link,basis,mass_g,status,file
-left_yaw2roll,1,printed,left_yaw2roll,PLA solid-equivalent volume; infill and material not frozen,13.88,Rev B digital design,models/step/left_yaw2roll.step
-left_hip,1,printed,left_hip,PLA solid-equivalent volume; infill and material not frozen,6.35,Rev B digital design,models/step/left_hip.step
-left_upper_leg,1,printed,left_upper_leg,PLA solid-equivalent volume; infill and material not frozen,18.8,Rev B digital design,models/step/left_upper_leg.step
-left_lower_leg,1,printed,left_lower_leg,PLA solid-equivalent volume; infill and material not frozen,7.24,Rev B digital design,models/step/left_lower_leg.step
-left_foot,1,printed,left_foot,PLA solid-equivalent volume; infill and material not frozen,16.5,Rev B digital design,models/step/left_foot.step
-right_yaw2roll,1,printed,right_yaw2roll,PLA solid-equivalent volume; infill and material not frozen,13.88,Rev B digital design,models/step/right_yaw2roll.step
-right_hip,1,printed,right_hip,PLA solid-equivalent volume; infill and material not frozen,6.35,Rev B digital design,models/step/right_hip.step
-right_upper_leg,1,printed,right_upper_leg,PLA solid-equivalent volume; infill and material not frozen,18.8,Rev B digital design,models/step/right_upper_leg.step
-right_lower_leg,1,printed,right_lower_leg,PLA solid-equivalent volume; infill and material not frozen,7.24,Rev B digital design,models/step/right_lower_leg.step
-right_foot,1,printed,right_foot,PLA solid-equivalent volume; infill and material not frozen,16.5,Rev B digital design,models/step/right_foot.step
-chassis,1,printed,trunk,PLA solid-equivalent volume; infill and material not frozen,39.37,Rev B digital design,models/step/chassis.step
-torso_shell,1,printed,trunk,PLA solid-equivalent volume; infill and material not frozen,19.55,Rev B digital design,models/step/torso_shell.step
-tail_cover,1,printed,trunk,PLA solid-equivalent volume; infill and material not frozen,31.71,Rev B digital design,models/step/tail_cover.step
-neck_link,1,printed,neck,PLA solid-equivalent volume; infill and material not frozen,16.0,Rev B digital design,models/step/neck_link.step
-neck_sleeve,1,printed,neck,PLA solid-equivalent volume; infill and material not frozen,13.37,Rev B digital design,models/step/neck_sleeve.step
-head_base,1,printed,head_base,PLA solid-equivalent volume; infill and material not frozen,4.41,Rev B digital design,models/step/head_base.step
-head_yoke,1,printed,head_yoke,PLA solid-equivalent volume; infill and material not frozen,12.57,Rev B digital design,models/step/head_yoke.step
-head_frame,1,printed,head,PLA solid-equivalent volume; infill and material not frozen,25.78,Rev B digital design,models/step/head_frame.step
-skull,1,printed,head,PLA solid-equivalent volume; infill and material not frozen,50.98,Rev B digital design,models/step/skull.step
-jaw_beak,1,printed,jaw,PLA solid-equivalent volume; infill and material not frozen,8.07,Rev B digital design,models/step/jaw_beak.step
+left_yaw2roll,1,printed,left_yaw2roll,PLA solid-equivalent volume; infill and material not frozen,17.03,Rev C digital design,models/step/left_yaw2roll.step
+left_hip,1,printed,left_hip,PLA solid-equivalent volume; infill and material not frozen,7.91,Rev C digital design,models/step/left_hip.step
+left_upper_leg,1,printed,left_upper_leg,PLA solid-equivalent volume; infill and material not frozen,23.06,Rev C digital design,models/step/left_upper_leg.step
+left_lower_leg,1,printed,left_lower_leg,PLA solid-equivalent volume; infill and material not frozen,8.55,Rev C digital design,models/step/left_lower_leg.step
+left_foot,1,printed,left_foot,PLA solid-equivalent volume; infill and material not frozen,25.03,Rev C digital design,models/step/left_foot.step
+right_yaw2roll,1,printed,right_yaw2roll,PLA solid-equivalent volume; infill and material not frozen,17.03,Rev C digital design,models/step/right_yaw2roll.step
+right_hip,1,printed,right_hip,PLA solid-equivalent volume; infill and material not frozen,7.91,Rev C digital design,models/step/right_hip.step
+right_upper_leg,1,printed,right_upper_leg,PLA solid-equivalent volume; infill and material not frozen,23.06,Rev C digital design,models/step/right_upper_leg.step
+right_lower_leg,1,printed,right_lower_leg,PLA solid-equivalent volume; infill and material not frozen,8.55,Rev C digital design,models/step/right_lower_leg.step
+right_foot,1,printed,right_foot,PLA solid-equivalent volume; infill and material not frozen,25.03,Rev C digital design,models/step/right_foot.step
+chassis,1,printed,trunk,PLA solid-equivalent volume; infill and material not frozen,44.33,Rev C digital design,models/step/chassis.step
+torso_shell,1,printed,trunk,PLA solid-equivalent volume; infill and material not frozen,24.03,Rev C digital design,models/step/torso_shell.step
+tail_cover,1,printed,trunk,PLA solid-equivalent volume; infill and material not frozen,39.08,Rev C digital design,models/step/tail_cover.step
+neck_link,1,printed,neck,PLA solid-equivalent volume; infill and material not frozen,16.0,Rev C digital design,models/step/neck_link.step
+neck_sleeve,1,printed,neck,PLA solid-equivalent volume; infill and material not frozen,13.37,Rev C digital design,models/step/neck_sleeve.step
+head_base,1,printed,head_base,PLA solid-equivalent volume; infill and material not frozen,4.41,Rev C digital design,models/step/head_base.step
+head_yoke,1,printed,head_yoke,PLA solid-equivalent volume; infill and material not frozen,15.63,Rev C digital design,models/step/head_yoke.step
+head_frame,1,printed,head,PLA solid-equivalent volume; infill and material not frozen,25.77,Rev C digital design,models/step/head_frame.step
+skull,1,printed,head,PLA solid-equivalent volume; infill and material not frozen,80.0,Rev C digital design,models/step/skull.step
+jaw_beak,1,printed,jaw,PLA solid-equivalent volume; infill and material not frozen,9.91,Rev C digital design,models/step/jaw_beak.step
 servo_left_hip_yaw,1,actuator,trunk,XL330-class smart servo envelope; confirm the case hole pattern before ordering,18.0,purchased envelope; supplier quote pending,models/purchased/servo_left_hip_yaw.stl
 servo_left_hip_roll,1,actuator,left_yaw2roll,XL330-class smart servo envelope; confirm the case hole pattern before ordering,18.0,purchased envelope; supplier quote pending,models/purchased/servo_left_hip_roll.stl
 servo_left_hip_pitch,1,actuator,left_upper_leg,XL330-class smart servo envelope; confirm the case hole pattern before ordering,18.0,purchased envelope; supplier quote pending,models/purchased/servo_left_hip_pitch.stl
@@ -39,17 +39,17 @@ compute_board,1,electronics,trunk,Single-board computer up to 50 x 27 mm on the 
 camera_module_3,1,camera,head,"Raspberry Pi Camera Module 3 Standard class, 25 x 24 mm board",4,purchased envelope; supplier quote pending,models/purchased/camera_module_3.stl
 
 # measured joint travel (deg),min,max,,,,,
-left_hip_yaw,-25.8,29.8,,,,,
+left_hip_yaw,-28.6,29.8,,,,,
 left_hip_roll,-20.1,17.2,,,,,
 left_hip_pitch,-90.0,63.0,,,,,
 left_knee,-90.0,63.0,,,,,
-left_ankle,-51.6,51.6,,,,,
-right_hip_yaw,-29.8,25.8,,,,,
+left_ankle,-31.5,31.5,,,,,
+right_hip_yaw,-29.8,28.6,,,,,
 right_hip_roll,-17.2,20.1,,,,,
 right_hip_pitch,-63.0,90.0,,,,,
 right_knee,-63.0,90.0,,,,,
-right_ankle,-51.6,51.6,,,,,
-neck_pitch,-11.5,40.1,,,,,
+right_ankle,-31.5,31.5,,,,,
+neck_pitch,-11.5,37.2,,,,,
 head_pitch,-34.4,34.4,,,,,
 head_yaw,-114.6,114.6,,,,,
 head_roll,-17.2,17.2,,,,,

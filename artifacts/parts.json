@@ -15,12 +15,12 @@
       "printed": true,
       "print_axis": "-Z",
       "dimensions_mm": [
-        31.8,
-        26.0,
-        39.8
+        32.4,
+        26.8,
+        40.4
       ],
-      "volume_mm3": 11193.6,
-      "mass_g": 13.88,
+      "volume_mm3": 13731.2,
+      "mass_g": 17.03,
       "step": "models/step/left_yaw2roll.step",
       "stl": "models/print/left_yaw2roll.stl"
     },
@@ -38,12 +38,12 @@
       "printed": true,
       "print_axis": "-Y",
       "dimensions_mm": [
-        32.5,
-        38.0,
-        27.0
+        33.5,
+        38.1,
+        28.5
       ],
-      "volume_mm3": 5118.9,
-      "mass_g": 6.35,
+      "volume_mm3": 6378.1,
+      "mass_g": 7.91,
       "step": "models/step/left_hip.step",
       "stl": "models/print/left_hip.stl"
     },
@@ -61,12 +61,12 @@
       "printed": true,
       "print_axis": "Y",
       "dimensions_mm": [
-        60.3,
-        31.9,
-        43.5
+        62.2,
+        31.75,
+        44.5
       ],
-      "volume_mm3": 15160.4,
-      "mass_g": 18.8,
+      "volume_mm3": 18593.5,
+      "mass_g": 23.06,
       "step": "models/step/left_upper_leg.step",
       "stl": "models/print/left_upper_leg.stl"
     },
@@ -84,12 +84,12 @@
       "printed": true,
       "print_axis": "Y",
       "dimensions_mm": [
-        25.6,
-        13.8,
+        26.8,
+        14.4,
         62.5
       ],
-      "volume_mm3": 5841.1,
-      "mass_g": 7.24,
+      "volume_mm3": 6898.7,
+      "mass_g": 8.55,
       "step": "models/step/left_lower_leg.step",
       "stl": "models/print/left_lower_leg.stl"
     },
@@ -107,12 +107,12 @@
       "printed": true,
       "print_axis": "Z",
       "dimensions_mm": [
-        54.0,
-        42.0,
+        58.0,
+        46.0,
         38.0
       ],
-      "volume_mm3": 13302.7,
-      "mass_g": 16.5,
+      "volume_mm3": 20186.5,
+      "mass_g": 25.03,
       "step": "models/step/left_foot.step",
       "stl": "models/print/left_foot.stl"
     },
@@ -130,12 +130,12 @@
       "printed": true,
       "print_axis": "-Z",
       "dimensions_mm": [
-        31.8,
-        26.0,
-        39.8
+        32.4,
+        26.8,
+        40.4
       ],
-      "volume_mm3": 11193.6,
-      "mass_g": 13.88,
+      "volume_mm3": 13731.2,
+      "mass_g": 17.03,
       "step": "models/step/right_yaw2roll.step",
       "stl": "models/print/right_yaw2roll.stl"
     },
@@ -153,12 +153,12 @@
       "printed": true,
       "print_axis": "Y",
       "dimensions_mm": [
-        32.5,
-        38.0,
-        27.0
+        33.5,
+        38.1,
+        28.5
       ],
-      "volume_mm3": 5118.9,
-      "mass_g": 6.35,
+      "volume_mm3": 6378.1,
+      "mass_g": 7.91,
       "step": "models/step/right_hip.step",
       "stl": "models/print/right_hip.stl"
     },
@@ -176,12 +176,12 @@
       "printed": true,
       "print_axis": "-Y",
       "dimensions_mm": [
-        60.3,
-        31.9,
-        43.5
+        62.2,
+        31.75,
+        44.5
       ],
-      "volume_mm3": 15160.4,
-      "mass_g": 18.8,
+      "volume_mm3": 18593.5,
+      "mass_g": 23.06,
       "step": "models/step/right_upper_leg.step",
       "stl": "models/print/right_upper_leg.stl"
     },
@@ -199,12 +199,12 @@
       "printed": true,
       "print_axis": "-Y",
       "dimensions_mm": [
-        25.6,
-        13.8,
+        26.8,
+        14.4,
         62.5
       ],
-      "volume_mm3": 5841.1,
-      "mass_g": 7.24,
+      "volume_mm3": 6898.7,
+      "mass_g": 8.55,
       "step": "models/step/right_lower_leg.step",
       "stl": "models/print/right_lower_leg.stl"
     },
@@ -222,12 +222,12 @@
       "printed": true,
       "print_axis": "Z",
       "dimensions_mm": [
-        54.0,
-        42.0,
+        58.0,
+        46.0,
         38.0
       ],
-      "volume_mm3": 13302.7,
-      "mass_g": 16.5,
+      "volume_mm3": 20186.5,
+      "mass_g": 25.03,
       "step": "models/step/right_foot.step",
       "stl": "models/print/right_foot.stl"
     },
@@ -246,11 +246,11 @@
       "print_axis": "Z",
       "dimensions_mm": [
         131.0,
-        61.99,
+        61.98,
         51.9
       ],
-      "volume_mm3": 31747.1,
-      "mass_g": 39.37,
+      "volume_mm3": 35750.4,
+      "mass_g": 44.33,
       "step": "models/step/chassis.step",
       "stl": "models/print/chassis.stl"
     },
@@ -272,8 +272,8 @@
         75.15,
         41.78
       ],
-      "volume_mm3": 15762.4,
-      "mass_g": 19.55,
+      "volume_mm3": 19379.1,
+      "mass_g": 24.03,
       "step": "models/step/torso_shell.step",
       "stl": "models/print/torso_shell.stl"
     },
@@ -295,8 +295,8 @@
         64.0,
         41.99
       ],
-      "volume_mm3": 25570.9,
-      "mass_g": 31.71,
+      "volume_mm3": 31514.7,
+      "mass_g": 39.08,
       "step": "models/step/tail_cover.step",
       "stl": "models/print/tail_cover.stl"
     },
@@ -383,12 +383,12 @@
       "printed": true,
       "print_axis": "-Z",
       "dimensions_mm": [
-        30.7,
-        37.2,
-        31.8
+        31.3,
+        37.8,
+        32.4
       ],
-      "volume_mm3": 10134.3,
-      "mass_g": 12.57,
+      "volume_mm3": 12601.1,
+      "mass_g": 15.63,
       "step": "models/step/head_yoke.step",
       "stl": "models/print/head_yoke.stl"
     },
@@ -406,12 +406,12 @@
       "printed": true,
       "print_axis": "-Z",
       "dimensions_mm": [
-        98.2,
+        94.2,
         65.4,
         41.7
       ],
-      "volume_mm3": 20793.7,
-      "mass_g": 25.78,
+      "volume_mm3": 20779.6,
+      "mass_g": 25.77,
       "step": "models/step/head_frame.step",
       "stl": "models/print/head_frame.stl"
     },
@@ -425,16 +425,16 @@
       ],
       "body": "head",
       "group": "shell",
-      "note": "Skull: one-piece hollow T-rex head, wide over the servos and tapering to a snout with a camera ring and nostrils. Three M3 down into the head frame; the eyes are painted, not parts.",
+      "note": "Head: one-piece round hollow shell with a short bill, camera ring and nostrils. Three M3 down into the head frame; the eyes are painted, not parts.",
       "printed": true,
       "print_axis": "Z",
       "dimensions_mm": [
-        124.0,
-        112.14,
-        56.37
+        118.0,
+        118.84,
+        65.31
       ],
-      "volume_mm3": 41110.8,
-      "mass_g": 50.98,
+      "volume_mm3": 64516.8,
+      "mass_g": 80.0,
       "step": "models/step/skull.step",
       "stl": "models/print/skull.stl"
     },
@@ -448,16 +448,16 @@
       ],
       "body": "jaw",
       "group": "shell",
-      "note": "Lower beak: rounded scoop on a single arm bolted to the jaw servo horn.",
+      "note": "Lower bill: wide rounded scoop on a single arm bolted to the jaw servo horn.",
       "printed": true,
       "print_axis": "-Z",
       "dimensions_mm": [
-        51.0,
-        59.98,
-        34.0
+        48.0,
+        68.0,
+        35.0
       ],
-      "volume_mm3": 6508.2,
-      "mass_g": 8.07,
+      "volume_mm3": 7988.8,
+      "mass_g": 9.91,
       "step": "models/step/jaw_beak.step",
       "stl": "models/print/jaw_beak.stl"
     }
@@ -819,7 +819,7 @@
       "dimensions_mm": [
         1.1,
         25.0,
-        22.0
+        24.0
       ],
       "stl": "models/purchased/camera_module_3.stl"
     }
@@ -1062,6 +1062,6 @@
       ]
     }
   ],
-  "printed_mass_g": 347.4,
+  "printed_mass_g": 435.7,
   "purchased_mass_g": 399.0
 }

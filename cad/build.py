@@ -20,7 +20,7 @@ R=Path(__file__).resolve().parents[1]
 for folder in ['models/step','models/print','artifacts','models/purchased']:(R/folder).mkdir(parents=True,exist_ok=True)
 MINT=[.62,.82,.72,1];CREAM=[.98,.94,.79,1];GRAPHITE=[.22,.25,.26,1];DARK=[.12,.14,.15,1]
 DENSITY=0.00124 # g/mm3 PLA solid-equivalent; slicer mass with infill is lower
-WALL=2.4
+WALL=3.0 # shell wall; Rev C raised from 2.4 for drop strength
 parts=[];purchased=[]
 
 def box(x0,x1,y0,y1,z0,z1):return cq.Workplane('XY').box(x1-x0,y1-y0,z1-z0).translate(((x0+x1)/2,(y0+y1)/2,(z0+z1)/2))
@@ -83,12 +83,13 @@ def build_leg(side):
     yr=yr.union(sb(-9.4,-7,4.7,30.3,75.2,114.8)) # close the idler side into one shell
     add(n('yaw2roll'),yr,GRAPHITE,n('yaw2roll'),'-Z','Hip yaw horn plate on a U-channel around the hip roll servo. Print on the plate face; every wall is vertical.')
     # Hip bracket: roll horn plate, pitch horn plate, one corner rib. Two thin plates, no enclosure.
-    hp=horn(n('hip_roll'),width=26,length=30).union(sb(22.5,25.5,4.5,41.5,89.5,115.5))
-    hp=hp.union(horn(n('hip_pitch'),width=26,length=22)).union(sb(-7,25.5,39.5,42.5,89.5,115.5))
+    hp=horn(n('hip_roll'),width=26,length=30).union(sb(22.5,26.5,4.5,42.6,89.5,115.5)) # 4 mm roll rib
+    hp=hp.union(horn(n('hip_pitch'),width=26,length=22)).union(sb(-7,26.5,39.5,42.6,89.5,115.5)) # pitch rib, kept 0.4 mm off the pitch servo
+    hp=hp.union(sb(22.5,26.5,26.5,42.6,86,89.5)).union(sb(22.5,26.5,26.5,42.6,115.5,118.5)) # corner gussets top and bottom, outside the roll servo
     hp=hp.cut(box(-60,60,-60,60,114.5,200)) # stay under the chassis floor through the full roll sweep
     add(n('hip'),hp,GRAPHITE,n('hip'),'-Y' if g>0 else 'Y','Hip corner bracket: roll horn plate and pitch horn plate joined by one rib. Print on the pitch plate face.')
     # Upper leg: open-sided shell holding the hip pitch and knee servos side by side.
-    ul=sb(-44.3,16,42.9,74.8,68.5,115).cut(sb(-42.2,13.9,42.5,72.4,70.6,112.9))
+    ul=sb(-45.2,17,42.9,75.4,68.5,116,6).cut(sb(-42.2,13.9,42.5,72.4,70.6,113))
     ul=ul.cut(sb(-60,60,40,80,0,71.5)) # open bottom so the shin can fold up
     add(n('upper_leg'),ul,MINT,n('upper_leg'),'Y' if g>0 else '-Y','Thigh shell around the hip pitch and knee servos, open on the inboard face. Print on the outboard face; the cavity opens upward, no support.',group='shell')
     # Lower leg: knee horn plate over an inboard plate and a channel around the ankle servo.
@@ -97,10 +98,10 @@ def build_leg(side):
     ll=ll.cut(sb(-60,60,0,100,0,31)) # leave the sole room to tilt
     add(n('lower_leg'),ll,MINT,n('lower_leg'),'Y' if g>0 else '-Y','Shin: knee horn plate stepping down into a channel around the ankle servo. Print on the inboard face.',group='shell')
     # Foot: ankle horn plate on a rounded hollow sole with a gusset.
-    sole=vbox(-52,2,g*29 if g>0 else -71,g*71 if g>0 else -29,13.5,24,8)
+    sole=vbox(-54,4,g*27 if g>0 else -73,g*73 if g>0 else -27,13.5,25,10)
     ft=horn(n('ankle'),width=20,length=26).union(sole)
-    ft=ft.cut(vbox(-47,-3,g*33.5 if g>0 else -66.5,g*66.5 if g>0 else -33.5,10,21.5,5)) # hollow underside for a TPU pad
-    ft=ft.union(sb(-41.8,-21.8,64.5,67.5,22,40)) # the horn plate simply continues down to the sole
+    ft=ft.cut(vbox(-48,-2,g*33 if g>0 else -67,g*67 if g>0 else -33,10,21,6)) # hollow underside for a TPU pad; 4 mm skin above
+    ft=ft.union(sb(-43.8,-19.8,64.5,68.5,22,40)) # the horn plate continues down to the sole, 4 mm thick
     add(n('foot'),ft,CREAM,n('foot'),'Z','Foot: ankle horn plate on a wide rounded sole, hollow underneath for a replaceable pad. Print sole down.',group='shell')
 for side in ['left','right']:
     print(side,'leg');build_leg(side)
@@ -176,39 +177,46 @@ frame=frame.union(box(0,36.5,19.1,21.1,231.6,262)).union(box(0,30,44.9,46.9,244,
 frame=frame.union(box(0,36.5,14,34,DECK[0],DECK[1]))                                    # deck reaches out over the jaw bay
 frame=frame.union(box(0,30,21.1,46.9,248,250.4))                                         # rib tying the outer hanger wall in
 frame=frame.union(box(0,36.5,19.1,34,229.2,231.6))                                      # jaw servo floor
-frame=frame.union(box(51,55,-8,8,244,DECK[0])).union(box(39.2,74,-8,8,240,244))         # post and forward beam
-frame=frame.union(box(70,74,-14,14,228,246))                                           # camera wall
+frame=frame.union(box(51,55,-8,8,244,DECK[0])).union(box(40.5,66,-8,8,240,244))         # post and forward beam
+frame=frame.union(box(66,70,-14,14,231,252))                                           # camera wall
 frame=frame.cut(pock('head_roll')).cut(pock('jaw'))
 for y in [-10.5,10.5]:
-    for z in [232.85,245.35]:frame=frame.cut(cyl((69,y,z),'X',1.15,6))
-frame=frame.cut(cyl((69,0,239),'X',6.5,10))
+    for z in [234.85,247.35]:frame=frame.cut(cyl((65,y,z),'X',1.15,6))
+frame=frame.cut(cyl((65,0,241),'X',6.5,10))
 for x in range(-10,56,14):frame=frame.cut(box(x,x+7,-11,11,DECK[0]-1,DECK[1]+1)) # lighten the deck
 BOSSES=[(6,-14,261.5),(6,14,261.5),(46,0,241.0)]
 frame=frame.cut(cyl((46,0,250),'Z',5.5,20)) # the skull's front boss passes through the deck
 for x,y,z in BOSSES:frame=frame.union(cyl((x,y,z),'Z',4.5,6)).cut(cyl((x,y,z-1),'Z',1.3,10))
 add('head_frame',frame,GRAPHITE,'head','-Z','Head frame: one shell with a deck over the yoke, the head-roll and jaw servo bays, a forward beam, the camera wall and three skull bosses.')
-buy('camera_module_3',box(74,75.1,-12.5,12.5,227,249),DARK,'head',4,'Raspberry Pi Camera Module 3 Standard class, 25 x 24 mm board','camera')
+buy('camera_module_3',box(70,71.1,-12.5,12.5,229,253),DARK,'head',4,'Raspberry Pi Camera Module 3 Standard class, 25 x 24 mm board','camera')
 
 # Skull: a tapering loft, wide over the servos and narrowing to a snout, so the head reads
 # as a T-rex head rather than a dome. Sections are (x, z centre, half width, half height).
-SKULL=[(-32,246,36,25),(-8,247,53,31),(18,247,56,32),(42,245,50,29),(64,241,34,22),(80,237,18,13),(88,235,7,5)]
+# Round, friendly head: widest just above the eyes, closing quickly at the back and the front.
+SKULL=[(-34,247,30,22),(-14,249,50,32),(12,251,59,37),(38,250,56,35),(58,246,44,28),(72,242,30,20),(80,240,12,8)]
+EYE=(34,262,38) # painted eye centre (x, z) and the side plane |y| where the mask starts
 def skull_loft(shrink=0.0):
     return loft([(x,z,w-shrink,h-shrink) for x,z,w,h in SKULL])
-skull=skull_loft().cut(skull_loft(2.2))
+skull=skull_loft().cut(skull_loft(WALL))
 skull=skull.cut(box(-60,140,-60,60,150,223)) # open underneath for the neck stack
 skull=skull.cut(box(-60,50,-60,60,150,229))  # open at the rear and under the neck stack
-skull=skull.cut(box(46,68,-60,60,150,236))   # mouth opening; the beak closes it, the snout tip stays solid
-skull=skull.union(cyl((82,0,239),'X',9,10)).cut(cyl((70,0,239),'X',6.5,40)) # camera ring / lens hood
-for g in (1,-1):skull=skull.cut(cyl((82,g*9,231),'X',1.7,12)) # nostrils
+skull=skull.cut(box(46,68,-60,60,150,236))   # mouth opening; the bill closes it
+skull=skull.union(cyl((74,0,241),'X',9,10)).cut(cyl((66,0,241),'X',6.5,40)) # camera ring / lens hood
+for g in (1,-1):skull=skull.cut(cyl((74,g*10,232),'X',1.7,14)) # nostrils
 for x,y,z in BOSSES:
     skull=skull.union(cyl((x,y,z+6),'Z',4.5,30).intersect(skull_loft(0.6))).cut(cyl((x,y,z+5),'Z',1.7,34))
-add('skull',skull,MINT,'head','Z','Skull: one-piece hollow T-rex head, wide over the servos and tapering to a snout with a camera ring and nostrils. Three M3 down into the head frame; the eyes are painted, not parts.',group='shell')
+# Eyes: flat button discs grown out of the shell (Ø20, face at |y| = 57), rooted 6 mm into the wall
+# so they are part of the print, not parts. The vertical rim gives shading and paint a crisp edge.
+EYE=dict(x=36,z=257,face=57.0,r=10.0)
+for g in (1,-1):skull=skull.union(cq.Workplane('XZ',origin=(EYE['x'],g*(EYE['face']-8),EYE['z'])).circle(EYE['r']).extrude(-g*8).edges('%CIRCLE').edges('>Y' if g>0 else '<Y').fillet(1.5))
+import appearance;appearance.EYE=EYE
+add('skull',skull,MINT,'head','Z','Head: one-piece round hollow shell with a short bill, camera ring and nostrils. Three M3 down into the head frame; the eyes are painted, not parts.',group='shell')
 
 beak=horn('jaw',width=20,length=18)
-scoop=ell((57,0,229),(11,30,11))
-beak=beak.union(scoop.cut(ell((57,0,229),(11-WALL,30-WALL,11-WALL))).cut(box(-60,140,-60,60,234,300)))
-beak=beak.union(box(30,57,15,18,226,238))
-add('jaw_beak',beak,CREAM,'jaw','-Z','Lower beak: rounded scoop on a single arm bolted to the jaw servo horn.',group='shell')
+scoop=ell((55,0,229),(10,34,12))
+beak=beak.union(scoop.cut(ell((55,0,229),(10-WALL,34-WALL,12-WALL))).cut(box(-60,140,-60,60,234,300)))
+beak=beak.union(box(30,55,15,18,226,238))
+add('jaw_beak',beak,CREAM,'jaw','-Z','Lower bill: wide rounded scoop on a single arm bolted to the jaw servo horn.',group='shell')
 
 # ---------------------------------------------------------------- assembly, rig, report
 print('assembly')

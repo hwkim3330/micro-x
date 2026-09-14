@@ -95,7 +95,7 @@ def cradle(P,h,d,faces,wall=2.5,clearance=0.4,extra=0.0):
     for q in parts[1:]:shape=shape.union(q)
     return to_world(shape,P,h,d)
 
-def channel(P,h,d,faces=('y+','y-','far','near','back'),thick=2.4,clear=0.4,grow=0.0):
+def channel(P,h,d,faces=('y+','y-','far','near','back'),thick=3.0,clear=0.4,grow=0.0):
     """Walls hugging the servo body on the chosen faces, in world coordinates.
 
     faces: 'y+'/'y-' the two ACROSS faces, 'near'/'far' the two ends along d

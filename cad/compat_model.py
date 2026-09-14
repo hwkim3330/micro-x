@@ -33,7 +33,7 @@ def build():
         if not p['printed']:
             lo,hi=mesh.bounds;mesh=trimesh.creation.box(hi-lo);mesh.apply_translation((lo+hi)/2)
         per_body[p['body']].append((mass,mesh));extents.setdefault(p['body'],[]).append(mesh.bounds)
-    r=E.Element('mujoco',model='Micro_X_RevB_14');add(r,'compiler',angle='radian',autolimits='true');add(r,'option',timestep='.005',gravity='0 0 -9.81',iterations=80)
+    r=E.Element('mujoco',model='Micro_X_RevC_14');add(r,'compiler',angle='radian',autolimits='true');add(r,'option',timestep='.005',gravity='0 0 -9.81',iterations=80)
     default=add(r,'default');add(default,'joint',damping='.02',armature='.00001',frictionloss='.005');add(default,'geom',friction='1 .005 .0001',condim='3')
     w=add(r,'worldbody');add(w,'geom',name='floor',type='plane',size='3 3 .01',rgba='.85 .85 .8 1')
     xml={};qpos_order=[]
@@ -86,5 +86,5 @@ def build():
                      home_rad=(L.HOME[L.JOINT_OF_BODY[b]['name']] if b in L.JOINT_OF_BODY else None),mass_kg=round(inertia_of(per_body[b])[0],5)) for b in L.BODIES],
         policy_joints=L.ORDER,mass_kg=round(total,4))
     (R/'models/rig.json').write_text(json.dumps(rig,indent=1)+'\n')
-    print(f'Built Rev B 14-axis model, mass {total*1000:.0f} g, HOME trunk height {home_z*1000:.1f} mm')
+    print(f'Built Rev C 14-axis model, mass {total*1000:.0f} g, HOME trunk height {home_z*1000:.1f} mm')
 if __name__=='__main__':build()
