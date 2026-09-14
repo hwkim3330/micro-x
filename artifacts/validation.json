@@ -129,11 +129,11 @@
       "body": "trunk",
       "watertight": true,
       "print_envelope_mm": [
-        83.8,
-        75.15,
-        41.78
+        86.04,
+        77.2,
+        47.8
       ],
-      "mass_g": 24.03
+      "mass_g": 29.07
     },
     {
       "part": "tail_cover",
@@ -196,35 +196,35 @@
       "watertight": true,
       "print_envelope_mm": [
         94.2,
-        65.4,
+        61.9,
         41.7
       ],
-      "mass_g": 25.77
+      "mass_g": 25.61
     },
     {
       "part": "skull",
       "body": "head",
       "watertight": true,
       "print_envelope_mm": [
-        118.0,
-        118.84,
-        65.31
+        134.0,
+        110.2,
+        54.77
       ],
-      "mass_g": 80.0
+      "mass_g": 77.95
     },
     {
       "part": "jaw_beak",
       "body": "jaw",
       "watertight": true,
       "print_envelope_mm": [
-        48.0,
-        68.0,
-        35.0
+        62.0,
+        65.97,
+        34.0
       ],
-      "mass_g": 9.91
+      "mass_g": 11.1
     }
   ],
-  "printed_mass_g": 435.7,
+  "printed_mass_g": 439.7,
   "purchased_mass_g": 399.0,
   "geometry": "valid generated CAD checked during build; closed positive-volume meshes checked here",
   "interference": "exact STEP intersections in the design pose cleared; single-joint sweeps sampled inside the measured travel",

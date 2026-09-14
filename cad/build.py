@@ -18,7 +18,7 @@ import servo as S
 from appearance import paint
 R=Path(__file__).resolve().parents[1]
 for folder in ['models/step','models/print','artifacts','models/purchased']:(R/folder).mkdir(parents=True,exist_ok=True)
-MINT=[.62,.82,.72,1];CREAM=[.98,.94,.79,1];GRAPHITE=[.22,.25,.26,1];DARK=[.12,.14,.15,1]
+MINT=[.97,.95,.88,1];CREAM=[.95,.62,.22,1];GRAPHITE=[.22,.25,.26,1];DARK=[.12,.14,.15,1] # MINT now = warm cream shells, CREAM = amber bill and feet
 DENSITY=0.00124 # g/mm3 PLA solid-equivalent; slicer mass with infill is lower
 WALL=3.0 # shell wall; Rev C raised from 2.4 for drop strength
 parts=[];purchased=[]
@@ -134,14 +134,14 @@ buy('compute_board',box(-23,4,-25,25,149.6,151.2),[.1,.35,.25,1],'trunk',30,'Sin
 
 # Dome over a straight elliptical tube: the tube keeps full width down at the hip servos,
 # which an ellipsoid cannot, and it prints as a clean vertical wall.
-tube=lambda a,b,z0:cq.Workplane('XY',origin=(-6,0,z0)).ellipse(a,b).extrude(142-z0)
-shell=ell((-6,0,142),(44,37.6,24)).union(tube(43.8,37.5,121))
-shell=shell.cut(ell((-6,0,142),(44-WALL,37.6-WALL,24-WALL)).union(tube(43.8-WALL,37.5-WALL,114)))
+tube=lambda a,b,z0:cq.Workplane('XY',origin=(-6,0,z0)).ellipse(a,b).extrude(142-z0) # straight skirt down over the hip servos
+shell=ell((-6,0,142),(45,38.6,25)).union(tube(44.8,38.5,116))
+shell=shell.cut(ell((-6,0,142),(45-WALL,38.6-WALL,25-WALL)).union(tube(44.8-WALL,38.5-WALL,110)))
 shell=shell.cut(box(-100,-38,-27,27,100,152)) # tail / battery opening
 shell=shell.cut(box(-28,44,-24,24,134,200)) # neck slot, wide enough for the pitch sweep
 for z in range(126,148,6):shell=shell.cut(box(28,60,-9,9,z,z+2.5)) # chest grille
-for x in [-26,20]:shell=shell.cut(cyl((x,40,132),'Y',1.7,-80))
-for x,rch in [(-26,33.5),(20,34.5)]:
+for x in [-26,20]:shell=shell.cut(cyl((x,42,132),'Y',1.7,-84))
+for x,rch in [(-26,34.5),(20,35.5)]:
     for g in (1,-1):chassis=chassis.union(box(x-2,x+2,min(g*22,g*rch),max(g*22,g*rch),128,136))
 add('torso_shell',shell,MINT,'trunk','Z','One-piece egg shell with a chest grille, neck slot and tail opening, open under the hips. Four M3 through the flanks into chassis bosses.',group='shell')
 def loft(sections):
@@ -159,7 +159,7 @@ neck=box(13.6,38.4,-17.4,14,140.5,212.2).cut(box(15.6,36.4,-15.4,20,142.5,212.3)
 neck=neck.cut(box(13,16,-20,20,100,145)) # the hip yaw servos pass within 0.5 mm here
 add('neck_link',neck,GRAPHITE,'neck','-Y','Neck tube around the stacked neck-pitch and head-pitch servos, open on the horn side. Print on the closed face.')
 sleeve=rbox(10.5,41.5,-20.5,16.9,148,216,9).cut(rbox(12.9,39.1,-18.1,19,146,218,2)) # rounded cover over the neck column
-sleeve=sleeve.cut(box(9,44,14.5,24,146,218)).cut(box(9,44,-24,24,146,150)).cut(box(9,44,-24,24,212,218))
+sleeve=sleeve.cut(box(9,44,14.5,24,146,170)).cut(box(9,44,14.5,24,194,218)).cut(box(9,44,-24,24,146,150)).cut(box(9,44,-24,24,212,218)) # horn side open only where the two horn plates pass
 add('neck_sleeve',sleeve,MINT,'neck','-Y','Neck cover: rounded shell over the neck column, open on the horn side; pitches with the neck.',group='shell')
 head_base=box(20,39,14.5,17.5,196,221.1).union(horn('head_yaw',width=26,length=35))
 add('head_base',head_base,GRAPHITE,'head_base','-Z','Head base: head-pitch horn plate joined to the head-yaw horn plate. The only part that stays still while the head yaws.')
@@ -173,49 +173,50 @@ DECK=(261.0,263.4)
 frame=box(-18,55,-16,16,*DECK)
 for g in (1,-1):frame=frame.union(box(-24.2,7.6,min(g*10.4,g*12.8),max(g*10.4,g*12.8),225.8,262))  # head roll servo walls
 frame=frame.union(box(-24.2,-21.8,-12.8,12.8,225.8,262))                              # rear wall
-frame=frame.union(box(0,36.5,19.1,21.1,231.6,262)).union(box(0,30,44.9,46.9,244,252))    # jaw servo hanger
-frame=frame.union(box(0,36.5,14,34,DECK[0],DECK[1]))                                    # deck reaches out over the jaw bay
-frame=frame.union(box(0,30,21.1,46.9,248,250.4))                                         # rib tying the outer hanger wall in
-frame=frame.union(box(0,36.5,19.1,34,229.2,231.6))                                      # jaw servo floor
-frame=frame.union(box(51,55,-8,8,244,DECK[0])).union(box(40.5,66,-8,8,240,244))         # post and forward beam
-frame=frame.union(box(66,70,-14,14,231,252))                                           # camera wall
+frame=frame.union(box(0,36.5,15.6,17.6,231.6,262)).union(box(0,30,41.4,43.4,244,252))    # jaw servo hanger
+frame=frame.union(box(0,36.5,10,31,DECK[0],DECK[1]))                                    # deck reaches out over the jaw bay
+frame=frame.union(box(0,30,17.6,43.4,248,250.4))                                         # rib tying the outer hanger wall in
+frame=frame.union(box(0,36.5,15.6,32,229.2,231.6))                                      # jaw servo floor
+frame=frame.union(box(51,55,-8,8,244,DECK[0])).union(box(40.5,66,-8,8,244,248))         # post and forward beam
+frame=frame.union(box(66,70,-14,14,228,252))                                           # camera wall
 frame=frame.cut(pock('head_roll')).cut(pock('jaw'))
 for y in [-10.5,10.5]:
-    for z in [234.85,247.35]:frame=frame.cut(cyl((65,y,z),'X',1.15,6))
-frame=frame.cut(cyl((65,0,241),'X',6.5,10))
+    for z in [231.85,244.35]:frame=frame.cut(cyl((65,y,z),'X',1.15,6))
+frame=frame.cut(cyl((65,0,238),'X',6.5,10))
 for x in range(-10,56,14):frame=frame.cut(box(x,x+7,-11,11,DECK[0]-1,DECK[1]+1)) # lighten the deck
 BOSSES=[(6,-14,261.5),(6,14,261.5),(46,0,241.0)]
-frame=frame.cut(cyl((46,0,250),'Z',5.5,20)) # the skull's front boss passes through the deck
+frame=frame.cut(cyl((46,0,246.6),'Z',5.6,26)) # the skull's front post passes through the beam and deck
 for x,y,z in BOSSES:frame=frame.union(cyl((x,y,z),'Z',4.5,6)).cut(cyl((x,y,z-1),'Z',1.3,10))
 add('head_frame',frame,GRAPHITE,'head','-Z','Head frame: one shell with a deck over the yoke, the head-roll and jaw servo bays, a forward beam, the camera wall and three skull bosses.')
-buy('camera_module_3',box(70,71.1,-12.5,12.5,229,253),DARK,'head',4,'Raspberry Pi Camera Module 3 Standard class, 25 x 24 mm board','camera')
+buy('camera_module_3',box(70,71.1,-12.5,12.5,228,252),DARK,'head',4,'Raspberry Pi Camera Module 3 Standard class, 25 x 24 mm board','camera')
 
 # Skull: a tapering loft, wide over the servos and narrowing to a snout, so the head reads
 # as a T-rex head rather than a dome. Sections are (x, z centre, half width, half height).
 # Round, friendly head: widest just above the eyes, closing quickly at the back and the front.
-SKULL=[(-34,247,30,22),(-14,249,50,32),(12,251,59,37),(38,250,56,35),(58,246,44,28),(72,242,30,20),(80,240,12,8)]
+SKULL=[(-30,245,28,20),(-12,246,46,29),(10,247,54,32),(38,246,53,31),(62,243,45,26),(82,239,36,18),(96,236,22,10),(104,234,8,4)]
 EYE=(34,262,38) # painted eye centre (x, z) and the side plane |y| where the mask starts
 def skull_loft(shrink=0.0):
     return loft([(x,z,w-shrink,h-shrink) for x,z,w,h in SKULL])
 skull=skull_loft().cut(skull_loft(WALL))
 skull=skull.cut(box(-60,140,-60,60,150,223)) # open underneath for the neck stack
 skull=skull.cut(box(-60,50,-60,60,150,229))  # open at the rear and under the neck stack
-skull=skull.cut(box(46,68,-60,60,150,236))   # mouth opening; the bill closes it
-skull=skull.union(cyl((74,0,241),'X',9,10)).cut(cyl((66,0,241),'X',6.5,40)) # camera ring / lens hood
-for g in (1,-1):skull=skull.cut(cyl((74,g*10,232),'X',1.7,14)) # nostrils
+skull=skull.cut(box(44,92,-60,60,150,232))   # wide mouth opening; the bill closes it
+skull=skull.union(cyl((80,0,238),'X',9,14)).cut(cyl((66,0,238),'X',6.5,50)) # camera ring / lens hood
+for g in (1,-1):skull=skull.cut(cyl((90,g*8,242),'X',1.7,20)) # nostrils on the bill top
 for x,y,z in BOSSES:
-    skull=skull.union(cyl((x,y,z+6),'Z',4.5,30).intersect(skull_loft(0.6))).cut(cyl((x,y,z+5),'Z',1.7,34))
+    # Extrude past the roof and clip to the shell, so the boss always merges with the top wall.
+    skull=skull.union(cyl((x,y,z+6),'Z',4.5,60).intersect(skull_loft(0.6))).cut(cyl((x,y,z+5),'Z',1.7,64))
 # Eyes: flat button discs grown out of the shell (Ø20, face at |y| = 57), rooted 6 mm into the wall
 # so they are part of the print, not parts. The vertical rim gives shading and paint a crisp edge.
-EYE=dict(x=36,z=257,face=57.0,r=10.0)
+EYE=dict(x=38,z=253,face=52.0,r=11.0)
 for g in (1,-1):skull=skull.union(cq.Workplane('XZ',origin=(EYE['x'],g*(EYE['face']-8),EYE['z'])).circle(EYE['r']).extrude(-g*8).edges('%CIRCLE').edges('>Y' if g>0 else '<Y').fillet(1.5))
 import appearance;appearance.EYE=EYE
 add('skull',skull,MINT,'head','Z','Head: one-piece round hollow shell with a short bill, camera ring and nostrils. Three M3 down into the head frame; the eyes are painted, not parts.',group='shell')
 
 beak=horn('jaw',width=20,length=18)
-scoop=ell((55,0,229),(10,34,12))
-beak=beak.union(scoop.cut(ell((55,0,229),(10-WALL,34-WALL,12-WALL))).cut(box(-60,140,-60,60,234,300)))
-beak=beak.union(box(30,55,15,18,226,238))
+scoop=ell((60,0,227),(19,33,9))
+beak=beak.union(scoop.cut(ell((60,0,227),(19-WALL,33-WALL,9-WALL))).cut(box(-60,140,-60,60,230,300)))
+beak=beak.union(box(30,56,11.5,14.5,226,238))
 add('jaw_beak',beak,CREAM,'jaw','-Z','Lower bill: wide rounded scoop on a single arm bolted to the jaw servo horn.',group='shell')
 
 # ---------------------------------------------------------------- assembly, rig, report

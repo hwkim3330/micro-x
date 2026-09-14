@@ -38,7 +38,7 @@
    "joint": null,
    "axis": null,
    "home_rad": null,
-   "mass_kg": 0.26816
+   "mass_kg": 0.27318
   },
   {
    "name": "left_yaw2roll",
@@ -191,14 +191,14 @@
     0.0
    ],
    "home_rad": 0,
-   "mass_kg": 0.14527
+   "mass_kg": 0.14305
   },
   {
    "name": "jaw",
    "parent": "head",
    "pivot_m": [
     0.026,
-    0.018,
+    0.0145,
     0.242
    ],
    "joint": "jaw",
@@ -208,7 +208,7 @@
     0.0
    ],
    "home_rad": 0.0,
-   "mass_kg": 0.00989
+   "mass_kg": 0.01108
   },
   {
    "name": "right_yaw2roll",
@@ -312,5 +312,5 @@
   "right_knee",
   "right_ankle"
  ],
- "mass_kg": 0.8339
+ "mass_kg": 0.8378
 }

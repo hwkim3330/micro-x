@@ -330,7 +330,7 @@
     "jaw": {
       "pivot": [
         26.0,
-        18.0,
+        14.5,
         242.0
       ],
       "axis": [
@@ -564,10 +564,10 @@
       ],
       "pivot_moved_mm": [
         0,
-        7.0,
+        3.5,
         3.4
       ],
-      "reason": "body points back into the wide part of the skull; the pivot moves outboard and up so the beak arm clears the head-yaw servo and the mouth opens further"
+      "reason": "body points back into the wide part of the head; the pivot moves a little outboard and up so the bill arm clears the head-yaw servo while the servo stays inside the head shell"
     }
   }
 }

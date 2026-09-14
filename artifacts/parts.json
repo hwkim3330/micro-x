@@ -50,9 +50,9 @@
     {
       "name": "left_upper_leg",
       "color": [
-        0.62,
-        0.82,
-        0.72,
+        0.97,
+        0.95,
+        0.88,
         1
       ],
       "body": "left_upper_leg",
@@ -73,9 +73,9 @@
     {
       "name": "left_lower_leg",
       "color": [
-        0.62,
-        0.82,
-        0.72,
+        0.97,
+        0.95,
+        0.88,
         1
       ],
       "body": "left_lower_leg",
@@ -96,9 +96,9 @@
     {
       "name": "left_foot",
       "color": [
-        0.98,
-        0.94,
-        0.79,
+        0.95,
+        0.62,
+        0.22,
         1
       ],
       "body": "left_foot",
@@ -165,9 +165,9 @@
     {
       "name": "right_upper_leg",
       "color": [
-        0.62,
-        0.82,
-        0.72,
+        0.97,
+        0.95,
+        0.88,
         1
       ],
       "body": "right_upper_leg",
@@ -188,9 +188,9 @@
     {
       "name": "right_lower_leg",
       "color": [
-        0.62,
-        0.82,
-        0.72,
+        0.97,
+        0.95,
+        0.88,
         1
       ],
       "body": "right_lower_leg",
@@ -211,9 +211,9 @@
     {
       "name": "right_foot",
       "color": [
-        0.98,
-        0.94,
-        0.79,
+        0.95,
+        0.62,
+        0.22,
         1
       ],
       "body": "right_foot",
@@ -257,9 +257,9 @@
     {
       "name": "torso_shell",
       "color": [
-        0.62,
-        0.82,
-        0.72,
+        0.97,
+        0.95,
+        0.88,
         1
       ],
       "body": "trunk",
@@ -268,21 +268,21 @@
       "printed": true,
       "print_axis": "Z",
       "dimensions_mm": [
-        83.8,
-        75.15,
-        41.78
+        86.04,
+        77.2,
+        47.8
       ],
-      "volume_mm3": 19379.1,
-      "mass_g": 24.03,
+      "volume_mm3": 23445.0,
+      "mass_g": 29.07,
       "step": "models/step/torso_shell.step",
       "stl": "models/print/torso_shell.stl"
     },
     {
       "name": "tail_cover",
       "color": [
-        0.62,
-        0.82,
-        0.72,
+        0.97,
+        0.95,
+        0.88,
         1
       ],
       "body": "trunk",
@@ -326,9 +326,9 @@
     {
       "name": "neck_sleeve",
       "color": [
-        0.62,
-        0.82,
-        0.72,
+        0.97,
+        0.95,
+        0.88,
         1
       ],
       "body": "neck",
@@ -407,20 +407,20 @@
       "print_axis": "-Z",
       "dimensions_mm": [
         94.2,
-        65.4,
+        61.9,
         41.7
       ],
-      "volume_mm3": 20779.6,
-      "mass_g": 25.77,
+      "volume_mm3": 20656.8,
+      "mass_g": 25.61,
       "step": "models/step/head_frame.step",
       "stl": "models/print/head_frame.stl"
     },
     {
       "name": "skull",
       "color": [
-        0.62,
-        0.82,
-        0.72,
+        0.97,
+        0.95,
+        0.88,
         1
       ],
       "body": "head",
@@ -429,21 +429,21 @@
       "printed": true,
       "print_axis": "Z",
       "dimensions_mm": [
-        118.0,
-        118.84,
-        65.31
+        134.0,
+        110.2,
+        54.77
       ],
-      "volume_mm3": 64516.8,
-      "mass_g": 80.0,
+      "volume_mm3": 62863.3,
+      "mass_g": 77.95,
       "step": "models/step/skull.step",
       "stl": "models/print/skull.stl"
     },
     {
       "name": "jaw_beak",
       "color": [
-        0.98,
-        0.94,
-        0.79,
+        0.95,
+        0.62,
+        0.22,
         1
       ],
       "body": "jaw",
@@ -452,12 +452,12 @@
       "printed": true,
       "print_axis": "-Z",
       "dimensions_mm": [
-        48.0,
-        68.0,
-        35.0
+        62.0,
+        65.97,
+        34.0
       ],
-      "volume_mm3": 7988.8,
-      "mass_g": 9.91,
+      "volume_mm3": 8948.4,
+      "mass_g": 11.1,
       "step": "models/step/jaw_beak.step",
       "stl": "models/print/jaw_beak.stl"
     }
@@ -976,7 +976,7 @@
       "parent": "head",
       "pivot_mm": [
         26.0,
-        18.0,
+        14.5,
         242.0
       ],
       "joint": "jaw",
@@ -1062,6 +1062,6 @@
       ]
     }
   ],
-  "printed_mass_g": 435.7,
+  "printed_mass_g": 439.7,
   "purchased_mass_g": 399.0
 }

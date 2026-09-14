@@ -19,7 +19,7 @@ try {
   const page=await browser.newPage();await page.setViewport({width:1800,height:1200,deviceScaleFactor:1});
   await page.goto(`http://127.0.0.1:${server.address().port}/web/`);await page.waitForFunction(()=>window.microX,{timeout:60000});
   // Direction only; the distance is computed from the model's bounding sphere so the frame always fits.
-  const shots=[['hero',[.62,.42,.78],'artifacts/readme_hero.png',true],['face',[.90,.12,.55],'artifacts/readme_face.png',false],['side',[0,.22,1],'artifacts/readme_side.png',false]];
+  const shots=[['hero',[.70,.35,.70],'artifacts/readme_hero.png',true],['face',[.90,.12,.55],'artifacts/readme_face.png',false],['side',[0,.22,1],'artifacts/readme_side.png',false]];
   for(const [name,position,file,labels]of shots){
     await page.evaluate(({position,labels})=>{
       const {scene,camera,renderer,controls}=window.microX;

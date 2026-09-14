@@ -47,11 +47,11 @@
     ],
     "left_hip_roll": [
       -0.35,
-      0.3
+      0.1
     ],
     "left_hip_pitch": [
       -1.57,
-      1.1
+      0.9
     ],
     "left_knee": [
       -1.57,
@@ -71,22 +71,22 @@
     ],
     "head_yaw": [
       -2.0,
-      2.0
+      0.75
     ],
     "head_roll": [
-      -0.3,
-      0.3
+      -0.1,
+      0.15
     ],
     "right_hip_yaw": [
       -0.52,
       0.5
     ],
     "right_hip_roll": [
-      -0.3,
+      -0.1,
       0.35
     ],
     "right_hip_pitch": [
-      -1.1,
+      -0.9,
       1.57
     ],
     "right_knee": [
@@ -99,7 +99,7 @@
     ]
   },
   "joint_ranges_source": "engineering/joint_travel.json (measured)",
-  "model_mass_kg": 0.8339,
+  "model_mass_kg": 0.8378,
   "home_trunk_z_m": 0.1193,
   "physical_verified": false
 }

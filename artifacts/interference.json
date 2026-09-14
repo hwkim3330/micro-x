@@ -19,8 +19,8 @@
       "angles_rad": [
         -0.35,
         -0.175,
-        0.15,
-        0.3
+        0.05,
+        0.1
       ],
       "collisions": []
     },
@@ -29,8 +29,8 @@
       "angles_rad": [
         -1.57,
         -0.785,
-        0.55,
-        1.1
+        0.45,
+        0.9
       ],
       "collisions": []
     },
@@ -67,8 +67,8 @@
     {
       "joint": "right_hip_roll",
       "angles_rad": [
-        -0.3,
-        -0.15,
+        -0.1,
+        -0.05,
         0.175,
         0.35
       ],
@@ -77,8 +77,8 @@
     {
       "joint": "right_hip_pitch",
       "angles_rad": [
-        -1.1,
-        -0.55,
+        -0.9,
+        -0.45,
         0.785,
         1.57
       ],
@@ -129,51 +129,51 @@
       "angles_rad": [
         -2.0,
         -1.0,
-        1.0,
-        2.0
+        0.375,
+        0.75
       ],
       "collisions": []
     },
     {
       "joint": "head_roll",
       "angles_rad": [
-        -0.3,
-        -0.15,
-        0.15,
-        0.3
+        -0.1,
+        -0.05,
+        0.075,
+        0.15
       ],
       "collisions": []
     },
     {
       "joint": "jaw",
       "angles_rad": [
-        0.15,
-        0.3
+        0.05,
+        0.1
       ],
       "collisions": []
     }
   ],
   "motion_cleared": true,
   "step_sha256": {
-    "left_yaw2roll": "686bf048e19d0ea0110d01c46b1412ce0fc7a1956db27f96638ad87d0c045fed",
-    "left_hip": "69aec5248506792a42388435a3f2daff00820b5d135cbf04c88c03ae4de39562",
-    "left_upper_leg": "2ee22616c61082f19f4fad9035a4c6d8675c6f32bca3afd0f4e1bd5d426f80b9",
-    "left_lower_leg": "a1b8863fba4ad68e100236c159751d533ff26a668d09da91a2a3e3ddbcf50eac",
-    "left_foot": "d12f05af2c4e8706da7c385efe0ae84f4d0bcebecb61791a26ad5171811a2748",
-    "right_yaw2roll": "b4baa1a5a2352e7af8b4a2f599bd98f0c367af984d0e0a0b4735d58ac21248c4",
-    "right_hip": "7080961237dd6450ce6bbcab9e7a7721cfec48c55e6e431e55d77075e9985c47",
-    "right_upper_leg": "43f1a30aeb29edb0bb0169e4eb22663d5ab10135c18cbb27648fad6d6fd4d7e7",
-    "right_lower_leg": "05bc336e0f2c0e4a1c606ff3cadb7376c815227fcf34367ef9ae366f17e2b314",
-    "right_foot": "e0ace6b501c570dd24b3f4971f0dd813b44f02c3f415dbc3a4695b8ae5abffbc",
-    "chassis": "67abe8fb9637506169dc40d68c2b3332e7e317b98c7c53ced3f6b462063e32a5",
-    "torso_shell": "1e04dae5ad7a0dd5cd95bb6a0d26d59d2348ba54b9ed990dde8c257aada3bf1f",
-    "tail_cover": "147abeb0a573a37c027a46b0c4956947d15a2c0a2e3ec16bdb2f017c4b0fbbcb",
-    "neck_link": "8dfd2cc28e505060db38c6c0bb89bd65cdd0641560e1a1176116ed5dd84d99a1",
-    "neck_sleeve": "07cc872dbe080217366ea57815a0808d3db9885d3e2e12dedb33cced673c82e3",
-    "head_base": "bfab3f304952ff1ddf3e82451fc4f00c98cf1f5ab3bf02fe3352746d0f6b9fdf",
-    "head_yoke": "e460c62ed19a6f2fc04701a689db7d9db0045cbc14feb81c516d24ed12de41b9",
-    "head_frame": "f625cb796b1601e067d63f9875c34546b290c063f30548b3fa14f59333622006",
-    "skull": "5894cfb836b9db99f317a7713901b7f8e1bf292fd409ee4f78e04e70f7dd8a26",
-    "jaw_beak": "2375330b8071bd289eee830bd6dfdf19d8d7b86e0e00b2971e9fdfe12e134f04"
+    "left_yaw2roll": "9cdab12ba1bf8c08a4056c17649735115fbcc78d47165aed1a3a9ce3048f7d09",
+    "left_hip": "94bb6c911c73c9f4205748c0a737b97bfb3e3fa663154fc55553d907cb2fbc58",
+    "left_upper_leg": "ff1911e0507a72d81ddc5c181daf38f22219522a99289309daccebfca2312c40",
+    "left_lower_leg": "1824ce960b169cad0301b4780fadd9434771aa08727a35f371580c004048a68d",
+    "left_foot": "3c5dfbdf133acf8e8f1494ff0c88d0ae392ba76196c12cead1b68f9251422055",
+    "right_yaw2roll": "0e62b66cef2f3eb584622ea9461f3187593741772a500349b152c35f981f9e95",
+    "right_hip": "690211386815c87a1766ad5444ce735ecfe47b53b9a629fd7b30f85a7f301865",
+    "right_upper_leg": "41c5103ee99eac5cdc47a72f404df249c5a3f1c923f0bbc00288920cee1180d8",
+    "right_lower_leg": "58ab9cb7d78acd30f17b0f9f6561da7c07315ee5bb624fe7762590fa16c776b7",
+    "right_foot": "67aa8dfc0363f475b6ddd681264ead39bf5dd9d002aa13a96f56ca41806f6f49",
+    "chassis": "af0885090e77b85fcb99d732e224887189e44f285cfa353188edd1e58b5fe311",
+    "torso_shell": "e0d3118bcfeaca18ce8f1d2d3f38dd0d46ea1167bc7a78a007402081da5e058f",
+    "tail_cover": "81f2f40114e5aa86106251da058ec69894414b381131b5926f44fe666675d6c4",
+    "neck_link": "ba157cf84fbb71419a162cd273221a8f7e9a5ed670d061e23df7cf9133ddc806",
+    "neck_sleeve": "ebf1d7fb2183f40928d0d9bea03b19dd3138d64d9941fd4a8eb31b01a883331b",
+    "head_base": "08f356c9f92bc1cbe3c1f9b37ac6b1b9f7d72330663eda58262fc865d82ebe3f",
+    "head_yoke": "37896822b79f6e9301449e40892cb804fbf19b5143d49d26aab11964ed92615e",
+    "head_frame": "179f8e7fbc4965ad2067be7534a0be910f2f9626fe63920d907c5490284f5270",
+    "skull": "cc7587b7697a56247a97f5a98ad2c9c6c0d1f72d3e7e372e24b7a9ef6db7d556",
+    "jaw_beak": "49b2295d3ca64aa0656abd4567c766d2682a012fced64c5b8bba0e72815aa771"
   }
 }
