@@ -112,3 +112,7 @@ CHROME_PATH=/path/to/chrome node tools/test-web.mjs && node tools/test-lab.mjs &
 ## 권리와 판매 방향
 
 원본 기구·CAD 생성 소스·모델·도면은 소유자 권리를 유보합니다(소유자의 상업 이용을 제한하는 비상업 라이선스가 아닙니다). 웹·도구 코드는 MIT, Three.js는 MIT. 공식 추론 코드·가중치(Apache-2.0)는 저장소에 재배포하지 않고 로컬 캐시에만 내려받습니다. 상세: [LICENSE](LICENSE) · [THIRD_PARTY.md](THIRD_PARTY.md) · [PROVENANCE.md](docs/PROVENANCE.md). 제품명·디자인 권리 검토와 공급자 견적은 출시 전 별도 게이트입니다.
+
+### 실제 실행 보드
+
+소형 Radxa Zero 3W 4GB를 첫 실물 검증 후보로 정했습니다. 보행·행동 계산은 로봇 내부, 학습은 PC에서 실행하는 구조입니다. [배선 구상·전체 신경망 CPU 실측·미검증 항목](docs/ONBOARD_COMPUTE.md)을 확인하세요. 실제 보드·전원 검증 전이며 기존 7.4 V BAM 실험은 XL330의 실물 전원 사양이 아닙니다.

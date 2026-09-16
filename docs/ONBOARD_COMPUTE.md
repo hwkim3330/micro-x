@@ -1,10 +1,10 @@
 # X의 실제 실행 보드
 
-개발용 **Raspberry Pi 5 4GB**, 제품 소형화 검토용 **CM5 4GB + eMMC + 무선 + 독자 캐리어**를 우선 후보로 정합니다. 이는 부품 발주 승인이나 실물 검증 완료가 아닙니다. 기존 Zero 2 W 후보는 카메라 초기 시험 범위였으며 전체 연결망·보행·영상 동시 실행의 기본 후보에서 제외합니다.
+소형화와 원본 실행 환경 재현을 우선해 **Radxa Zero 3W 4GB**를 첫 실물 검증 후보로 정합니다. 2GB는 동시 부하 시험 후 원가 절감 후보이며, Pi 5/CM5는 연산 여유가 부족할 때 비교할 대안입니다. 아직 실제 보드에서 측정하지 않았습니다.
 
 [공식 Microduck 설치 문서](https://github.com/pollen-robotics/microduck/blob/6507d2e960417aaa4ecd38eccf59b2dcf586ecd2/docs/robot/install-dev.md)는 Radxa Zero 3와 Armbian을 지정합니다. 원본 재현용 보드로는 이 구성을 유지합니다. [Radxa 사양](https://docs.radxa.com/en/zero/zero3)은 RK3566 Cortex-A55, 65×30 mm입니다. Radxa에서 현재 X의 Pi 카메라 드라이버가 그대로 작동한다고 가정하지 않습니다.
 
-[CM5](https://www.raspberrypi.com/products/compute-module-5/)는 Cortex-A76 기반이며 모듈 크기 55×40×4.7 mm입니다. 이 치수는 캐리어·냉각·커넥터를 제외합니다. 제조사는 최소 2036년 1월까지 생산을 명시합니다. 실제 구매가는 구성·유통·시점에 따라 확인해야 하므로 현재 BOM에 확정 가격을 넣지 않습니다. [Pi 5](https://www.raspberrypi.com/products/raspberry-pi-5/)에서 먼저 기존 Camera Module 3 경로를 시험하고 CM5로 이전합니다. CM5의 캐리어와 카메라 FFC 연결은 별도 설계해야 합니다.
+[CM5](https://www.raspberrypi.com/products/compute-module-5/)는 Cortex-A76 기반이며 모듈 크기 55×40×4.7 mm입니다. 이 치수는 캐리어·냉각·커넥터를 제외합니다. 제조사는 최소 2036년 1월까지 생산을 명시합니다. 실제 구매가는 구성·유통·시점에 따라 확인해야 하므로 현재 BOM에 확정 가격을 넣지 않습니다. [Pi 5](https://www.raspberrypi.com/products/raspberry-pi-5/)는 기존 Camera Module 3 경로를 비교할 대안입니다. CM5의 캐리어와 카메라 FFC 연결은 별도 설계해야 합니다.
 
 ## 무엇을 어디서 실행하는가
 
@@ -50,3 +50,19 @@ node tools/benchmark_brain.mjs /path/to/microfly-reference board-brain-result.js
 ## 이번 X 보행 진단
 
 [25회 접촉 민감도 시험](../artifacts/contact_sensitivity.json)은 시드 10, 각 10초, 정지/전진 0.1·0.3 m/s/좌우 회전 0.3 rad/s를 비교했습니다. 기본 모델, 마찰 0.8, 좁은 발, 짧은 발, 발 외 접촉 제거 모두 이동 명령 추종 기준을 통과하지 못했습니다. 발 외 접촉을 없애도 기본 결과가 같았고, 기본 전진 시험에서 침투 접촉은 양발과 바닥만 기록됐습니다. 따라서 이 시험에서는 몸체 충돌이 정체의 원인이라는 근거가 없습니다. 물리 접촉을 제거한 후보는 진단용으로만 남기고 기본 모델을 변경하지 않았습니다. 질량·관성·실제 모터 전압을 반영한 후 재학습/검증해야 합니다.
+
+
+## 보행 모델 크기와 보드 검사
+
+고정된 공식 보행 ONNX는 **793,705 bytes**입니다. 호스트에서 CPU 한 스레드로 100회 준비 후 2,000회 추론한 p95는 **0.043 ms**, 전체 Python/ONNX 프로세스 최대 RSS는 **약 70 MiB**였습니다. [측정 결과](../artifacts/policy_host_benchmark.json). 앞의 신경망 약 197 MiB와 별도 프로세스·별도 시험이며 OS, 카메라 버퍼, 동시 부하를 포함하지 않습니다. 따라서 4GB 선정은 측정 완료된 최소 요구량이 아니라 개발 여유를 둔 후보입니다.
+
+보드에서는 MuJoCo·PyTorch 없이 별도 가상환경의 NumPy와 ONNX Runtime CPU만으로 검사할 수 있습니다. 다음 설치는 ARM 보드에서 아직 실행하지 않았으며 wheel/OS 호환성 확인이 필요합니다. 위 고정 모델을 준비한 후 실행합니다. 모델 파일의 SHA-256이 다르면 검사가 거절됩니다.
+
+```sh
+python3 -m venv .venv-board
+.venv-board/bin/pip install numpy onnxruntime==1.24.1
+.venv-board/bin/python tools/benchmark_policy.py --model /path/to/alpha_walking.onnx --output board-policy-result.json
+node tools/benchmark_brain.mjs /path/to/microfly-reference board-brain-result.json
+```
+
+이 검사는 모델 추론만 측정합니다. 모터를 연결하거나 구동하지 않으며 센서 입력은 합성 값입니다. 보행 모델의 작은 메모리 요구와 X 몸체에서 잘 걷는지는 별도 문제입니다. 실제 보드의 카메라·IMU·버스 통합과 30분 동시 부하 검사가 끝나야 최종 부품과 RAM 용량을 확정합니다.
