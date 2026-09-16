@@ -10,7 +10,7 @@ try{
   for(let i=0;i<50;i++){try{if((await fetch('http://127.0.0.1:5197/web/lab.html')).ok)break;}catch{}await new Promise(r=>setTimeout(r,100));}
   browser=await puppeteer.launch({executablePath:process.env.CHROME_PATH,args:['--no-sandbox','--enable-unsafe-swiftshader']});
   for(const [name,width,height]of [['desktop',1440,1100],['mobile',390,844]]){
-    const page=await browser.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));await page.setViewport({width,height});await page.goto('http://127.0.0.1:5197/web/lab.html');await page.waitForFunction(()=>window.microXLab?.robot,{timeout:60000});
+    const page=await browser.newPage(),errors=[],missing=[];page.on('pageerror',e=>errors.push(e.message));page.on('response',r=>{if(r.status()>=400&&!/\/api\//.test(r.url()))missing.push(r.status()+' '+r.url())});await page.setViewport({width,height});await page.goto('http://127.0.0.1:5197/web/lab.html');await page.waitForFunction(()=>window.microXLab?.robot,{timeout:60000});
     assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));checks++;
     await page.select('#layer','purchased');assert.equal(await page.evaluate(()=>window.microXLab.robot.meshes.filter(m=>m.visible).length),await page.evaluate(()=>window.microXLab.robot.parts.purchased.length));checks++;
     await page.select('#layer','shell');await page.click('#part-list button');assert.ok(await page.$eval('#part-detail',e=>e.textContent.includes('STEP')));checks++;
@@ -31,7 +31,10 @@ try{
     const bad=path.join(directory,'foreign.json');await writeFile(bad,JSON.stringify({...downloaded,environment:'microduck'}));await(await page.$('#import')).uploadFile(bad);await page.waitForFunction(()=>document.querySelector('#training-status').textContent.includes('가상 턱 정책 파일만'));
     await page.$eval('#generations',e=>e.value=100);await page.evaluate(()=>{document.querySelector('#train').click();document.querySelector('#stop').click();});assert.match(await page.$eval('#training-status',e=>e.textContent),/중지/);assert.ok(await page.$eval('#stop',e=>e.disabled));checks++;
     await page.click('#tab-voice');await page.$eval('#speech',e=>e.value='');await page.click('#speak');assert.match(await page.$eval('#voice-status',e=>e.textContent),/입력|지원/);checks++;
-    assert.deepEqual(errors,[]);checks++;await page.close();await rm(path.join(directory,'micro-x-virtual-jaw-policy.json'),{force:true});
+    assert.deepEqual(errors,[]);
+    // A 404 is a broken page even when nothing throws: the lab shipped with a renamed
+    // audio file and two artifacts that were never generated, and no test noticed.
+    assert.deepEqual(missing,[],'requests that 404ed: '+missing.join(', '));checks++;checks++;await page.close();await rm(path.join(directory,'micro-x-virtual-jaw-policy.json'),{force:true});
   }
   console.log(`${checks} lab browser checks passed: anatomy, studio cards, replay, 1-axis training, download/import, rejection, stop, mobile layout`);
 }finally{await browser?.close();server.kill();await rm(directory,{recursive:true,force:true});}

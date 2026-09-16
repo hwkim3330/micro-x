@@ -2,7 +2,7 @@ import http from 'node:http';import {readFile} from 'node:fs/promises';import pa
 const root=path.resolve(import.meta.dirname,'..'),mime={'.html':'text/html','.css':'text/css','.js':'text/javascript','.json':'application/json','.glb':'model/gltf-binary','.png':'image/png','.pdf':'application/pdf','.wav':'audio/wav','.xml':'application/xml'};
 const server=http.createServer(async(req,res)=>{try{let p=decodeURIComponent(req.url.split('?')[0]);if(p.endsWith('/'))p+='index.html';const file=path.join(root,p);if(!file.startsWith(root+path.sep))throw Error();const data=await readFile(file);res.writeHead(200,{'content-type':mime[path.extname(file)]||'application/octet-stream'});res.end(data)}catch{res.writeHead(404);res.end()}});await new Promise(r=>server.listen(0,'127.0.0.1',r));const base=`http://127.0.0.1:${server.address().port}`;
 const browser=await puppeteer.launch({executablePath:process.env.CHROME_PATH,args:['--no-sandbox','--enable-unsafe-swiftshader']});let checks=0;
-try{for(const [name,width,height]of[['desktop',1440,1000],['mobile',390,844]]){const page=await browser.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));await page.setViewport({width,height});await page.goto(base+'/web/');await page.waitForFunction(()=>window.microX,{timeout:60000});await page.addStyleTag({content:'html {scroll-behavior:auto !important}'});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));checks++;
+try{for(const [name,width,height]of[['desktop',1440,1000],['mobile',390,844]]){const page=await browser.newPage(),errors=[],missing=[];page.on('pageerror',e=>errors.push(e.message));page.on('response',r=>{if(r.status()>=400&&!/\/api\//.test(r.url()))missing.push(r.status()+' '+r.url())});await page.setViewport({width,height});await page.goto(base+'/web/');await page.waitForFunction(()=>window.microX,{timeout:60000});await page.addStyleTag({content:'html {scroll-behavior:auto !important}'});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));checks++;
 assert.equal(await page.evaluate(()=>window.microX.robot.meshes.length),await page.evaluate(()=>window.microX.robot.parts.parts.length+window.microX.robot.parts.purchased.length));checks++;
 assert.equal(await page.$eval('#servo-count',e=>e.textContent),'15');checks++;
 await page.screenshot({path:path.join(root,'artifacts',`web_${name}.png`)});
@@ -18,5 +18,8 @@ await page.click('#reset');assert.ok(await page.evaluate(()=>Math.abs(window.mic
 assert.equal(await page.$eval('#cost-result',e=>e.textContent),'$'+((15*27.49+110+45)/.95).toFixed(2));checks++;
 await page.$eval('#yield',e=>{e.value=0;e.dispatchEvent(new Event('input'))});assert.equal(await page.$eval('#cost-result',e=>e.textContent),'입력 확인');checks++;
 const links=await page.$$eval('a[href^="../"]',links=>[...new Set(links.map(a=>a.href))]);for(const url of links){assert.equal((await fetch(url)).status,200,url);checks++}
-assert.deepEqual(errors,[]);checks++;await page.close()}
+assert.deepEqual(errors,[]);
+    // A 404 is a broken page even when nothing throws: the lab shipped with a renamed
+    // audio file and two artifacts that were never generated, and no test noticed.
+    assert.deepEqual(missing,[],'requests that 404ed: '+missing.join(', '));checks++;checks++;await page.close()}
 console.log(`${checks} browser and download checks passed`)}finally{await browser.close();server.close()}
