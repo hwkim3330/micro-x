@@ -26,12 +26,16 @@ def block_travel():
     rows.append('')
     rows.append(f"탐색 상한: {', '.join(f'{KO[k]} ±{deg(v):.0f}°' for k,v in travel['search_limit_rad'].items())}. 상한에 도달한 값은 기구가 아니라 탐색 범위가 끝난 것입니다.")
     return rows
+NICE={'robot_walk':'**Microduck (원본)**','micro_cat_14':'**Micro Cat**','micro_x_14':'Micro X'}
 def block_tip():
-    rows=['| | ' + ' | '.join(Path(r['model']).stem for r in tip['results']) + ' |','|---|'+'---|'*len(tip['results'])]
-    for label,key in [('**뒤로 기울기**','tip_aft_deg'),('앞으로','tip_fwd_deg'),('옆으로','tip_lat_deg'),
+    names=[NICE.get(Path(r['model']).stem,Path(r['model']).stem) for r in tip['results']]
+    rows=['| | ' + ' | '.join(names) + ' |','|---|'+'---|'*len(tip['results'])]
+    for label,key in [('**뒤로 기울기**','tip_aft_deg'),('앞으로 기울기','tip_fwd_deg'),('옆으로 기울기','tip_lat_deg'),
                       ('무게중심 높이 (mm)','com_height_above_sole_mm'),('질량 (g)','mass_g')]:
         unit='°' if key.startswith('tip_') else ''
         rows.append(f"| {label} | "+' | '.join(f"{r[key]}{unit}" for r in tip['results'])+' |')
+    rows.append('')
+    rows.append('`tools/tip_study.py`: 기울기마다 몸을 회전시켜 바닥에 내려놓고 접촉점을 다시 계산합니다. 원본은 HOME에서 **발바닥이 평평하지 않아** 뒤꿈치 선으로 서 있고, 무게중심이 그 선보다 21 mm 앞에 있어 발끝이 닿을 때까지 앞으로 넘어갑니다. 표의 값은 그렇게 안정된 자세부터 넘어질 때까지의 각도입니다. 강체·정적이며 접촉 강성·마찰·동역학은 없습니다.')
     return rows
 def block_summary():
     n=len(parts['parts']);static=len(itf.get('static_overlaps',[])) if itf else None

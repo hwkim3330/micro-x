@@ -30,24 +30,50 @@ def foot_points_and_com(path):
         if 'foot' not in name or 'collision' not in name:continue
         c=d.geom_xpos[g];M=d.geom_xmat[g].reshape(3,3);s=m.geom_size[g]
         pts+=[c+M@np.array([sx*s[0],sy*s[1],sz*s[2]]) for sx in(-1,1) for sy in(-1,1) for sz in(-1,1)]
+    if not pts:
+        # A model that carries no named foot collision boxes - the reference robot, for one -
+        # is measured from the collision mesh vertices of its ankle bodies instead, so the two
+        # can be compared with the same tool rather than with two different definitions.
+        for b in range(m.nbody):
+            bn=mujoco.mj_id2name(m,mujoco.mjtObj.mjOBJ_BODY,b) or ''
+            if 'ankle' not in bn and 'foot' not in bn:continue
+            for g in range(m.body_geomadr[b],m.body_geomadr[b]+m.body_geomnum[b]):
+                if m.geom_type[g]!=mujoco.mjtGeom.mjGEOM_MESH or m.geom_contype[g]==0:continue
+                mid=m.geom_dataid[g];a=m.mesh_vertadr[mid];n=m.mesh_vertnum[mid]
+                v=m.mesh_vert[a:a+n]@d.geom_xmat[g].reshape(3,3).T+d.geom_xpos[g]
+                pts+=list(v)
     mass=float(m.body_mass.sum());com=(d.xipos*m.body_mass[:,None]).sum(0)/mass
     return np.array(pts),com,mass
 def tip_angle(pts,com,u,limit_deg=45.,step_deg=.05):
-    """Smallest tilt toward horizontal direction `u` at which the centre of mass passes
-    every remaining contact. The body is rotated about the horizontal axis z x u, so the
-    +u side goes down, then dropped onto the floor."""
+    """Tilt toward horizontal direction `u` before the centre of mass passes every contact.
+
+    The body is rotated about the horizontal axis z x u so the +u side goes down, then dropped
+    onto the floor, and the contact set is recomputed at that angle.
+
+    Two angles come out, because a sole is not necessarily flat at the pose being measured.
+    The reference robot rests on a heel line at HOME with its centre of mass 21 mm ahead of it,
+    so a rigid body there is not in equilibrium at all: it pitches forward until the toe lands.
+    `settle` is the tilt where a contact first appears ahead of the centre of mass, and `fall`
+    is where the last one disappears behind it. The usable margin is the difference. Reporting
+    only `fall` would credit the reference robot for tilt it has already spent standing up.
+    """
     z=np.array([0,0,1.]);w=np.cross(z,u);Q=pts-com
-    qu=Q@u;qw=Q@w;qz=Q@z
+    qu=Q@u;qz=Q@z
+    settle=None
     for k in range(int(limit_deg/step_deg)+1):
         th=math.radians(k*step_deg);c,s=math.cos(th),math.sin(th)
         nu=qu*c+qz*s;nz=-qu*s+qz*c
-        contact=nu[nz<=nz.min()+1e-5]
-        if contact.max()<0:return round(k*step_deg,2)
-    return None
+        ahead=nu[nz<=nz.min()+1e-5].max()>0
+        if settle is None:
+            if ahead:settle=round(k*step_deg,2)
+            continue
+        if not ahead:return dict(settle_deg=settle,fall_deg=round(k*step_deg,2),margin_deg=round(k*step_deg-settle,2))
+    return dict(settle_deg=settle,fall_deg=None,margin_deg=None)
 def study(path):
     pts,com,mass=foot_points_and_com(path)
     floor=pts[:,2].min()
     out=dict(model=rel(path),mass_g=round(mass*1000,1),com_height_above_sole_mm=round(float(com[2]-floor)*1000,1))
     for label,u in [('fwd',(1,0,0)),('aft',(-1,0,0)),('lat',(0,1,0))]:
-        out['tip_'+label+'_deg']=tip_angle(pts,com,np.array(u,float))
+        r=tip_angle(pts,com,np.array(u,float))
+        out['tip_'+label+'_deg']=r['margin_deg'];out['tip_'+label+'_detail']=r
     return out

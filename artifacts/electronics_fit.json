@@ -1,0 +1,19 @@
+{
+ "scope": "Does the board we picked actually fit the bay we drew?  engineering/electronics.json names a compute board and its outline. cad/build.py draws a compute_board envelope and a deck around it. Nothing checked that the two agree, so the deck could be drawn for one board while the documents commit to another. Compare them, both orientations, and report the shortfall in millimetres.  Outline only. Connectors, the camera FFC, wiring loom, standoffs and any cooling are not in either number yet.",
+ "declared_board": "Radxa Zero 3W 4GB for first integrated board qualification; 2GB cost-down only after measurement",
+ "declared_outline_mm": [
+  30,
+  65
+ ],
+ "modelled_bay_mm": [
+  27.0,
+  50.0
+ ],
+ "placement_margin_mm": 1.0,
+ "fits": false,
+ "shortfall_mm": [
+  5.0,
+  17.0
+ ],
+ "connectors_and_wiring_included": false
+}

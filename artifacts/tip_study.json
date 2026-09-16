@@ -4,7 +4,8 @@
  "method": "quasi-static rocking: rotate, drop to the floor, recompute contacts, fall when every contact is behind the centre of mass",
  "model_sha256": {
   "models/micro_x_14.xml": "e68b7735f9ede610309209ac71d81a16f58724300d28687b65b7670ba060021a",
-  "/Users/parksik/micro-trex/micro-cat/models/micro_cat_14.xml": "06a8a75fe56145e2394fdfbbba7420459869fe5a0d156444a957dc13cb4586f8"
+  "/Users/parksik/micro-trex/micro-rex/vendor/microduck/robot_walk.xml": "80fc4424ed71e430ec4919110dfdb5c714dc1c4e1138e1832a16865cf31eb8c8",
+  "/Users/parksik/micro-trex/micro-cat/models/micro_cat_14.xml": "0f282819d4238e5b7c3046d5446266dcd329d62e02139b121fbfe45fe2901d17"
  },
  "results": [
   {
@@ -12,16 +13,69 @@
    "mass_g": 834.3,
    "com_height_above_sole_mm": 138.0,
    "tip_fwd_deg": 18.0,
+   "tip_fwd_detail": {
+    "settle_deg": 0.0,
+    "fall_deg": 18.0,
+    "margin_deg": 18.0
+   },
    "tip_aft_deg": 5.5,
-   "tip_lat_deg": 24.9
+   "tip_aft_detail": {
+    "settle_deg": 0.0,
+    "fall_deg": 5.5,
+    "margin_deg": 5.5
+   },
+   "tip_lat_deg": 24.9,
+   "tip_lat_detail": {
+    "settle_deg": 0.0,
+    "fall_deg": 24.9,
+    "margin_deg": 24.9
+   }
+  },
+  {
+   "model": "/Users/parksik/micro-trex/micro-rex/vendor/microduck/robot_walk.xml",
+   "mass_g": 737.2,
+   "com_height_above_sole_mm": 141.1,
+   "tip_fwd_deg": 13.25,
+   "tip_fwd_detail": {
+    "settle_deg": 0.1,
+    "fall_deg": 13.35,
+    "margin_deg": 13.25
+   },
+   "tip_aft_deg": 8.5,
+   "tip_aft_detail": {
+    "settle_deg": 0.0,
+    "fall_deg": 8.5,
+    "margin_deg": 8.5
+   },
+   "tip_lat_deg": 23.8,
+   "tip_lat_detail": {
+    "settle_deg": 0.0,
+    "fall_deg": 23.8,
+    "margin_deg": 23.8
+   }
   },
   {
    "model": "/Users/parksik/micro-trex/micro-cat/models/micro_cat_14.xml",
    "mass_g": 872.5,
-   "com_height_above_sole_mm": 136.0,
-   "tip_fwd_deg": 19.1,
-   "tip_aft_deg": 17.75,
-   "tip_lat_deg": 25.2
+   "com_height_above_sole_mm": 135.7,
+   "tip_fwd_deg": 19.25,
+   "tip_fwd_detail": {
+    "settle_deg": 0.0,
+    "fall_deg": 19.25,
+    "margin_deg": 19.25
+   },
+   "tip_aft_deg": 17.7,
+   "tip_aft_detail": {
+    "settle_deg": 0.0,
+    "fall_deg": 17.7,
+    "margin_deg": 17.7
+   },
+   "tip_lat_deg": 25.25,
+   "tip_lat_detail": {
+    "settle_deg": 0.0,
+    "fall_deg": 25.25,
+    "margin_deg": 25.25
+   }
   }
  ],
  "contact_tested": false,
