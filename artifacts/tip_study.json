@@ -1,0 +1,30 @@
+{
+ "scope": "Analysis lives in tools/tip_study_lib.py.",
+ "pose": "policy HOME",
+ "method": "quasi-static rocking: rotate, drop to the floor, recompute contacts, fall when every contact is behind the centre of mass",
+ "model_sha256": {
+  "models/micro_x_14.xml": "e68b7735f9ede610309209ac71d81a16f58724300d28687b65b7670ba060021a",
+  "/Users/parksik/micro-trex/micro-cat/models/micro_cat_14.xml": "06a8a75fe56145e2394fdfbbba7420459869fe5a0d156444a957dc13cb4586f8"
+ },
+ "results": [
+  {
+   "model": "models/micro_x_14.xml",
+   "mass_g": 834.3,
+   "com_height_above_sole_mm": 138.0,
+   "tip_fwd_deg": 18.0,
+   "tip_aft_deg": 5.5,
+   "tip_lat_deg": 24.9
+  },
+  {
+   "model": "/Users/parksik/micro-trex/micro-cat/models/micro_cat_14.xml",
+   "mass_g": 872.5,
+   "com_height_above_sole_mm": 136.0,
+   "tip_fwd_deg": 19.1,
+   "tip_aft_deg": 17.75,
+   "tip_lat_deg": 25.2
+  }
+ ],
+ "contact_tested": false,
+ "walking_tested": false,
+ "physical_validation": false
+}

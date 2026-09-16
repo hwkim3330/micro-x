@@ -1,0 +1,372 @@
+{
+ "scope": "Count the fastener features that are actually in the CAD, so the BOM stops guessing.  Every hole in the printed parts is a cylindrical face in the STEP solid. Group them by radius and length and you get the real schedule: how many M2 horn bolts, how many M3 into printed bosses, and where. The previous BOM carried hand-typed counts like \"15 x 8\" that nothing checked.  A radius here is the modelled hole, not a thread spec. Pilot sizes for thread-forming screws into printed plastic still need a coupon test - see docs/ASSEMBLY.md.",
+ "method": "cylindrical faces counted in each printed part STEP solid; a through hole is normally two faces",
+ "note": "Counts are cylindrical FACES, not holes: a hole split by a boolean shows up more than once. Use them as a schedule to check against, not as a purchase quantity without reading the part.",
+ "by_radius": [
+  {
+   "radius_mm": 1.1,
+   "diameter_mm": 2.2,
+   "faces": 58,
+   "fastener": true,
+   "note": "M2 clearance, servo horn / idler bolt pattern"
+  },
+  {
+   "radius_mm": 1.15,
+   "diameter_mm": 2.3,
+   "faces": 8,
+   "fastener": true,
+   "note": "M2.5 or M3 pilot in a printed boss (thread-forming screw)"
+  },
+  {
+   "radius_mm": 1.3,
+   "diameter_mm": 2.6,
+   "faces": 3,
+   "fastener": true,
+   "note": "M3 pilot in a printed boss (thread-forming screw)"
+  },
+  {
+   "radius_mm": 1.6,
+   "diameter_mm": 3.2,
+   "faces": 9,
+   "fastener": false,
+   "note": "servo horn hub clearance (not a fastener)"
+  },
+  {
+   "radius_mm": 1.7,
+   "diameter_mm": 3.4,
+   "faces": 8,
+   "fastener": true,
+   "note": "M3 clearance through a shell"
+  },
+  {
+   "radius_mm": 2.0,
+   "diameter_mm": 4.0,
+   "faces": 2,
+   "fastener": true,
+   "note": "unclassified - check cad/ before ordering"
+  },
+  {
+   "radius_mm": 2.1,
+   "diameter_mm": 4.2,
+   "faces": 18,
+   "fastener": true,
+   "note": "unclassified - check cad/ before ordering"
+  },
+  {
+   "radius_mm": 4.5,
+   "diameter_mm": 9.0,
+   "faces": 7,
+   "fastener": false,
+   "note": "printed boss outside diameter (not a fastener)"
+  },
+  {
+   "radius_mm": 5.6,
+   "diameter_mm": 11.2,
+   "faces": 2,
+   "fastener": false,
+   "note": "clearance bore for the skull post (not a fastener)"
+  },
+  {
+   "radius_mm": 6.0,
+   "diameter_mm": 12.0,
+   "faces": 30,
+   "fastener": true,
+   "note": "unclassified - check cad/ before ordering"
+  },
+  {
+   "radius_mm": 6.5,
+   "diameter_mm": 13.0,
+   "faces": 3,
+   "fastener": false,
+   "note": "camera lens bore (not a fastener)"
+  },
+  {
+   "radius_mm": 8.99,
+   "diameter_mm": 17.98,
+   "faces": 13,
+   "fastener": true,
+   "note": "unclassified - check cad/ before ordering"
+  },
+  {
+   "radius_mm": 9.0,
+   "diameter_mm": 18.0,
+   "faces": 14,
+   "fastener": false,
+   "note": "nose lens hood (not a fastener)"
+  },
+  {
+   "radius_mm": 9.99,
+   "diameter_mm": 19.98,
+   "faces": 4,
+   "fastener": true,
+   "note": "unclassified - check cad/ before ordering"
+  },
+  {
+   "radius_mm": 10.0,
+   "diameter_mm": 20.0,
+   "faces": 8,
+   "fastener": true,
+   "note": "unclassified - check cad/ before ordering"
+  },
+  {
+   "radius_mm": 10.99,
+   "diameter_mm": 21.98,
+   "faces": 8,
+   "fastener": true,
+   "note": "unclassified - check cad/ before ordering"
+  },
+  {
+   "radius_mm": 11.0,
+   "diameter_mm": 22.0,
+   "faces": 4,
+   "fastener": true,
+   "note": "unclassified - check cad/ before ordering"
+  },
+  {
+   "radius_mm": 12.99,
+   "diameter_mm": 25.98,
+   "faces": 16,
+   "fastener": true,
+   "note": "unclassified - check cad/ before ordering"
+  }
+ ],
+ "by_part": {
+  "left_yaw2roll": {
+   "12.99": 4,
+   "1.1": 4,
+   "1.6": 1
+  },
+  "left_hip": {
+   "1.1": 7,
+   "2.1": 4,
+   "12.99": 2
+  },
+  "left_upper_leg": {
+   "6.0": 11
+  },
+  "left_lower_leg": {
+   "10.99": 4,
+   "1.1": 4,
+   "1.6": 1
+  },
+  "left_foot": {
+   "1.1": 4,
+   "2.1": 3,
+   "1.6": 1,
+   "9.99": 2,
+   "6.0": 4,
+   "10.0": 4
+  },
+  "right_yaw2roll": {
+   "12.99": 4,
+   "1.1": 4,
+   "1.6": 1
+  },
+  "right_hip": {
+   "1.1": 7,
+   "2.1": 4,
+   "12.99": 2
+  },
+  "right_upper_leg": {
+   "6.0": 11
+  },
+  "right_lower_leg": {
+   "10.99": 4,
+   "1.1": 4,
+   "1.6": 1
+  },
+  "right_foot": {
+   "1.1": 4,
+   "2.1": 3,
+   "1.6": 1,
+   "9.99": 2,
+   "6.0": 4,
+   "10.0": 4
+  },
+  "chassis": {
+   "1.15": 4,
+   "1.1": 4
+  },
+  "torso_shell": {},
+  "tail_cover": {
+   "1.7": 1
+  },
+  "neck_link": {},
+  "neck_sleeve": {
+   "9.0": 10,
+   "2.0": 2
+  },
+  "head_base": {
+   "1.1": 8,
+   "1.6": 1,
+   "12.99": 4
+  },
+  "head_yoke": {
+   "2.1": 4,
+   "1.1": 4,
+   "1.6": 1,
+   "8.99": 8
+  },
+  "head_frame": {
+   "1.15": 4,
+   "6.5": 1,
+   "4.5": 4,
+   "1.3": 3,
+   "5.6": 2,
+   "9.0": 3
+  },
+  "skull": {
+   "1.7": 7,
+   "9.0": 1,
+   "6.5": 2,
+   "11.0": 4,
+   "4.5": 3
+  },
+  "jaw_beak": {
+   "8.99": 5,
+   "1.1": 4,
+   "1.6": 1
+  }
+ },
+ "bolt_access": [
+  {
+   "joint": "left_hip_yaw",
+   "part": "left_yaw2roll",
+   "carries_the_plate": true,
+   "blocked_bolts": 0,
+   "meaning": "clear",
+   "detail": []
+  },
+  {
+   "joint": "left_hip_roll",
+   "part": "left_hip",
+   "carries_the_plate": true,
+   "blocked_bolts": 0,
+   "meaning": "clear",
+   "detail": []
+  },
+  {
+   "joint": "left_hip_pitch",
+   "part": "left_hip",
+   "carries_the_plate": true,
+   "blocked_bolts": 0,
+   "meaning": "clear",
+   "detail": []
+  },
+  {
+   "joint": "left_knee",
+   "part": "left_lower_leg",
+   "carries_the_plate": true,
+   "blocked_bolts": 0,
+   "meaning": "clear",
+   "detail": []
+  },
+  {
+   "joint": "left_ankle",
+   "part": "left_foot",
+   "carries_the_plate": true,
+   "blocked_bolts": 0,
+   "meaning": "clear",
+   "detail": []
+  },
+  {
+   "joint": "right_hip_yaw",
+   "part": "right_yaw2roll",
+   "carries_the_plate": true,
+   "blocked_bolts": 0,
+   "meaning": "clear",
+   "detail": []
+  },
+  {
+   "joint": "right_hip_roll",
+   "part": "right_hip",
+   "carries_the_plate": true,
+   "blocked_bolts": 0,
+   "meaning": "clear",
+   "detail": []
+  },
+  {
+   "joint": "right_hip_pitch",
+   "part": "right_hip",
+   "carries_the_plate": true,
+   "blocked_bolts": 0,
+   "meaning": "clear",
+   "detail": []
+  },
+  {
+   "joint": "right_knee",
+   "part": "right_lower_leg",
+   "carries_the_plate": true,
+   "blocked_bolts": 0,
+   "meaning": "clear",
+   "detail": []
+  },
+  {
+   "joint": "right_ankle",
+   "part": "right_foot",
+   "carries_the_plate": true,
+   "blocked_bolts": 0,
+   "meaning": "clear",
+   "detail": []
+  },
+  {
+   "joint": "neck_pitch",
+   "part": "chassis",
+   "carries_the_plate": true,
+   "blocked_bolts": 0,
+   "meaning": "clear",
+   "detail": []
+  },
+  {
+   "joint": "neck_pitch",
+   "part": "torso_shell",
+   "carries_the_plate": false,
+   "blocked_bolts": 2,
+   "meaning": "assembly order: fit this part after the joint is bolted",
+   "detail": [
+    {
+     "bolt": 0,
+     "first_blocked_mm": 9.62
+    },
+    {
+     "bolt": 3,
+     "first_blocked_mm": 9.62
+    }
+   ]
+  },
+  {
+   "joint": "head_pitch",
+   "part": "head_base",
+   "carries_the_plate": true,
+   "blocked_bolts": 0,
+   "meaning": "clear",
+   "detail": []
+  },
+  {
+   "joint": "head_yaw",
+   "part": "head_base",
+   "carries_the_plate": true,
+   "blocked_bolts": 0,
+   "meaning": "clear",
+   "detail": []
+  },
+  {
+   "joint": "head_roll",
+   "part": "head_yoke",
+   "carries_the_plate": true,
+   "blocked_bolts": 0,
+   "meaning": "clear",
+   "detail": []
+  },
+  {
+   "joint": "jaw",
+   "part": "jaw_beak",
+   "carries_the_plate": true,
+   "blocked_bolts": 0,
+   "meaning": "clear",
+   "detail": []
+  }
+ ],
+ "bolt_path_defects": 0,
+ "thread_spec_verified": false
+}

@@ -1,0 +1,217 @@
+{
+ "scope": "Every locomotion claim in this repository is made with the pinned upstream inference code and the unchanged official weights. Before any of it can be read as a statement about Micro Cat's geometry, the same harness has to be run on the reference robot's own scene. This records that command-response curve. If the reference robot does not track its own commands here, then neither does any model, and velocity tracking is not a usable instrument for comparing designs - which is exactly what this found.",
+ "protocol": "10 s per command, seed 0, pinned upstream inference, unchanged official walking weights, BAM M6 XL330 kp 200 / 7.4 V",
+ "results": [
+  {
+   "model": "microduck_reference",
+   "command": [
+    0.05,
+    0,
+    0
+   ],
+   "speed_m_s": 0.0003,
+   "yaw_rate_rad_s": -0.0008,
+   "fell_s": null
+  },
+  {
+   "model": "microduck_reference",
+   "command": [
+    0.1,
+    0,
+    0
+   ],
+   "speed_m_s": 0.0006,
+   "yaw_rate_rad_s": -0.0002,
+   "fell_s": null
+  },
+  {
+   "model": "microduck_reference",
+   "command": [
+    0.2,
+    0,
+    0
+   ],
+   "speed_m_s": 0.0009,
+   "yaw_rate_rad_s": -0.002,
+   "fell_s": null
+  },
+  {
+   "model": "microduck_reference",
+   "command": [
+    0.3,
+    0,
+    0
+   ],
+   "speed_m_s": 0.0975,
+   "yaw_rate_rad_s": -0.0463,
+   "fell_s": null
+  },
+  {
+   "model": "microduck_reference",
+   "command": [
+    0.6,
+    0,
+    0
+   ],
+   "speed_m_s": 0.2694,
+   "yaw_rate_rad_s": -0.0512,
+   "fell_s": null
+  },
+  {
+   "model": "microduck_reference",
+   "command": [
+    1.0,
+    0,
+    0
+   ],
+   "speed_m_s": 0.0823,
+   "yaw_rate_rad_s": -0.0665,
+   "fell_s": 2.119999999999977
+  },
+  {
+   "model": "microduck_reference",
+   "command": [
+    0,
+    0,
+    0.3
+   ],
+   "speed_m_s": 0.0004,
+   "yaw_rate_rad_s": 0.0061,
+   "fell_s": null
+  },
+  {
+   "model": "microduck_reference",
+   "command": [
+    0,
+    0,
+    1.0
+   ],
+   "speed_m_s": 0.0,
+   "yaw_rate_rad_s": 0.0253,
+   "fell_s": null
+  },
+  {
+   "model": "microduck_reference",
+   "command": [
+    0,
+    0,
+    1.5
+   ],
+   "speed_m_s": 0.001,
+   "yaw_rate_rad_s": 0.1305,
+   "fell_s": null
+  },
+  {
+   "model": "micro_x",
+   "command": [
+    0.05,
+    0,
+    0
+   ],
+   "speed_m_s": 0.0003,
+   "yaw_rate_rad_s": -0.001,
+   "fell_s": null
+  },
+  {
+   "model": "micro_x",
+   "command": [
+    0.1,
+    0,
+    0
+   ],
+   "speed_m_s": 0.0006,
+   "yaw_rate_rad_s": -0.002,
+   "fell_s": null
+  },
+  {
+   "model": "micro_x",
+   "command": [
+    0.2,
+    0,
+    0
+   ],
+   "speed_m_s": 0.0012,
+   "yaw_rate_rad_s": -0.0027,
+   "fell_s": null
+  },
+  {
+   "model": "micro_x",
+   "command": [
+    0.3,
+    0,
+    0
+   ],
+   "speed_m_s": 0.0847,
+   "yaw_rate_rad_s": 0.0989,
+   "fell_s": null
+  },
+  {
+   "model": "micro_x",
+   "command": [
+    0.6,
+    0,
+    0
+   ],
+   "speed_m_s": 0.1997,
+   "yaw_rate_rad_s": 0.0678,
+   "fell_s": null
+  },
+  {
+   "model": "micro_x",
+   "command": [
+    1.0,
+    0,
+    0
+   ],
+   "speed_m_s": 0.005,
+   "yaw_rate_rad_s": -0.2606,
+   "fell_s": null
+  },
+  {
+   "model": "micro_x",
+   "command": [
+    0,
+    0,
+    0.3
+   ],
+   "speed_m_s": 0.0004,
+   "yaw_rate_rad_s": 0.0024,
+   "fell_s": null
+  },
+  {
+   "model": "micro_x",
+   "command": [
+    0,
+    0,
+    1.0
+   ],
+   "speed_m_s": 0.0006,
+   "yaw_rate_rad_s": 0.0128,
+   "fell_s": null
+  },
+  {
+   "model": "micro_x",
+   "command": [
+    0,
+    0,
+    1.5
+   ],
+   "speed_m_s": -0.0026,
+   "yaw_rate_rad_s": -0.1799,
+   "fell_s": null
+  }
+ ],
+ "best_tracking_ratio": [
+  {
+   "model": "microduck_reference",
+   "best_forward_tracking": 0.449,
+   "best_yaw_tracking": 0.087
+  },
+  {
+   "model": "micro_x",
+   "best_forward_tracking": 0.333,
+   "best_yaw_tracking": 0.013
+  }
+ ],
+ "conclusion": "Velocity tracking in this harness is only usable as a comparison between models if the reference robot tracks its own commands. Read best_tracking_ratio before citing any speed or yaw number."
+}

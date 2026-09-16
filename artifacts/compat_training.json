@@ -1,38 +1,87 @@
 {
-  "model_sha256": "8c065bce2c9a28ecedb1bb76c9a181fa88891852aeec8a0ebe913f394316eb76",
+  "model_sha256": "e68b7735f9ede610309209ac71d81a16f58724300d28687b65b7670ba060021a",
   "scope": "Independent CPU PPO warm-start/fine-tuning smoke run. Same pretrained 61\u2192512\u2192256\u2192128\u219214 ELU actor and normalization; not full upstream training recipe parity or locomotion acceptance.",
   "source_sha256": "e36332d383997d51401897734cd3e79cf5038406feddb18b4d57ecfb141daa6c",
   "initial_actor_max_error": 5.960464477539062e-07,
-  "export_max_error": 2.384185791015625e-07,
+  "export_max_error": 3.5762786865234375e-07,
   "actor_weights_changed": true,
-  "updates": 3,
-  "steps_per_update": 128,
+  "updates": 10,
+  "steps_per_update": 256,
   "seed": 42,
-  "elapsed_s": 0.18,
+  "elapsed_s": 1.06,
   "history": [
     {
       "update": 1,
-      "mean_reward": 1.2897,
+      "mean_reward": 1.284,
       "falls": 0,
-      "loss": 189.74545288085938,
+      "loss": 210.1680908203125,
       "elapsed_s": 0.1
     },
     {
       "update": 2,
-      "mean_reward": 1.2782,
+      "mean_reward": 1.2889,
       "falls": 0,
-      "loss": 187.81602478027344,
-      "elapsed_s": 0.1
+      "loss": 200.1787109375,
+      "elapsed_s": 0.2
     },
     {
       "update": 3,
-      "mean_reward": 1.2787,
+      "mean_reward": 1.4989,
       "falls": 0,
-      "loss": 187.62646484375,
-      "elapsed_s": 0.2
+      "loss": 287.5675354003906,
+      "elapsed_s": 0.3
+    },
+    {
+      "update": 4,
+      "mean_reward": 1.499,
+      "falls": 0,
+      "loss": 266.3352355957031,
+      "elapsed_s": 0.4
+    },
+    {
+      "update": 5,
+      "mean_reward": 1.4989,
+      "falls": 0,
+      "loss": 287.5653076171875,
+      "elapsed_s": 0.5
+    },
+    {
+      "update": 6,
+      "mean_reward": 1.3802,
+      "falls": 0,
+      "loss": 246.501220703125,
+      "elapsed_s": 0.6
+    },
+    {
+      "update": 7,
+      "mean_reward": 0.8442,
+      "falls": 0,
+      "loss": 93.20362091064453,
+      "elapsed_s": 0.7
+    },
+    {
+      "update": 8,
+      "mean_reward": 0.8212,
+      "falls": 0,
+      "loss": 79.9521484375,
+      "elapsed_s": 0.8
+    },
+    {
+      "update": 9,
+      "mean_reward": 0.8564,
+      "falls": 0,
+      "loss": 93.862060546875,
+      "elapsed_s": 0.9
+    },
+    {
+      "update": 10,
+      "mean_reward": 0.9656,
+      "falls": 0,
+      "loss": 105.16844940185547,
+      "elapsed_s": 1.0
     }
   ],
-  "checkpoint_sha256": "7022c623731176ff2b2631b9a444b4b58877172fa0b91d701d716810900a888b",
+  "checkpoint_sha256": "fc312f9043f6ae4a78f63bb3f48738102aae24f754cca2454d3f38c116ed5845",
   "checkpoint": "micro_x_14.onnx",
   "physical_verified": false,
   "upstream_training_recipe_parity": false

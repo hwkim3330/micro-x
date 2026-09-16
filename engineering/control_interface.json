@@ -46,8 +46,8 @@
       0.52
     ],
     "left_hip_roll": [
-      -0.35,
-      0.1
+      -0.4,
+      0.35
     ],
     "left_hip_pitch": [
       -1.57,
@@ -82,8 +82,8 @@
       0.5
     ],
     "right_hip_roll": [
-      -0.1,
-      0.35
+      -0.35,
+      0.4
     ],
     "right_hip_pitch": [
       -0.9,
@@ -99,7 +99,7 @@
     ]
   },
   "joint_ranges_source": "engineering/joint_travel.json (measured)",
-  "model_mass_kg": 0.8378,
+  "model_mass_kg": 0.8343,
   "home_trunk_z_m": 0.1193,
   "physical_verified": false
 }

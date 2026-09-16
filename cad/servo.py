@@ -47,14 +47,36 @@ def envelope(P,h,d):
         a=k*math.pi/2;shape=shape.cut(cq.Workplane('YZ',origin=(-GAP,HOLE_R*math.cos(a),HOLE_R*math.sin(a))).circle(0.8).extrude(-6))
     return to_world(shape,P,h,d)
 
-def horn_plate(P,h,d,width=ACROSS,length=None,thickness=PLATE):
+MIN_BOLT_EDGE=1.5 # mm of plate outside an M2 horn hole; below this the bolt has nothing to bear on
+PLATES={} # joint name -> as-built horn plate geometry, for tools/strength.py
+def horn_plate(P,h,d,width=ACROSS,length=None,thickness=PLATE,name=None):
     """Child plate bolted to the horn: pivot plane to pivot plane + thickness."""
     length=length or (LONG-HORN_OFFSET)*0+ACROSS
+    edge=width/2-HOLE_R-1.1
+    if edge<MIN_BOLT_EDGE:raise ValueError(f'horn plate {name or "?"}: width {width} leaves {edge:.2f} mm of material outside the bolt holes, need {MIN_BOLT_EDGE}')
+    if name:PLATES[name]=dict(width_mm=width,length_mm=length,thickness_mm=thickness,bolt_circle_r_mm=HOLE_R,bolt_hole_r_mm=1.1,bolts=4,bolt_edge_mm=round(edge,2))
     plate=local_box(0,thickness,-width/2,width/2,-length/2,length/2).edges('|X').fillet(min(width,length)/2-0.01)
     plate=plate.cut(cq.Workplane('YZ').circle(1.6).extrude(thickness*2))
     for k in range(4):
         a=k*math.pi/2;plate=plate.cut(cq.Workplane('YZ',origin=(0,HOLE_R*math.cos(a),HOLE_R*math.sin(a))).circle(1.1).extrude(thickness*2))
     return to_world(plate,P,h,d)
+
+def horn_holes(P,h,d,thickness=PLATE,access_r=2.1,depth=6):
+    """The four M2 bolt paths for a horn plate, to be cut AFTER the link is assembled.
+
+    A horn plate is usually unioned into ribs and shells, and those fill its bolt holes:
+    before this existed, both hip brackets had zero open bolt holes and the feet had one of
+    four, so neither could be fastened to its servo. Each path is a clearance hole through
+    the plate plus a wider access bore behind it, so a driver can still reach the bolt.
+    """
+    shape=None
+    for k in range(4):
+        a=k*math.pi/2;y=HOLE_R*math.cos(a);z=HOLE_R*math.sin(a)
+        thru=cq.Workplane('YZ',origin=(-0.1,y,z)).circle(1.1).extrude(thickness+0.2)
+        access=cq.Workplane('YZ',origin=(thickness,y,z)).circle(access_r).extrude(depth)
+        one=thru.union(access)
+        shape=one if shape is None else shape.union(one)
+    return to_world(shape,P,h,d)
 
 def idler_plate(P,h,d,width=ACROSS,length=None,thickness=PLATE):
     """Child plate on the rear idler side, keeping the joint doubly supported."""

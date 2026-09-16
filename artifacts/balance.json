@@ -1,34 +1,34 @@
 {
   "scope": "HOME pose, both feet flat; CAD-derived masses (PLA solid density + purchased catalogue masses); fasteners, cables and print infill not modelled.",
-  "mass_g": 837.8,
+  "mass_g": 834.3,
   "center_of_mass_mm": [
-    -8.62,
-    0.32,
-    141.57
+    -8.71,
+    0.33,
+    141.68
   ],
   "support_hull_xy_mm": [
     [
-      -52.0,
-      -71.0
+      -54.0,
+      -73.0
     ],
     [
-      2.0,
-      -71.0
+      4.0,
+      -73.0
     ],
     [
-      2.0,
-      71.0
+      4.0,
+      73.0
     ],
     [
-      -52.0,
-      71.0
+      -54.0,
+      73.0
     ]
   ],
-  "minimum_static_margin_mm": 10.62,
+  "minimum_static_margin_mm": 12.71,
   "bodies": [
     {
       "body": "trunk_base",
-      "mass_g": 273.2,
+      "mass_g": 273.3,
       "com_mm": [
         -35.4,
         0.2,
@@ -46,11 +46,11 @@
     },
     {
       "body": "x_left_hip",
-      "mass_g": 7.9,
+      "mass_g": 6.3,
       "com_mm": [
-        18.5,
-        30.2,
-        101.4
+        19.4,
+        28.8,
+        99.1
       ]
     },
     {
@@ -73,9 +73,9 @@
     },
     {
       "body": "x_left_foot",
-      "mass_g": 25.0,
+      "mass_g": 24.9,
       "com_mm": [
-        -25.7,
+        -25.6,
         51.6,
         22.0
       ]
@@ -94,16 +94,16 @@
       "mass_g": 4.4,
       "com_mm": [
         27.4,
-        6.0,
-        215.2
+        5.9,
+        215.3
       ]
     },
     {
       "body": "x_head_yoke",
-      "mass_g": 33.6,
+      "mass_g": 33.4,
       "com_mm": [
         25.4,
-        -9.0,
+        -9.1,
         238.0
       ]
     },
@@ -136,11 +136,11 @@
     },
     {
       "body": "x_right_hip",
-      "mass_g": 7.9,
+      "mass_g": 6.3,
       "com_mm": [
-        18.5,
-        -30.2,
-        101.4
+        19.4,
+        -28.8,
+        99.1
       ]
     },
     {
@@ -163,14 +163,14 @@
     },
     {
       "body": "x_right_foot",
-      "mass_g": 25.0,
+      "mass_g": 24.9,
       "com_mm": [
-        -25.7,
+        -25.6,
         -51.6,
         22.0
       ]
     }
   ],
-  "model_sha256": "8c065bce2c9a28ecedb1bb76c9a181fa88891852aeec8a0ebe913f394316eb76",
+  "model_sha256": "e68b7735f9ede610309209ac71d81a16f58724300d28687b65b7670ba060021a",
   "physical_verified": false
 }

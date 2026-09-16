@@ -1,0 +1,628 @@
+{
+ "scope": "Two structural screens the design has never had: wall thickness, and whether a servo can break the plate it drives.  WALL THICKNESS. From each face centroid, cast a ray straight into the solid and keep the first hit whose own surface faces back at the ray. That filter matters: without it, concave corners return near-zero \"thicknesses\" that are just the adjacent face. Anything below the practical FDM minimum (two perimeters each side of a 0.4 mm nozzle) cannot be printed strong.  HORN PLATE AT STALL TORQUE. Closed form, on the as-built plate geometry that cad/servo.py records while building. Each plate takes the servo's full torque through four M2 bolts on a 12 mm circle, so the tangential force per bolt is T/(n*r). Three failure modes follow from that: bearing of the bolt on the printed hole, shear-out from the hole to the plate edge, and in-plane bending of the plate where it meets its link.  HOW MUCH TO TRUST THE WALL NUMBER. It found one unambiguous defect - the neck cover was 62 % under the minimum because a 9 mm fillet on a 31 mm shell ate the wall - and that fix took it to 0 %. The remaining flags sit in bands next to cut edges and rims, where a shell legitimately tapers. Raising the shell offsets to chase them added 1.7 kg of plastic and moved the numbers by nothing. So: treat a HIGH fraction as a prompt to look at the region the report names, not as a verdict. The per-part thin_region_mm box is there for that.  NOT analysed: the link body beyond the plate, the servo channel walls, screw bosses, and every impact case. Those need FEA or a physical test. An earlier version of this file tried to find each link's critical section by slicing the mesh and reported a safety factor of 0.07 for the chassis, which was an artifact of picking up a screw boss - it is gone.",
+ "nozzle_mm": 0.4,
+ "minimum_wall_mm": 1.6,
+ "stall_torque_nm": 0.52,
+ "allowable_tensile_mpa": 25.0,
+ "allowable_shear_mpa": 15.0,
+ "allowable_note": "assumption for FDM PLA loaded across the layers; no coupon test has been run",
+ "target_safety_factor": 2.0,
+ "parts": [
+  {
+   "part": "left_yaw2roll",
+   "mass_g": 17.03,
+   "p05_wall_mm": 3.0,
+   "median_wall_mm": 27.88,
+   "fraction_below_min_wall": 0.0
+  },
+  {
+   "part": "left_hip",
+   "mass_g": 6.28,
+   "p05_wall_mm": 3.0,
+   "median_wall_mm": 3.1,
+   "fraction_below_min_wall": 0.0
+  },
+  {
+   "part": "left_upper_leg",
+   "mass_g": 23.06,
+   "p05_wall_mm": 1.12,
+   "median_wall_mm": 2.58,
+   "fraction_below_min_wall": 0.0992,
+   "thin_region_mm": [
+    [
+     -43.3,
+     43.7,
+     71.7
+    ],
+    [
+     15.0,
+     73.5,
+     114.1
+    ]
+   ]
+  },
+  {
+   "part": "left_lower_leg",
+   "mass_g": 8.55,
+   "p05_wall_mm": 3.0,
+   "median_wall_mm": 3.0,
+   "fraction_below_min_wall": 0.0
+  },
+  {
+   "part": "left_foot",
+   "mass_g": 24.94,
+   "p05_wall_mm": 3.0,
+   "median_wall_mm": 4.0,
+   "fraction_below_min_wall": 0.0209,
+   "thin_region_mm": [
+    [
+     -39.6,
+     67.8,
+     39.6
+    ],
+    [
+     -24.0,
+     67.8,
+     40.0
+    ]
+   ]
+  },
+  {
+   "part": "right_yaw2roll",
+   "mass_g": 17.03,
+   "p05_wall_mm": 3.0,
+   "median_wall_mm": 27.88,
+   "fraction_below_min_wall": 0.0
+  },
+  {
+   "part": "right_hip",
+   "mass_g": 6.28,
+   "p05_wall_mm": 3.0,
+   "median_wall_mm": 3.1,
+   "fraction_below_min_wall": 0.0
+  },
+  {
+   "part": "right_upper_leg",
+   "mass_g": 23.06,
+   "p05_wall_mm": 0.98,
+   "median_wall_mm": 2.52,
+   "fraction_below_min_wall": 0.1213,
+   "thin_region_mm": [
+    [
+     -43.3,
+     -73.5,
+     71.7
+    ],
+    [
+     15.0,
+     -43.7,
+     114.1
+    ]
+   ]
+  },
+  {
+   "part": "right_lower_leg",
+   "mass_g": 8.55,
+   "p05_wall_mm": 3.0,
+   "median_wall_mm": 3.0,
+   "fraction_below_min_wall": 0.0
+  },
+  {
+   "part": "right_foot",
+   "mass_g": 24.94,
+   "p05_wall_mm": 3.0,
+   "median_wall_mm": 4.0,
+   "fraction_below_min_wall": 0.022,
+   "thin_region_mm": [
+    [
+     -39.6,
+     -67.8,
+     39.6
+    ],
+    [
+     -24.0,
+     -67.8,
+     40.0
+    ]
+   ]
+  },
+  {
+   "part": "chassis",
+   "mass_g": 44.48,
+   "p05_wall_mm": 1.1,
+   "median_wall_mm": 3.0,
+   "fraction_below_min_wall": 0.4246,
+   "thin_region_mm": [
+    [
+     -36.0,
+     -24.6,
+     116.0
+    ],
+    [
+     3.6,
+     28.0,
+     146.0
+    ]
+   ]
+  },
+  {
+   "part": "torso_shell",
+   "mass_g": 29.07,
+   "p05_wall_mm": 2.82,
+   "median_wall_mm": 2.96,
+   "fraction_below_min_wall": 0.0017
+  },
+  {
+   "part": "tail_cover",
+   "mass_g": 39.08,
+   "p05_wall_mm": 2.36,
+   "median_wall_mm": 2.88,
+   "fraction_below_min_wall": 0.0069
+  },
+  {
+   "part": "neck_link",
+   "mass_g": 16.0,
+   "p05_wall_mm": 2.0,
+   "median_wall_mm": 22.4,
+   "fraction_below_min_wall": 0.0
+  },
+  {
+   "part": "neck_sleeve",
+   "mass_g": 13.37,
+   "p05_wall_mm": 0.24,
+   "median_wall_mm": 1.47,
+   "fraction_below_min_wall": 0.5549,
+   "thin_region_mm": [
+    [
+     11.5,
+     -19.5,
+     151.1
+    ],
+    [
+     40.5,
+     13.8,
+     212.0
+    ]
+   ]
+  },
+  {
+   "part": "head_base",
+   "mass_g": 4.37,
+   "p05_wall_mm": 3.0,
+   "median_wall_mm": 3.0,
+   "fraction_below_min_wall": 0.0
+  },
+  {
+   "part": "head_yoke",
+   "mass_g": 15.41,
+   "p05_wall_mm": 0.22,
+   "median_wall_mm": 3.0,
+   "fraction_below_min_wall": 0.1616,
+   "thin_region_mm": [
+    [
+     12.6,
+     -7.9,
+     233.9
+    ],
+    [
+     12.6,
+     7.9,
+     237.3
+    ]
+   ]
+  },
+  {
+   "part": "head_frame",
+   "mass_g": 25.61,
+   "p05_wall_mm": 2.35,
+   "median_wall_mm": 3.2,
+   "fraction_below_min_wall": 0.0217,
+   "thin_region_mm": [
+    [
+     -21.8,
+     -3.4,
+     226.6
+    ],
+    [
+     41.6,
+     3.4,
+     247.1
+    ]
+   ]
+  },
+  {
+   "part": "skull",
+   "mass_g": 77.95,
+   "p05_wall_mm": 1.62,
+   "median_wall_mm": 4.92,
+   "fraction_below_min_wall": 0.0477,
+   "thin_region_mm": [
+    [
+     -30.0,
+     -32.1,
+     231.2
+    ],
+    [
+     104.0,
+     29.8,
+     254.4
+    ]
+   ]
+  },
+  {
+   "part": "jaw_beak",
+   "mass_g": 11.1,
+   "p05_wall_mm": 1.14,
+   "median_wall_mm": 2.81,
+   "fraction_below_min_wall": 0.1028,
+   "thin_region_mm": [
+    [
+     44.9,
+     -28.7,
+     228.8
+    ],
+    [
+     75.1,
+     28.7,
+     229.9
+    ]
+   ]
+  }
+ ],
+ "parts_with_thin_walls": [
+  {
+   "part": "left_upper_leg",
+   "fraction": 0.0992,
+   "where": [
+    [
+     -43.3,
+     43.7,
+     71.7
+    ],
+    [
+     15.0,
+     73.5,
+     114.1
+    ]
+   ]
+  },
+  {
+   "part": "left_foot",
+   "fraction": 0.0209,
+   "where": [
+    [
+     -39.6,
+     67.8,
+     39.6
+    ],
+    [
+     -24.0,
+     67.8,
+     40.0
+    ]
+   ]
+  },
+  {
+   "part": "right_upper_leg",
+   "fraction": 0.1213,
+   "where": [
+    [
+     -43.3,
+     -73.5,
+     71.7
+    ],
+    [
+     15.0,
+     -43.7,
+     114.1
+    ]
+   ]
+  },
+  {
+   "part": "right_foot",
+   "fraction": 0.022,
+   "where": [
+    [
+     -39.6,
+     -67.8,
+     39.6
+    ],
+    [
+     -24.0,
+     -67.8,
+     40.0
+    ]
+   ]
+  },
+  {
+   "part": "chassis",
+   "fraction": 0.4246,
+   "where": [
+    [
+     -36.0,
+     -24.6,
+     116.0
+    ],
+    [
+     3.6,
+     28.0,
+     146.0
+    ]
+   ]
+  },
+  {
+   "part": "neck_sleeve",
+   "fraction": 0.5549,
+   "where": [
+    [
+     11.5,
+     -19.5,
+     151.1
+    ],
+    [
+     40.5,
+     13.8,
+     212.0
+    ]
+   ]
+  },
+  {
+   "part": "head_yoke",
+   "fraction": 0.1616,
+   "where": [
+    [
+     12.6,
+     -7.9,
+     233.9
+    ],
+    [
+     12.6,
+     7.9,
+     237.3
+    ]
+   ]
+  },
+  {
+   "part": "head_frame",
+   "fraction": 0.0217,
+   "where": [
+    [
+     -21.8,
+     -3.4,
+     226.6
+    ],
+    [
+     41.6,
+     3.4,
+     247.1
+    ]
+   ]
+  },
+  {
+   "part": "skull",
+   "fraction": 0.0477,
+   "where": [
+    [
+     -30.0,
+     -32.1,
+     231.2
+    ],
+    [
+     104.0,
+     29.8,
+     254.4
+    ]
+   ]
+  },
+  {
+   "part": "jaw_beak",
+   "fraction": 0.1028,
+   "where": [
+    [
+     44.9,
+     -28.7,
+     228.8
+    ],
+    [
+     75.1,
+     28.7,
+     229.9
+    ]
+   ]
+  }
+ ],
+ "horn_plates": {
+  "left_hip_yaw": {
+   "bolt_bearing_mpa": 3.28,
+   "bolt_shear_out_mpa": 0.61,
+   "plate_bending_mpa": 1.54,
+   "edge_distance_mm": 5.9,
+   "force_per_bolt_n": 21.7,
+   "safety_factors": {
+    "bolt_bearing": 7.62,
+    "bolt_shear_out": 24.51,
+    "plate_bending": 16.25
+   },
+   "governing_mode": "bolt_bearing",
+   "safety_factor": 7.62
+  },
+  "left_hip_roll": {
+   "bolt_bearing_mpa": 3.28,
+   "bolt_shear_out_mpa": 0.61,
+   "plate_bending_mpa": 1.54,
+   "edge_distance_mm": 5.9,
+   "force_per_bolt_n": 21.7,
+   "safety_factors": {
+    "bolt_bearing": 7.62,
+    "bolt_shear_out": 24.51,
+    "plate_bending": 16.25
+   },
+   "governing_mode": "bolt_bearing",
+   "safety_factor": 7.62
+  },
+  "left_hip_pitch": {
+   "bolt_bearing_mpa": 3.28,
+   "bolt_shear_out_mpa": 0.61,
+   "plate_bending_mpa": 1.54,
+   "edge_distance_mm": 5.9,
+   "force_per_bolt_n": 21.7,
+   "safety_factors": {
+    "bolt_bearing": 7.62,
+    "bolt_shear_out": 24.51,
+    "plate_bending": 16.25
+   },
+   "governing_mode": "bolt_bearing",
+   "safety_factor": 7.62
+  },
+  "left_knee": {
+   "bolt_bearing_mpa": 3.28,
+   "bolt_shear_out_mpa": 0.93,
+   "plate_bending_mpa": 2.15,
+   "edge_distance_mm": 3.9,
+   "force_per_bolt_n": 21.7,
+   "safety_factors": {
+    "bolt_bearing": 7.62,
+    "bolt_shear_out": 16.2,
+    "plate_bending": 11.63
+   },
+   "governing_mode": "bolt_bearing",
+   "safety_factor": 7.62
+  },
+  "left_ankle": {
+   "bolt_bearing_mpa": 3.28,
+   "bolt_shear_out_mpa": 1.25,
+   "plate_bending_mpa": 2.6,
+   "edge_distance_mm": 2.9,
+   "force_per_bolt_n": 21.7,
+   "safety_factors": {
+    "bolt_bearing": 7.62,
+    "bolt_shear_out": 12.05,
+    "plate_bending": 9.62
+   },
+   "governing_mode": "bolt_bearing",
+   "safety_factor": 7.62
+  },
+  "right_hip_yaw": {
+   "bolt_bearing_mpa": 3.28,
+   "bolt_shear_out_mpa": 0.61,
+   "plate_bending_mpa": 1.54,
+   "edge_distance_mm": 5.9,
+   "force_per_bolt_n": 21.7,
+   "safety_factors": {
+    "bolt_bearing": 7.62,
+    "bolt_shear_out": 24.51,
+    "plate_bending": 16.25
+   },
+   "governing_mode": "bolt_bearing",
+   "safety_factor": 7.62
+  },
+  "right_hip_roll": {
+   "bolt_bearing_mpa": 3.28,
+   "bolt_shear_out_mpa": 0.61,
+   "plate_bending_mpa": 1.54,
+   "edge_distance_mm": 5.9,
+   "force_per_bolt_n": 21.7,
+   "safety_factors": {
+    "bolt_bearing": 7.62,
+    "bolt_shear_out": 24.51,
+    "plate_bending": 16.25
+   },
+   "governing_mode": "bolt_bearing",
+   "safety_factor": 7.62
+  },
+  "right_hip_pitch": {
+   "bolt_bearing_mpa": 3.28,
+   "bolt_shear_out_mpa": 0.61,
+   "plate_bending_mpa": 1.54,
+   "edge_distance_mm": 5.9,
+   "force_per_bolt_n": 21.7,
+   "safety_factors": {
+    "bolt_bearing": 7.62,
+    "bolt_shear_out": 24.51,
+    "plate_bending": 16.25
+   },
+   "governing_mode": "bolt_bearing",
+   "safety_factor": 7.62
+  },
+  "right_knee": {
+   "bolt_bearing_mpa": 3.28,
+   "bolt_shear_out_mpa": 0.93,
+   "plate_bending_mpa": 2.15,
+   "edge_distance_mm": 3.9,
+   "force_per_bolt_n": 21.7,
+   "safety_factors": {
+    "bolt_bearing": 7.62,
+    "bolt_shear_out": 16.2,
+    "plate_bending": 11.63
+   },
+   "governing_mode": "bolt_bearing",
+   "safety_factor": 7.62
+  },
+  "right_ankle": {
+   "bolt_bearing_mpa": 3.28,
+   "bolt_shear_out_mpa": 1.25,
+   "plate_bending_mpa": 2.6,
+   "edge_distance_mm": 2.9,
+   "force_per_bolt_n": 21.7,
+   "safety_factors": {
+    "bolt_bearing": 7.62,
+    "bolt_shear_out": 12.05,
+    "plate_bending": 9.62
+   },
+   "governing_mode": "bolt_bearing",
+   "safety_factor": 7.62
+  },
+  "head_yaw": {
+   "bolt_bearing_mpa": 3.28,
+   "bolt_shear_out_mpa": 0.61,
+   "plate_bending_mpa": 1.54,
+   "edge_distance_mm": 5.9,
+   "force_per_bolt_n": 21.7,
+   "safety_factors": {
+    "bolt_bearing": 7.62,
+    "bolt_shear_out": 24.51,
+    "plate_bending": 16.25
+   },
+   "governing_mode": "bolt_bearing",
+   "safety_factor": 7.62
+  },
+  "head_roll": {
+   "bolt_bearing_mpa": 3.28,
+   "bolt_shear_out_mpa": 1.9,
+   "plate_bending_mpa": 3.21,
+   "edge_distance_mm": 1.9,
+   "force_per_bolt_n": 21.7,
+   "safety_factors": {
+    "bolt_bearing": 7.62,
+    "bolt_shear_out": 7.89,
+    "plate_bending": 7.79
+   },
+   "governing_mode": "bolt_bearing",
+   "safety_factor": 7.62
+  },
+  "jaw": {
+   "bolt_bearing_mpa": 3.28,
+   "bolt_shear_out_mpa": 1.25,
+   "plate_bending_mpa": 2.6,
+   "edge_distance_mm": 2.9,
+   "force_per_bolt_n": 21.7,
+   "safety_factors": {
+    "bolt_bearing": 7.62,
+    "bolt_shear_out": 12.05,
+    "plate_bending": 9.62
+   },
+   "governing_mode": "bolt_bearing",
+   "safety_factor": 7.62
+  }
+ },
+ "plates_below_target": [],
+ "not_analysed": [
+  "link bodies beyond the horn plate",
+  "servo channel walls",
+  "screw bosses",
+  "impact and drop",
+  "fatigue"
+ ],
+ "physical_test": false,
+ "fea": false
+}

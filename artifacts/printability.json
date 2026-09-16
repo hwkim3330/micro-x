@@ -58,10 +58,10 @@
       ],
       "height_mm": 38.0,
       "bed_contact_mm2": 1049.0,
-      "overhang_area_mm2": 2590.5,
-      "overhang_fraction": 0.2655,
+      "overhang_area_mm2": 2609.1,
+      "overhang_fraction": 0.2656,
       "fits_bed": true,
-      "mass_g": 25.03
+      "mass_g": 24.94
     },
     {
       "part": "right_foot",
@@ -72,10 +72,10 @@
       ],
       "height_mm": 38.0,
       "bed_contact_mm2": 1049.0,
-      "overhang_area_mm2": 2590.5,
-      "overhang_fraction": 0.2655,
+      "overhang_area_mm2": 2609.1,
+      "overhang_fraction": 0.2656,
       "fits_bed": true,
-      "mass_g": 25.03
+      "mass_g": 24.94
     },
     {
       "part": "skull",
@@ -100,38 +100,10 @@
       ],
       "height_mm": 25.1,
       "bed_contact_mm2": 766.5,
-      "overhang_area_mm2": 766.5,
-      "overhang_fraction": 0.2593,
+      "overhang_area_mm2": 779.4,
+      "overhang_fraction": 0.2612,
       "fits_bed": true,
-      "mass_g": 4.41
-    },
-    {
-      "part": "left_hip",
-      "print_axis": "-Y",
-      "footprint_mm": [
-        33.5,
-        28.5
-      ],
-      "height_mm": 38.1,
-      "bed_contact_mm2": 851.5,
-      "overhang_area_mm2": 851.5,
-      "overhang_fraction": 0.2004,
-      "fits_bed": true,
-      "mass_g": 7.91
-    },
-    {
-      "part": "right_hip",
-      "print_axis": "Y",
-      "footprint_mm": [
-        33.5,
-        28.5
-      ],
-      "height_mm": 38.1,
-      "bed_contact_mm2": 851.5,
-      "overhang_area_mm2": 851.5,
-      "overhang_fraction": 0.2004,
-      "fits_bed": true,
-      "mass_g": 7.91
+      "mass_g": 4.37
     },
     {
       "part": "right_upper_leg",
@@ -170,10 +142,10 @@
       ],
       "height_mm": 51.9,
       "bed_contact_mm2": 510.0,
-      "overhang_area_mm2": 5348.3,
-      "overhang_fraction": 0.1773,
+      "overhang_area_mm2": 5368.7,
+      "overhang_fraction": 0.1769,
       "fits_bed": true,
-      "mass_g": 44.33
+      "mass_g": 44.48
     },
     {
       "part": "head_frame",
@@ -188,6 +160,34 @@
       "overhang_fraction": 0.1738,
       "fits_bed": true,
       "mass_g": 25.61
+    },
+    {
+      "part": "left_hip",
+      "print_axis": "-Y",
+      "footprint_mm": [
+        33.5,
+        29.3
+      ],
+      "height_mm": 38.1,
+      "bed_contact_mm2": 559.1,
+      "overhang_area_mm2": 593.6,
+      "overhang_fraction": 0.1619,
+      "fits_bed": true,
+      "mass_g": 6.28
+    },
+    {
+      "part": "right_hip",
+      "print_axis": "Y",
+      "footprint_mm": [
+        33.5,
+        29.3
+      ],
+      "height_mm": 38.1,
+      "bed_contact_mm2": 559.1,
+      "overhang_area_mm2": 593.6,
+      "overhang_fraction": 0.1619,
+      "fits_bed": true,
+      "mass_g": 6.28
     },
     {
       "part": "left_yaw2roll",
@@ -254,10 +254,10 @@
       ],
       "height_mm": 32.4,
       "bed_contact_mm2": 1013.0,
-      "overhang_area_mm2": 1090.1,
-      "overhang_fraction": 0.1202,
+      "overhang_area_mm2": 1146.9,
+      "overhang_fraction": 0.1245,
       "fits_bed": true,
-      "mass_g": 15.63
+      "mass_g": 15.41
     },
     {
       "part": "torso_shell",
@@ -290,6 +290,6 @@
   ],
   "worst_overhang_fraction": 0.2991,
   "all_fit_bed": true,
-  "total_printed_mass_g": 439.7,
+  "total_printed_mass_g": 436.2,
   "note": "Parts print in the orientation stored in models/print/. Solid-PLA mass is an upper bound; sliced mass with normal infill is lower."
 }

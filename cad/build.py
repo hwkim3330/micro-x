@@ -21,6 +21,7 @@ for folder in ['models/step','models/print','artifacts','models/purchased']:(R/f
 MINT=[.97,.95,.88,1];CREAM=[.95,.62,.22,1];GRAPHITE=[.22,.25,.26,1];DARK=[.12,.14,.15,1] # MINT now = warm cream shells, CREAM = amber bill and feet
 DENSITY=0.00124 # g/mm3 PLA solid-equivalent; slicer mass with infill is lower
 WALL=3.0 # shell wall; Rev C raised from 2.4 for drop strength
+ROLL_SWEEP=0.35 # rad of hip-roll clearance carved into the hip bracket
 parts=[];purchased=[]
 
 def box(x0,x1,y0,y1,z0,z1):return cq.Workplane('XY').box(x1-x0,y1-y0,z1-z0).translate(((x0+x1)/2,(y0+y1)/2,(z0+z1)/2))
@@ -31,7 +32,9 @@ def cyl(p,axis,r,length):return cq.Workplane({'Z':'XY','Y':'XZ','X':'YZ'}[axis],
 def keep_solid(shape,name):
     shape=shape.clean();solids=shape.solids().vals()
     if len(solids)!=1:
-        big=max(solids,key=lambda s:s.Volume());small=sum(s.Volume() for s in solids)-big.Volume()
+        big=max(solids,key=lambda s:s.Volume());small=sum(abs(s.Volume()) for s in solids if s is not big)
+        # abs() matters: a failed boolean can leave an inverted solid whose negative volume
+        # cancels the sum and lets a broken part through this guard unnoticed.
         if small>200:raise ValueError(f'{name}: {len(solids)} solids, {small:.1f} mm3 loose')
         for sl in solids:
             if sl is not big:bb=sl.BoundingBox();print(f'  WARNING {name}: dropped {sl.Volume():.1f} mm3 sliver at x {bb.xmin:.1f}..{bb.xmax:.1f} y {bb.ymin:.1f}..{bb.ymax:.1f} z {bb.zmin:.1f}..{bb.zmax:.1f}')
@@ -40,6 +43,13 @@ def keep_solid(shape,name):
     return shape
 ROT={'Z':None,'-Z':(math.pi,[1,0,0]),'Y':(math.pi/2,[1,0,0]),'-Y':(-math.pi/2,[1,0,0]),'X':(math.pi/2,[0,1,0]),'-X':(-math.pi/2,[0,1,0])}
 def add(name,shape,color,body,print_axis='Z',note='',group='frame'):
+    # Re-open every horn bolt path this link owns. Ribs and shells unioned on top of a horn
+    # plate silently fill its holes, and a plate you cannot bolt is not a plate.
+    for s in L.plates_on(body):
+        tool=S.horn_holes(s['P'],s['h'],s['d'])
+        a=shape.val().BoundingBox();c=tool.val().BoundingBox()
+        if any(getattr(a,k+'max')<getattr(c,k+'min')-.5 or getattr(c,k+'max')<getattr(a,k+'min')-.5 for k in 'xyz'):continue
+        shape=shape.cut(tool)
     shape=keep_solid(shape,name)
     path=R/'models/step'/f'{name}.step';cq.exporters.export(shape,str(path))
     restored=cq.importers.importStep(str(path))
@@ -67,7 +77,7 @@ def buy(name,shape,color,body,mass_g,note,kind):
 
 for s in L.SERVOS:
     buy('servo_'+s['name'],S.envelope(s['P'],s['h'],s['d']),DARK,s['body'],S.MASS_G,'XL330-class smart servo envelope; confirm the case hole pattern before ordering','actuator')
-def horn(name,**kw):s=L.get(name);return S.horn_plate(s['P'],s['h'],s['d'],**kw)
+def horn(name,**kw):s=L.get(name);return S.horn_plate(s['P'],s['h'],s['d'],name=name,**kw)
 def chan(name,**kw):s=L.get(name);return S.channel(s['P'],s['h'],s['d'],**kw)
 def pock(name,**kw):s=L.get(name);return S.pocket(s['P'],s['h'],s['d'],**kw)
 
@@ -86,7 +96,12 @@ def build_leg(side):
     hp=horn(n('hip_roll'),width=26,length=30).union(sb(22.5,26.5,4.5,42.6,89.5,115.5)) # 4 mm roll rib
     hp=hp.union(horn(n('hip_pitch'),width=26,length=22)).union(sb(-7,26.5,39.5,42.6,89.5,115.5)) # pitch rib, kept 0.4 mm off the pitch servo
     hp=hp.union(sb(22.5,26.5,26.5,42.6,86,89.5)).union(sb(22.5,26.5,26.5,42.6,115.5,118.5)) # corner gussets top and bottom, outside the roll servo
-    hp=hp.cut(box(-60,60,-60,60,114.5,200)) # stay under the chassis floor through the full roll sweep
+    # Clip the bracket with the lower envelope of the chassis floor rotated to both roll
+    # extremes. A flat cut here is what jammed hip roll at +5.7 deg: the outboard rib lifts
+    # into the trunk skirt as soon as the joint moves.
+    P=L.pivot(n('hip_roll'));ax=P+L.axis(n('hip_roll'))
+    roof=box(-60,60,-60,60,114.5,200)
+    hp=hp.cut(roof.rotate(tuple(P),tuple(ax),math.degrees(ROLL_SWEEP))).cut(roof.rotate(tuple(P),tuple(ax),-math.degrees(ROLL_SWEEP)))
     add(n('hip'),hp,GRAPHITE,n('hip'),'-Y' if g>0 else 'Y','Hip corner bracket: roll horn plate and pitch horn plate joined by one rib. Print on the pitch plate face.')
     # Upper leg: open-sided shell holding the hip pitch and knee servos side by side.
     ul=sb(-45.2,17,42.9,75.4,68.5,116,6).cut(sb(-42.2,13.9,42.5,72.4,70.6,113))
@@ -120,9 +135,13 @@ for g in (1,-1):chassis=chassis.cut(box(-18.9,15.9,g*6.9 if g>0 else -28.1,g*28.
 chassis=chassis.union(box(-27,5.5,-26.5,26.5,147,149.5).cut(box(-24,2.5,-23.5,23.5,146,150.5))) # electronics deck
 for x in [-24,2.5]:
     for y in [-23.5,23.5]:chassis=chassis.cut(cyl((x,y,146),'Z',1.15,6))
+# Plate bottom dropped from 145.3 so the lowest bolt's access bore stays inside it.
+# The bolt pattern itself is cut systematically in add(), not by hand here.
 neck_plate=box(6,39,14.5,17.5,145.3,167.4)
-for a in range(4):
-    t=a*math.pi/2;neck_plate=neck_plate.cut(cyl((26+6*math.cos(t),18,152.4+6*math.sin(t)),'Y',1.15,-6))
+# The lowest horn bolt sits 1.1 mm above the plate's bottom, so its access bore needs
+# more plate under it - but dropping the whole bottom edge to 143 put the plate inside
+# the hip yaw servo envelope. Only the part outboard of that servo (x > 15) goes lower.
+neck_plate=neck_plate.union(box(15,39,14.5,17.5,143.0,145.3))
 neck_plate=neck_plate.cut(cyl((26,18,152.4),'Y',4.2,-6))
 chassis=chassis.union(neck_plate)
 tray=box(-92,-25,-14,14,118,120).union(box(-92,-25,-20.9,-18.9,120,136)).union(box(-92,-25,18.9,20.9,120,136)).union(box(-92,-89.6,-20.9,20.9,120,136))
@@ -163,7 +182,7 @@ sleeve=sleeve.cut(box(9,44,14.5,24,146,170)).cut(box(9,44,14.5,24,194,218)).cut(
 add('neck_sleeve',sleeve,MINT,'neck','-Y','Neck cover: rounded shell over the neck column, open on the horn side; pitches with the neck.',group='shell')
 head_base=box(20,39,14.5,17.5,196,221.1).union(horn('head_yaw',width=26,length=35))
 add('head_base',head_base,GRAPHITE,'head_base','-Z','Head base: head-pitch horn plate joined to the head-yaw horn plate. The only part that stays still while the head yaws.')
-yoke=chan('head_yaw',faces=('y+','y-','far','back')).union(horn('head_roll',width=16,length=20))
+yoke=chan('head_yaw',faces=('y+','y-','far','back')).union(horn('head_roll',width=18,length=20))
 for g in (1,-1):yoke=yoke.union(box(8.1,15.6,min(g*5,g*8),max(g*5,g*8),225.6,245.6))
 add('head_yoke',yoke,GRAPHITE,'head_yoke','-Z','Yoke: box around the head-yaw servo with two ribs out to the head-roll horn plate.')
 
@@ -239,5 +258,6 @@ report=dict(revision='RevB design-pose actuated chibi',parts=[{k:v for k,v in p.
     bodies=[dict(name=b,parent=L.PARENT[b],pivot_mm=np.round(pivots[b],3).tolist(),joint=(L.JOINT_OF_BODY[b]['name'] if b in L.JOINT_OF_BODY else None),
                  axis=(np.round(L.JOINT_OF_BODY[b]['axis'],6).tolist() if b in L.JOINT_OF_BODY else None)) for b in L.BODIES],
     printed_mass_g=round(sum(p['mass_g'] for p in parts),1),purchased_mass_g=round(sum(p['mass_g'] for p in purchased),1))
+report['horn_plates']=S.PLATES
 (R/'artifacts/parts.json').write_text(json.dumps(report,indent=2)+'\n')
 print('Built',len(parts),'printed parts',report['printed_mass_g'],'g +',len(purchased),'purchased items',report['purchased_mass_g'],'g')

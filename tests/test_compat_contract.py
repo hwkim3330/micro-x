@@ -43,4 +43,21 @@ class ContractTests(unittest.TestCase):
         inter=json.loads((R/'artifacts/interference.json').read_text());parts=json.loads((R/'artifacts/parts.json').read_text())['parts']
         for p in parts:self.assertEqual(inter['step_sha256'][p['name']],sha(p['step']))
         self.assertTrue(inter['assembly_cleared']);self.assertEqual(len(inter['motion']),15)
+    def test_no_horn_plate_is_blocked_by_its_own_link(self):
+        f=json.loads((R/'artifacts/fasteners.json').read_text())
+        self.assertEqual(f['bolt_path_defects'],0,
+            'a horn plate whose bolt paths are filled by the ribs unioned onto it cannot be assembled')
+        self.assertGreater(len(f['bolt_access']),0)
+    def test_every_horn_plate_survives_its_own_servo_at_stall(self):
+        s=json.loads((R/'artifacts/strength.json').read_text())
+        self.assertEqual(s['plates_below_target'],[])
+        for name,v in s['horn_plates'].items():
+            self.assertGreaterEqual(v['safety_factor'],s['target_safety_factor'],name)
+        self.assertFalse(s['physical_test']);self.assertFalse(s['fea'])
+    def test_harness_calibration_is_recorded_and_honest(self):
+        h=json.loads((R/'artifacts/harness_check.json').read_text())
+        ref=[r for r in h['best_tracking_ratio'] if 'reference' in r['model']]
+        self.assertEqual(len(ref),1,'the reference robot must be measured in the same harness')
+        self.assertLess(ref[0]['best_yaw_tracking'],0.9)
+        self.assertIn('conclusion',h)
 if __name__=='__main__':unittest.main()

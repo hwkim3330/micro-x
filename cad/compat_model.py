@@ -26,13 +26,18 @@ def inertia_of(meshes):
 def build():
     report=json.loads((R/'artifacts/parts.json').read_text())
     pivots={b:(L.JOINT_OF_BODY[b]['P'] if b in L.JOINT_OF_BODY else L.TRUNK_ORIGIN) for b in L.BODIES}
-    per_body={b:[] for b in L.BODIES};extents={}
+    per_body={b:[] for b in L.BODIES};extents={};soles={}
     for p in report['parts']+report['purchased']:
         mesh=trimesh.load_mesh(R/(('models/'+p['name']+'.stl') if p['printed'] else p['stl']));mesh.vertices=(mesh.vertices-pivots[p['body']])*.001
         mass=(mesh.volume*DENSITY if p['printed'] else p['mass_g']*.001)
         if not p['printed']:
             lo,hi=mesh.bounds;mesh=trimesh.creation.box(hi-lo);mesh.apply_translation((lo+hi)/2)
         per_body[p['body']].append((mass,mesh));extents.setdefault(p['body'],[]).append(mesh.bounds)
+        if p['name'].endswith('_foot'):
+            # Sole footprint measured from the printed foot, not declared. A hardcoded box
+            # here means a change to the foot never reaches the physics model.
+            v=mesh.vertices;sole=v[v[:,2]<=v[:,2].min()+.0005]
+            soles[p['body']]=(sole.min(axis=0),sole.max(axis=0))
     r=E.Element('mujoco',model='Micro_X_RevC_14');add(r,'compiler',angle='radian',autolimits='true');add(r,'option',timestep='.005',gravity='0 0 -9.81',iterations=80)
     default=add(r,'default');add(default,'joint',damping='.02',armature='.00001',frictionloss='.005');add(default,'geom',friction='1 .005 .0001',condim='3')
     w=add(r,'worldbody');add(w,'geom',name='floor',type='plane',size='3 3 .01',rgba='.85 .85 .8 1')
@@ -55,7 +60,7 @@ def build():
         lo=np.asarray(lo);hi=np.asarray(hi);add(xml[b],'geom',name=name,type='box',pos=vector((lo+hi)/2),size=vector((hi-lo)/2),mass='0',rgba='.8 .3 .1 .25',group='3',**kw)
     for side in ['left','right']:
         g=1 if side=='left' else -1;p=pivots[f'{side}_foot']
-        box_geom(f'{side}_foot',f'{side}_foot_collision',(np.array([-52,min(g*29,g*71),13.5])-p)*.001,(np.array([2,max(g*29,g*71),24])-p)*.001)
+        lo,hi=soles[f'{side}_foot'];box_geom(f'{side}_foot',f'{side}_foot_collision',lo,[hi[0],hi[1],lo[2]+.0105])
         add(xml[f'{side}_foot'],'site',name=f'{side}_foot',pos=vector((np.array([-25,g*50,13.5])-p)*.001),size='.003')
         for b in [f'{side}_upper_leg',f'{side}_lower_leg']:
             lo=np.min([e[0] for e in extents[b]],axis=0);hi=np.max([e[1] for e in extents[b]],axis=0);box_geom(b,b+'_collision',lo,hi,contype='2',conaffinity='2')
