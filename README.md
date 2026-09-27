@@ -1,5 +1,7 @@
 # MICRO X — Rev C
 
+*An independently designed 14-servo small biped robot (Microduck-compatible 61-obs → 14-action, 50 Hz policy interface) with original CAD, printability/interference/balance checks and a MuJoCo model, all numbers generated from measured artifacts. Rev C is digitally verified only; no physical build or walking test yet. [Browser 3D viewer](https://hwkim3330.github.io/micro-x/web/).*
+
 **소유자 hwkim3330이 제작·판매를 목표로 개발하는 상업용 독자 설계 소형 두발 로봇.** 공룡을 고집하지 않습니다. 넓은 부리와 큰 눈, 크림 몸에 호박색 부리·발, 두꺼운 벽. Microduck의 14축 정책 인터페이스(61 관측 → 14 행동, 50 Hz)를 그대로 쓰되, 기구·외장·서보 배치·전장 자리는 독자 설계입니다. 원본 기구를 그대로 쓰는 비상업 비교 시험기 [Micro Rex](https://github.com/hwkim3330/micro-rex)는 별도 저장소로 보존합니다.
 
 [![Micro X Rev C — 실제 CAD 렌더](artifacts/readme_hero.png)](https://hwkim3330.github.io/micro-x/web/)
